@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=35.4.0.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.35.4.0\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="McTools.Xrm.Connection, Version=1.2023.6.56, Culture=neutral, PublicKeyToken=96037217801d9658, processorArchitecture=MSIL">
       <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2023.6.56\lib\net462\McTools.Xrm.Connection.dll</HintPath>
     </Reference>
@@ -129,9 +132,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.VisualStudio.CoreUtility">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
