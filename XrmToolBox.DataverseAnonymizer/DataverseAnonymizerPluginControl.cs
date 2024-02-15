@@ -2,6 +2,8 @@
 using Bogus.Premium;
 using McTools.Xrm.Connection;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
@@ -13,26 +15,21 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XrmToolBox.DataverseAnonymizer.Controls;
+using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
 
 namespace XrmToolBox.DataverseAnonymizer
 {
     public partial class DataverseAnonymizerPluginControl : PluginControlBase
     {
-        private Settings mySettings;
+        //private Settings mySettings;
+        private EntityDataSource entityDataSource = null;        
+        private EntityDataSource attributesDataSource = null;        
 
         public DataverseAnonymizerPluginControl()
         {
             InitializeComponent();
-        }
-
-        class Account
-        {
-            public string Name { get; set; }
-
-            public string Address1_Street { get; set; }
-
-            public string PhoneNumber { get; set; }
         }
 
         private void DataverseAnonymizerPluginControl_Load(object sender, EventArgs e)
@@ -40,25 +37,101 @@ namespace XrmToolBox.DataverseAnonymizer
             //ShowInfoNotification("This is a notification that can lead to XrmToolBox repository", new Uri("https://github.com/MscrmTools/XrmToolBox"));
 
             // Loads or creates the settings for the plugin
-            if (!SettingsManager.Instance.TryLoad(GetType(), out mySettings))
-            {
-                mySettings = new Settings();
-
-                LogWarning("Settings not found => a new settings file has been created!");
-            }
-            else
-            {
-                LogInfo("Settings found and loaded");
-            }
-
-            Faker faker = new Faker("sv");
-
-            //Account acc = new Account()
+            //if (!SettingsManager.Instance.TryLoad(GetType(), out mySettings))
             //{
-            //    Name = faker.Company.CompanyName(),
-            //    Address1_Street = faker.Address.StreetAddress(),
-            //    PhoneNumber = faker.Phone.PhoneNumber()
-            //};
+            //    mySettings = new Settings();
+
+            //    LogWarning("Settings not found => a new settings file has been created!");
+            //}
+            //else
+            //{
+            //    LogInfo("Settings found and loaded");
+            //}
+
+            //BogusStuff();
+
+            cbEntityFormat.SelectedIndex = 0;
+            cbAttributeFormat.SelectedIndex = 0;
+
+            ExecuteMethod(FillEntities);
+        }
+
+        private void FillEntities()
+        {
+            WorkAsync(new WorkAsyncInfo
+            {
+                Message = "Loading tables...",
+                Work = (worker, args) =>
+                {
+                    args.Result = Service.Execute(new RetrieveAllEntitiesRequest
+                    {
+                        EntityFilters = EntityFilters.Attributes,
+                        RetrieveAsIfPublished = false
+                    });
+                },
+                PostWorkCallBack = (args) =>
+                {
+                    if (HandleAsyncError(args)) { return; }
+
+                    EntityMetadata[] entities = (args.Result as RetrieveAllEntitiesResponse).EntityMetadata;
+
+                    if (entities == null || entities.Length == 0)
+                    {
+                        MessageBox.Show("Failed to retrieve entities", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    entityDataSource = new EntityDataSource(entities);
+                    cbEntity.DataSource = entityDataSource.Entities;
+                }
+            });
+        }
+
+        //private void FillAttributes(string entityLogicalName)
+        //{
+        //    WorkAsync(new WorkAsyncInfo
+        //    {
+        //        Message = "Loading fields...",
+        //        Work = (worker, args) =>
+        //        {
+        //            args.Result = Service.Execute(new RetrieveEntityRequest
+        //            {
+        //                EntityFilters = EntityFilters.Attributes,
+        //                LogicalName = entityLogicalName,
+        //                RetrieveAsIfPublished = false
+        //            });
+        //        },
+        //        PostWorkCallBack = (args) =>
+        //        {
+        //            if (HandleAsyncError(args)) { return; }
+
+        //            EntityMetadata entity = (args.Result as RetrieveEntityResponse).EntityMetadata;
+
+        //            if (entity == null || entity.Attributes.Length == 0)
+        //            {
+        //                MessageBox.Show($"Failed to retrieve fields for entity {entityLogicalName}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                return;
+        //            }
+
+        //            attributesDataSource = new EntityDataSource(entity);
+        //            cbAttribute.DataSource = attributesDataSource.Entities;
+        //        }
+        //    });
+        //}
+
+        private bool HandleAsyncError(RunWorkerCompletedEventArgs args)
+        {
+            if (args.Error != null)
+            {
+                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
+
+        private void BogusStuff()
+        {
+            Faker faker = new Faker("sv");
 
             Type baseClass = typeof(Bogus.DataSet);
 
@@ -74,12 +147,12 @@ namespace XrmToolBox.DataverseAnonymizer
                                                                 Name = ds.Name,
                                                                 DataSetType = ds,
                                                                 Methods = ds.GetMethods()
-                                                                            .Where(m =>     
+                                                                            .Where(m =>
                                                                                 m.ReturnType == typeof(string)
                                                                                 && m.IsPublic
                                                                                 && !m.ContainsGenericParameters
                                                                                 && !m.IsVirtual
-                                                                                && 
+                                                                                &&
                                                                                 (
                                                                                     m.GetParameters().Length == 0
                                                                                     || m.GetParameters().All(param => param.IsOptional)
@@ -90,7 +163,7 @@ namespace XrmToolBox.DataverseAnonymizer
                                                                             .ToArray()
 
                                                             })
-                                                            .Where(ds => ds.Methods.Length > 0)                                                            
+                                                            .Where(ds => ds.Methods.Length > 0)
                                                             .ToArray();
 
             string dep = faker.Address.StreetName();
@@ -145,50 +218,7 @@ namespace XrmToolBox.DataverseAnonymizer
             string result = methodInfo.Invoke(dataSetInstance, parameterValues) as string;
 
             textBox1.Text = result + "\r\n" + textBox1.Text;
-        }
-
-
-
-
-
-        private void tsbClose_Click(object sender, EventArgs e)
-        {
-            CloseTool();
-        }
-
-        private void tsbSample_Click(object sender, EventArgs e)
-        {
-            // The ExecuteMethod method handles connecting to an
-            // organization if XrmToolBox is not yet connected
-            ExecuteMethod(GetAccounts);
-        }
-
-        private void GetAccounts()
-        {
-            WorkAsync(new WorkAsyncInfo
-            {
-                Message = "Getting accounts",
-                Work = (worker, args) =>
-                {
-                    args.Result = Service.RetrieveMultiple(new QueryExpression("account")
-                    {
-                        TopCount = 50
-                    });
-                },
-                PostWorkCallBack = (args) =>
-                {
-                    if (args.Error != null)
-                    {
-                        MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    var result = args.Result as EntityCollection;
-                    if (result != null)
-                    {
-                        MessageBox.Show($"Found {result.Entities.Count} accounts");
-                    }
-                }
-            });
-        }
+        }      
 
         /// <summary>
         /// This event occurs when the plugin is closed
@@ -198,7 +228,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
         {
             // Before leaving, save the settings
-            SettingsManager.Instance.Save(GetType(), mySettings);
+            //SettingsManager.Instance.Save(GetType(), mySettings);
         }
 
         /// <summary>
@@ -208,13 +238,50 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             base.UpdateConnection(newService, detail, actionName, parameter);
 
-            if (mySettings != null && detail != null)
+            //if (mySettings != null && detail != null)
+            //{
+            //    mySettings.LastUsedOrganizationWebappUrl = detail.WebApplicationUrl;
+            //    LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
+            //}
+        }
+
+        private void tbEntityFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+
+            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
+            
+            entityDataSource.Filter(tbEntityFilter.Text);
+            cbEntity.DataSource = entityDataSource.Entities;
+
+            if (selected != null && entityDataSource.Entities.Contains(selected))
             {
-                mySettings.LastUsedOrganizationWebappUrl = detail.WebApplicationUrl;
-                LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
+                cbEntity.SelectedItem = selected;
+            }
+        }
+        
+        private void cbEntityFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+            
+            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
+
+            entityDataSource.SetDisplayMode((MetadataInfo.DisplayModes) cbEntityFormat.SelectedIndex);
+            cbEntity.DataSource = entityDataSource.Entities;
+
+            if (selected != null && entityDataSource.Entities.Contains(selected))
+            {
+                cbEntity.SelectedItem = selected;
             }
         }
 
-       
+        private void cbEntity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbEntity.SelectedItem == null) { return; }
+
+            EntityMetadataInfo entity = (EntityMetadataInfo) cbEntity.SelectedItem;
+
+            cbAttribute.DataSource = entity.Fields;
+        }
     }
 }
