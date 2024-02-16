@@ -4,10 +4,10 @@
     {
         public enum DisplayModes
         {
-            DisplayPlusLogicalName = 0,
-            LogicalPlusDisplayName = 1,
-            DisplayNameOnly = 2,
-            LogicalNameOnly = 3
+            LogicalNameOnly = 0,
+            DisplayNameOnly = 1,
+            LogicalPlusDisplayName = 2,
+            DisplayPlusLogicalName = 3
         }
 
         public DisplayModes DisplayMode { get; set; } = DisplayModes.DisplayPlusLogicalName;

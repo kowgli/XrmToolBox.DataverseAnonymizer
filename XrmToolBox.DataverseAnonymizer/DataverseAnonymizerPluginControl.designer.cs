@@ -40,11 +40,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbAttributeFilter = new System.Windows.Forms.TextBox();
+            this.tbAttributeFilter = new System.Windows.Forms.TextBox();
             this.cbAttributeFormat = new System.Windows.Forms.ComboBox();
             this.cbAttribute = new System.Windows.Forms.ComboBox();
             this.gbFind = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.gbFind.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,10 +115,10 @@
             this.cbEntityFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEntityFormat.FormattingEnabled = true;
             this.cbEntityFormat.Items.AddRange(new object[] {
-            "Display + Logical Name",
-            "Logical + Display Name",
+            "Logical Name Only",
             "Display Name Only",
-            "Schema Name Only"});
+            "Logical + Display Name",
+            "Display + Logical Name"});
             this.cbEntityFormat.Location = new System.Drawing.Point(16, 91);
             this.cbEntityFormat.Margin = new System.Windows.Forms.Padding(4);
             this.cbEntityFormat.Name = "cbEntityFormat";
@@ -176,14 +178,15 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Field:";
             // 
-            // cbAttributeFilter
+            // tbAttributeFilter
             // 
-            this.cbAttributeFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAttributeFilter.Location = new System.Drawing.Point(482, 27);
-            this.cbAttributeFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.cbAttributeFilter.Name = "cbAttributeFilter";
-            this.cbAttributeFilter.Size = new System.Drawing.Size(188, 21);
-            this.cbAttributeFilter.TabIndex = 19;
+            this.tbAttributeFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAttributeFilter.Location = new System.Drawing.Point(482, 27);
+            this.tbAttributeFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.tbAttributeFilter.Name = "tbAttributeFilter";
+            this.tbAttributeFilter.Size = new System.Drawing.Size(188, 21);
+            this.tbAttributeFilter.TabIndex = 19;
+            this.tbAttributeFilter.TextChanged += new System.EventHandler(this.tbAttributeFilter_TextChanged);
             // 
             // cbAttributeFormat
             // 
@@ -192,15 +195,16 @@
             this.cbAttributeFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAttributeFormat.FormattingEnabled = true;
             this.cbAttributeFormat.Items.AddRange(new object[] {
-            "Display + Logical Name",
-            "Logical + Display Name",
+            "Logical Name Only",
             "Display Name Only",
-            "Schema Name Only"});
+            "Logical + Display Name",
+            "Display + Logical Name"});
             this.cbAttributeFormat.Location = new System.Drawing.Point(364, 91);
             this.cbAttributeFormat.Margin = new System.Windows.Forms.Padding(4);
             this.cbAttributeFormat.Name = "cbAttributeFormat";
             this.cbAttributeFormat.Size = new System.Drawing.Size(306, 21);
             this.cbAttributeFormat.TabIndex = 18;
+            this.cbAttributeFormat.SelectedIndexChanged += new System.EventHandler(this.cbAttributeFormat_SelectedIndexChanged);
             // 
             // cbAttribute
             // 
@@ -215,13 +219,15 @@
             // 
             // gbFind
             // 
+            this.gbFind.Controls.Add(this.label5);
+            this.gbFind.Controls.Add(this.label4);
             this.gbFind.Controls.Add(this.button1);
             this.gbFind.Controls.Add(this.cbEntity);
             this.gbFind.Controls.Add(this.label2);
             this.gbFind.Controls.Add(this.cbEntityFormat);
             this.gbFind.Controls.Add(this.label3);
             this.gbFind.Controls.Add(this.tbEntityFilter);
-            this.gbFind.Controls.Add(this.cbAttributeFilter);
+            this.gbFind.Controls.Add(this.tbAttributeFilter);
             this.gbFind.Controls.Add(this.lbTable);
             this.gbFind.Controls.Add(this.cbAttributeFormat);
             this.gbFind.Controls.Add(this.label1);
@@ -241,6 +247,26 @@
             this.button1.TabIndex = 22;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(134, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(188, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Start with star * to use \"contains\" filter";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(482, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(188, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Start with star * to use \"contains\" filter";
             // 
             // DataverseAnonymizerPluginControl
             // 
@@ -277,10 +303,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox cbAttributeFilter;
+        private System.Windows.Forms.TextBox tbAttributeFilter;
         private System.Windows.Forms.ComboBox cbAttributeFormat;
         private System.Windows.Forms.ComboBox cbAttribute;
         private System.Windows.Forms.GroupBox gbFind;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

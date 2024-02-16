@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Bogus.Premium;
 using McTools.Xrm.Connection;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -23,9 +24,7 @@ namespace XrmToolBox.DataverseAnonymizer
 {
     public partial class DataverseAnonymizerPluginControl : PluginControlBase
     {
-        //private Settings mySettings;
-        private EntityDataSource entityDataSource = null;        
-        private EntityDataSource attributesDataSource = null;        
+        private EntityDataSource entityDataSource = null;  
 
         public DataverseAnonymizerPluginControl()
         {
@@ -33,6 +32,159 @@ namespace XrmToolBox.DataverseAnonymizer
         }
 
         private void DataverseAnonymizerPluginControl_Load(object sender, EventArgs e)
+        {
+            cbEntityFormat.SelectedIndex = 0;
+            cbAttributeFormat.SelectedIndex = 0;
+
+            ExecuteMethod(FillEntities);
+        }
+
+        private void FillEntities()
+        {
+            WorkAsync(new WorkAsyncInfo
+            {
+                Message = "Loading tables...",
+                Work = (worker, args) =>
+                {
+                    //args.Result = Service.Execute(new RetrieveAllEntitiesRequest
+                    //{
+                    //    EntityFilters = EntityFilters.Attributes,
+                    //    RetrieveAsIfPublished = false
+                    //});
+
+                    args.Result = Service.Execute(new WhoAmIRequest());
+                },
+                PostWorkCallBack = (args) =>
+                {
+                    if (HandleAsyncError(args)) { return; }
+
+                    //EntityMetadata[] entities = (args.Result as RetrieveAllEntitiesResponse).EntityMetadata;
+
+                    //if (entities == null || entities.Length == 0)
+                    //{
+                    //    MessageBox.Show("Failed to retrieve entities", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    return;
+                    //}
+
+                    //EntityMetadataInfo[] entitiesMetadata = entities
+                    //                                            .Where(e => e.DisplayName.UserLocalizedLabel != null)
+                    //                                            .Select(e => new EntityMetadataInfo
+                    //                                            {
+                    //                                                LogicalName = e.LogicalName,
+                    //                                                DisplayName = e.DisplayName.UserLocalizedLabel.Label,
+                    //                                                PrimaryIdAttribute = e.PrimaryIdAttribute,
+                    //                                                Fields = e.Attributes
+                    //                                                              .Where(a => a.IsValidForUpdate == true
+                    //                                                                          && a.DisplayName.UserLocalizedLabel != null
+                    //                                                                          &&
+                    //                                                                          (
+                    //                                                                               a.AttributeType == AttributeTypeCode.Memo
+                    //                                                                               || a.AttributeType == AttributeTypeCode.String
+                    //                                                                          // TODO: Add more supported types here in the future
+                    //                                                                          )
+                    //                                                              )
+                    //                                                              .Select(a => new MetadataInfo
+                    //                                                              {
+                    //                                                                  LogicalName = a.LogicalName,
+                    //                                                                  DisplayName = a.DisplayName.UserLocalizedLabel.Label
+                    //                                                              })
+                    //                                                             .ToArray()
+                    //                                            })
+                    //                                            .ToArray();                    
+
+                    //string json = Newtonsoft.Json.JsonConvert.SerializeObject(entitiesMetadata);
+                    //System.IO.File.WriteAllText(@"C:\temp\crm_metadata.json", json);
+
+                    string json = System.IO.File.ReadAllText(@"C:\temp\crm_metadata.json");
+                    EntityMetadataInfo[] entitiesMetadata = Newtonsoft.Json.JsonConvert.DeserializeObject<EntityMetadataInfo[]>(json);
+
+
+                    entityDataSource = new EntityDataSource(entitiesMetadata);
+                    cbEntity.DataSource = entityDataSource.Entities;
+                    cbAttribute.DataSource = entityDataSource.Attributes;
+                }
+            });
+        }
+
+        #region Metadata filter handling
+
+        private void tbEntityFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+
+            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
+            
+            entityDataSource.Filter(tbEntityFilter.Text);
+            cbEntity.DataSource = entityDataSource.Entities;
+
+            if (selected != null && entityDataSource.Entities.Contains(selected))
+            {
+                cbEntity.SelectedItem = selected;
+            }
+        }
+        
+        private void cbEntityFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+            
+            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
+
+            entityDataSource.SetDisplayMode((MetadataInfo.DisplayModes) cbEntityFormat.SelectedIndex);
+            cbEntity.DataSource = entityDataSource.Entities;
+
+            if (selected != null && entityDataSource.Entities.Contains(selected))
+            {
+                cbEntity.SelectedItem = selected;
+            }
+        }
+
+        private void cbEntity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbEntity.SelectedItem == null) { return; }
+
+            EntityMetadataInfo entity = (EntityMetadataInfo) cbEntity.SelectedItem;
+
+            entityDataSource.SetAttributesFromEntity(entity);
+            
+            cbAttribute.DataSource = entityDataSource.Attributes;
+        }
+
+        private void tbAttributeFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+
+            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;         
+
+            entityDataSource.FilterAttributes(tbAttributeFilter.Text);
+            cbAttribute.DataSource = entityDataSource.Attributes;
+
+            if (selected != null && entityDataSource.Attributes.Contains(selected))
+            {
+                cbAttribute.SelectedItem = selected;
+            }
+        }
+
+        private void cbAttributeFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (entityDataSource == null) { return; }
+
+            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;            
+
+            entityDataSource.SetAttributeDisplayMode((MetadataInfo.DisplayModes)cbAttributeFormat.SelectedIndex);
+            cbAttribute.DataSource = entityDataSource.Attributes;
+
+            if (selected != null && entityDataSource.Attributes.Contains(selected))
+            {
+                cbAttribute.SelectedItem = selected;
+            }
+        }
+
+        #endregion
+
+        #region XrmToolBox stuff
+        //private Settings mySettings;
+
+        private void PartOfOnload()
         {
             //ShowInfoNotification("This is a notification that can lead to XrmToolBox repository", new Uri("https://github.com/MscrmTools/XrmToolBox"));
 
@@ -49,76 +201,35 @@ namespace XrmToolBox.DataverseAnonymizer
             //}
 
             //BogusStuff();
-
-            cbEntityFormat.SelectedIndex = 0;
-            cbAttributeFormat.SelectedIndex = 0;
-
-            ExecuteMethod(FillEntities);
         }
 
-        private void FillEntities()
+        /// <summary>
+        /// This event occurs when the plugin is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
         {
-            WorkAsync(new WorkAsyncInfo
-            {
-                Message = "Loading tables...",
-                Work = (worker, args) =>
-                {
-                    args.Result = Service.Execute(new RetrieveAllEntitiesRequest
-                    {
-                        EntityFilters = EntityFilters.Attributes,
-                        RetrieveAsIfPublished = false
-                    });
-                },
-                PostWorkCallBack = (args) =>
-                {
-                    if (HandleAsyncError(args)) { return; }
-
-                    EntityMetadata[] entities = (args.Result as RetrieveAllEntitiesResponse).EntityMetadata;
-
-                    if (entities == null || entities.Length == 0)
-                    {
-                        MessageBox.Show("Failed to retrieve entities", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    entityDataSource = new EntityDataSource(entities);
-                    cbEntity.DataSource = entityDataSource.Entities;
-                }
-            });
+            // Before leaving, save the settings
+            //SettingsManager.Instance.Save(GetType(), mySettings);
         }
 
-        //private void FillAttributes(string entityLogicalName)
-        //{
-        //    WorkAsync(new WorkAsyncInfo
-        //    {
-        //        Message = "Loading fields...",
-        //        Work = (worker, args) =>
-        //        {
-        //            args.Result = Service.Execute(new RetrieveEntityRequest
-        //            {
-        //                EntityFilters = EntityFilters.Attributes,
-        //                LogicalName = entityLogicalName,
-        //                RetrieveAsIfPublished = false
-        //            });
-        //        },
-        //        PostWorkCallBack = (args) =>
-        //        {
-        //            if (HandleAsyncError(args)) { return; }
+        /// <summary>
+        /// This event occurs when the connection has been updated in XrmToolBox
+        /// </summary>
+        public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
+        {
+            base.UpdateConnection(newService, detail, actionName, parameter);
 
-        //            EntityMetadata entity = (args.Result as RetrieveEntityResponse).EntityMetadata;
+            //if (mySettings != null && detail != null)
+            //{
+            //    mySettings.LastUsedOrganizationWebappUrl = detail.WebApplicationUrl;
+            //    LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
+            //}
+        }
+        #endregion
 
-        //            if (entity == null || entity.Attributes.Length == 0)
-        //            {
-        //                MessageBox.Show($"Failed to retrieve fields for entity {entityLogicalName}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //                return;
-        //            }
-
-        //            attributesDataSource = new EntityDataSource(entity);
-        //            cbAttribute.DataSource = attributesDataSource.Entities;
-        //        }
-        //    });
-        //}
-
+        #region Bogus stuff
         private bool HandleAsyncError(RunWorkerCompletedEventArgs args)
         {
             if (args.Error != null)
@@ -174,7 +285,7 @@ namespace XrmToolBox.DataverseAnonymizer
         public class BogusDataSetWithMethods
         {
             public string Name { get; set; }
-            public Type DataSetType { get; set; }            
+            public Type DataSetType { get; set; }
 
             public MethodInfo[] Methods { get; set; }
         }
@@ -188,13 +299,13 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             var bogusDs = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem;
             var methodInfo = (MethodInfo)cbBogusMethod.SelectedItem;
-          
-            Faker faker = new Faker("sv");  
+
+            Faker faker = new Faker("sv");
 
             PropertyInfo dataSetProperty = faker.GetType().GetProperties().Where(p => p.PropertyType == bogusDs.DataSetType).FirstOrDefault();
-            object dataSetInstance = dataSetProperty.GetValue(faker);          
+            object dataSetInstance = dataSetProperty.GetValue(faker);
 
-            object[] parameterValues = null; 
+            object[] parameterValues = null;
 
             // If any parameters are optional, prepare their default values
             if (methodInfo.GetParameters().Any(param => param.IsOptional))
@@ -218,70 +329,9 @@ namespace XrmToolBox.DataverseAnonymizer
             string result = methodInfo.Invoke(dataSetInstance, parameterValues) as string;
 
             textBox1.Text = result + "\r\n" + textBox1.Text;
-        }      
-
-        /// <summary>
-        /// This event occurs when the plugin is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
-        {
-            // Before leaving, save the settings
-            //SettingsManager.Instance.Save(GetType(), mySettings);
         }
+        #endregion
 
-        /// <summary>
-        /// This event occurs when the connection has been updated in XrmToolBox
-        /// </summary>
-        public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
-        {
-            base.UpdateConnection(newService, detail, actionName, parameter);
-
-            //if (mySettings != null && detail != null)
-            //{
-            //    mySettings.LastUsedOrganizationWebappUrl = detail.WebApplicationUrl;
-            //    LogInfo("Connection has changed to: {0}", detail.WebApplicationUrl);
-            //}
-        }
-
-        private void tbEntityFilter_TextChanged(object sender, EventArgs e)
-        {
-            if (entityDataSource == null) { return; }
-
-            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
-            
-            entityDataSource.Filter(tbEntityFilter.Text);
-            cbEntity.DataSource = entityDataSource.Entities;
-
-            if (selected != null && entityDataSource.Entities.Contains(selected))
-            {
-                cbEntity.SelectedItem = selected;
-            }
-        }
         
-        private void cbEntityFormat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (entityDataSource == null) { return; }
-            
-            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
-
-            entityDataSource.SetDisplayMode((MetadataInfo.DisplayModes) cbEntityFormat.SelectedIndex);
-            cbEntity.DataSource = entityDataSource.Entities;
-
-            if (selected != null && entityDataSource.Entities.Contains(selected))
-            {
-                cbEntity.SelectedItem = selected;
-            }
-        }
-
-        private void cbEntity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbEntity.SelectedItem == null) { return; }
-
-            EntityMetadataInfo entity = (EntityMetadataInfo) cbEntity.SelectedItem;
-
-            cbAttribute.DataSource = entity.Fields;
-        }
     }
 }
