@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
+using XrmToolBox.DataverseAnonymizer.Models;
 using static XrmToolBox.DataverseAnonymizer.Models.MetadataInfo;
 
-namespace XrmToolBox.DataverseAnonymizer.Models
+namespace XrmToolBox.DataverseAnonymizer.DataSources
 {
     public class EntityDataSource
     {
@@ -25,7 +26,7 @@ namespace XrmToolBox.DataverseAnonymizer.Models
             RefreshAttributes();
         }
 
-        public void SetDisplayMode(MetadataInfo.DisplayModes displayMode)
+        public void SetDisplayMode(DisplayModes displayMode)
         {
             foreach (MetadataInfo ntity in Entities)
             {
@@ -37,14 +38,14 @@ namespace XrmToolBox.DataverseAnonymizer.Models
 
         public void Filter(string filter)
         {
-            this.entityFilter = (filter ?? "").Trim();
+            entityFilter = (filter ?? "").Trim();
 
             RefreshEntities();
         }
 
         public void FilterAttributes(string filter)
         {
-            this.attributeFilter = (filter ?? "").Trim();
+            attributeFilter = (filter ?? "").Trim();
 
             RefreshAttributes();
         }

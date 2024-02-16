@@ -181,6 +181,7 @@
     <Compile Include="Controls\FieldMappingControl.Designer.cs">
       <DependentUpon>FieldMappingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSources\BogusLocale.cs" />
     <Compile Include="DataverseAnonymizerPlugin.cs" />
     <Compile Include="DataverseAnonymizerPluginControl.cs">
       <SubType>UserControl</SubType>
@@ -188,7 +189,9 @@
     <Compile Include="DataverseAnonymizerPluginControl.designer.cs">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntityDataSource.cs" />
+    <Compile Include="DataSources\BogusDataSource.cs" />
+    <Compile Include="DataSources\EntityDataSource.cs" />
+    <Compile Include="Models\BogusDataSetWithMethods.cs" />
     <Compile Include="Models\EntityMetadataInfo.cs" />
     <Compile Include="Models\MetadataInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,6 +18,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.Controls;
+using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
 
@@ -25,7 +26,8 @@ namespace XrmToolBox.DataverseAnonymizer
 {
     public partial class DataverseAnonymizerPluginControl : PluginControlBase
     {
-        private EntityDataSource entityDataSource = null;  
+        private EntityDataSource entityDataSource = null;
+        private BogusDataSource bogusDataSource = new BogusDataSource();     
 
         public DataverseAnonymizerPluginControl()
         {
@@ -37,9 +39,13 @@ namespace XrmToolBox.DataverseAnonymizer
             cbEntityFormat.SelectedIndex = 0;
             cbAttributeFormat.SelectedIndex = 0;
 
-            ExecuteMethod(FillEntities);
+            var locale = BogusLocale.Get();
+            cbBogusLocale.DataSource = locale;
+            cbBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
 
-            BogusStuff();
+            cbBogusDataSet.DataSource = bogusDataSource.DataSets;
+
+            ExecuteMethod(FillEntities);
         }
 
         private void FillEntities()
@@ -104,7 +110,6 @@ namespace XrmToolBox.DataverseAnonymizer
 
                     string json = System.IO.File.ReadAllText(@"C:\temp\crm_metadata.json");
                     EntityMetadataInfo[] entitiesMetadata = Newtonsoft.Json.JsonConvert.DeserializeObject<EntityMetadataInfo[]>(json);
-
 
                     entityDataSource = new EntityDataSource(entitiesMetadata);
                     cbEntity.DataSource = entityDataSource.Entities;
@@ -218,56 +223,6 @@ namespace XrmToolBox.DataverseAnonymizer
         #endregion
 
         #region Bogus stuff
-        
-
-        private void BogusStuff()
-        {
-            Faker faker = new Faker("sv");
-
-            Type baseClass = typeof(Bogus.DataSet);
-
-            Assembly bogusAssembly = Assembly.GetAssembly(baseClass);
-
-            Type[] bogusDataSets = bogusAssembly.GetTypes().Where(type => type != baseClass && baseClass.IsAssignableFrom(type)).ToArray();
-
-            BogusDataSetWithMethods[] bindableDataSets = bogusDataSets
-                                                            .Where(ds => ds.Name != "PremiumDataSet")
-                                                            .OrderBy(ds => ds.Name)
-                                                            .Select(ds => new BogusDataSetWithMethods
-                                                            {
-                                                                Name = ds.Name,
-                                                                DataSetType = ds,
-                                                                Methods = ds.GetMethods()
-                                                                            .Where(m =>
-                                                                                m.ReturnType == typeof(string)
-                                                                                && m.IsPublic
-                                                                                && !m.ContainsGenericParameters
-                                                                                && !m.IsVirtual
-                                                                                &&
-                                                                                (
-                                                                                    m.GetParameters().Length == 0
-                                                                                    || m.GetParameters().All(param => param.IsOptional)
-                                                                                )
-                                                                            )
-                                                                            .OrderBy(m => m.Name)
-                                                                            .Select(m => m)
-                                                                            .ToArray()
-
-                                                            })
-                                                            .Where(ds => ds.Methods.Length > 0)
-                                                            .ToArray();
-
-            string dep = faker.Address.StreetName();
-
-            cbBogusDataSet.DataSource = bindableDataSets;
-        }
-
-        public class BogusDataSetWithMethods
-        {
-            public string Name { get; set; }
-            public Type DataSetType { get; set; }
-            public MethodInfo[] Methods { get; set; }
-        }
 
         private void cbBogusDataSet_SelectedIndexChanged(object sender, EventArgs e)
         {
