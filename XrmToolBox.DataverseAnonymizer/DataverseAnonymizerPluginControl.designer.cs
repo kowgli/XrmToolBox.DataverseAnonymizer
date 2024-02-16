@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             this.cbBogusDataSet = new System.Windows.Forms.ComboBox();
             this.cbBogusMethod = new System.Windows.Forms.ComboBox();
-            this.bGenerate = new System.Windows.Forms.Button();
+            this.bBogusSample = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cbEntity = new System.Windows.Forms.ComboBox();
             this.cbEntityFormat = new System.Windows.Forms.ComboBox();
@@ -43,11 +43,25 @@
             this.tbAttributeFilter = new System.Windows.Forms.TextBox();
             this.cbAttributeFormat = new System.Windows.Forms.ComboBox();
             this.cbAttribute = new System.Windows.Forms.ComboBox();
-            this.gbFind = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.gbField = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.gbFind.SuspendLayout();
+            this.contentPanel = new System.Windows.Forms.Panel();
+            this.gbRule = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tpSequence = new System.Windows.Forms.TabPage();
+            this.tpFakeData = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudSequenceStartFrom = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbSequenceFormat = new System.Windows.Forms.TextBox();
+            this.gbField.SuspendLayout();
+            this.contentPanel.SuspendLayout();
+            this.gbRule.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tpSequence.SuspendLayout();
+            this.tpFakeData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.SuspendLayout();
             // 
             // cbBogusDataSet
@@ -55,10 +69,10 @@
             this.cbBogusDataSet.DisplayMember = "Name";
             this.cbBogusDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBogusDataSet.FormattingEnabled = true;
-            this.cbBogusDataSet.Location = new System.Drawing.Point(66, 589);
+            this.cbBogusDataSet.Location = new System.Drawing.Point(7, 39);
             this.cbBogusDataSet.Margin = new System.Windows.Forms.Padding(4);
             this.cbBogusDataSet.Name = "cbBogusDataSet";
-            this.cbBogusDataSet.Size = new System.Drawing.Size(341, 27);
+            this.cbBogusDataSet.Size = new System.Drawing.Size(176, 27);
             this.cbBogusDataSet.TabIndex = 5;
             this.cbBogusDataSet.SelectedIndexChanged += new System.EventHandler(this.cbBogusDataSet_SelectedIndexChanged);
             // 
@@ -67,22 +81,25 @@
             this.cbBogusMethod.DisplayMember = "Name";
             this.cbBogusMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBogusMethod.FormattingEnabled = true;
-            this.cbBogusMethod.Location = new System.Drawing.Point(440, 589);
+            this.cbBogusMethod.Location = new System.Drawing.Point(259, 39);
             this.cbBogusMethod.Margin = new System.Windows.Forms.Padding(4);
             this.cbBogusMethod.Name = "cbBogusMethod";
-            this.cbBogusMethod.Size = new System.Drawing.Size(293, 27);
+            this.cbBogusMethod.Size = new System.Drawing.Size(161, 27);
             this.cbBogusMethod.TabIndex = 6;
             // 
-            // bGenerate
+            // bBogusSample
             // 
-            this.bGenerate.Location = new System.Drawing.Point(756, 589);
-            this.bGenerate.Margin = new System.Windows.Forms.Padding(4);
-            this.bGenerate.Name = "bGenerate";
-            this.bGenerate.Size = new System.Drawing.Size(100, 34);
-            this.bGenerate.TabIndex = 7;
-            this.bGenerate.Text = "Generate";
-            this.bGenerate.UseVisualStyleBackColor = true;
-            this.bGenerate.Click += new System.EventHandler(this.bGenerate_Click);
+            this.bBogusSample.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bBogusSample.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bBogusSample.Location = new System.Drawing.Point(604, 31);
+            this.bBogusSample.Margin = new System.Windows.Forms.Padding(4);
+            this.bBogusSample.Name = "bBogusSample";
+            this.bBogusSample.Size = new System.Drawing.Size(35, 37);
+            this.bBogusSample.TabIndex = 7;
+            this.bBogusSample.Text = "🗘";
+            this.bBogusSample.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bBogusSample.UseVisualStyleBackColor = true;
+            this.bBogusSample.Click += new System.EventHandler(this.bGenerate_Click);
             // 
             // textBox1
             // 
@@ -217,36 +234,26 @@
             this.cbAttribute.Size = new System.Drawing.Size(306, 27);
             this.cbAttribute.TabIndex = 17;
             // 
-            // gbFind
+            // gbField
             // 
-            this.gbFind.Controls.Add(this.label5);
-            this.gbFind.Controls.Add(this.label4);
-            this.gbFind.Controls.Add(this.button1);
-            this.gbFind.Controls.Add(this.cbEntity);
-            this.gbFind.Controls.Add(this.label2);
-            this.gbFind.Controls.Add(this.cbEntityFormat);
-            this.gbFind.Controls.Add(this.label3);
-            this.gbFind.Controls.Add(this.tbEntityFilter);
-            this.gbFind.Controls.Add(this.tbAttributeFilter);
-            this.gbFind.Controls.Add(this.lbTable);
-            this.gbFind.Controls.Add(this.cbAttributeFormat);
-            this.gbFind.Controls.Add(this.label1);
-            this.gbFind.Controls.Add(this.cbAttribute);
-            this.gbFind.Location = new System.Drawing.Point(23, 23);
-            this.gbFind.Name = "gbFind";
-            this.gbFind.Size = new System.Drawing.Size(824, 129);
-            this.gbFind.TabIndex = 22;
-            this.gbFind.TabStop = false;
-            this.gbFind.Text = "Find field";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(704, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 85);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.gbField.Controls.Add(this.label5);
+            this.gbField.Controls.Add(this.label4);
+            this.gbField.Controls.Add(this.cbEntity);
+            this.gbField.Controls.Add(this.label2);
+            this.gbField.Controls.Add(this.cbEntityFormat);
+            this.gbField.Controls.Add(this.label3);
+            this.gbField.Controls.Add(this.tbEntityFilter);
+            this.gbField.Controls.Add(this.tbAttributeFilter);
+            this.gbField.Controls.Add(this.lbTable);
+            this.gbField.Controls.Add(this.cbAttributeFormat);
+            this.gbField.Controls.Add(this.label1);
+            this.gbField.Controls.Add(this.cbAttribute);
+            this.gbField.Location = new System.Drawing.Point(3, 3);
+            this.gbField.Name = "gbField";
+            this.gbField.Size = new System.Drawing.Size(679, 129);
+            this.gbField.TabIndex = 22;
+            this.gbField.TabStop = false;
+            this.gbField.Text = "1. Select field";
             // 
             // label4
             // 
@@ -268,15 +275,114 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Start with star * to use \"contains\" filter";
             // 
+            // contentPanel
+            // 
+            this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentPanel.Controls.Add(this.gbRule);
+            this.contentPanel.Controls.Add(this.gbField);
+            this.contentPanel.Location = new System.Drawing.Point(11, 14);
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(1014, 531);
+            this.contentPanel.TabIndex = 23;
+            // 
+            // gbRule
+            // 
+            this.gbRule.Controls.Add(this.tabControl1);
+            this.gbRule.Location = new System.Drawing.Point(3, 147);
+            this.gbRule.Name = "gbRule";
+            this.gbRule.Size = new System.Drawing.Size(679, 156);
+            this.gbRule.TabIndex = 23;
+            this.gbRule.TabStop = false;
+            this.gbRule.Text = "2. Set anonymization rule";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tpSequence);
+            this.tabControl1.Controls.Add(this.tpFakeData);
+            this.tabControl1.Location = new System.Drawing.Point(16, 26);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(654, 115);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tpSequence
+            // 
+            this.tpSequence.Controls.Add(this.tbSequenceFormat);
+            this.tpSequence.Controls.Add(this.label7);
+            this.tpSequence.Controls.Add(this.nudSequenceStartFrom);
+            this.tpSequence.Controls.Add(this.label6);
+            this.tpSequence.Location = new System.Drawing.Point(4, 28);
+            this.tpSequence.Name = "tpSequence";
+            this.tpSequence.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSequence.Size = new System.Drawing.Size(646, 83);
+            this.tpSequence.TabIndex = 0;
+            this.tpSequence.Text = "Sequence";
+            this.tpSequence.UseVisualStyleBackColor = true;
+            // 
+            // tpFakeData
+            // 
+            this.tpFakeData.Controls.Add(this.cbBogusDataSet);
+            this.tpFakeData.Controls.Add(this.cbBogusMethod);
+            this.tpFakeData.Controls.Add(this.bBogusSample);
+            this.tpFakeData.Location = new System.Drawing.Point(4, 28);
+            this.tpFakeData.Name = "tpFakeData";
+            this.tpFakeData.Padding = new System.Windows.Forms.Padding(3);
+            this.tpFakeData.Size = new System.Drawing.Size(646, 83);
+            this.tpFakeData.TabIndex = 1;
+            this.tpFakeData.Text = "Fake data";
+            this.tpFakeData.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(7, 12);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(84, 19);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Start from:";
+            // 
+            // nudSequenceStartFrom
+            // 
+            this.nudSequenceStartFrom.Location = new System.Drawing.Point(11, 40);
+            this.nudSequenceStartFrom.Name = "nudSequenceStartFrom";
+            this.nudSequenceStartFrom.Size = new System.Drawing.Size(120, 27);
+            this.nudSequenceStartFrom.TabIndex = 26;
+            this.nudSequenceStartFrom.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(182, 12);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 19);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Format:";
+            // 
+            // tbSequenceFormat
+            // 
+            this.tbSequenceFormat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSequenceFormat.Location = new System.Drawing.Point(186, 39);
+            this.tbSequenceFormat.Name = "tbSequenceFormat";
+            this.tbSequenceFormat.Size = new System.Drawing.Size(443, 26);
+            this.tbSequenceFormat.TabIndex = 28;
+            this.tbSequenceFormat.Text = "Account {SEQ}";
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gbFind);
+            this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.bGenerate);
-            this.Controls.Add(this.cbBogusMethod);
-            this.Controls.Add(this.cbBogusDataSet);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DataverseAnonymizerPluginControl";
@@ -284,8 +390,15 @@
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
             this.Size = new System.Drawing.Size(1037, 728);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
-            this.gbFind.ResumeLayout(false);
-            this.gbFind.PerformLayout();
+            this.gbField.ResumeLayout(false);
+            this.gbField.PerformLayout();
+            this.contentPanel.ResumeLayout(false);
+            this.gbRule.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tpSequence.ResumeLayout(false);
+            this.tpSequence.PerformLayout();
+            this.tpFakeData.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,7 +407,7 @@
         #endregion
         private System.Windows.Forms.ComboBox cbBogusDataSet;
         private System.Windows.Forms.ComboBox cbBogusMethod;
-        private System.Windows.Forms.Button bGenerate;
+        private System.Windows.Forms.Button bBogusSample;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cbEntity;
         private System.Windows.Forms.ComboBox cbEntityFormat;
@@ -306,9 +419,17 @@
         private System.Windows.Forms.TextBox tbAttributeFilter;
         private System.Windows.Forms.ComboBox cbAttributeFormat;
         private System.Windows.Forms.ComboBox cbAttribute;
-        private System.Windows.Forms.GroupBox gbFind;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox gbField;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel contentPanel;
+        private System.Windows.Forms.GroupBox gbRule;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tpSequence;
+        private System.Windows.Forms.TextBox tbSequenceFormat;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown nudSequenceStartFrom;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TabPage tpFakeData;
     }
 }

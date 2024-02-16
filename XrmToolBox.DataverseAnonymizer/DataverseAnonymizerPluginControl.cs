@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.Controls;
@@ -37,13 +38,17 @@ namespace XrmToolBox.DataverseAnonymizer
             cbAttributeFormat.SelectedIndex = 0;
 
             ExecuteMethod(FillEntities);
+
+            BogusStuff();
         }
 
         private void FillEntities()
         {
+            contentPanel.Enabled = false;
+
             WorkAsync(new WorkAsyncInfo
             {
-                Message = "Loading tables...",
+                Message = "Loading tables. This will take a short moment...",
                 Work = (worker, args) =>
                 {
                     //args.Result = Service.Execute(new RetrieveAllEntitiesRequest
@@ -56,6 +61,8 @@ namespace XrmToolBox.DataverseAnonymizer
                 },
                 PostWorkCallBack = (args) =>
                 {
+                    contentPanel.Enabled = true;
+
                     if (HandleAsyncError(args)) { return; }
 
                     //EntityMetadata[] entities = (args.Result as RetrieveAllEntitiesResponse).EntityMetadata;
@@ -182,41 +189,22 @@ namespace XrmToolBox.DataverseAnonymizer
         #endregion
 
         #region XrmToolBox stuff
-        //private Settings mySettings;
-
-        private void PartOfOnload()
+        private bool HandleAsyncError(RunWorkerCompletedEventArgs args)
         {
-            //ShowInfoNotification("This is a notification that can lead to XrmToolBox repository", new Uri("https://github.com/MscrmTools/XrmToolBox"));
-
-            // Loads or creates the settings for the plugin
-            //if (!SettingsManager.Instance.TryLoad(GetType(), out mySettings))
-            //{
-            //    mySettings = new Settings();
-
-            //    LogWarning("Settings not found => a new settings file has been created!");
-            //}
-            //else
-            //{
-            //    LogInfo("Settings found and loaded");
-            //}
-
-            //BogusStuff();
+            if (args.Error != null)
+            {
+                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
         }
-
-        /// <summary>
-        /// This event occurs when the plugin is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
         {
             // Before leaving, save the settings
             //SettingsManager.Instance.Save(GetType(), mySettings);
         }
 
-        /// <summary>
-        /// This event occurs when the connection has been updated in XrmToolBox
-        /// </summary>
         public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
         {
             base.UpdateConnection(newService, detail, actionName, parameter);
@@ -230,15 +218,7 @@ namespace XrmToolBox.DataverseAnonymizer
         #endregion
 
         #region Bogus stuff
-        private bool HandleAsyncError(RunWorkerCompletedEventArgs args)
-        {
-            if (args.Error != null)
-            {
-                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return true;
-            }
-            return false;
-        }
+        
 
         private void BogusStuff()
         {
@@ -286,7 +266,6 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             public string Name { get; set; }
             public Type DataSetType { get; set; }
-
             public MethodInfo[] Methods { get; set; }
         }
 
