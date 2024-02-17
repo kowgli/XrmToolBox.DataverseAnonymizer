@@ -6,11 +6,13 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
+using XrmToolBox.DataverseAnonymizer.Helpers;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
 using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
@@ -47,7 +49,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void FillEntities()
         {
-            contentPanel.Enabled = false;
+            FormDisabled(true);
 
             WorkAsync(new WorkAsyncInfo
             {
@@ -68,7 +70,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 },
                 PostWorkCallBack = (args) =>
                 {
-                    contentPanel.Enabled = true;
+                    FormDisabled(false);
 
                     if (HandleAsyncError(args)) { return; }
                     
@@ -205,7 +207,7 @@ namespace XrmToolBox.DataverseAnonymizer
         #endregion
 
         #region XrmToolBox stuff
-        private bool HandleAsyncError(RunWorkerCompletedEventArgs args)
+        public bool HandleAsyncError(RunWorkerCompletedEventArgs args)
         {
             if (args.Error != null)
             {
@@ -342,6 +344,33 @@ namespace XrmToolBox.DataverseAnonymizer
         private void llBypassHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
+        }
+
+        private void bRun_Click(object sender, EventArgs e)
+        {
+            if (rules.Count == 0) 
+            {
+                MessageBox.Show("Nothing to do. Add some fields and try again...", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show($"Anonymize the selected {rules.Count} fields?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+            {
+                return;
+            }
+
+            MessageBox.Show("Running...");
+
+            FormDisabled(true);
+
+            DataUpdateRunner runner = new DataUpdateRunner(this);
+
+            runner.Run(rules.ToArray());
+        }        
+
+        private void FormDisabled(bool disabled)
+        {
+            contentPanel.Enabled = !disabled;
         }
     }
 }

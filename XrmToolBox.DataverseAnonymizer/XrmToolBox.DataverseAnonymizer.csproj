@@ -193,7 +193,7 @@
     <Compile Include="DataSources\BogusDataSource.cs" />
     <Compile Include="DataSources\TableDataSource.cs" />
     <Compile Include="Helpers\CrmHelper.cs" />
-    <Compile Include="Helpers\DataUpdateHelper.cs" />
+    <Compile Include="Helpers\DataUpdateRunner.cs" />
     <Compile Include="Models\BogusDataSetWithMethods.cs" />
     <Compile Include="Models\BogusRule.cs" />
     <Compile Include="Models\TableMetadataInfo.cs" />
