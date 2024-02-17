@@ -27,7 +27,7 @@
         /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
         private void InitializeComponent()
-        {
+        {            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             this.cbBogusDataSet = new System.Windows.Forms.ComboBox();
             this.cbBogusMethod = new System.Windows.Forms.ComboBox();
@@ -47,6 +47,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.dgvRules = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bSave = new System.Windows.Forms.Button();
             this.gbRule = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpSequence = new System.Windows.Forms.TabPage();
@@ -62,6 +67,9 @@
             this.cbBogusLocale = new System.Windows.Forms.ComboBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.gbRule.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpSequence.SuspendLayout();
@@ -285,12 +293,67 @@
             this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentPanel.Controls.Add(this.dgvRules);
+            this.contentPanel.Controls.Add(this.groupBox2);
+            this.contentPanel.Controls.Add(this.groupBox1);
             this.contentPanel.Controls.Add(this.gbRule);
             this.contentPanel.Controls.Add(this.gbField);
-            this.contentPanel.Location = new System.Drawing.Point(11, 14);
+            this.contentPanel.Location = new System.Drawing.Point(11, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1014, 531);
+            this.contentPanel.Size = new System.Drawing.Size(1128, 552);
             this.contentPanel.TabIndex = 23;
+            // 
+            // dgvRules
+            // 
+            this.dgvRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRules.Location = new System.Drawing.Point(688, 16);
+            this.dgvRules.Name = "dgvRules";
+            this.dgvRules.Size = new System.Drawing.Size(429, 528);
+            this.dgvRules.TabIndex = 26;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Location = new System.Drawing.Point(3, 466);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(679, 78);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "4. Run";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(254, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 36);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Run";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.bSave);
+            this.groupBox1.Location = new System.Drawing.Point(3, 370);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(679, 78);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "3. Save";
+            // 
+            // bSave
+            // 
+            this.bSave.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bSave.Location = new System.Drawing.Point(254, 26);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(132, 36);
+            this.bSave.TabIndex = 0;
+            this.bSave.Text = "Save";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // gbRule
             // 
@@ -453,11 +516,14 @@
             this.Name = "DataverseAnonymizerPluginControl";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1037, 728);
+            this.Size = new System.Drawing.Size(1151, 564);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
             this.contentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.gbRule.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tpSequence.ResumeLayout(false);
@@ -501,5 +567,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button bSave;
+        private System.Windows.Forms.DataGridView dgvRules;
     }
 }

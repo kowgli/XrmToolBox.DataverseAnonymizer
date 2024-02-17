@@ -2,6 +2,7 @@
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace XrmToolBox.DataverseAnonymizer
     {
         private EntityDataSource entityDataSource = null;
         private BogusDataSource bogusDataSource = new BogusDataSource();
+        private BindingList<Models.AnonymizationRule> rules = new BindingList<Models.AnonymizationRule>();
 
         public DataverseAnonymizerPluginControl()
         {
@@ -33,6 +35,8 @@ namespace XrmToolBox.DataverseAnonymizer
             cbBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
 
             cbBogusDataSet.DataSource = bogusDataSource.DataSets;
+            
+            dgvRules.DataSource = rules;         
 
             ExecuteMethod(FillEntities);
         }
@@ -233,5 +237,15 @@ namespace XrmToolBox.DataverseAnonymizer
         }
 
         #endregion
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            rules.Add(new Models.AnonymizationRule()
+            {
+                Table = (MetadataInfo)cbEntity.SelectedItem,
+                Field = (MetadataInfo)cbAttribute.SelectedItem
+            });
+            dgvRules.AutoResizeColumns();
+        }
     }
 }
