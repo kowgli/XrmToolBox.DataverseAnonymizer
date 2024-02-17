@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {            
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             this.cbBogusDataSet = new System.Windows.Forms.ComboBox();
             this.cbBogusMethod = new System.Windows.Forms.ComboBox();
@@ -53,7 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bSave = new System.Windows.Forms.Button();
             this.gbRule = new System.Windows.Forms.GroupBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabcRule = new System.Windows.Forms.TabControl();
             this.tpSequence = new System.Windows.Forms.TabPage();
             this.tbSequenceFormat = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -65,13 +67,20 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbBogusLocale = new System.Windows.Forms.ComboBox();
+            this.colTableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbRule.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabcRule.SuspendLayout();
             this.tpSequence.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.tpFakeData.SuspendLayout();
@@ -305,13 +314,26 @@
             // 
             // dgvRules
             // 
+            this.dgvRules.AllowUserToAddRows = false;
+            this.dgvRules.AllowUserToDeleteRows = false;
             this.dgvRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRules.Location = new System.Drawing.Point(688, 16);
+            this.dgvRules.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTableName,
+            this.colFieldName,
+            this.colRuleName,
+            this.colEdit,
+            this.colDelete});
+            this.dgvRules.Location = new System.Drawing.Point(688, 13);
+            this.dgvRules.MultiSelect = false;
             this.dgvRules.Name = "dgvRules";
-            this.dgvRules.Size = new System.Drawing.Size(429, 528);
+            this.dgvRules.RowHeadersVisible = false;
+            this.dgvRules.RowTemplate.Height = 30;
+            this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRules.Size = new System.Drawing.Size(429, 531);
             this.dgvRules.TabIndex = 26;
             // 
             // groupBox2
@@ -336,13 +358,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.bSave);
             this.groupBox1.Location = new System.Drawing.Point(3, 370);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(679, 78);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "3. Save";
+            this.groupBox1.Text = "3. Add / Update rules";
             // 
             // bSave
             // 
@@ -357,7 +380,7 @@
             // 
             // gbRule
             // 
-            this.gbRule.Controls.Add(this.tabControl1);
+            this.gbRule.Controls.Add(this.tabcRule);
             this.gbRule.Location = new System.Drawing.Point(3, 147);
             this.gbRule.Name = "gbRule";
             this.gbRule.Size = new System.Drawing.Size(679, 207);
@@ -365,18 +388,19 @@
             this.gbRule.TabStop = false;
             this.gbRule.Text = "2. Set anonymization rule";
             // 
-            // tabControl1
+            // tabcRule
             // 
-            this.tabControl1.Controls.Add(this.tpSequence);
-            this.tabControl1.Controls.Add(this.tpFakeData);
-            this.tabControl1.Location = new System.Drawing.Point(16, 26);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(654, 157);
-            this.tabControl1.TabIndex = 0;
+            this.tabcRule.Controls.Add(this.tpSequence);
+            this.tabcRule.Controls.Add(this.tpFakeData);
+            this.tabcRule.Location = new System.Drawing.Point(16, 26);
+            this.tabcRule.Name = "tabcRule";
+            this.tabcRule.SelectedIndex = 0;
+            this.tabcRule.Size = new System.Drawing.Size(654, 157);
+            this.tabcRule.TabIndex = 0;
             // 
             // tpSequence
             // 
+            this.tpSequence.Controls.Add(this.label13);
             this.tpSequence.Controls.Add(this.tbSequenceFormat);
             this.tpSequence.Controls.Add(this.label7);
             this.tpSequence.Controls.Add(this.nudSequenceStartFrom);
@@ -506,6 +530,69 @@
             this.cbBogusLocale.Size = new System.Drawing.Size(190, 27);
             this.cbBogusLocale.TabIndex = 8;
             // 
+            // colTableName
+            // 
+            this.colTableName.DataPropertyName = "TableName";
+            this.colTableName.HeaderText = "Table Name";
+            this.colTableName.Name = "colTableName";
+            this.colTableName.ReadOnly = true;
+            this.colTableName.Width = 111;
+            // 
+            // colFieldName
+            // 
+            this.colFieldName.DataPropertyName = "FieldName";
+            this.colFieldName.HeaderText = "Field name";
+            this.colFieldName.Name = "colFieldName";
+            this.colFieldName.ReadOnly = true;
+            this.colFieldName.Width = 105;
+            // 
+            // colRuleName
+            // 
+            this.colRuleName.DataPropertyName = "RuleName";
+            this.colRuleName.HeaderText = "RuleName";
+            this.colRuleName.Name = "colRuleName";
+            this.colRuleName.ReadOnly = true;
+            this.colRuleName.Width = 101;
+            // 
+            // colEdit
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "Edit";
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colEdit.HeaderText = "Edit";
+            this.colEdit.Name = "colEdit";
+            this.colEdit.Width = 40;
+            // 
+            // colDelete
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "Delete";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colDelete.HeaderText = "Delete";
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Width = 58;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(392, 29);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(142, 30);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Creates or replaces a rule \r\nfor the selected field.";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(183, 68);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(265, 45);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "{SEQ} will be replaced with the sequence number.\r\nFor example \"My {SEQ} test\" wil" +
+    "l become:\r\n\"My 1 test\", \"My 2 test\", (...) ";
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -524,8 +611,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.gbRule.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabcRule.ResumeLayout(false);
             this.tpSequence.ResumeLayout(false);
             this.tpSequence.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).EndInit();
@@ -555,7 +643,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.GroupBox gbRule;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabcRule;
         private System.Windows.Forms.TabPage tpSequence;
         private System.Windows.Forms.TextBox tbSequenceFormat;
         private System.Windows.Forms.Label label7;
@@ -572,5 +660,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.DataGridView dgvRules;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTableName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFieldName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRuleName;
+        private System.Windows.Forms.DataGridViewButtonColumn colEdit;
+        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

@@ -192,9 +192,11 @@
     <Compile Include="DataSources\BogusDataSource.cs" />
     <Compile Include="DataSources\EntityDataSource.cs" />
     <Compile Include="Models\BogusDataSetWithMethods.cs" />
+    <Compile Include="Models\BogusRule.cs" />
     <Compile Include="Models\EntityMetadataInfo.cs" />
     <Compile Include="Models\MetadataInfo.cs" />
     <Compile Include="Models\AnonymizationRule.cs" />
+    <Compile Include="Models\SequenceRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>

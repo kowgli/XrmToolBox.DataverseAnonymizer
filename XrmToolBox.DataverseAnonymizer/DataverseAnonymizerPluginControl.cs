@@ -18,7 +18,7 @@ namespace XrmToolBox.DataverseAnonymizer
     {
         private EntityDataSource entityDataSource = null;
         private BogusDataSource bogusDataSource = new BogusDataSource();
-        private BindingList<Models.AnonymizationRule> rules = new BindingList<Models.AnonymizationRule>();
+        private BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();        
 
         public DataverseAnonymizerPluginControl()
         {
@@ -35,7 +35,8 @@ namespace XrmToolBox.DataverseAnonymizer
             cbBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
 
             cbBogusDataSet.DataSource = bogusDataSource.DataSets;
-            
+
+            dgvRules.AutoGenerateColumns = false;
             dgvRules.DataSource = rules;         
 
             ExecuteMethod(FillEntities);
@@ -55,6 +56,8 @@ namespace XrmToolBox.DataverseAnonymizer
                     //    EntityFilters = EntityFilters.Attributes,
                     //    RetrieveAsIfPublished = false
                     //});
+
+                    
 
                     args.Result = Service.Execute(new WhoAmIRequest());
                 },
@@ -152,6 +155,8 @@ namespace XrmToolBox.DataverseAnonymizer
             entityDataSource.SetAttributesFromEntity(entity);
 
             cbAttribute.DataSource = entityDataSource.Attributes;
+
+            tbSequenceFormat.Text = $"{entity.DisplayName} {{SEQ}}";
         }
 
         private void tbAttributeFilter_TextChanged(object sender, EventArgs e)
@@ -240,11 +245,50 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            rules.Add(new Models.AnonymizationRule()
+            AnonymizationRule existingRule = rules.Where(r => r.Field == (MetadataInfo)cbAttribute.SelectedItem).FirstOrDefault();
+
+            if (existingRule != null)
             {
-                Table = (MetadataInfo)cbEntity.SelectedItem,
-                Field = (MetadataInfo)cbAttribute.SelectedItem
-            });
+                existingRule.SequenceRule = tabcRule.SelectedTab == tpSequence ? new SequenceRule
+                                                                                 {
+                                                                                     SequenceStart = (int)nudSequenceStartFrom.Value,
+                                                                                     Format = tbSequenceFormat.Text
+                                                                                 }
+                                                                                 : null;
+
+                existingRule.BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
+                                                                              {
+                                                                                  Locale = (BogusLocale)cbBogusLocale.SelectedItem,
+                                                                                  BogusDataSet = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem,
+                                                                                  BogusMethod = (MethodWithFriendlyName)cbBogusMethod.SelectedItem
+                                                                              }
+                                                                              : null;
+
+                dgvRules.Refresh();
+            }
+            else
+            {
+                rules.Add(new AnonymizationRule
+                {
+                    Table = (MetadataInfo)cbEntity.SelectedItem,
+                    Field = (MetadataInfo)cbAttribute.SelectedItem,
+                    SequenceRule = tabcRule.SelectedTab == tpSequence ? new SequenceRule
+                                                                        {
+                                                                            SequenceStart = (int)nudSequenceStartFrom.Value,
+                                                                            Format = tbSequenceFormat.Text
+                                                                        }
+                                                                        : null,
+                    BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
+                                                                     {
+                                                                        Locale = (BogusLocale)cbBogusLocale.SelectedItem,
+                                                                        BogusDataSet = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem,
+                                                                        BogusMethod = (MethodWithFriendlyName)cbBogusMethod.SelectedItem
+                                                                     }
+                                                                     : null,
+                });
+            }
+            
+
             dgvRules.AutoResizeColumns();
         }
     }
