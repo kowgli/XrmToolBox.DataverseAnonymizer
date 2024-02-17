@@ -32,7 +32,7 @@
             this.cbBogusDataSet = new System.Windows.Forms.ComboBox();
             this.cbBogusMethod = new System.Windows.Forms.ComboBox();
             this.bBogusSample = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbBogusSample = new System.Windows.Forms.TextBox();
             this.cbEntity = new System.Windows.Forms.ComboBox();
             this.cbEntityFormat = new System.Windows.Forms.ComboBox();
             this.tbEntityFilter = new System.Windows.Forms.TextBox();
@@ -55,6 +55,10 @@
             this.nudSequenceStartFrom = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.tpFakeData = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.cbBogusLocale = new System.Windows.Forms.ComboBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
@@ -70,10 +74,10 @@
             this.cbBogusDataSet.DisplayMember = "FriendlyName";
             this.cbBogusDataSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBogusDataSet.FormattingEnabled = true;
-            this.cbBogusDataSet.Location = new System.Drawing.Point(261, 37);
+            this.cbBogusDataSet.Location = new System.Drawing.Point(234, 37);
             this.cbBogusDataSet.Margin = new System.Windows.Forms.Padding(4);
             this.cbBogusDataSet.Name = "cbBogusDataSet";
-            this.cbBogusDataSet.Size = new System.Drawing.Size(124, 27);
+            this.cbBogusDataSet.Size = new System.Drawing.Size(190, 27);
             this.cbBogusDataSet.TabIndex = 5;
             this.cbBogusDataSet.SelectedIndexChanged += new System.EventHandler(this.cbBogusDataSet_SelectedIndexChanged);
             // 
@@ -82,17 +86,18 @@
             this.cbBogusMethod.DisplayMember = "FriendlyName";
             this.cbBogusMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBogusMethod.FormattingEnabled = true;
-            this.cbBogusMethod.Location = new System.Drawing.Point(395, 37);
+            this.cbBogusMethod.Location = new System.Drawing.Point(449, 37);
             this.cbBogusMethod.Margin = new System.Windows.Forms.Padding(4);
             this.cbBogusMethod.Name = "cbBogusMethod";
-            this.cbBogusMethod.Size = new System.Drawing.Size(161, 27);
+            this.cbBogusMethod.Size = new System.Drawing.Size(190, 27);
             this.cbBogusMethod.TabIndex = 6;
+            this.cbBogusMethod.SelectedIndexChanged += new System.EventHandler(this.cbBogusMethod_SelectedIndexChanged);
             // 
             // bBogusSample
             // 
             this.bBogusSample.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bBogusSample.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bBogusSample.Location = new System.Drawing.Point(604, 31);
+            this.bBogusSample.Location = new System.Drawing.Point(607, 81);
             this.bBogusSample.Margin = new System.Windows.Forms.Padding(4);
             this.bBogusSample.Name = "bBogusSample";
             this.bBogusSample.Size = new System.Drawing.Size(35, 37);
@@ -100,19 +105,18 @@
             this.bBogusSample.Text = "🗘";
             this.bBogusSample.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bBogusSample.UseVisualStyleBackColor = true;
-            this.bBogusSample.Click += new System.EventHandler(this.bGenerate_Click);
+            this.bBogusSample.Click += new System.EventHandler(this.bBogusSample_Click);
             // 
-            // textBox1
+            // tbBogusSample
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbBogusSample.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(62, 614);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(693, 87);
-            this.textBox1.TabIndex = 8;
+            this.tbBogusSample.Location = new System.Drawing.Point(86, 87);
+            this.tbBogusSample.Margin = new System.Windows.Forms.Padding(4);
+            this.tbBogusSample.Name = "tbBogusSample";
+            this.tbBogusSample.Size = new System.Drawing.Size(513, 27);
+            this.tbBogusSample.TabIndex = 8;
             // 
             // cbEntity
             // 
@@ -293,7 +297,7 @@
             this.gbRule.Controls.Add(this.tabControl1);
             this.gbRule.Location = new System.Drawing.Point(3, 147);
             this.gbRule.Name = "gbRule";
-            this.gbRule.Size = new System.Drawing.Size(679, 156);
+            this.gbRule.Size = new System.Drawing.Size(679, 207);
             this.gbRule.TabIndex = 23;
             this.gbRule.TabStop = false;
             this.gbRule.Text = "2. Set anonymization rule";
@@ -305,7 +309,7 @@
             this.tabControl1.Location = new System.Drawing.Point(16, 26);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(654, 115);
+            this.tabControl1.Size = new System.Drawing.Size(654, 157);
             this.tabControl1.TabIndex = 0;
             // 
             // tpSequence
@@ -317,7 +321,7 @@
             this.tpSequence.Location = new System.Drawing.Point(4, 28);
             this.tpSequence.Name = "tpSequence";
             this.tpSequence.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSequence.Size = new System.Drawing.Size(646, 83);
+            this.tpSequence.Size = new System.Drawing.Size(646, 125);
             this.tpSequence.TabIndex = 0;
             this.tpSequence.Text = "Sequence";
             this.tpSequence.UseVisualStyleBackColor = true;
@@ -367,6 +371,11 @@
             // 
             // tpFakeData
             // 
+            this.tpFakeData.Controls.Add(this.label11);
+            this.tpFakeData.Controls.Add(this.tbBogusSample);
+            this.tpFakeData.Controls.Add(this.label10);
+            this.tpFakeData.Controls.Add(this.label9);
+            this.tpFakeData.Controls.Add(this.label8);
             this.tpFakeData.Controls.Add(this.cbBogusLocale);
             this.tpFakeData.Controls.Add(this.cbBogusDataSet);
             this.tpFakeData.Controls.Add(this.cbBogusMethod);
@@ -374,10 +383,54 @@
             this.tpFakeData.Location = new System.Drawing.Point(4, 28);
             this.tpFakeData.Name = "tpFakeData";
             this.tpFakeData.Padding = new System.Windows.Forms.Padding(3);
-            this.tpFakeData.Size = new System.Drawing.Size(646, 83);
+            this.tpFakeData.Size = new System.Drawing.Size(646, 125);
             this.tpFakeData.TabIndex = 1;
             this.tpFakeData.Text = "Fake data";
             this.tpFakeData.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(13, 90);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 19);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "Sample:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(445, 10);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 19);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Data type:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(230, 10);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(69, 19);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Data set:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(13, 10);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 19);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Language:";
             // 
             // cbBogusLocale
             // 
@@ -387,7 +440,7 @@
             this.cbBogusLocale.Location = new System.Drawing.Point(17, 37);
             this.cbBogusLocale.Margin = new System.Windows.Forms.Padding(4);
             this.cbBogusLocale.Name = "cbBogusLocale";
-            this.cbBogusLocale.Size = new System.Drawing.Size(189, 27);
+            this.cbBogusLocale.Size = new System.Drawing.Size(190, 27);
             this.cbBogusLocale.TabIndex = 8;
             // 
             // DataverseAnonymizerPluginControl
@@ -395,7 +448,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.contentPanel);
-            this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DataverseAnonymizerPluginControl";
@@ -412,8 +464,8 @@
             this.tpSequence.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).EndInit();
             this.tpFakeData.ResumeLayout(false);
+            this.tpFakeData.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -421,7 +473,7 @@
         private System.Windows.Forms.ComboBox cbBogusDataSet;
         private System.Windows.Forms.ComboBox cbBogusMethod;
         private System.Windows.Forms.Button bBogusSample;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbBogusSample;
         private System.Windows.Forms.ComboBox cbEntity;
         private System.Windows.Forms.ComboBox cbEntityFormat;
         private System.Windows.Forms.TextBox tbEntityFilter;
@@ -445,5 +497,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tpFakeData;
         private System.Windows.Forms.ComboBox cbBogusLocale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
     }
 }

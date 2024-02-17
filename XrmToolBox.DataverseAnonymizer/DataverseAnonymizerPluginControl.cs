@@ -1,33 +1,22 @@
-﻿using Bogus;
-using Bogus.Premium;
-using McTools.Xrm.Connection;
+﻿using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
-using Microsoft.Xrm.Sdk.Query;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using XrmToolBox.DataverseAnonymizer.Controls;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
+using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
 {
     public partial class DataverseAnonymizerPluginControl : PluginControlBase
     {
         private EntityDataSource entityDataSource = null;
-        private BogusDataSource bogusDataSource = new BogusDataSource();     
+        private BogusDataSource bogusDataSource = new BogusDataSource();
 
         public DataverseAnonymizerPluginControl()
         {
@@ -39,7 +28,7 @@ namespace XrmToolBox.DataverseAnonymizer
             cbEntityFormat.SelectedIndex = 0;
             cbAttributeFormat.SelectedIndex = 0;
 
-            var locale = BogusLocale.Get();
+            BogusLocale[] locale = BogusLocale.Get();
             cbBogusLocale.DataSource = locale;
             cbBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
 
@@ -124,8 +113,8 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (entityDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
-            
+            MetadataInfo selected = (MetadataInfo)cbEntity.SelectedItem;
+
             entityDataSource.Filter(tbEntityFilter.Text);
             cbEntity.DataSource = entityDataSource.Entities;
 
@@ -134,14 +123,14 @@ namespace XrmToolBox.DataverseAnonymizer
                 cbEntity.SelectedItem = selected;
             }
         }
-        
+
         private void cbEntityFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (entityDataSource == null) { return; }
-            
-            MetadataInfo selected = (MetadataInfo) cbEntity.SelectedItem;
 
-            entityDataSource.SetDisplayMode((MetadataInfo.DisplayModes) cbEntityFormat.SelectedIndex);
+            MetadataInfo selected = (MetadataInfo)cbEntity.SelectedItem;
+
+            entityDataSource.SetDisplayMode((MetadataInfo.DisplayModes)cbEntityFormat.SelectedIndex);
             cbEntity.DataSource = entityDataSource.Entities;
 
             if (selected != null && entityDataSource.Entities.Contains(selected))
@@ -154,10 +143,10 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (cbEntity.SelectedItem == null) { return; }
 
-            EntityMetadataInfo entity = (EntityMetadataInfo) cbEntity.SelectedItem;
+            EntityMetadataInfo entity = (EntityMetadataInfo)cbEntity.SelectedItem;
 
             entityDataSource.SetAttributesFromEntity(entity);
-            
+
             cbAttribute.DataSource = entityDataSource.Attributes;
         }
 
@@ -165,7 +154,7 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (entityDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;         
+            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;
 
             entityDataSource.FilterAttributes(tbAttributeFilter.Text);
             cbAttribute.DataSource = entityDataSource.Attributes;
@@ -180,7 +169,7 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (entityDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;            
+            MetadataInfo selected = (MetadataInfo)cbAttribute.SelectedItem;
 
             entityDataSource.SetAttributeDisplayMode((MetadataInfo.DisplayModes)cbAttributeFormat.SelectedIndex);
             cbAttribute.DataSource = entityDataSource.Attributes;
@@ -203,7 +192,7 @@ namespace XrmToolBox.DataverseAnonymizer
             }
             return false;
         }
-      
+
         private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
         {
             // Before leaving, save the settings
@@ -229,43 +218,20 @@ namespace XrmToolBox.DataverseAnonymizer
             cbBogusMethod.DataSource = ((BogusDataSetWithMethods)cbBogusDataSet.SelectedItem).Methods;
         }
 
-        private void bGenerate_Click(object sender, EventArgs e)
+        private void cbBogusMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var bogusDs = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem;
-            var methodInfo = (MethodInfo)cbBogusMethod.SelectedItem;
-
-            Faker faker = new Faker("sv");
-
-            PropertyInfo dataSetProperty = faker.GetType().GetProperties().Where(p => p.PropertyType == bogusDs.DataSetType).FirstOrDefault();
-            object dataSetInstance = dataSetProperty.GetValue(faker);
-
-            object[] parameterValues = null;
-
-            // If any parameters are optional, prepare their default values
-            if (methodInfo.GetParameters().Any(param => param.IsOptional))
-            {
-                parameterValues = new object[methodInfo.GetParameters().Length];
-                for (int i = 0; i < parameterValues.Length; i++)
-                {
-                    ParameterInfo parameter = methodInfo.GetParameters()[i];
-                    if (parameter.IsOptional)
-                    {
-                        parameterValues[i] = parameter.DefaultValue;
-                    }
-                    else
-                    {
-                        // Handle required parameters (e.g., throw an exception)
-                        throw new ArgumentException("Required parameter not found");
-                    }
-                }
-            }
-
-            string result = methodInfo.Invoke(dataSetInstance, parameterValues) as string;
-
-            textBox1.Text = result + "\r\n" + textBox1.Text;
+            bBogusSample_Click(null, null);
         }
-        #endregion
 
-        
+        private void bBogusSample_Click(object sender, EventArgs e)
+        {
+            var language = (BogusLocale)cbBogusLocale.SelectedItem;
+            var bogusDs = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem;
+            var method = (MethodWithFriendlyName)cbBogusMethod.SelectedItem;
+
+            tbBogusSample.Text = bogusDataSource.Generate(language.Name, bogusDs, method);
+        }
+
+        #endregion
     }
 }
