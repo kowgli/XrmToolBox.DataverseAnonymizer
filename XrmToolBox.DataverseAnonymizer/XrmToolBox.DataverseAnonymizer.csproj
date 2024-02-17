@@ -191,10 +191,12 @@
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\BogusDataSource.cs" />
-    <Compile Include="DataSources\EntityDataSource.cs" />
+    <Compile Include="DataSources\TableDataSource.cs" />
+    <Compile Include="Helpers\CrmHelper.cs" />
+    <Compile Include="Helpers\DataUpdateHelper.cs" />
     <Compile Include="Models\BogusDataSetWithMethods.cs" />
     <Compile Include="Models\BogusRule.cs" />
-    <Compile Include="Models\EntityMetadataInfo.cs" />
+    <Compile Include="Models\TableMetadataInfo.cs" />
     <Compile Include="Models\MetadataInfo.cs" />
     <Compile Include="Models\AnonymizationRule.cs" />
     <Compile Include="Models\SequenceRule.cs" />

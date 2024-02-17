@@ -5,17 +5,17 @@ using static XrmToolBox.DataverseAnonymizer.Models.MetadataInfo;
 
 namespace XrmToolBox.DataverseAnonymizer.DataSources
 {
-    public class EntityDataSource
+    public class TableDataSource
     {
-        private EntityMetadataInfo[] originalEntities = null;
+        private TableMetadataInfo[] originalEntities = null;
         private MetadataInfo[] originalAttributes = null;
         private string entityFilter = "";
         private string attributeFilter = "";
 
-        public EntityMetadataInfo[] Entities { get; private set; }
-        public MetadataInfo[] Attributes { get; private set; }
+        public TableMetadataInfo[] Entities { get; private set; }
+        public MetadataInfo[] Fields { get; private set; }
 
-        public EntityDataSource(EntityMetadataInfo[] entitiesMetadata)
+        public TableDataSource(TableMetadataInfo[] entitiesMetadata)
         {
             entitiesMetadata = entitiesMetadata ?? throw new ArgumentNullException(nameof(entitiesMetadata));
 
@@ -43,16 +43,16 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
             RefreshEntities();
         }
 
-        public void FilterAttributes(string filter)
+        public void FilterFields(string filter)
         {
             attributeFilter = (filter ?? "").Trim();
 
             RefreshAttributes();
         }
 
-        public void SetAttributeDisplayMode(DisplayModes displayMode)
+        public void SetFieldDisplayMode(DisplayModes displayMode)
         {
-            foreach (MetadataInfo field in Attributes)
+            foreach (MetadataInfo field in Fields)
             {
                 field.DisplayMode = displayMode;
             }
@@ -60,7 +60,7 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
             RefreshAttributes();
         }
 
-        public void SetAttributesFromEntity(EntityMetadataInfo entity)
+        public void SetFieldsFromTable(TableMetadataInfo entity)
         {
             originalAttributes = entity.Fields;
             RefreshAttributes();
@@ -92,13 +92,13 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
             if (attributeFilter.StartsWith("*"))
             {
                 string filter = attributeFilter.TrimStart('*');
-                Attributes = originalAttributes.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
+                Fields = originalAttributes.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }
             else
             {
-                Attributes = originalAttributes.Where(e => e.ToString().StartsWith(attributeFilter, StringComparison.OrdinalIgnoreCase))
+                Fields = originalAttributes.Where(e => e.ToString().StartsWith(attributeFilter, StringComparison.OrdinalIgnoreCase))
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }

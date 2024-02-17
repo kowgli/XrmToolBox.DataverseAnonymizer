@@ -35,28 +35,29 @@
             this.cbBogusMethod = new System.Windows.Forms.ComboBox();
             this.bBogusSample = new System.Windows.Forms.Button();
             this.tbBogusSample = new System.Windows.Forms.TextBox();
-            this.cbEntity = new System.Windows.Forms.ComboBox();
-            this.cbEntityFormat = new System.Windows.Forms.ComboBox();
-            this.tbEntityFilter = new System.Windows.Forms.TextBox();
+            this.cbTable = new System.Windows.Forms.ComboBox();
+            this.cbTableFormat = new System.Windows.Forms.ComboBox();
+            this.tbTableFilter = new System.Windows.Forms.TextBox();
             this.lbTable = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbAttributeFilter = new System.Windows.Forms.TextBox();
-            this.cbAttributeFormat = new System.Windows.Forms.ComboBox();
-            this.cbAttribute = new System.Windows.Forms.ComboBox();
+            this.tbFieldFilter = new System.Windows.Forms.TextBox();
+            this.cbFieldFormat = new System.Windows.Forms.ComboBox();
+            this.cbField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.dgvRules = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbRun = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.gbRule = new System.Windows.Forms.GroupBox();
             this.tabcRule = new System.Windows.Forms.TabControl();
             this.tpSequence = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.tbSequenceFormat = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.nudSequenceStartFrom = new System.Windows.Forms.NumericUpDown();
@@ -67,23 +68,28 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbBogusLocale = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.colTableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.llBogus = new System.Windows.Forms.LinkLabel();
+            this.llBypassHelp = new System.Windows.Forms.LinkLabel();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbRun.SuspendLayout();
             this.gbRule.SuspendLayout();
             this.tabcRule.SuspendLayout();
             this.tpSequence.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.tpFakeData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // cbBogusDataSet
@@ -132,48 +138,49 @@
             this.tbBogusSample.Location = new System.Drawing.Point(86, 87);
             this.tbBogusSample.Margin = new System.Windows.Forms.Padding(4);
             this.tbBogusSample.Name = "tbBogusSample";
+            this.tbBogusSample.ReadOnly = true;
             this.tbBogusSample.Size = new System.Drawing.Size(513, 27);
             this.tbBogusSample.TabIndex = 8;
             // 
-            // cbEntity
+            // cbTable
             // 
-            this.cbEntity.DisplayMember = "Name";
-            this.cbEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEntity.FormattingEnabled = true;
-            this.cbEntity.Location = new System.Drawing.Point(16, 56);
-            this.cbEntity.Margin = new System.Windows.Forms.Padding(4);
-            this.cbEntity.Name = "cbEntity";
-            this.cbEntity.Size = new System.Drawing.Size(306, 27);
-            this.cbEntity.TabIndex = 9;
-            this.cbEntity.SelectedIndexChanged += new System.EventHandler(this.cbEntity_SelectedIndexChanged);
+            this.cbTable.DisplayMember = "Name";
+            this.cbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTable.FormattingEnabled = true;
+            this.cbTable.Location = new System.Drawing.Point(16, 56);
+            this.cbTable.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTable.Name = "cbTable";
+            this.cbTable.Size = new System.Drawing.Size(306, 27);
+            this.cbTable.TabIndex = 9;
+            this.cbTable.SelectedIndexChanged += new System.EventHandler(this.cbTable_SelectedIndexChanged);
             // 
-            // cbEntityFormat
+            // cbTableFormat
             // 
-            this.cbEntityFormat.DisplayMember = "Name";
-            this.cbEntityFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEntityFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbEntityFormat.FormattingEnabled = true;
-            this.cbEntityFormat.Items.AddRange(new object[] {
+            this.cbTableFormat.DisplayMember = "Name";
+            this.cbTableFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTableFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTableFormat.FormattingEnabled = true;
+            this.cbTableFormat.Items.AddRange(new object[] {
             "Logical Name Only",
             "Display Name Only",
             "Logical + Display Name",
             "Display + Logical Name"});
-            this.cbEntityFormat.Location = new System.Drawing.Point(16, 91);
-            this.cbEntityFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.cbEntityFormat.Name = "cbEntityFormat";
-            this.cbEntityFormat.Size = new System.Drawing.Size(306, 21);
-            this.cbEntityFormat.TabIndex = 10;
-            this.cbEntityFormat.SelectedIndexChanged += new System.EventHandler(this.cbEntityFormat_SelectedIndexChanged);
+            this.cbTableFormat.Location = new System.Drawing.Point(16, 91);
+            this.cbTableFormat.Margin = new System.Windows.Forms.Padding(4);
+            this.cbTableFormat.Name = "cbTableFormat";
+            this.cbTableFormat.Size = new System.Drawing.Size(306, 21);
+            this.cbTableFormat.TabIndex = 10;
+            this.cbTableFormat.SelectedIndexChanged += new System.EventHandler(this.cbTableFormat_SelectedIndexChanged);
             // 
-            // tbEntityFilter
+            // tbTableFilter
             // 
-            this.tbEntityFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEntityFilter.Location = new System.Drawing.Point(134, 27);
-            this.tbEntityFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.tbEntityFilter.Name = "tbEntityFilter";
-            this.tbEntityFilter.Size = new System.Drawing.Size(188, 21);
-            this.tbEntityFilter.TabIndex = 11;
-            this.tbEntityFilter.TextChanged += new System.EventHandler(this.tbEntityFilter_TextChanged);
+            this.tbTableFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTableFilter.Location = new System.Drawing.Point(134, 27);
+            this.tbTableFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.tbTableFilter.Name = "tbTableFilter";
+            this.tbTableFilter.Size = new System.Drawing.Size(188, 21);
+            this.tbTableFilter.TabIndex = 11;
+            this.tbTableFilter.TextChanged += new System.EventHandler(this.tbTableFilter_TextChanged);
             // 
             // lbTable
             // 
@@ -217,59 +224,60 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Field:";
             // 
-            // tbAttributeFilter
+            // tbFieldFilter
             // 
-            this.tbAttributeFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAttributeFilter.Location = new System.Drawing.Point(482, 27);
-            this.tbAttributeFilter.Margin = new System.Windows.Forms.Padding(4);
-            this.tbAttributeFilter.Name = "tbAttributeFilter";
-            this.tbAttributeFilter.Size = new System.Drawing.Size(188, 21);
-            this.tbAttributeFilter.TabIndex = 19;
-            this.tbAttributeFilter.TextChanged += new System.EventHandler(this.tbAttributeFilter_TextChanged);
+            this.tbFieldFilter.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFieldFilter.Location = new System.Drawing.Point(482, 27);
+            this.tbFieldFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.tbFieldFilter.Name = "tbFieldFilter";
+            this.tbFieldFilter.Size = new System.Drawing.Size(188, 21);
+            this.tbFieldFilter.TabIndex = 19;
+            this.tbFieldFilter.TextChanged += new System.EventHandler(this.tbFieldFilter_TextChanged);
             // 
-            // cbAttributeFormat
+            // cbFieldFormat
             // 
-            this.cbAttributeFormat.DisplayMember = "Name";
-            this.cbAttributeFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAttributeFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAttributeFormat.FormattingEnabled = true;
-            this.cbAttributeFormat.Items.AddRange(new object[] {
+            this.cbFieldFormat.DisplayMember = "Name";
+            this.cbFieldFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFieldFormat.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFieldFormat.FormattingEnabled = true;
+            this.cbFieldFormat.Items.AddRange(new object[] {
             "Logical Name Only",
             "Display Name Only",
             "Logical + Display Name",
             "Display + Logical Name"});
-            this.cbAttributeFormat.Location = new System.Drawing.Point(364, 91);
-            this.cbAttributeFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.cbAttributeFormat.Name = "cbAttributeFormat";
-            this.cbAttributeFormat.Size = new System.Drawing.Size(306, 21);
-            this.cbAttributeFormat.TabIndex = 18;
-            this.cbAttributeFormat.SelectedIndexChanged += new System.EventHandler(this.cbAttributeFormat_SelectedIndexChanged);
+            this.cbFieldFormat.Location = new System.Drawing.Point(364, 91);
+            this.cbFieldFormat.Margin = new System.Windows.Forms.Padding(4);
+            this.cbFieldFormat.Name = "cbFieldFormat";
+            this.cbFieldFormat.Size = new System.Drawing.Size(306, 21);
+            this.cbFieldFormat.TabIndex = 18;
+            this.cbFieldFormat.SelectedIndexChanged += new System.EventHandler(this.cbFieldFormat_SelectedIndexChanged);
             // 
-            // cbAttribute
+            // cbField
             // 
-            this.cbAttribute.DisplayMember = "Name";
-            this.cbAttribute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAttribute.FormattingEnabled = true;
-            this.cbAttribute.Location = new System.Drawing.Point(364, 56);
-            this.cbAttribute.Margin = new System.Windows.Forms.Padding(4);
-            this.cbAttribute.Name = "cbAttribute";
-            this.cbAttribute.Size = new System.Drawing.Size(306, 27);
-            this.cbAttribute.TabIndex = 17;
+            this.cbField.DisplayMember = "Name";
+            this.cbField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbField.FormattingEnabled = true;
+            this.cbField.Location = new System.Drawing.Point(364, 56);
+            this.cbField.Margin = new System.Windows.Forms.Padding(4);
+            this.cbField.Name = "cbField";
+            this.cbField.Size = new System.Drawing.Size(306, 27);
+            this.cbField.TabIndex = 17;
             // 
             // gbField
             // 
             this.gbField.Controls.Add(this.label5);
             this.gbField.Controls.Add(this.label4);
-            this.gbField.Controls.Add(this.cbEntity);
+            this.gbField.Controls.Add(this.cbTable);
             this.gbField.Controls.Add(this.label2);
-            this.gbField.Controls.Add(this.cbEntityFormat);
+            this.gbField.Controls.Add(this.cbTableFormat);
             this.gbField.Controls.Add(this.label3);
-            this.gbField.Controls.Add(this.tbEntityFilter);
-            this.gbField.Controls.Add(this.tbAttributeFilter);
+            this.gbField.Controls.Add(this.tbTableFilter);
+            this.gbField.Controls.Add(this.tbFieldFilter);
             this.gbField.Controls.Add(this.lbTable);
-            this.gbField.Controls.Add(this.cbAttributeFormat);
+            this.gbField.Controls.Add(this.cbFieldFormat);
             this.gbField.Controls.Add(this.label1);
-            this.gbField.Controls.Add(this.cbAttribute);
+            this.gbField.Controls.Add(this.cbField);
+            this.gbField.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbField.Location = new System.Drawing.Point(3, 3);
             this.gbField.Name = "gbField";
             this.gbField.Size = new System.Drawing.Size(679, 129);
@@ -303,13 +311,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.contentPanel.Controls.Add(this.dgvRules);
-            this.contentPanel.Controls.Add(this.groupBox2);
-            this.contentPanel.Controls.Add(this.groupBox1);
+            this.contentPanel.Controls.Add(this.gbRun);
             this.contentPanel.Controls.Add(this.gbRule);
             this.contentPanel.Controls.Add(this.gbField);
             this.contentPanel.Location = new System.Drawing.Point(11, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1128, 552);
+            this.contentPanel.Size = new System.Drawing.Size(1128, 540);
             this.contentPanel.TabIndex = 23;
             // 
             // dgvRules
@@ -320,6 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvRules.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRules.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTableName,
@@ -333,45 +341,52 @@
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(429, 531);
+            this.dgvRules.Size = new System.Drawing.Size(429, 517);
             this.dgvRules.TabIndex = 26;
+            this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             // 
-            // groupBox2
+            // gbRun
             // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 466);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(679, 78);
-            this.groupBox2.TabIndex = 25;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "4. Run";
+            this.gbRun.Controls.Add(this.llBypassHelp);
+            this.gbRun.Controls.Add(this.numericUpDown1);
+            this.gbRun.Controls.Add(this.label15);
+            this.gbRun.Controls.Add(this.label14);
+            this.gbRun.Controls.Add(this.checkBox2);
+            this.gbRun.Controls.Add(this.checkBox1);
+            this.gbRun.Controls.Add(this.button1);
+            this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbRun.Location = new System.Drawing.Point(3, 396);
+            this.gbRun.Name = "gbRun";
+            this.gbRun.Size = new System.Drawing.Size(679, 135);
+            this.gbRun.TabIndex = 25;
+            this.gbRun.TabStop = false;
+            this.gbRun.Text = "3. Run";
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Chartreuse;
             this.button1.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(220, 26);
+            this.button1.Location = new System.Drawing.Point(389, 85);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 36);
+            this.button1.Size = new System.Drawing.Size(132, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Run";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // groupBox1
+            // label12
             // 
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.bSave);
-            this.groupBox1.Location = new System.Drawing.Point(3, 370);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(679, 78);
-            this.groupBox1.TabIndex = 24;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "3. Add / Update rules";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(154, 211);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(251, 15);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Creates or replaces a rule for the selected field.";
             // 
             // bSave
             // 
             this.bSave.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSave.Location = new System.Drawing.Point(254, 26);
+            this.bSave.Location = new System.Drawing.Point(16, 198);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(132, 36);
             this.bSave.TabIndex = 0;
@@ -381,10 +396,14 @@
             // 
             // gbRule
             // 
+            this.gbRule.Controls.Add(this.llBogus);
+            this.gbRule.Controls.Add(this.label12);
             this.gbRule.Controls.Add(this.tabcRule);
+            this.gbRule.Controls.Add(this.bSave);
+            this.gbRule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbRule.Location = new System.Drawing.Point(3, 147);
             this.gbRule.Name = "gbRule";
-            this.gbRule.Size = new System.Drawing.Size(679, 207);
+            this.gbRule.Size = new System.Drawing.Size(679, 243);
             this.gbRule.TabIndex = 23;
             this.gbRule.TabStop = false;
             this.gbRule.Text = "2. Set anonymization rule";
@@ -414,10 +433,21 @@
             this.tpSequence.Text = "Sequence";
             this.tpSequence.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(183, 68);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(265, 45);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "{SEQ} will be replaced with the sequence number.\r\nFor example \"My {SEQ} test\" wil" +
+    "l become:\r\n\"My 1 test\", \"My 2 test\", (...) ";
+            // 
             // tbSequenceFormat
             // 
             this.tbSequenceFormat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSequenceFormat.Location = new System.Drawing.Point(186, 39);
+            this.tbSequenceFormat.Location = new System.Drawing.Point(186, 36);
             this.tbSequenceFormat.Name = "tbSequenceFormat";
             this.tbSequenceFormat.Size = new System.Drawing.Size(443, 26);
             this.tbSequenceFormat.TabIndex = 28;
@@ -427,7 +457,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(182, 12);
+            this.label7.Location = new System.Drawing.Point(182, 10);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 19);
@@ -436,7 +466,12 @@
             // 
             // nudSequenceStartFrom
             // 
-            this.nudSequenceStartFrom.Location = new System.Drawing.Point(11, 40);
+            this.nudSequenceStartFrom.Location = new System.Drawing.Point(17, 37);
+            this.nudSequenceStartFrom.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
             this.nudSequenceStartFrom.Name = "nudSequenceStartFrom";
             this.nudSequenceStartFrom.Size = new System.Drawing.Size(120, 27);
             this.nudSequenceStartFrom.TabIndex = 26;
@@ -450,7 +485,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(7, 12);
+            this.label6.Location = new System.Drawing.Point(13, 10);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 19);
@@ -531,29 +566,98 @@
             this.cbBogusLocale.Size = new System.Drawing.Size(190, 27);
             this.cbBogusLocale.TabIndex = 8;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(16, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(309, 23);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Bypass synchronous Plugins and Workflows";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(356, 29);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(115, 23);
+            this.checkBox2.TabIndex = 2;
+            this.checkBox2.Text = "Bypass Flows";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(13, 55);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(508, 17);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Warning! Asynchronous Plugins and Workflows can\'t be bypassed. Disable them manua" +
+    "lly.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(12, 95);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 19);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Batch size:";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(99, 93);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown1.TabIndex = 29;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
             // colTableName
             // 
             this.colTableName.DataPropertyName = "TableName";
-            this.colTableName.HeaderText = "Table Name";
+            this.colTableName.HeaderText = "Table";
             this.colTableName.Name = "colTableName";
             this.colTableName.ReadOnly = true;
-            this.colTableName.Width = 111;
+            this.colTableName.Width = 69;
             // 
             // colFieldName
             // 
             this.colFieldName.DataPropertyName = "FieldName";
-            this.colFieldName.HeaderText = "Field name";
+            this.colFieldName.HeaderText = "Field";
             this.colFieldName.Name = "colFieldName";
             this.colFieldName.ReadOnly = true;
-            this.colFieldName.Width = 105;
+            this.colFieldName.Width = 65;
             // 
             // colRuleName
             // 
             this.colRuleName.DataPropertyName = "RuleName";
-            this.colRuleName.HeaderText = "RuleName";
+            this.colRuleName.HeaderText = "Rule";
             this.colRuleName.Name = "colRuleName";
             this.colRuleName.ReadOnly = true;
-            this.colRuleName.Width = 101;
+            this.colRuleName.Width = 63;
             // 
             // colEdit
             // 
@@ -573,26 +677,27 @@
             this.colDelete.Name = "colDelete";
             this.colDelete.Width = 58;
             // 
-            // label12
+            // llBogus
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(392, 29);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 30);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Creates or replaces a rule \r\nfor the selected field.";
+            this.llBogus.AutoSize = true;
+            this.llBogus.Location = new System.Drawing.Point(478, 208);
+            this.llBogus.Name = "llBogus";
+            this.llBogus.Size = new System.Drawing.Size(194, 19);
+            this.llBogus.TabIndex = 2;
+            this.llBogus.TabStop = true;
+            this.llBogus.Text = "Fake data provided by Bogus";
+            this.llBogus.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llBogus_LinkClicked);
             // 
-            // label13
+            // llBypassHelp
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(183, 68);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(265, 45);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "{SEQ} will be replaced with the sequence number.\r\nFor example \"My {SEQ} test\" wil" +
-    "l become:\r\n\"My 1 test\", \"My 2 test\", (...) ";
+            this.llBypassHelp.AutoSize = true;
+            this.llBypassHelp.Location = new System.Drawing.Point(555, 30);
+            this.llBypassHelp.Name = "llBypassHelp";
+            this.llBypassHelp.Size = new System.Drawing.Size(115, 19);
+            this.llBypassHelp.TabIndex = 3;
+            this.llBypassHelp.TabStop = true;
+            this.llBypassHelp.Text = "MS Learn Article";
+            this.llBypassHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llBypassHelp_LinkClicked);
             // 
             // DataverseAnonymizerPluginControl
             // 
@@ -604,22 +709,23 @@
             this.Name = "DataverseAnonymizerPluginControl";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1151, 564);
+            this.Size = new System.Drawing.Size(1151, 552);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
             this.contentPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbRun.ResumeLayout(false);
+            this.gbRun.PerformLayout();
             this.gbRule.ResumeLayout(false);
+            this.gbRule.PerformLayout();
             this.tabcRule.ResumeLayout(false);
             this.tpSequence.ResumeLayout(false);
             this.tpSequence.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).EndInit();
             this.tpFakeData.ResumeLayout(false);
             this.tpFakeData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -629,16 +735,16 @@
         private System.Windows.Forms.ComboBox cbBogusMethod;
         private System.Windows.Forms.Button bBogusSample;
         private System.Windows.Forms.TextBox tbBogusSample;
-        private System.Windows.Forms.ComboBox cbEntity;
-        private System.Windows.Forms.ComboBox cbEntityFormat;
-        private System.Windows.Forms.TextBox tbEntityFilter;
+        private System.Windows.Forms.ComboBox cbTable;
+        private System.Windows.Forms.ComboBox cbTableFormat;
+        private System.Windows.Forms.TextBox tbTableFilter;
         private System.Windows.Forms.Label lbTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbAttributeFilter;
-        private System.Windows.Forms.ComboBox cbAttributeFormat;
-        private System.Windows.Forms.ComboBox cbAttribute;
+        private System.Windows.Forms.TextBox tbFieldFilter;
+        private System.Windows.Forms.ComboBox cbFieldFormat;
+        private System.Windows.Forms.ComboBox cbField;
         private System.Windows.Forms.GroupBox gbField;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -656,17 +762,23 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbRun;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.DataGridView dgvRules;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTableName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFieldName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRuleName;
         private System.Windows.Forms.DataGridViewButtonColumn colEdit;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.LinkLabel llBogus;
+        private System.Windows.Forms.LinkLabel llBypassHelp;
     }
 }

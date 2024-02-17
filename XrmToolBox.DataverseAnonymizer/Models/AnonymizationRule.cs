@@ -16,7 +16,7 @@ namespace XrmToolBox.DataverseAnonymizer.Models
             }
         }
 
-        public MetadataInfo Table { get; set; }
+        public TableMetadataInfo Table { get; set; }
 
         public MetadataInfo Field { get; set; }
 
