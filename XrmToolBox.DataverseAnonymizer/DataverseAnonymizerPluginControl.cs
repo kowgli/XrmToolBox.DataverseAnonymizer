@@ -48,7 +48,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
             WorkAsync(new WorkAsyncInfo
             {
-                Message = "Loading tables. This will take a short moment...",
+                Message = $"Loading tables...\r\nHere is a random piece of wisdom to think on while you wait:\r\n\"{QuotesDataSource.GetQuote()}\"\r\n-- Chat GPT2024",
+                MessageWidth = 800,
                 Work = (worker, args) =>
                 {
                     //args.Result = Service.Execute(new RetrieveAllEntitiesRequest
@@ -57,7 +58,7 @@ namespace XrmToolBox.DataverseAnonymizer
                     //    RetrieveAsIfPublished = false
                     //});
 
-                    
+                    System.Threading.Thread.Sleep(20_000);
 
                     args.Result = Service.Execute(new WhoAmIRequest());
                 },

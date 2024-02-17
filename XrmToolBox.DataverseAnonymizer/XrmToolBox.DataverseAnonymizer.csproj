@@ -182,6 +182,7 @@
       <DependentUpon>FieldMappingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\BogusLocale.cs" />
+    <Compile Include="DataSources\QuotesDataSource.cs" />
     <Compile Include="DataverseAnonymizerPlugin.cs" />
     <Compile Include="DataverseAnonymizerPluginControl.cs">
       <SubType>UserControl</SubType>
