@@ -1,6 +1,7 @@
 ﻿#define USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
+using McTools.Xrm.Connection.WinForms.AppCode;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
@@ -32,14 +33,14 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void DataverseAnonymizerPluginControl_Load(object sender, EventArgs e)
         {
-            cbTableFormat.SelectedIndex = 0;
-            cbFieldFormat.SelectedIndex = 0;
+            comboTableFormat.SelectedIndex = 0;
+            comboFieldFormat.SelectedIndex = 0;
 
             BogusLocale[] locale = BogusLocale.Get();
-            cbBogusLocale.DataSource = locale;
-            cbBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
+            comboBogusLocale.DataSource = locale;
+            comboBogusLocale.SelectedItem = locale.Where(l => l.Name == "en").FirstOrDefault();
 
-            cbBogusDataSet.DataSource = bogusDataSource.DataSets;
+            comboBogusDataSet.DataSource = bogusDataSource.DataSets;
 
             dgvRules.AutoGenerateColumns = false;
             dgvRules.DataSource = rules;
@@ -90,13 +91,13 @@ namespace XrmToolBox.DataverseAnonymizer
 #endif
 
                     tableDataSource = new TableDataSource(entitiesMetadata);
-                    cbTable.DataSource = tableDataSource.Entities;
-                    cbField.DataSource = tableDataSource.Fields;
+                    comboTable.DataSource = tableDataSource.Entities;
+                    comboField.DataSource = tableDataSource.Fields;
 
                     TableMetadataInfo accountMetadata = tableDataSource.Entities.Where(e => e.LogicalName == "account").FirstOrDefault();
                     if (accountMetadata != null)
                     {
-                        cbTable.SelectedItem = accountMetadata;
+                        comboTable.SelectedItem = accountMetadata;
                     }
                 }
             });
@@ -135,41 +136,41 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (tableDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbTable.SelectedItem;
+            MetadataInfo selected = (MetadataInfo)comboTable.SelectedItem;
 
             tableDataSource.Filter(tbTableFilter.Text);
-            cbTable.DataSource = tableDataSource.Entities;
+            comboTable.DataSource = tableDataSource.Entities;
 
             if (selected != null && tableDataSource.Entities.Contains(selected))
             {
-                cbTable.SelectedItem = selected;
+                comboTable.SelectedItem = selected;
             }
         }
 
-        private void cbTableFormat_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboTableFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tableDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbTable.SelectedItem;
+            MetadataInfo selected = (MetadataInfo)comboTable.SelectedItem;
 
-            tableDataSource.SetDisplayMode((MetadataInfo.DisplayModes)cbTableFormat.SelectedIndex);
-            cbTable.DataSource = tableDataSource.Entities;
+            tableDataSource.SetDisplayMode((MetadataInfo.DisplayModes)comboTableFormat.SelectedIndex);
+            comboTable.DataSource = tableDataSource.Entities;
 
             if (selected != null && tableDataSource.Entities.Contains(selected))
             {
-                cbTable.SelectedItem = selected;
+                comboTable.SelectedItem = selected;
             }
         }
 
-        private void cbTable_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTable.SelectedItem == null) { return; }
+            if (comboTable.SelectedItem == null) { return; }
 
-            TableMetadataInfo table = (TableMetadataInfo)cbTable.SelectedItem;
+            TableMetadataInfo table = (TableMetadataInfo)comboTable.SelectedItem;
 
             tableDataSource.SetFieldsFromTable(table);
 
-            cbField.DataSource = tableDataSource.Fields;
+            comboField.DataSource = tableDataSource.Fields;
 
             tbSequenceFormat.Text = $"{table.DisplayName} {{SEQ}}";
         }
@@ -178,29 +179,29 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (tableDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbField.SelectedItem;
+            MetadataInfo selected = (MetadataInfo)comboField.SelectedItem;
 
             tableDataSource.FilterFields(tbFieldFilter.Text);
-            cbField.DataSource = tableDataSource.Fields;
+            comboField.DataSource = tableDataSource.Fields;
 
             if (selected != null && tableDataSource.Fields.Contains(selected))
             {
-                cbField.SelectedItem = selected;
+                comboField.SelectedItem = selected;
             }
         }
 
-        private void cbFieldFormat_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboFieldFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tableDataSource == null) { return; }
 
-            MetadataInfo selected = (MetadataInfo)cbField.SelectedItem;
+            MetadataInfo selected = (MetadataInfo)comboField.SelectedItem;
 
-            tableDataSource.SetFieldDisplayMode((MetadataInfo.DisplayModes)cbFieldFormat.SelectedIndex);
-            cbField.DataSource = tableDataSource.Fields;
+            tableDataSource.SetFieldDisplayMode((MetadataInfo.DisplayModes)comboFieldFormat.SelectedIndex);
+            comboField.DataSource = tableDataSource.Fields;
 
             if (selected != null && tableDataSource.Fields.Contains(selected))
             {
-                cbField.SelectedItem = selected;
+                comboField.SelectedItem = selected;
             }
         }
 
@@ -229,21 +230,21 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #region Bogus stuff
 
-        private void cbBogusDataSet_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBogusDataSet_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbBogusMethod.DataSource = ((BogusDataSetWithMethods)cbBogusDataSet.SelectedItem).Methods;
+            comboBogusMethod.DataSource = ((BogusDataSetWithMethods)comboBogusDataSet.SelectedItem).Methods;
         }
 
-        private void cbBogusMethod_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBogusMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             bBogusSample_Click(null, null);
         }
 
         private void bBogusSample_Click(object sender, EventArgs e)
         {
-            var language = (BogusLocale)cbBogusLocale.SelectedItem;
-            var bogusDs = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem;
-            var method = (MethodWithFriendlyName)cbBogusMethod.SelectedItem;
+            var language = (BogusLocale)comboBogusLocale.SelectedItem;
+            var bogusDs = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem;
+            var method = (MethodWithFriendlyName)comboBogusMethod.SelectedItem;
 
             tbBogusSample.Text = bogusDataSource.Generate(language.Name, bogusDs, method);
         }
@@ -252,7 +253,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            AnonymizationRule existingRule = rules.Where(r => r.Field == (MetadataInfo)cbField.SelectedItem).FirstOrDefault();
+            AnonymizationRule existingRule = rules.Where(r => r.Field == (MetadataInfo)comboField.SelectedItem).FirstOrDefault();
 
             if (existingRule != null)
             {
@@ -265,9 +266,9 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 existingRule.BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
                 {
-                    Locale = (BogusLocale)cbBogusLocale.SelectedItem,
-                    BogusDataSet = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem,
-                    BogusMethod = (MethodWithFriendlyName)cbBogusMethod.SelectedItem
+                    Locale = (BogusLocale)comboBogusLocale.SelectedItem,
+                    BogusDataSet = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem,
+                    BogusMethod = (MethodWithFriendlyName)comboBogusMethod.SelectedItem
                 }
                                                                               : null;
 
@@ -277,8 +278,8 @@ namespace XrmToolBox.DataverseAnonymizer
             {
                 rules.Add(new AnonymizationRule
                 {
-                    Table = (TableMetadataInfo)cbTable.SelectedItem,
-                    Field = (MetadataInfo)cbField.SelectedItem,
+                    Table = (TableMetadataInfo)comboTable.SelectedItem,
+                    Field = (MetadataInfo)comboField.SelectedItem,
                     SequenceRule = tabcRule.SelectedTab == tpSequence ? new SequenceRule
                     {
                         SequenceStart = (int)nudSequenceStartFrom.Value,
@@ -287,9 +288,9 @@ namespace XrmToolBox.DataverseAnonymizer
                                                                         : null,
                     BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
                     {
-                        Locale = (BogusLocale)cbBogusLocale.SelectedItem,
-                        BogusDataSet = (BogusDataSetWithMethods)cbBogusDataSet.SelectedItem,
-                        BogusMethod = (MethodWithFriendlyName)cbBogusMethod.SelectedItem
+                        Locale = (BogusLocale)comboBogusLocale.SelectedItem,
+                        BogusDataSet = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem,
+                        BogusMethod = (MethodWithFriendlyName)comboBogusMethod.SelectedItem
                     }
                                                                      : null,
                 });
@@ -316,8 +317,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void EditRule(AnonymizationRule rule)
         {
-            cbTable.SelectedItem = rule.Table;
-            cbField.SelectedItem = rule.Field;
+            comboTable.SelectedItem = rule.Table;
+            comboField.SelectedItem = rule.Field;
 
             if (rule.SequenceRule != null)
             {
@@ -327,9 +328,9 @@ namespace XrmToolBox.DataverseAnonymizer
             }
             else if (rule.BogusRule != null)
             {
-                cbBogusLocale.SelectedItem = rule.BogusRule.Locale;
-                cbBogusDataSet.SelectedItem = rule.BogusRule.BogusDataSet;
-                cbBogusMethod.SelectedItem = rule.BogusRule.BogusMethod;
+                comboBogusLocale.SelectedItem = rule.BogusRule.Locale;
+                comboBogusDataSet.SelectedItem = rule.BogusRule.BogusDataSet;
+                comboBogusMethod.SelectedItem = rule.BogusRule.BogusMethod;
                 bBogusSample_Click(null, null);
 
                 tabcRule.SelectedTab = tpFakeData;
@@ -359,11 +360,16 @@ namespace XrmToolBox.DataverseAnonymizer
                 return;
             }
 
-            MessageBox.Show("Running...");
-
             FormDisabled(true);
 
-            DataUpdateRunner runner = new DataUpdateRunner(this);
+            WorkSettings settings = new WorkSettings()
+            {
+                BatchSize = (int) nudBatchSize.Value,
+                BypassPlugins = cbBypassPlugins.Checked,
+                BypassFlows = cbBypassFlows.Checked
+            };
+
+            DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
 
             runner.Run(rules.ToArray());
         }        
