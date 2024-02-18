@@ -1,4 +1,4 @@
-﻿#define __USE_FAKE_METADATA
+﻿#define USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -345,7 +345,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #endregion
 
-        #region Help links
+        #region Misc events
 
         private void llBogus_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -355,6 +355,13 @@ namespace XrmToolBox.DataverseAnonymizer
         private void llBypassHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
+        }
+
+        private void rbFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            tbFetchXml.Visible = rbFilterFetchXml.Checked;
+            labelFilterInfo.Visible = rbFilterFetchXml.Checked;
+            bExpandFetchXml.Visible = rbFilterFetchXml.Checked;
         }
 
         #endregion

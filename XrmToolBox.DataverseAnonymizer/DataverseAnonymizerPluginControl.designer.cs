@@ -46,6 +46,14 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
+            this.labelFilterInfo = new System.Windows.Forms.Label();
+            this.bExpandFetchXml = new System.Windows.Forms.Button();
+            this.tbFetchXml = new System.Windows.Forms.TextBox();
+            this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
+            this.rbFilterNone = new System.Windows.Forms.RadioButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.bClearFieldFilter = new System.Windows.Forms.Button();
+            this.bClearTableFilter = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
@@ -81,8 +89,6 @@
             this.comboBogusLocale = new System.Windows.Forms.ComboBox();
             this.bSave = new System.Windows.Forms.Button();
             this.bStop = new System.Windows.Forms.Button();
-            this.bClearTableFilter = new System.Windows.Forms.Button();
-            this.bClearFieldFilter = new System.Windows.Forms.Button();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -268,6 +274,14 @@
             // 
             // gbField
             // 
+            this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbField.Controls.Add(this.labelFilterInfo);
+            this.gbField.Controls.Add(this.bExpandFetchXml);
+            this.gbField.Controls.Add(this.tbFetchXml);
+            this.gbField.Controls.Add(this.rbFilterFetchXml);
+            this.gbField.Controls.Add(this.rbFilterNone);
+            this.gbField.Controls.Add(this.label16);
             this.gbField.Controls.Add(this.bClearFieldFilter);
             this.gbField.Controls.Add(this.bClearTableFilter);
             this.gbField.Controls.Add(this.label5);
@@ -284,11 +298,108 @@
             this.gbField.Controls.Add(this.comboField);
             this.gbField.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbField.Location = new System.Drawing.Point(3, 3);
+            this.gbField.MinimumSize = new System.Drawing.Size(679, 224);
             this.gbField.Name = "gbField";
-            this.gbField.Size = new System.Drawing.Size(679, 129);
+            this.gbField.Size = new System.Drawing.Size(679, 224);
             this.gbField.TabIndex = 22;
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
+            // 
+            // labelFilterInfo
+            // 
+            this.labelFilterInfo.AutoSize = true;
+            this.labelFilterInfo.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterInfo.ForeColor = System.Drawing.Color.Red;
+            this.labelFilterInfo.Location = new System.Drawing.Point(361, 140);
+            this.labelFilterInfo.Name = "labelFilterInfo";
+            this.labelFilterInfo.Size = new System.Drawing.Size(232, 17);
+            this.labelFilterInfo.TabIndex = 30;
+            this.labelFilterInfo.Text = "Applies to all rules for the selected table";
+            this.labelFilterInfo.Visible = false;
+            // 
+            // bExpandFetchXml
+            // 
+            this.bExpandFetchXml.Location = new System.Drawing.Point(642, 138);
+            this.bExpandFetchXml.Name = "bExpandFetchXml";
+            this.bExpandFetchXml.Size = new System.Drawing.Size(24, 23);
+            this.bExpandFetchXml.TabIndex = 31;
+            this.bExpandFetchXml.Text = "⛶";
+            this.bExpandFetchXml.UseCompatibleTextRendering = true;
+            this.bExpandFetchXml.UseVisualStyleBackColor = true;
+            this.bExpandFetchXml.Visible = false;
+            // 
+            // tbFetchXml
+            // 
+            this.tbFetchXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFetchXml.Location = new System.Drawing.Point(16, 165);
+            this.tbFetchXml.Multiline = true;
+            this.tbFetchXml.Name = "tbFetchXml";
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 48);
+            this.tbFetchXml.TabIndex = 30;
+            this.tbFetchXml.Visible = false;
+            // 
+            // rbFilterFetchXml
+            // 
+            this.rbFilterFetchXml.AutoSize = true;
+            this.rbFilterFetchXml.Location = new System.Drawing.Point(203, 136);
+            this.rbFilterFetchXml.Name = "rbFilterFetchXml";
+            this.rbFilterFetchXml.Size = new System.Drawing.Size(94, 23);
+            this.rbFilterFetchXml.TabIndex = 29;
+            this.rbFilterFetchXml.Text = "Fetch XML";
+            this.rbFilterFetchXml.UseVisualStyleBackColor = true;
+            this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
+            // 
+            // rbFilterNone
+            // 
+            this.rbFilterNone.AutoSize = true;
+            this.rbFilterNone.Checked = true;
+            this.rbFilterNone.Location = new System.Drawing.Point(116, 136);
+            this.rbFilterNone.Name = "rbFilterNone";
+            this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
+            this.rbFilterNone.TabIndex = 28;
+            this.rbFilterNone.TabStop = true;
+            this.rbFilterNone.Text = "None";
+            this.rbFilterNone.UseVisualStyleBackColor = true;
+            this.rbFilterNone.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(12, 138);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 19);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "Filter:";
+            // 
+            // bClearFieldFilter
+            // 
+            this.bClearFieldFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClearFieldFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bClearFieldFilter.Location = new System.Drawing.Point(642, 27);
+            this.bClearFieldFilter.Name = "bClearFieldFilter";
+            this.bClearFieldFilter.Size = new System.Drawing.Size(27, 21);
+            this.bClearFieldFilter.TabIndex = 26;
+            this.bClearFieldFilter.Text = "x";
+            this.bClearFieldFilter.UseCompatibleTextRendering = true;
+            this.bClearFieldFilter.UseVisualStyleBackColor = true;
+            this.bClearFieldFilter.Click += new System.EventHandler(this.bClearFieldFilter_Click);
+            // 
+            // bClearTableFilter
+            // 
+            this.bClearTableFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClearTableFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bClearTableFilter.Location = new System.Drawing.Point(295, 27);
+            this.bClearTableFilter.Name = "bClearTableFilter";
+            this.bClearTableFilter.Size = new System.Drawing.Size(27, 21);
+            this.bClearTableFilter.TabIndex = 25;
+            this.bClearTableFilter.Text = "x";
+            this.bClearTableFilter.UseCompatibleTextRendering = true;
+            this.bClearTableFilter.UseVisualStyleBackColor = true;
+            this.bClearTableFilter.Click += new System.EventHandler(this.bClearTableFilter_Click);
             // 
             // label5
             // 
@@ -321,7 +432,7 @@
             this.contentPanel.Controls.Add(this.gbField);
             this.contentPanel.Location = new System.Drawing.Point(11, 0);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1128, 540);
+            this.contentPanel.Size = new System.Drawing.Size(1128, 626);
             this.contentPanel.TabIndex = 23;
             // 
             // dgvRules
@@ -346,7 +457,7 @@
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(429, 517);
+            this.dgvRules.Size = new System.Drawing.Size(429, 603);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             // 
@@ -394,6 +505,7 @@
             // 
             // gbRun
             // 
+            this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
@@ -402,7 +514,8 @@
             this.gbRun.Controls.Add(this.cbBypassPlugins);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRun.Location = new System.Drawing.Point(3, 396);
+            this.gbRun.Location = new System.Drawing.Point(3, 482);
+            this.gbRun.MinimumSize = new System.Drawing.Size(679, 135);
             this.gbRun.Name = "gbRun";
             this.gbRun.Size = new System.Drawing.Size(679, 135);
             this.gbRun.TabIndex = 25;
@@ -503,12 +616,14 @@
             // 
             // gbRule
             // 
+            this.gbRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbRule.Controls.Add(this.llBogus);
             this.gbRule.Controls.Add(this.label12);
             this.gbRule.Controls.Add(this.tabcRule);
             this.gbRule.Controls.Add(this.bSave);
             this.gbRule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRule.Location = new System.Drawing.Point(3, 147);
+            this.gbRule.Location = new System.Drawing.Point(3, 233);
+            this.gbRule.MinimumSize = new System.Drawing.Size(679, 243);
             this.gbRule.Name = "gbRule";
             this.gbRule.Size = new System.Drawing.Size(679, 243);
             this.gbRule.TabIndex = 23;
@@ -721,32 +836,6 @@
             this.bStop.Visible = false;
             this.bStop.Click += new System.EventHandler(this.bStop_Click);
             // 
-            // bClearTableFilter
-            // 
-            this.bClearTableFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bClearTableFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClearTableFilter.Location = new System.Drawing.Point(295, 27);
-            this.bClearTableFilter.Name = "bClearTableFilter";
-            this.bClearTableFilter.Size = new System.Drawing.Size(27, 21);
-            this.bClearTableFilter.TabIndex = 25;
-            this.bClearTableFilter.Text = "x";
-            this.bClearTableFilter.UseCompatibleTextRendering = true;
-            this.bClearTableFilter.UseVisualStyleBackColor = true;
-            this.bClearTableFilter.Click += new System.EventHandler(this.bClearTableFilter_Click);
-            // 
-            // bClearFieldFilter
-            // 
-            this.bClearFieldFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bClearFieldFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClearFieldFilter.Location = new System.Drawing.Point(646, 27);
-            this.bClearFieldFilter.Name = "bClearFieldFilter";
-            this.bClearFieldFilter.Size = new System.Drawing.Size(27, 21);
-            this.bClearFieldFilter.TabIndex = 26;
-            this.bClearFieldFilter.Text = "x";
-            this.bClearFieldFilter.UseCompatibleTextRendering = true;
-            this.bClearFieldFilter.UseVisualStyleBackColor = true;
-            this.bClearFieldFilter.Click += new System.EventHandler(this.bClearFieldFilter_Click);
-            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -758,7 +847,7 @@
             this.Name = "DataverseAnonymizerPluginControl";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1151, 545);
+            this.Size = new System.Drawing.Size(1151, 631);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -832,5 +921,11 @@
         private System.Windows.Forms.Button bStop;
         private System.Windows.Forms.Button bClearTableFilter;
         private System.Windows.Forms.Button bClearFieldFilter;
+        private System.Windows.Forms.TextBox tbFetchXml;
+        private System.Windows.Forms.RadioButton rbFilterFetchXml;
+        private System.Windows.Forms.RadioButton rbFilterNone;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button bExpandFetchXml;
+        private System.Windows.Forms.Label labelFilterInfo;
     }
 }
