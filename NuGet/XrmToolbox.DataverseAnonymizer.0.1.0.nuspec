@@ -23,6 +23,6 @@ https://github.com/kowgli/XrmToolBox.DataverseAnonymizer</releaseNotes>
     </dependencies>
   </metadata>
   <files>
-    <file src="lib\net48\Plugins\XrmToolBox.DataverseAnonymizer_Merged.dll" target="lib\net48\Plugins\XrmToolBox.DataverseAnonymizer_Merged.dll" />
+    <file src="..\XrmToolBox.DataverseAnonymizer\bin\Release\Output\XrmToolBox.DataverseAnonymizer_Merged.dll" target="lib\net48\Plugins\XrmToolBox.DataverseAnonymizer.dll" />
   </files>
 </package>

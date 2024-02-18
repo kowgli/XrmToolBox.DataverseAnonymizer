@@ -234,6 +234,7 @@ IF $(ConfigurationName) == Release (
    IF NOT EXIST Plugins mkdir Output
    xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Output\" /Y
    xcopy "$(TargetDir)Bogus.dll" "$(TargetDir)Output\" /Y
+   ..\..\..\packages\ILRepack.2.0.27\tools\ILRepack.exe Output\XrmToolBox.DataverseAnonymizer.dll Output\Bogus.dll /out:Output\XrmToolBox.DataverseAnonymizer_Merged.dll
 )
 </PostBuildEvent>
   </PropertyGroup>
