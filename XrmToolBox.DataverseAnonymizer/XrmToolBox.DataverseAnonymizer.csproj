@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ILRepack.2.0.27\build\ILRepack.props" Condition="Exists('..\packages\ILRepack.2.0.27\build\ILRepack.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -222,14 +223,19 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-      IF $(ConfigurationName) == Debug (
+    <PostBuildEvent>IF $(ConfigurationName) == Debug (
       IF NOT EXIST Plugins mkdir Plugins
       DEL $(TargetDir)Plugins\manifest.json
       xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Plugins\" /Y
       xcopy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
-      )
-    </PostBuildEvent>
+)
+
+IF $(ConfigurationName) == Release (
+   IF NOT EXIST Plugins mkdir Output
+   xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Output\" /Y
+   xcopy "$(TargetDir)Bogus.dll" "$(TargetDir)Output\" /Y
+)
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -237,6 +243,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\ILRepack.2.0.27\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.27\build\ILRepack.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
