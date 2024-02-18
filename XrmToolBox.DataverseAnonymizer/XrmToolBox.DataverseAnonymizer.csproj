@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ILRepack.2.0.27\build\ILRepack.props" Condition="Exists('..\packages\ILRepack.2.0.27\build\ILRepack.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,12 +10,13 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XrmToolBox.DataverseAnonymizer</RootNamespace>
-    <AssemblyName>XrmToolBox.DataverseAnonymizer</AssemblyName>
+    <AssemblyName>CrmDev365.DataverseAnonymizer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=35.4.0.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.35.4.0\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="McTools.Xrm.Connection, Version=1.2023.6.56, Culture=neutral, PublicKeyToken=96037217801d9658, processorArchitecture=MSIL">
       <HintPath>..\packages\MscrmTools.Xrm.Connection.1.2023.6.56\lib\net462\McTools.Xrm.Connection.dll</HintPath>
     </Reference>
@@ -88,6 +93,7 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
     </Reference>
@@ -124,14 +130,12 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.VisualStudio.CoreUtility">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -152,12 +156,15 @@
     <Reference Include="System.Workflow.Activities" />
     <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2015, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
       <HintPath>..\packages\DockPanelSuite.ThemeVS2015.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="XrmToolBox, Version=1.2023.10.67, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XrmToolBoxPackage.1.2023.10.67\lib\net462\XrmToolBox.exe</HintPath>
     </Reference>
@@ -169,6 +176,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FieldMappingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FieldMappingControl.Designer.cs">
+      <DependentUpon>FieldMappingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\BogusLocale.cs" />
+    <Compile Include="DataSources\QuotesDataSource.cs" />
     <Compile Include="DataverseAnonymizerPlugin.cs" />
     <Compile Include="DataverseAnonymizerPluginControl.cs">
       <SubType>UserControl</SubType>
@@ -176,31 +191,66 @@
     <Compile Include="DataverseAnonymizerPluginControl.designer.cs">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSources\BogusDataSource.cs" />
+    <Compile Include="DataSources\TableDataSource.cs" />
+    <Compile Include="Helpers\CrmHelper.cs" />
+    <Compile Include="Helpers\DataUpdateRunner.cs" />
+    <Compile Include="Models\BogusDataSetWithMethods.cs" />
+    <Compile Include="Models\BogusRule.cs" />
+    <Compile Include="Models\RuleProcessing.cs" />
+    <Compile Include="Models\TableMetadataInfo.cs" />
+    <Compile Include="Models\MetadataInfo.cs" />
+    <Compile Include="Models\AnonymizationRule.cs" />
+    <Compile Include="Models\SequenceRule.cs" />
+    <Compile Include="Models\WorkSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Img\" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Controls\FieldMappingControl.resx">
+      <DependentUpon>FieldMappingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataverseAnonymizerPluginControl.resx">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Img\GitHub.png" />
+    <Content Include="Img\icon32.ico" />
+    <Content Include="Img\icon32.png" />
+    <Content Include="Img\icon80.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-      IF $(ConfigurationName) == Debug (
+    <PostBuildEvent>IF $(ConfigurationName) == Debug (
       IF NOT EXIST Plugins mkdir Plugins
       DEL $(TargetDir)Plugins\manifest.json
       xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Plugins\" /Y
       xcopy "$(TargetDir)$(TargetName).pdb" "$(TargetDir)Plugins\" /Y
-      )
-    </PostBuildEvent>
+)
+
+IF $(ConfigurationName) == Release (
+   IF NOT EXIST Plugins mkdir Output
+   xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Output\" /Y
+   xcopy "$(TargetDir)Bogus.dll" "$(TargetDir)Output\" /Y
+   ..\..\..\packages\ILRepack.2.0.27\tools\ILRepack.exe Output\CrmDev365.DataverseAnonymizer.dll Output\Bogus.dll /out:Output\CrmDev365.DataverseAnonymizer_Merged.dll
+   cd ..\..\..\NuGet
+   nuget pack CrmDev365.DataverseAnonymizer.0.1.0.nuspec
+)
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -208,6 +258,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1343.22\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\ILRepack.2.0.27\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.27\build\ILRepack.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
