@@ -89,6 +89,7 @@
             this.bSave = new System.Windows.Forms.Button();
             this.bStop = new System.Windows.Forms.Button();
             this.labelFetchXmlInfo = new System.Windows.Forms.Label();
+            this.bFeedback = new System.Windows.Forms.Button();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -499,6 +500,7 @@
             // gbRun
             // 
             this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbRun.Controls.Add(this.bFeedback);
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
@@ -597,9 +599,9 @@
             // 
             // bRun
             // 
-            this.bRun.BackColor = System.Drawing.Color.Chartreuse;
+            this.bRun.BackColor = System.Drawing.Color.Lime;
             this.bRun.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bRun.Location = new System.Drawing.Point(389, 85);
+            this.bRun.Location = new System.Drawing.Point(239, 88);
             this.bRun.Name = "bRun";
             this.bRun.Size = new System.Drawing.Size(132, 36);
             this.bRun.TabIndex = 0;
@@ -842,6 +844,20 @@
     "ir ID to increase performance.";
             this.labelFetchXmlInfo.Visible = false;
             // 
+            // bFeedback
+            // 
+            this.bFeedback.Image = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.GitHub;
+            this.bFeedback.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bFeedback.Location = new System.Drawing.Point(535, 77);
+            this.bFeedback.Name = "bFeedback";
+            this.bFeedback.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
+            this.bFeedback.Size = new System.Drawing.Size(135, 47);
+            this.bFeedback.TabIndex = 30;
+            this.bFeedback.Text = "Feedback";
+            this.bFeedback.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bFeedback.UseVisualStyleBackColor = true;
+            this.bFeedback.Click += new System.EventHandler(this.bFeedback_Click);
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -933,5 +949,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button bFetchXmlBuilder;
         private System.Windows.Forms.Label labelFetchXmlInfo;
+        private System.Windows.Forms.Button bFeedback;
     }
 }

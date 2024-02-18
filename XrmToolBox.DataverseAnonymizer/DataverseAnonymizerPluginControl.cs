@@ -1,4 +1,4 @@
-﻿#define USE_FAKE_METADATA
+﻿#define __USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -21,8 +21,11 @@ using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
 {
-    public partial class DataverseAnonymizerPluginControl : PluginControlBase, IMessageBusHost
+    public partial class DataverseAnonymizerPluginControl : PluginControlBase, IMessageBusHost, IGitHubPlugin
     {
+        public string RepositoryName => "XrmToolBox.DataverseAnonymizer";
+        public string UserName => "kowgli";
+
         private TableDataSource tableDataSource = null;
         private BogusDataSource bogusDataSource = new BogusDataSource();
         private readonly BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();
@@ -375,6 +378,12 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
         }
+
+        private void bFeedback_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/kowgli/XrmToolBox.DataverseAnonymizer/issues/new");
+        }
+
         #endregion
 
         #region Running
@@ -530,8 +539,7 @@ namespace XrmToolBox.DataverseAnonymizer
             }
         }
 
-        private string CurrentTable => (comboTable.SelectedItem as TableMetadataInfo)?.LogicalName;
-
+        private string CurrentTable => (comboTable.SelectedItem as TableMetadataInfo)?.LogicalName;        
 
         private void tbFetchXml_TextChanged(object sender, EventArgs e)
         {
@@ -557,8 +565,7 @@ namespace XrmToolBox.DataverseAnonymizer
             rbFilter_CheckedChanged(null, null);
         }
 
-        #endregion
 
-        
+        #endregion
     }
 }
