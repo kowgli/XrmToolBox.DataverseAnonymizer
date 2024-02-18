@@ -80,6 +80,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBogusLocale = new System.Windows.Forms.ComboBox();
             this.bSave = new System.Windows.Forms.Button();
+            this.bStop = new System.Windows.Forms.Button();
+            this.bClearTableFilter = new System.Windows.Forms.Button();
+            this.bClearFieldFilter = new System.Windows.Forms.Button();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -178,7 +181,7 @@
             this.tbTableFilter.Location = new System.Drawing.Point(134, 27);
             this.tbTableFilter.Margin = new System.Windows.Forms.Padding(4);
             this.tbTableFilter.Name = "tbTableFilter";
-            this.tbTableFilter.Size = new System.Drawing.Size(188, 21);
+            this.tbTableFilter.Size = new System.Drawing.Size(163, 21);
             this.tbTableFilter.TabIndex = 11;
             this.tbTableFilter.TextChanged += new System.EventHandler(this.tbTableFilter_TextChanged);
             // 
@@ -230,7 +233,7 @@
             this.tbFieldFilter.Location = new System.Drawing.Point(482, 27);
             this.tbFieldFilter.Margin = new System.Windows.Forms.Padding(4);
             this.tbFieldFilter.Name = "tbFieldFilter";
-            this.tbFieldFilter.Size = new System.Drawing.Size(188, 21);
+            this.tbFieldFilter.Size = new System.Drawing.Size(166, 21);
             this.tbFieldFilter.TabIndex = 19;
             this.tbFieldFilter.TextChanged += new System.EventHandler(this.tbFieldFilter_TextChanged);
             // 
@@ -265,6 +268,8 @@
             // 
             // gbField
             // 
+            this.gbField.Controls.Add(this.bClearFieldFilter);
+            this.gbField.Controls.Add(this.bClearTableFilter);
             this.gbField.Controls.Add(this.label5);
             this.gbField.Controls.Add(this.label4);
             this.gbField.Controls.Add(this.comboTable);
@@ -432,7 +437,7 @@
             this.nudBatchSize.Size = new System.Drawing.Size(120, 27);
             this.nudBatchSize.TabIndex = 29;
             this.nudBatchSize.Value = new decimal(new int[] {
-            250,
+            50,
             0,
             0,
             0});
@@ -700,17 +705,60 @@
             this.bSave.UseVisualStyleBackColor = true;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
+            // bStop
+            // 
+            this.bStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bStop.BackColor = System.Drawing.Color.Yellow;
+            this.bStop.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bStop.ForeColor = System.Drawing.Color.Red;
+            this.bStop.Location = new System.Drawing.Point(0, 0);
+            this.bStop.Name = "bStop";
+            this.bStop.Size = new System.Drawing.Size(1151, 53);
+            this.bStop.TabIndex = 24;
+            this.bStop.Text = "STOP";
+            this.bStop.UseVisualStyleBackColor = false;
+            this.bStop.Visible = false;
+            this.bStop.Click += new System.EventHandler(this.bStop_Click);
+            // 
+            // bClearTableFilter
+            // 
+            this.bClearTableFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClearTableFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bClearTableFilter.Location = new System.Drawing.Point(295, 27);
+            this.bClearTableFilter.Name = "bClearTableFilter";
+            this.bClearTableFilter.Size = new System.Drawing.Size(27, 21);
+            this.bClearTableFilter.TabIndex = 25;
+            this.bClearTableFilter.Text = "x";
+            this.bClearTableFilter.UseCompatibleTextRendering = true;
+            this.bClearTableFilter.UseVisualStyleBackColor = true;
+            this.bClearTableFilter.Click += new System.EventHandler(this.bClearTableFilter_Click);
+            // 
+            // bClearFieldFilter
+            // 
+            this.bClearFieldFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bClearFieldFilter.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bClearFieldFilter.Location = new System.Drawing.Point(646, 27);
+            this.bClearFieldFilter.Name = "bClearFieldFilter";
+            this.bClearFieldFilter.Size = new System.Drawing.Size(27, 21);
+            this.bClearFieldFilter.TabIndex = 26;
+            this.bClearFieldFilter.Text = "x";
+            this.bClearFieldFilter.UseCompatibleTextRendering = true;
+            this.bClearFieldFilter.UseVisualStyleBackColor = true;
+            this.bClearFieldFilter.Click += new System.EventHandler(this.bClearFieldFilter_Click);
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.contentPanel);
+            this.Controls.Add(this.bStop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DataverseAnonymizerPluginControl";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1151, 552);
+            this.Size = new System.Drawing.Size(1151, 545);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -781,5 +829,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
         private System.Windows.Forms.LinkLabel llBogus;
         private System.Windows.Forms.LinkLabel llBypassHelp;
+        private System.Windows.Forms.Button bStop;
+        private System.Windows.Forms.Button bClearTableFilter;
+        private System.Windows.Forms.Button bClearFieldFilter;
     }
 }

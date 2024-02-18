@@ -47,6 +47,6 @@ namespace XrmToolBox.DataverseAnonymizer.Models
 
         public string FieldName => Field.ToString();
 
-        public string RuleName => SequenceRule != null ? SequenceRule.ToString() : BogusRule?.ToString();
+        public string RuleName => SequenceRule != null ? SequenceRule.ToString() : BogusRule?.ToString(); 
     }
 }

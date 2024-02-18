@@ -1,13 +1,11 @@
 ﻿#define USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
-using McTools.Xrm.Connection.WinForms.AppCode;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -25,11 +23,14 @@ namespace XrmToolBox.DataverseAnonymizer
         private TableDataSource tableDataSource = null;
         private BogusDataSource bogusDataSource = new BogusDataSource();
         private BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();
+        private bool running = false;
 
         public DataverseAnonymizerPluginControl()
         {
             InitializeComponent();
         }
+
+        #region Load
 
         private void DataverseAnonymizerPluginControl_Load(object sender, EventArgs e)
         {
@@ -74,7 +75,7 @@ namespace XrmToolBox.DataverseAnonymizer
                     FormDisabled(false);
 
                     if (HandleAsyncError(args)) { return; }
-                    
+
 #if USE_FAKE_METADATA
                     string json = System.IO.File.ReadAllText(@"..\..\..\Misc\crm_metadata.json");
                     TableMetadataInfo[] entitiesMetadata = Newtonsoft.Json.JsonConvert.DeserializeObject<TableMetadataInfo[]>(json);
@@ -103,32 +104,7 @@ namespace XrmToolBox.DataverseAnonymizer
             });
         }
 
-        private TableMetadataInfo[] TransformMetadata(EntityMetadata[] entities) => entities
-                    .Where(e => e.DisplayName.UserLocalizedLabel != null)
-                    .Select(e => new TableMetadataInfo
-                    {
-                        LogicalName = e.LogicalName,
-                        DisplayName = e.DisplayName.UserLocalizedLabel.Label,
-                        PrimaryIdAttribute = e.PrimaryIdAttribute,
-                        Fields = e.Attributes
-                                        .Where(a => a.IsValidForUpdate == true
-                                                    && a.DisplayName.UserLocalizedLabel != null
-                                                    &&
-                                                    (
-                                                        a.AttributeType == AttributeTypeCode.Memo
-                                                        || a.AttributeType == AttributeTypeCode.String
-                                                    // TODO: Add more supported types here in the future
-                                                    )
-                                        )
-                                        .Select(a => new MetadataInfo
-                                        {
-                                            LogicalName = a.LogicalName,
-                                            DisplayName = a.DisplayName.UserLocalizedLabel.Label
-                                        })
-                                        .ToArray()
-                    })
-                    .ToArray();
-
+        #endregion
 
         #region Metadata filter handling
 
@@ -170,6 +146,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
             tableDataSource.SetFieldsFromTable(table);
 
+            tbFieldFilter.Text = "";
+
             comboField.DataSource = tableDataSource.Fields;
 
             tbSequenceFormat.Text = $"{table.DisplayName} {{SEQ}}";
@@ -205,27 +183,18 @@ namespace XrmToolBox.DataverseAnonymizer
             }
         }
 
-        #endregion
-
-        #region XrmToolBox stuff
-        public bool HandleAsyncError(RunWorkerCompletedEventArgs args)
+        private void bClearTableFilter_Click(object sender, EventArgs e)
         {
-            if (args.Error != null)
-            {
-                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return true;
-            }
-            return false;
+            tbTableFilter.Text = "";
+            tbTableFilter_TextChanged(null, null);
         }
 
-        private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
+        private void bClearFieldFilter_Click(object sender, EventArgs e)
         {
+            tbFieldFilter.Text = "";
+            tbFieldFilter_TextChanged(null, null);
         }
 
-        public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
-        {
-            base.UpdateConnection(newService, detail, actionName, parameter);
-        }
         #endregion
 
         #region Bogus stuff
@@ -251,8 +220,16 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #endregion
 
+        #region Rule handling
+
         private void bSave_Click(object sender, EventArgs e)
         {
+            if (comboTable.SelectedItem == null || comboField.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a table and field first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             AnonymizationRule existingRule = rules.Where(r => r.Field == (MetadataInfo)comboField.SelectedItem).FirstOrDefault();
 
             if (existingRule != null)
@@ -337,6 +314,10 @@ namespace XrmToolBox.DataverseAnonymizer
             }
         }
 
+        #endregion
+
+        #region Help links
+
         private void llBogus_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://github.com/bchavez/Bogus");
@@ -347,9 +328,13 @@ namespace XrmToolBox.DataverseAnonymizer
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
         }
 
+        #endregion
+
+        #region Running
+
         private void bRun_Click(object sender, EventArgs e)
         {
-            if (rules.Count == 0) 
+            if (rules.Count == 0)
             {
                 MessageBox.Show("Nothing to do. Add some fields and try again...", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -364,19 +349,93 @@ namespace XrmToolBox.DataverseAnonymizer
 
             WorkSettings settings = new WorkSettings()
             {
-                BatchSize = (int) nudBatchSize.Value,
+                BatchSize = (int)nudBatchSize.Value,
                 BypassPlugins = cbBypassPlugins.Checked,
                 BypassFlows = cbBypassFlows.Checked
             };
 
             DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
+            runner.Done += (object sender, EventArgs e) =>
+            {
+                FormDisabled(false);
+                running = false;
+                MessageBox.Show("All data successfully processed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
 
-            runner.Run(rules.ToArray());
-        }        
+            try
+            {
+                running = true;
+                runner.Run(rules.ToArray());
+            }
+            catch (Exception ex)
+            {
+                ShowErrorDialog(ex);
+            }
+        }
 
         private void FormDisabled(bool disabled)
         {
             contentPanel.Enabled = !disabled;
         }
+
+        public void ShowStop(bool show)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                bStop.BringToFront();
+                bStop.Visible = show;
+            });
+        }
+
+        private void bStop_Click(object sender, EventArgs e)
+        {
+            CancelWorker();
+
+            running = false;
+            FormDisabled(false);
+            ShowStop(false);
+
+            MessageBox.Show("Stopped. The currently submitted batch will continue to run on the server. No next batch will be submitted.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #endregion
+
+        #region XrmToolBox stuff
+        public bool HandleAsyncError(RunWorkerCompletedEventArgs args)
+        {
+            if (args.Error != null)
+            {
+                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
+
+        private void DataverseAnonymizerPluginControl_OnCloseTool(object sender, EventArgs e)
+        {
+            try
+            {
+                CancelWorker();
+            }
+            catch { }
+        }
+
+        public override void UpdateConnection(IOrganizationService newService, ConnectionDetail detail, string actionName, object parameter)
+        {
+            try
+            {
+                if (running)
+                {
+                    bStop_Click(null, null);
+                }
+
+                ShowWarningNotification("The connection has changed. The currently running job has been cancelled. Consider reopening the tool if the metadata has changed.", null);
+            }
+            catch { }
+
+            base.UpdateConnection(newService, detail, actionName, parameter);
+        }
+
+        #endregion        
     }
 }

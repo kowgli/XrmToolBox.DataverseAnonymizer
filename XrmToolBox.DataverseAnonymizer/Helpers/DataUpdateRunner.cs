@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web.Services.Description;
-using System.Windows;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
@@ -19,6 +17,8 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         private readonly WorkSettings settings;
         private Queue<RuleProcessing> rulesQueue;
 
+        public event EventHandler Done;
+
         public DataUpdateRunner(DataverseAnonymizerPluginControl control, BogusDataSource bogusDataSource, WorkSettings settings)
         {
             this.control = control ?? throw new ArgumentNullException(nameof(control));
@@ -28,8 +28,6 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
         public void Run(AnonymizationRule[] rules)
         {
-            //Queue<AnonymizationRule> rulesQueue = new Queue<AnonymizationRule>(rules);
-
             RuleProcessing[] rulesGrouped = GroupRules(rules);
 
             rulesQueue = new Queue<RuleProcessing>(rulesGrouped);
@@ -65,8 +63,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         {
             if (rulesQueue.Count == 0)
             {
-                // TODO: Notify is done
-                MessageBox.Show("Done");
+                Done?.Invoke(this, null);
                 return;
             }
 
@@ -91,73 +88,111 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         {
             control.HandleAsyncError(args);
 
-            RuleProcessing groupedRules = (RuleProcessing) args.Result;
+            RuleProcessing groupedRules = (RuleProcessing)args.Result;
 
             control.WorkAsync(new WorkAsyncInfo()
             {
                 Message = $"Creating requests for {groupedRules.TableLogicalName}...",
                 Work = (worker, args) =>
                 {
-                    UpdateRequest[] updateRequests = CreateRequests(groupedRules);
-
-                    List<UpdateRequest[]> batches = CreateBatches(updateRequests);
-
-                    args.Result = batches;
+                    CreateBatches(args, groupedRules);
                 },
-                PostWorkCallBack = CreateRequestsDone
-            });            
+                PostWorkCallBack = CreateBatchesDone
+            });
         }
 
-        private void CreateRequestsDone(RunWorkerCompletedEventArgs args)
+        private void CreateBatches(DoWorkEventArgs args, RuleProcessing groupedRules)
+        {
+            UpdateRequest[] updateRequests = CreateRequests(groupedRules);
+
+            List<UpdateRequest[]> batches = CreateBatches(updateRequests);
+
+            args.Result = batches;
+        }
+
+        private void CreateBatchesDone(RunWorkerCompletedEventArgs args)
         {
             control.HandleAsyncError(args);
 
-            List<UpdateRequest[]> batches = (List<UpdateRequest[]>) args.Result;
+            List<UpdateRequest[]> batches = (List<UpdateRequest[]>)args.Result;
 
             string tableName = batches?.FirstOrDefault()?.FirstOrDefault()?.Target?.LogicalName;
-
-            control.WorkAsync(new WorkAsyncInfo()
+            if (tableName == null)
             {
-                Message = $"Anonymizing {tableName} records...",
+                throw new Exception("Missing data to process.");
+            }
+
+            control.WorkAsync(new WorkAsyncInfo
+            {
+                Message = $"Anonymizing {tableName}...",
                 Work = (worker, args) =>
                 {
-                    foreach (UpdateRequest[] batch in batches)
-                    {
-                        ExecuteMultipleRequest executeMultipleRequest = new ExecuteMultipleRequest
-                        {
-                            Requests = new OrganizationRequestCollection(),
-                            Settings = new ExecuteMultipleSettings
-                            {
-                                ContinueOnError = true,
-                                ReturnResponses = true
-                            }
-                        };
-                        
-                        executeMultipleRequest.Requests.AddRange(batch);
-
-                        if (settings.BypassPlugins)
-                        {
-                            executeMultipleRequest.Parameters.Add("BypassCustomPluginExecution", true);
-                        }
-                        if (settings.BypassFlows)
-                        {
-                            executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
-                        }
-
-                        control.Service.Execute(executeMultipleRequest);
-                    }
-
-                    args.Result = batches;
+                    UpdateData(args, batches, worker);
                 },
-                PostWorkCallBack = UpdateDataDone
+                PostWorkCallBack = UpdateDataDone,
+                IsCancelable = true,
             });
+        }
+
+        private void UpdateData(DoWorkEventArgs args, List<UpdateRequest[]> batches, BackgroundWorker worker)
+        {
+            string tableName = batches.FirstOrDefault().FirstOrDefault().Target.LogicalName;
+            int totalCount = batches.Sum(b => b.Length);
+
+            int count = 0;
+
+            control.ShowStop(true);
+
+            foreach (UpdateRequest[] batch in batches)
+            {
+                if (worker.CancellationPending)
+                {
+                    args.Cancel = true;                 
+                    return;
+                }
+
+                ExecuteMultipleRequest executeMultipleRequest = new ExecuteMultipleRequest
+                {
+                    Requests = new OrganizationRequestCollection(),
+                    Settings = new ExecuteMultipleSettings
+                    {
+                        ContinueOnError = true,
+                        ReturnResponses = true
+                    }
+                };
+
+                executeMultipleRequest.Requests.AddRange(batch);
+
+                if (settings.BypassPlugins)
+                {
+                    executeMultipleRequest.Parameters.Add("BypassCustomPluginExecution", true);
+                }
+                if (settings.BypassFlows)
+                {
+                    executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
+                }
+
+                int progress = (int)((decimal)count / totalCount * 100);
+                count += batch.Length;
+
+                string msg = $"Anonymizing {tableName}. Updating {count}/{totalCount}...";
+
+                control.SetWorkingMessage(msg);
+
+                control.Service.Execute(executeMultipleRequest);
+            }
+
+            control.ShowStop(false);
         }
 
         private void UpdateDataDone(RunWorkerCompletedEventArgs args)
         {
             control.HandleAsyncError(args);
 
-            ProcessRuleQueue();
+            if (!args.Cancelled)
+            {
+                ProcessRuleQueue();
+            }
         }
 
         private UpdateRequest[] CreateRequests(RuleProcessing groupedRules)
