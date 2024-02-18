@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {            
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             this.comboBogusDataSet = new System.Windows.Forms.ComboBox();
             this.comboBogusMethod = new System.Windows.Forms.ComboBox();
             this.bBogusSample = new System.Windows.Forms.Button();
@@ -333,11 +333,14 @@
             this.tbFetchXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFetchXml.Location = new System.Drawing.Point(16, 165);
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
+            this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbFetchXml.Size = new System.Drawing.Size(650, 48);
             this.tbFetchXml.TabIndex = 30;
+            this.tbFetchXml.Text = resources.GetString("tbFetchXml.Text");
             this.tbFetchXml.Visible = false;
             // 
             // rbFilterFetchXml

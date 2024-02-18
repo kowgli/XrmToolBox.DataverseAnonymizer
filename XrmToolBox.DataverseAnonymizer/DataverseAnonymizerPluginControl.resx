@@ -117,6 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tbFetchXml.Text" xml:space="preserve">
+    <value>Link entities (joins) will be ignored. Attributes are ignored. Example:
+&lt;fetch mapping='logical'&gt;  
+   &lt;entity name='contact'&gt;   
+      &lt;attribute name='contactid'/&gt;   
+      &lt;filter type='and'&gt;   
+         &lt;condition attribute='lastname' operator='ne' value='Cannon' /&gt;   
+      &lt;/filter&gt;   
+   &lt;/entity&gt;   
+&lt;/fetch&gt;</value>
+  </data>
   <metadata name="colTableName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
