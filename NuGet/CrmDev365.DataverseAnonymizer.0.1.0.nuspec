@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>XrmToolbox.DataverseAnonymizer</id>
+    <id>CrmDev365.DataverseAnonymizer</id>
     <version>0.1.0</version>
     <title>Data anonymizer for XrmToolbox</title>
     <authors>CrmDev365 Lukasz Grzybowski-Glikman</authors>
@@ -23,6 +23,6 @@ https://github.com/kowgli/XrmToolBox.DataverseAnonymizer</releaseNotes>
     </dependencies>
   </metadata>
   <files>
-    <file src="..\XrmToolBox.DataverseAnonymizer\bin\Release\Output\XrmToolBox.DataverseAnonymizer_Merged.dll" target="lib\net48\Plugins\XrmToolBox.DataverseAnonymizer.dll" />
+    <file src="..\XrmToolBox.DataverseAnonymizer\bin\Release\Output\CrmDev365.DataverseAnonymizer_Merged.dll" target="lib\net48\Plugins\CrmDev365.DataverseAnonymizer.dll" />
   </files>
 </package>

@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XrmToolBox.DataverseAnonymizer</RootNamespace>
-    <AssemblyName>XrmToolBox.DataverseAnonymizer</AssemblyName>
+    <AssemblyName>CrmDev365.DataverseAnonymizer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -234,7 +234,7 @@ IF $(ConfigurationName) == Release (
    IF NOT EXIST Plugins mkdir Output
    xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Output\" /Y
    xcopy "$(TargetDir)Bogus.dll" "$(TargetDir)Output\" /Y
-   ..\..\..\packages\ILRepack.2.0.27\tools\ILRepack.exe Output\XrmToolBox.DataverseAnonymizer.dll Output\Bogus.dll /out:Output\XrmToolBox.DataverseAnonymizer_Merged.dll
+   ..\..\..\packages\ILRepack.2.0.27\tools\ILRepack.exe Output\CrmDev365.DataverseAnonymizer.dll Output\Bogus.dll /out:Output\CrmDev365.DataverseAnonymizer_Merged.dll
 )
 </PostBuildEvent>
   </PropertyGroup>
