@@ -7,6 +7,7 @@ using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private BogusDataSource bogusDataSource = new BogusDataSource();
         private readonly BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();
         private bool running = false;
-        private Dictionary<string, string> fetchFilters = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> fetchFilters = new Dictionary<string, string>();
 
         public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
 
@@ -401,7 +402,7 @@ namespace XrmToolBox.DataverseAnonymizer
             };
 
             DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
-            runner.Done += (object sender, EventArgs e) =>
+            runner.OnDone += (object sender, EventArgs e) =>
             {
                 if (this.IsDisposed) { return; }
 
@@ -413,11 +414,12 @@ namespace XrmToolBox.DataverseAnonymizer
             try
             {
                 running = true;
-                runner.Run(rules.ToArray());
+                runner.Run(rules.ToArray(), fetchFilters);
             }
             catch (Exception ex)
             {
-                ShowErrorDialog(ex);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bStop_Click(null, null);
             }
         }
 
@@ -454,7 +456,12 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             if (args.Error != null)
             {
-                MessageBox.Show(args.Error.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(args.Error?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                running = false;
+                FormDisabled(false);
+                ShowStop(false);
+
                 return true;
             }
             return false;
@@ -514,7 +521,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void rbFilter_CheckedChanged(object sender, EventArgs e)
         {
             tbFetchXml.Visible = rbFilterFetchXml.Checked;
-            labelFilterInfo.Visible = rbFilterFetchXml.Checked;
+            labelFetchXmlInfo.Visible = rbFilterFetchXml.Checked;
             bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;
            
             if (rbFilterNone.Checked && CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))

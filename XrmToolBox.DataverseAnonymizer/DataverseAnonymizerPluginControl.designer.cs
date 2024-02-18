@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {            
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboBogusDataSet = new System.Windows.Forms.ComboBox();
             this.comboBogusMethod = new System.Windows.Forms.ComboBox();
             this.bBogusSample = new System.Windows.Forms.Button();
@@ -47,7 +47,6 @@
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
             this.bFetchXmlBuilder = new System.Windows.Forms.Button();
-            this.labelFilterInfo = new System.Windows.Forms.Label();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
             this.rbFilterNone = new System.Windows.Forms.RadioButton();
@@ -89,6 +88,7 @@
             this.comboBogusLocale = new System.Windows.Forms.ComboBox();
             this.bSave = new System.Windows.Forms.Button();
             this.bStop = new System.Windows.Forms.Button();
+            this.labelFetchXmlInfo = new System.Windows.Forms.Label();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -276,8 +276,8 @@
             // 
             this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbField.Controls.Add(this.labelFetchXmlInfo);
             this.gbField.Controls.Add(this.bFetchXmlBuilder);
-            this.gbField.Controls.Add(this.labelFilterInfo);
             this.gbField.Controls.Add(this.tbFetchXml);
             this.gbField.Controls.Add(this.rbFilterFetchXml);
             this.gbField.Controls.Add(this.rbFilterNone);
@@ -307,26 +307,14 @@
             // 
             // bFetchXmlBuilder
             // 
-            this.bFetchXmlBuilder.Location = new System.Drawing.Point(518, 131);
+            this.bFetchXmlBuilder.Location = new System.Drawing.Point(531, 131);
             this.bFetchXmlBuilder.Name = "bFetchXmlBuilder";
-            this.bFetchXmlBuilder.Size = new System.Drawing.Size(148, 30);
+            this.bFetchXmlBuilder.Size = new System.Drawing.Size(135, 30);
             this.bFetchXmlBuilder.TabIndex = 31;
             this.bFetchXmlBuilder.Text = "FetchXML Builder";
             this.bFetchXmlBuilder.UseVisualStyleBackColor = true;
             this.bFetchXmlBuilder.Visible = false;
             this.bFetchXmlBuilder.Click += new System.EventHandler(this.bFetchXmlBuilder_Click);
-            // 
-            // labelFilterInfo
-            // 
-            this.labelFilterInfo.AutoSize = true;
-            this.labelFilterInfo.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFilterInfo.ForeColor = System.Drawing.Color.Red;
-            this.labelFilterInfo.Location = new System.Drawing.Point(240, 139);
-            this.labelFilterInfo.Name = "labelFilterInfo";
-            this.labelFilterInfo.Size = new System.Drawing.Size(232, 17);
-            this.labelFilterInfo.TabIndex = 30;
-            this.labelFilterInfo.Text = "Applies to all rules for the selected table";
-            this.labelFilterInfo.Visible = false;
             // 
             // tbFetchXml
             // 
@@ -338,16 +326,15 @@
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 48);
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 50);
             this.tbFetchXml.TabIndex = 30;
-            this.tbFetchXml.Text = resources.GetString("tbFetchXml.Text");
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
             // 
             // rbFilterFetchXml
             // 
             this.rbFilterFetchXml.AutoSize = true;
-            this.rbFilterFetchXml.Location = new System.Drawing.Point(143, 136);
+            this.rbFilterFetchXml.Location = new System.Drawing.Point(134, 136);
             this.rbFilterFetchXml.Name = "rbFilterFetchXml";
             this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
             this.rbFilterFetchXml.TabIndex = 29;
@@ -493,18 +480,18 @@
             // 
             // colEdit
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.NullValue = "Edit";
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "Edit";
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle1;
             this.colEdit.HeaderText = "Edit";
             this.colEdit.Name = "colEdit";
             this.colEdit.Width = 40;
             // 
             // colDelete
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = "Delete";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "Delete";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle2;
             this.colDelete.HeaderText = "Delete";
             this.colDelete.Name = "colDelete";
             this.colDelete.Width = 58;
@@ -842,6 +829,19 @@
             this.bStop.Visible = false;
             this.bStop.Click += new System.EventHandler(this.bStop_Click);
             // 
+            // labelFetchXmlInfo
+            // 
+            this.labelFetchXmlInfo.AutoSize = true;
+            this.labelFetchXmlInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFetchXmlInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelFetchXmlInfo.Location = new System.Drawing.Point(224, 133);
+            this.labelFetchXmlInfo.Name = "labelFetchXmlInfo";
+            this.labelFetchXmlInfo.Size = new System.Drawing.Size(295, 26);
+            this.labelFetchXmlInfo.TabIndex = 32;
+            this.labelFetchXmlInfo.Text = "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
+    "ir ID to increase performance.";
+            this.labelFetchXmlInfo.Visible = false;
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -931,7 +931,7 @@
         private System.Windows.Forms.RadioButton rbFilterFetchXml;
         private System.Windows.Forms.RadioButton rbFilterNone;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label labelFilterInfo;
         private System.Windows.Forms.Button bFetchXmlBuilder;
+        private System.Windows.Forms.Label labelFetchXmlInfo;
     }
 }
