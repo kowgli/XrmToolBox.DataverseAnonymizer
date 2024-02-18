@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CrmDev365.DataverseAnonymizer")]
 [assembly: AssemblyDescription("XrmToolBox tool for anonymizing data in the Dataverse")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CrmDev365")]
+[assembly: AssemblyCompany("CrmDev365 Lukasz Grzybowski-Glikman")]
 [assembly: AssemblyProduct("CrmDev365.DataverseAnonymizer")]
 [assembly: AssemblyCopyright("Copyright CrmDev365© 2024")]
 [assembly: AssemblyTrademark("")]

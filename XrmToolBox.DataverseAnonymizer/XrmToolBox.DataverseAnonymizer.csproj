@@ -204,7 +204,6 @@
     <Compile Include="Models\SequenceRule.cs" />
     <Compile Include="Models\WorkSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -235,6 +234,8 @@ IF $(ConfigurationName) == Release (
    xcopy "$(TargetDir)$(TargetFileName)" "$(TargetDir)Output\" /Y
    xcopy "$(TargetDir)Bogus.dll" "$(TargetDir)Output\" /Y
    ..\..\..\packages\ILRepack.2.0.27\tools\ILRepack.exe Output\CrmDev365.DataverseAnonymizer.dll Output\Bogus.dll /out:Output\CrmDev365.DataverseAnonymizer_Merged.dll
+   cd ..\..\..\NuGet
+   nuget pack CrmDev365.DataverseAnonymizer.0.1.0.nuspec
 )
 </PostBuildEvent>
   </PropertyGroup>

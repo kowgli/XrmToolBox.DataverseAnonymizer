@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{1AA442FD-4
 		Misc\crm_metadata.json = Misc\crm_metadata.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{CA49A15C-E138-4236-B25E-0C6872AE25B1}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet\CrmDev365.DataverseAnonymizer.0.1.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.1.0.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
