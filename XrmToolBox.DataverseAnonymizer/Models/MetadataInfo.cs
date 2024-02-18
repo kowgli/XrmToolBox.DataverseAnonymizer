@@ -10,7 +10,7 @@
             DisplayPlusLogicalName = 3
         }
 
-        public DisplayModes DisplayMode { get; set; } = DisplayModes.DisplayPlusLogicalName;
+        public DisplayModes DisplayMode { get; set; } = DisplayModes.LogicalNameOnly;
 
         public string LogicalName { get; set; }
         public string DisplayName { get; set; }

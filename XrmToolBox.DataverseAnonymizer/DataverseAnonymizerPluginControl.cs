@@ -1,4 +1,4 @@
-﻿#define USE_FAKE_METADATA
+﻿#define __USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -103,6 +103,35 @@ namespace XrmToolBox.DataverseAnonymizer
                 }
             });
         }
+
+#if !USE_FAKE_METADATA
+
+        private TableMetadataInfo[] TransformMetadata(EntityMetadata[] entities) => entities
+                    .Where(e => e.DisplayName.UserLocalizedLabel != null)
+                    .Select(e => new TableMetadataInfo
+                    {
+                        LogicalName = e.LogicalName,
+                        DisplayName = e.DisplayName.UserLocalizedLabel.Label,
+                        PrimaryIdAttribute = e.PrimaryIdAttribute,
+                        Fields = e.Attributes
+                                        .Where(a => a.IsValidForUpdate == true
+                                                    && a.DisplayName.UserLocalizedLabel != null
+                                                    &&
+                                                    (
+                                                        a.AttributeType == AttributeTypeCode.Memo
+                                                        || a.AttributeType == AttributeTypeCode.String
+                                                    // TODO: Add more supported types here in the future
+                                                    )
+                                        )
+                                        .Select(a => new MetadataInfo
+                                        {
+                                            LogicalName = a.LogicalName,
+                                            DisplayName = a.DisplayName.UserLocalizedLabel.Label
+                                        })
+                                        .ToArray()
+                    })
+                    .ToArray();
+#endif
 
         #endregion
 
@@ -357,6 +386,8 @@ namespace XrmToolBox.DataverseAnonymizer
             DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
             runner.Done += (object sender, EventArgs e) =>
             {
+                if (this.IsDisposed) { return; }
+
                 FormDisabled(false);
                 running = false;
                 MessageBox.Show("All data successfully processed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -380,6 +411,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
         public void ShowStop(bool show)
         {
+            if (this.IsDisposed) { return; }
             this.Invoke((MethodInvoker)delegate
             {
                 bStop.BringToFront();
@@ -436,6 +468,6 @@ namespace XrmToolBox.DataverseAnonymizer
             base.UpdateConnection(newService, detail, actionName, parameter);
         }
 
-        #endregion        
+        #endregion
     }
 }

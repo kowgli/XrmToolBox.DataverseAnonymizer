@@ -177,9 +177,12 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                 string msg = $"Anonymizing {tableName}. Updating {count}/{totalCount}...";
 
-                control.SetWorkingMessage(msg);
+                if (!control.IsDisposed)
+                {
+                    control.SetWorkingMessage(msg);
 
-                control.Service.Execute(executeMultipleRequest);
+                    control.Service.Execute(executeMultipleRequest);
+                }                
             }
 
             control.ShowStop(false);
