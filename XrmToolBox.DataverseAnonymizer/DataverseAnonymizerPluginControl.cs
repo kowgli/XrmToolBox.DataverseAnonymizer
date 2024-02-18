@@ -6,6 +6,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -14,16 +15,20 @@ using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Helpers;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
+using XrmToolBox.Extensibility.Interfaces;
 using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
 {
-    public partial class DataverseAnonymizerPluginControl : PluginControlBase
+    public partial class DataverseAnonymizerPluginControl : PluginControlBase, IMessageBusHost
     {
         private TableDataSource tableDataSource = null;
         private BogusDataSource bogusDataSource = new BogusDataSource();
-        private BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();
+        private readonly BindingList<AnonymizationRule> rules = new BindingList<AnonymizationRule>();
         private bool running = false;
+        private Dictionary<string, string> fetchFilters = new Dictionary<string, string>();
+
+        public event EventHandler<MessageBusEventArgs> OnOutgoingMessage;
 
         public DataverseAnonymizerPluginControl()
         {
@@ -180,6 +185,8 @@ namespace XrmToolBox.DataverseAnonymizer
             comboField.DataSource = tableDataSource.Fields;
 
             tbSequenceFormat.Text = $"{table.DisplayName} {{SEQ}}";
+
+            RestoreFiltersForTable();
         }
 
         private void tbFieldFilter_TextChanged(object sender, EventArgs e)
@@ -308,6 +315,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void dgvRules_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) { return; }
+            
             AnonymizationRule rule = (AnonymizationRule)dgvRules.Rows[e.RowIndex].DataBoundItem;
 
             if (e.ColumnIndex == colEdit.Index)
@@ -319,6 +328,15 @@ namespace XrmToolBox.DataverseAnonymizer
                 rules.Remove(rule);
                 dgvRules.Refresh();
             }
+        }
+
+        private void dgvRules_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvRules.SelectedRows.Count == 0) { return; }
+            
+            AnonymizationRule rule = (AnonymizationRule)dgvRules.SelectedRows[0].DataBoundItem;
+
+            EditRule(rule);
         }
 
         private void EditRule(AnonymizationRule rule)
@@ -356,14 +374,6 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
         }
-
-        private void rbFilter_CheckedChanged(object sender, EventArgs e)
-        {
-            tbFetchXml.Visible = rbFilterFetchXml.Checked;
-            labelFilterInfo.Visible = rbFilterFetchXml.Checked;
-            bExpandFetchXml.Visible = rbFilterFetchXml.Checked;
-        }
-
         #endregion
 
         #region Running
@@ -476,5 +486,72 @@ namespace XrmToolBox.DataverseAnonymizer
         }
 
         #endregion
+
+        #region FXB integration
+
+        private void bFetchXmlBuilder_Click(object sender, EventArgs e)
+        {
+            OnOutgoingMessage(this, new MessageBusEventArgs("FetchXML Builder")
+            {
+                TargetArgument = tbFetchXml.Text
+            });
+        }
+
+        public void OnIncomingMessage(MessageBusEventArgs message)
+        {
+            if (message.SourcePlugin == "FetchXML Builder" &&
+                message.TargetArgument is string fetchXml &&
+                !string.IsNullOrWhiteSpace(fetchXml))
+            {
+                tbFetchXml.Text = fetchXml;
+            }
+        }
+
+        #endregion
+
+        #region FetchXML filter handling
+
+        private void rbFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            tbFetchXml.Visible = rbFilterFetchXml.Checked;
+            labelFilterInfo.Visible = rbFilterFetchXml.Checked;
+            bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;
+           
+            if (rbFilterNone.Checked && CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
+            {
+                fetchFilters.Remove(CurrentTable);
+            }
+        }
+
+        private string CurrentTable => (comboTable.SelectedItem as TableMetadataInfo)?.LogicalName;
+
+
+        private void tbFetchXml_TextChanged(object sender, EventArgs e)
+        {
+            if (CurrentTable != null)
+            {
+                fetchFilters[CurrentTable] = tbFetchXml.Text;
+            }
+        }
+
+        private void RestoreFiltersForTable()
+        {
+            if (CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
+            {
+                tbFetchXml.Text = fetchFilters[CurrentTable];
+                rbFilterFetchXml.Checked = true;                
+            }
+            else
+            {
+                tbFetchXml.Text = "";
+                rbFilterNone.Checked = true;
+            }
+
+            rbFilter_CheckedChanged(null, null);
+        }
+
+        #endregion
+
+        
     }
 }

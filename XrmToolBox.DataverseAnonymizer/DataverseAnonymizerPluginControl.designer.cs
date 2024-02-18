@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboBogusDataSet = new System.Windows.Forms.ComboBox();
             this.comboBogusMethod = new System.Windows.Forms.ComboBox();
             this.bBogusSample = new System.Windows.Forms.Button();
@@ -46,8 +46,8 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
+            this.bFetchXmlBuilder = new System.Windows.Forms.Button();
             this.labelFilterInfo = new System.Windows.Forms.Label();
-            this.bExpandFetchXml = new System.Windows.Forms.Button();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
             this.rbFilterNone = new System.Windows.Forms.RadioButton();
@@ -276,8 +276,8 @@
             // 
             this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbField.Controls.Add(this.bFetchXmlBuilder);
             this.gbField.Controls.Add(this.labelFilterInfo);
-            this.gbField.Controls.Add(this.bExpandFetchXml);
             this.gbField.Controls.Add(this.tbFetchXml);
             this.gbField.Controls.Add(this.rbFilterFetchXml);
             this.gbField.Controls.Add(this.rbFilterNone);
@@ -305,28 +305,28 @@
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
             // 
+            // bFetchXmlBuilder
+            // 
+            this.bFetchXmlBuilder.Location = new System.Drawing.Point(518, 131);
+            this.bFetchXmlBuilder.Name = "bFetchXmlBuilder";
+            this.bFetchXmlBuilder.Size = new System.Drawing.Size(148, 30);
+            this.bFetchXmlBuilder.TabIndex = 31;
+            this.bFetchXmlBuilder.Text = "FetchXML Builder";
+            this.bFetchXmlBuilder.UseVisualStyleBackColor = true;
+            this.bFetchXmlBuilder.Visible = false;
+            this.bFetchXmlBuilder.Click += new System.EventHandler(this.bFetchXmlBuilder_Click);
+            // 
             // labelFilterInfo
             // 
             this.labelFilterInfo.AutoSize = true;
             this.labelFilterInfo.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFilterInfo.ForeColor = System.Drawing.Color.Red;
-            this.labelFilterInfo.Location = new System.Drawing.Point(361, 140);
+            this.labelFilterInfo.Location = new System.Drawing.Point(240, 139);
             this.labelFilterInfo.Name = "labelFilterInfo";
             this.labelFilterInfo.Size = new System.Drawing.Size(232, 17);
             this.labelFilterInfo.TabIndex = 30;
             this.labelFilterInfo.Text = "Applies to all rules for the selected table";
             this.labelFilterInfo.Visible = false;
-            // 
-            // bExpandFetchXml
-            // 
-            this.bExpandFetchXml.Location = new System.Drawing.Point(642, 138);
-            this.bExpandFetchXml.Name = "bExpandFetchXml";
-            this.bExpandFetchXml.Size = new System.Drawing.Size(24, 23);
-            this.bExpandFetchXml.TabIndex = 31;
-            this.bExpandFetchXml.Text = "⛶";
-            this.bExpandFetchXml.UseCompatibleTextRendering = true;
-            this.bExpandFetchXml.UseVisualStyleBackColor = true;
-            this.bExpandFetchXml.Visible = false;
             // 
             // tbFetchXml
             // 
@@ -342,15 +342,16 @@
             this.tbFetchXml.TabIndex = 30;
             this.tbFetchXml.Text = resources.GetString("tbFetchXml.Text");
             this.tbFetchXml.Visible = false;
+            this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
             // 
             // rbFilterFetchXml
             // 
             this.rbFilterFetchXml.AutoSize = true;
-            this.rbFilterFetchXml.Location = new System.Drawing.Point(203, 136);
+            this.rbFilterFetchXml.Location = new System.Drawing.Point(143, 136);
             this.rbFilterFetchXml.Name = "rbFilterFetchXml";
-            this.rbFilterFetchXml.Size = new System.Drawing.Size(94, 23);
+            this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
             this.rbFilterFetchXml.TabIndex = 29;
-            this.rbFilterFetchXml.Text = "Fetch XML";
+            this.rbFilterFetchXml.Text = "FetchXML";
             this.rbFilterFetchXml.UseVisualStyleBackColor = true;
             this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
             // 
@@ -358,7 +359,7 @@
             // 
             this.rbFilterNone.AutoSize = true;
             this.rbFilterNone.Checked = true;
-            this.rbFilterNone.Location = new System.Drawing.Point(116, 136);
+            this.rbFilterNone.Location = new System.Drawing.Point(74, 136);
             this.rbFilterNone.Name = "rbFilterNone";
             this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
             this.rbFilterNone.TabIndex = 28;
@@ -442,6 +443,7 @@
             // 
             this.dgvRules.AllowUserToAddRows = false;
             this.dgvRules.AllowUserToDeleteRows = false;
+            this.dgvRules.AllowUserToResizeRows = false;
             this.dgvRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -463,6 +465,7 @@
             this.dgvRules.Size = new System.Drawing.Size(429, 603);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
+            this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
             // 
             // colTableName
             // 
@@ -490,18 +493,18 @@
             // 
             // colEdit
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "Edit";
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.NullValue = "Edit";
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle7;
             this.colEdit.HeaderText = "Edit";
             this.colEdit.Name = "colEdit";
             this.colEdit.Width = 40;
             // 
             // colDelete
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Delete";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = "Delete";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle8;
             this.colDelete.HeaderText = "Delete";
             this.colDelete.Name = "colDelete";
             this.colDelete.Width = 58;
@@ -928,7 +931,7 @@
         private System.Windows.Forms.RadioButton rbFilterFetchXml;
         private System.Windows.Forms.RadioButton rbFilterNone;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button bExpandFetchXml;
         private System.Windows.Forms.Label labelFilterInfo;
+        private System.Windows.Forms.Button bFetchXmlBuilder;
     }
 }
