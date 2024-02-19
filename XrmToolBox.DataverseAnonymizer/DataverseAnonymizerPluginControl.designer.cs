@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {            
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
             this.comboBogusDataSet = new System.Windows.Forms.ComboBox();
             this.comboBogusMethod = new System.Windows.Forms.ComboBox();
@@ -171,7 +171,7 @@
             this.comboTable.Margin = new System.Windows.Forms.Padding(4);
             this.comboTable.Name = "comboTable";
             this.comboTable.Size = new System.Drawing.Size(306, 27);
-            this.comboTable.TabIndex = 9;
+            this.comboTable.TabIndex = 2;
             this.comboTable.SelectedIndexChanged += new System.EventHandler(this.comboTable_SelectedIndexChanged);
             // 
             // comboTableFormat
@@ -189,7 +189,7 @@
             this.comboTableFormat.Margin = new System.Windows.Forms.Padding(4);
             this.comboTableFormat.Name = "comboTableFormat";
             this.comboTableFormat.Size = new System.Drawing.Size(306, 21);
-            this.comboTableFormat.TabIndex = 10;
+            this.comboTableFormat.TabIndex = 3;
             this.comboTableFormat.SelectedIndexChanged += new System.EventHandler(this.comboTableFormat_SelectedIndexChanged);
             // 
             // tbTableFilter
@@ -199,7 +199,7 @@
             this.tbTableFilter.Margin = new System.Windows.Forms.Padding(4);
             this.tbTableFilter.Name = "tbTableFilter";
             this.tbTableFilter.Size = new System.Drawing.Size(163, 21);
-            this.tbTableFilter.TabIndex = 11;
+            this.tbTableFilter.TabIndex = 0;
             this.tbTableFilter.TextChanged += new System.EventHandler(this.tbTableFilter_TextChanged);
             // 
             // lbTable
@@ -251,7 +251,7 @@
             this.tbFieldFilter.Margin = new System.Windows.Forms.Padding(4);
             this.tbFieldFilter.Name = "tbFieldFilter";
             this.tbFieldFilter.Size = new System.Drawing.Size(166, 21);
-            this.tbFieldFilter.TabIndex = 19;
+            this.tbFieldFilter.TabIndex = 4;
             this.tbFieldFilter.TextChanged += new System.EventHandler(this.tbFieldFilter_TextChanged);
             // 
             // comboFieldFormat
@@ -269,7 +269,7 @@
             this.comboFieldFormat.Margin = new System.Windows.Forms.Padding(4);
             this.comboFieldFormat.Name = "comboFieldFormat";
             this.comboFieldFormat.Size = new System.Drawing.Size(306, 21);
-            this.comboFieldFormat.TabIndex = 18;
+            this.comboFieldFormat.TabIndex = 7;
             this.comboFieldFormat.SelectedIndexChanged += new System.EventHandler(this.comboFieldFormat_SelectedIndexChanged);
             // 
             // comboField
@@ -281,7 +281,7 @@
             this.comboField.Margin = new System.Windows.Forms.Padding(4);
             this.comboField.Name = "comboField";
             this.comboField.Size = new System.Drawing.Size(306, 27);
-            this.comboField.TabIndex = 17;
+            this.comboField.TabIndex = 6;
             // 
             // gbField
             // 
@@ -351,7 +351,7 @@
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbFetchXml.Size = new System.Drawing.Size(650, 80);
-            this.tbFetchXml.TabIndex = 30;
+            this.tbFetchXml.TabIndex = 10;
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
             // 
@@ -361,7 +361,7 @@
             this.rbFilterFetchXml.Location = new System.Drawing.Point(134, 136);
             this.rbFilterFetchXml.Name = "rbFilterFetchXml";
             this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
-            this.rbFilterFetchXml.TabIndex = 29;
+            this.rbFilterFetchXml.TabIndex = 9;
             this.rbFilterFetchXml.Text = "FetchXML";
             this.rbFilterFetchXml.UseVisualStyleBackColor = true;
             this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
@@ -373,7 +373,7 @@
             this.rbFilterNone.Location = new System.Drawing.Point(74, 136);
             this.rbFilterNone.Name = "rbFilterNone";
             this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
-            this.rbFilterNone.TabIndex = 28;
+            this.rbFilterNone.TabIndex = 8;
             this.rbFilterNone.TabStop = true;
             this.rbFilterNone.Text = "None";
             this.rbFilterNone.UseVisualStyleBackColor = true;
@@ -397,7 +397,7 @@
             this.bClearFieldFilter.Location = new System.Drawing.Point(642, 27);
             this.bClearFieldFilter.Name = "bClearFieldFilter";
             this.bClearFieldFilter.Size = new System.Drawing.Size(27, 21);
-            this.bClearFieldFilter.TabIndex = 26;
+            this.bClearFieldFilter.TabIndex = 5;
             this.bClearFieldFilter.Text = "x";
             this.bClearFieldFilter.UseCompatibleTextRendering = true;
             this.bClearFieldFilter.UseVisualStyleBackColor = true;
@@ -410,7 +410,7 @@
             this.bClearTableFilter.Location = new System.Drawing.Point(295, 27);
             this.bClearTableFilter.Name = "bClearTableFilter";
             this.bClearTableFilter.Size = new System.Drawing.Size(27, 21);
-            this.bClearTableFilter.TabIndex = 25;
+            this.bClearTableFilter.TabIndex = 1;
             this.bClearTableFilter.Text = "x";
             this.bClearTableFilter.UseCompatibleTextRendering = true;
             this.bClearTableFilter.UseVisualStyleBackColor = true;
@@ -504,18 +504,18 @@
             // 
             // colEdit
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = "Edit";
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "Edit";
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle1;
             this.colEdit.HeaderText = "Edit";
             this.colEdit.Name = "colEdit";
             this.colEdit.Width = 40;
             // 
             // colDelete
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = "Delete";
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "Delete";
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle2;
             this.colDelete.HeaderText = "Delete";
             this.colDelete.Name = "colDelete";
             this.colDelete.Width = 58;
@@ -565,7 +565,7 @@
             0});
             this.nudBatchSize.Name = "nudBatchSize";
             this.nudBatchSize.Size = new System.Drawing.Size(120, 27);
-            this.nudBatchSize.TabIndex = 29;
+            this.nudBatchSize.TabIndex = 2;
             this.nudBatchSize.Value = new decimal(new int[] {
             50,
             0,
@@ -603,7 +603,7 @@
             this.cbBypassFlows.Location = new System.Drawing.Point(356, 29);
             this.cbBypassFlows.Name = "cbBypassFlows";
             this.cbBypassFlows.Size = new System.Drawing.Size(115, 23);
-            this.cbBypassFlows.TabIndex = 2;
+            this.cbBypassFlows.TabIndex = 1;
             this.cbBypassFlows.Text = "Bypass Flows";
             this.cbBypassFlows.UseVisualStyleBackColor = true;
             // 
@@ -615,7 +615,7 @@
             this.cbBypassPlugins.Location = new System.Drawing.Point(16, 29);
             this.cbBypassPlugins.Name = "cbBypassPlugins";
             this.cbBypassPlugins.Size = new System.Drawing.Size(309, 23);
-            this.cbBypassPlugins.TabIndex = 1;
+            this.cbBypassPlugins.TabIndex = 0;
             this.cbBypassPlugins.Text = "Bypass synchronous Plugins and Workflows";
             this.cbBypassPlugins.UseVisualStyleBackColor = true;
             // 
@@ -626,7 +626,7 @@
             this.bRun.Location = new System.Drawing.Point(239, 88);
             this.bRun.Name = "bRun";
             this.bRun.Size = new System.Drawing.Size(132, 36);
-            this.bRun.TabIndex = 0;
+            this.bRun.TabIndex = 3;
             this.bRun.Text = "Run";
             this.bRun.UseVisualStyleBackColor = false;
             this.bRun.Click += new System.EventHandler(this.bRun_Click);
@@ -710,7 +710,7 @@
             this.tbSequenceFormat.Location = new System.Drawing.Point(186, 36);
             this.tbSequenceFormat.Name = "tbSequenceFormat";
             this.tbSequenceFormat.Size = new System.Drawing.Size(443, 26);
-            this.tbSequenceFormat.TabIndex = 28;
+            this.tbSequenceFormat.TabIndex = 1;
             this.tbSequenceFormat.Text = "Account {SEQ}";
             // 
             // label7
@@ -734,7 +734,7 @@
             0});
             this.nudSequenceStartFrom.Name = "nudSequenceStartFrom";
             this.nudSequenceStartFrom.Size = new System.Drawing.Size(120, 27);
-            this.nudSequenceStartFrom.TabIndex = 26;
+            this.nudSequenceStartFrom.TabIndex = 0;
             this.nudSequenceStartFrom.Value = new decimal(new int[] {
             1,
             0,
@@ -832,7 +832,7 @@
             this.bSave.Location = new System.Drawing.Point(16, 198);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(132, 36);
-            this.bSave.TabIndex = 0;
+            this.bSave.TabIndex = 1;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = true;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
