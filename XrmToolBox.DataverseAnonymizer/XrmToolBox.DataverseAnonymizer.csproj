@@ -195,9 +195,11 @@
     <Compile Include="DataSources\TableDataSource.cs" />
     <Compile Include="Helpers\CrmHelper.cs" />
     <Compile Include="Helpers\DataUpdateRunner.cs" />
+    <Compile Include="Helpers\StateSaveLoadHelper.cs" />
     <Compile Include="Models\BogusDataSetWithMethods.cs" />
     <Compile Include="Models\BogusRule.cs" />
     <Compile Include="Models\RuleProcessing.cs" />
+    <Compile Include="Models\SavedState.cs" />
     <Compile Include="Models\TableMetadataInfo.cs" />
     <Compile Include="Models\MetadataInfo.cs" />
     <Compile Include="Models\AnonymizationRule.cs" />
@@ -232,6 +234,8 @@
     <Content Include="Img\icon32.ico" />
     <Content Include="Img\icon32.png" />
     <Content Include="Img\icon80.png" />
+    <None Include="Img\Upload.png" />
+    <None Include="Img\Save_02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
