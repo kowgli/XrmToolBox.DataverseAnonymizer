@@ -46,6 +46,7 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
+            this.labelFetchXmlInfo = new System.Windows.Forms.Label();
             this.bFetchXmlBuilder = new System.Windows.Forms.Button();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
@@ -88,8 +89,15 @@
             this.comboBogusLocale = new System.Windows.Forms.ComboBox();
             this.bSave = new System.Windows.Forms.Button();
             this.bStop = new System.Windows.Forms.Button();
-            this.labelFetchXmlInfo = new System.Windows.Forms.Label();
-            this.bFeedback = new System.Windows.Forms.Button();
+            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.ttbSave = new System.Windows.Forms.ToolStripButton();
+            this.ttbLoad = new System.Windows.Forms.ToolStripButton();
+            this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -100,6 +108,7 @@
             this.tpSequence.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.tpFakeData.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -301,10 +310,23 @@
             this.gbField.Location = new System.Drawing.Point(3, 3);
             this.gbField.MinimumSize = new System.Drawing.Size(679, 224);
             this.gbField.Name = "gbField";
-            this.gbField.Size = new System.Drawing.Size(679, 224);
+            this.gbField.Size = new System.Drawing.Size(679, 254);
             this.gbField.TabIndex = 22;
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
+            // 
+            // labelFetchXmlInfo
+            // 
+            this.labelFetchXmlInfo.AutoSize = true;
+            this.labelFetchXmlInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFetchXmlInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelFetchXmlInfo.Location = new System.Drawing.Point(224, 133);
+            this.labelFetchXmlInfo.Name = "labelFetchXmlInfo";
+            this.labelFetchXmlInfo.Size = new System.Drawing.Size(295, 26);
+            this.labelFetchXmlInfo.TabIndex = 32;
+            this.labelFetchXmlInfo.Text = "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
+    "ir ID to increase performance.";
+            this.labelFetchXmlInfo.Visible = false;
             // 
             // bFetchXmlBuilder
             // 
@@ -327,7 +349,7 @@
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 50);
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 80);
             this.tbFetchXml.TabIndex = 30;
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
@@ -422,9 +444,9 @@
             this.contentPanel.Controls.Add(this.gbRun);
             this.contentPanel.Controls.Add(this.gbRule);
             this.contentPanel.Controls.Add(this.gbField);
-            this.contentPanel.Location = new System.Drawing.Point(11, 0);
+            this.contentPanel.Location = new System.Drawing.Point(-9, 34);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1128, 626);
+            this.contentPanel.Size = new System.Drawing.Size(1157, 656);
             this.contentPanel.TabIndex = 23;
             // 
             // dgvRules
@@ -450,7 +472,7 @@
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(429, 603);
+            this.dgvRules.Size = new System.Drawing.Size(458, 633);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
@@ -500,7 +522,6 @@
             // gbRun
             // 
             this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbRun.Controls.Add(this.bFeedback);
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
@@ -509,7 +530,7 @@
             this.gbRun.Controls.Add(this.cbBypassPlugins);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRun.Location = new System.Drawing.Point(3, 482);
+            this.gbRun.Location = new System.Drawing.Point(3, 512);
             this.gbRun.MinimumSize = new System.Drawing.Size(679, 135);
             this.gbRun.Name = "gbRun";
             this.gbRun.Size = new System.Drawing.Size(679, 135);
@@ -617,7 +638,7 @@
             this.gbRule.Controls.Add(this.tabcRule);
             this.gbRule.Controls.Add(this.bSave);
             this.gbRule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRule.Location = new System.Drawing.Point(3, 233);
+            this.gbRule.Location = new System.Drawing.Point(3, 263);
             this.gbRule.MinimumSize = new System.Drawing.Size(679, 243);
             this.gbRule.Name = "gbRule";
             this.gbRule.Size = new System.Drawing.Size(679, 243);
@@ -822,54 +843,105 @@
             this.bStop.BackColor = System.Drawing.Color.Yellow;
             this.bStop.Font = new System.Drawing.Font("Calibri", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bStop.ForeColor = System.Drawing.Color.Red;
-            this.bStop.Location = new System.Drawing.Point(0, 0);
+            this.bStop.Location = new System.Drawing.Point(-20, 32);
             this.bStop.Name = "bStop";
-            this.bStop.Size = new System.Drawing.Size(1151, 53);
+            this.bStop.Size = new System.Drawing.Size(1191, 53);
             this.bStop.TabIndex = 24;
             this.bStop.Text = "STOP";
             this.bStop.UseVisualStyleBackColor = false;
             this.bStop.Visible = false;
             this.bStop.Click += new System.EventHandler(this.bStop_Click);
             // 
-            // labelFetchXmlInfo
+            // BottomToolStripPanel
             // 
-            this.labelFetchXmlInfo.AutoSize = true;
-            this.labelFetchXmlInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFetchXmlInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.labelFetchXmlInfo.Location = new System.Drawing.Point(224, 133);
-            this.labelFetchXmlInfo.Name = "labelFetchXmlInfo";
-            this.labelFetchXmlInfo.Size = new System.Drawing.Size(295, 26);
-            this.labelFetchXmlInfo.TabIndex = 32;
-            this.labelFetchXmlInfo.Text = "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
-    "ir ID to increase performance.";
-            this.labelFetchXmlInfo.Visible = false;
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
             // 
-            // bFeedback
+            // TopToolStripPanel
             // 
-            this.bFeedback.Image = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.GitHub;
-            this.bFeedback.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bFeedback.Location = new System.Drawing.Point(535, 77);
-            this.bFeedback.Name = "bFeedback";
-            this.bFeedback.Padding = new System.Windows.Forms.Padding(5, 0, 10, 0);
-            this.bFeedback.Size = new System.Drawing.Size(135, 47);
-            this.bFeedback.TabIndex = 30;
-            this.bFeedback.Text = "Feedback";
-            this.bFeedback.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bFeedback.UseVisualStyleBackColor = true;
-            this.bFeedback.Click += new System.EventHandler(this.bFeedback_Click);
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ttbSave,
+            this.ttbLoad,
+            this.ttbFeedback});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(1151, 25);
+            this.toolStrip.TabIndex = 25;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // ttbSave
+            // 
+            this.ttbSave.Image = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Save_02;
+            this.ttbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ttbSave.Name = "ttbSave";
+            this.ttbSave.Size = new System.Drawing.Size(51, 22);
+            this.ttbSave.Text = "Save";
+            this.ttbSave.Click += new System.EventHandler(this.ttbSave_Click);
+            // 
+            // ttbLoad
+            // 
+            this.ttbLoad.Image = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Upload;
+            this.ttbLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ttbLoad.Name = "ttbLoad";
+            this.ttbLoad.Size = new System.Drawing.Size(53, 22);
+            this.ttbLoad.Text = "Load";
+            this.ttbLoad.Click += new System.EventHandler(this.ttbLoad_Click);
+            // 
+            // ttbFeedback
+            // 
+            this.ttbFeedback.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.ttbFeedback.Image = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.GitHub;
+            this.ttbFeedback.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ttbFeedback.Name = "ttbFeedback";
+            this.ttbFeedback.Size = new System.Drawing.Size(77, 22);
+            this.ttbFeedback.Text = "Feedback";
+            this.ttbFeedback.Click += new System.EventHandler(this.ttbFeedback_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "json";
+            this.saveFileDialog.Filter = "JSON files|*.json|All files|*.*";
+            this.saveFileDialog.RestoreDirectory = true;
             // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.bStop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DataverseAnonymizerPluginControl";
-            this.Padding = new System.Windows.Forms.Padding(20);
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1151, 631);
+            this.Size = new System.Drawing.Size(1151, 693);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -886,7 +958,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).EndInit();
             this.tpFakeData.ResumeLayout(false);
             this.tpFakeData.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -949,6 +1024,14 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button bFetchXmlBuilder;
         private System.Windows.Forms.Label labelFetchXmlInfo;
-        private System.Windows.Forms.Button bFeedback;
+        private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton ttbSave;
+        private System.Windows.Forms.ToolStripButton ttbLoad;
+        private System.Windows.Forms.ToolStripButton ttbFeedback;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

@@ -6,6 +6,12 @@ namespace XrmToolBox.DataverseAnonymizer.Models
 {
     public class AnonymizationRule : INotifyPropertyChanged
     {
+        public enum RuleType
+        {
+            Sequence,
+            Bogus
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -47,6 +53,25 @@ namespace XrmToolBox.DataverseAnonymizer.Models
 
         public string FieldName => Field.ToString();
 
-        public string RuleName => SequenceRule != null ? SequenceRule.ToString() : BogusRule?.ToString(); 
+        public string RuleName => SequenceRule != null ? SequenceRule.ToString() : BogusRule?.ToString();
+
+        public RuleType Type => SequenceRule != null ? RuleType.Sequence : RuleType.Bogus;
+
+        public SavedState.Rule ToSaveModel() => new SavedState.Rule
+        {
+            Table = Table?.LogicalName,
+            Field = Field?.LogicalName,
+            Bogus = bogusRule == null ? null : new SavedState.Rule.BogusSettings
+            {
+                Locale = bogusRule.Locale?.Name,
+                DataSet = bogusRule.BogusDataSet?.DataSetType?.Name,
+                Method = bogusRule.BogusMethod?.Method?.Name
+            },
+            Sequence = sequenceRule == null ? null : new SavedState.Rule.SequenceSettings
+            {
+                SequenceStart = sequenceRule.SequenceStart,
+                Format = sequenceRule.Format
+            }
+        };
     }
 }

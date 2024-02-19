@@ -1,15 +1,17 @@
-﻿#define __USE_FAKE_METADATA
+﻿#define USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
@@ -54,6 +56,12 @@ namespace XrmToolBox.DataverseAnonymizer
 
             dgvRules.AutoGenerateColumns = false;
             dgvRules.DataSource = rules;
+
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (Service != null)
+            {
+                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - anonymization.json";
+            }
 
             ExecuteMethod(FillEntities);
         }
@@ -369,25 +377,6 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #endregion
 
-        #region Misc events
-
-        private void llBogus_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://github.com/bchavez/Bogus");
-        }
-
-        private void llBypassHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
-        }
-
-        private void bFeedback_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"https://github.com/kowgli/XrmToolBox.DataverseAnonymizer/issues/new");
-        }
-
-        #endregion
-
         #region Running
 
         private void bRun_Click(object sender, EventArgs e)
@@ -567,6 +556,41 @@ namespace XrmToolBox.DataverseAnonymizer
             rbFilter_CheckedChanged(null, null);
         }
 
+
+        #endregion
+
+        #region Save / Load
+
+        private void ttbSave_Click(object sender, EventArgs e)
+        {   
+            if (saveFileDialog.ShowDialog() != DialogResult.OK) { return; }
+
+            StateSaveLoadHelper.Save(fetchFilters, rules, saveFileDialog.FileName);
+        }
+
+        private void ttbLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Misc events
+
+        private void llBogus_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/bchavez/Bogus");
+        }
+
+        private void llBypassHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
+        }
+   
+        private void ttbFeedback_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://github.com/kowgli/XrmToolBox.DataverseAnonymizer/issues/new");
+        }
 
         #endregion
     }
