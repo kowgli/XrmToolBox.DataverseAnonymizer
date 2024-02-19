@@ -345,6 +345,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void EditRule(AnonymizationRule rule)
         {
+            tbTableFilter.Text = "";
+            tbFieldFilter.Text = "";
             comboTable.SelectedItem = rule.Table;
             comboField.SelectedItem = rule.Field;
 
