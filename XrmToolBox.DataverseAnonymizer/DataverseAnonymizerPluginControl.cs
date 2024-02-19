@@ -62,6 +62,7 @@ namespace XrmToolBox.DataverseAnonymizer
             {
                 saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - anonymization.json";
             }
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             ExecuteMethod(FillEntities);
         }
@@ -109,10 +110,10 @@ namespace XrmToolBox.DataverseAnonymizer
 #endif
 
                     tableDataSource = new TableDataSource(entitiesMetadata);
-                    comboTable.DataSource = tableDataSource.Entities;
+                    comboTable.DataSource = tableDataSource.Tables;
                     comboField.DataSource = tableDataSource.Fields;
 
-                    TableMetadataInfo accountMetadata = tableDataSource.Entities.Where(e => e.LogicalName == "account").FirstOrDefault();
+                    TableMetadataInfo accountMetadata = tableDataSource.Tables.Where(e => e.LogicalName == "account").FirstOrDefault();
                     if (accountMetadata != null)
                     {
                         comboTable.SelectedItem = accountMetadata;
@@ -161,9 +162,9 @@ namespace XrmToolBox.DataverseAnonymizer
             MetadataInfo selected = (MetadataInfo)comboTable.SelectedItem;
 
             tableDataSource.Filter(tbTableFilter.Text);
-            comboTable.DataSource = tableDataSource.Entities;
+            comboTable.DataSource = tableDataSource.Tables;
 
-            if (selected != null && tableDataSource.Entities.Contains(selected))
+            if (selected != null && tableDataSource.Tables.Contains(selected))
             {
                 comboTable.SelectedItem = selected;
             }
@@ -176,9 +177,9 @@ namespace XrmToolBox.DataverseAnonymizer
             MetadataInfo selected = (MetadataInfo)comboTable.SelectedItem;
 
             tableDataSource.SetDisplayMode((MetadataInfo.DisplayModes)comboTableFormat.SelectedIndex);
-            comboTable.DataSource = tableDataSource.Entities;
+            comboTable.DataSource = tableDataSource.Tables;
 
-            if (selected != null && tableDataSource.Entities.Contains(selected))
+            if (selected != null && tableDataSource.Tables.Contains(selected))
             {
                 comboTable.SelectedItem = selected;
             }
@@ -286,16 +287,14 @@ namespace XrmToolBox.DataverseAnonymizer
                 {
                     SequenceStart = (int)nudSequenceStartFrom.Value,
                     Format = tbSequenceFormat.Text
-                }
-                                                                                 : null;
+                }                                                          : null;
 
                 existingRule.BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
                 {
                     Locale = (BogusLocale)comboBogusLocale.SelectedItem,
                     BogusDataSet = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem,
                     BogusMethod = (MethodWithFriendlyName)comboBogusMethod.SelectedItem
-                }
-                                                                              : null;
+                }                                                            : null;
 
                 dgvRules.Refresh();
             }
@@ -426,6 +425,8 @@ namespace XrmToolBox.DataverseAnonymizer
         private void FormDisabled(bool disabled)
         {
             contentPanel.Enabled = !disabled;
+            ttbSave.Enabled = !disabled;
+            ttbLoad.Enabled = !disabled;            
         }
 
         public void ShowStop(bool show)
@@ -570,7 +571,28 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void ttbLoad_Click(object sender, EventArgs e)
         {
+            if (openFileDialog.ShowDialog() != DialogResult.OK) { return; }
 
+            try
+            {
+                bool allOk = StateSaveLoadHelper.Load(fetchFilters, rules, bogusDataSource, tableDataSource, openFileDialog.FileName);
+
+                if (rules.Count > 0)
+                {
+                    EditRule(rules[0]);
+                }
+
+                if (!allOk)
+                {
+                    MessageBox.Show("Some rule or filters couldn't be loaded due to invalid configuration or missing metadata.",
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading saved file. Details: {ex.Message}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion

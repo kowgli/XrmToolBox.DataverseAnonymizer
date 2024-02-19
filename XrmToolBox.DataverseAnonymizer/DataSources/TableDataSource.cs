@@ -7,20 +7,20 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
 {
     public class TableDataSource
     {
-        private TableMetadataInfo[] originalEntities = null;
-        private MetadataInfo[] originalAttributes = null;
-        private string entityFilter = "";
-        private string attributeFilter = "";
+        private TableMetadataInfo[] originalTables = null;
+        private MetadataInfo[] originalFields = null;
+        private string tableFilter = "";
+        private string fieldFilter = "";
 
-        public TableMetadataInfo[] Entities { get; private set; }
+        public TableMetadataInfo[] Tables { get; private set; }
         public MetadataInfo[] Fields { get; private set; }
 
         public TableDataSource(TableMetadataInfo[] entitiesMetadata)
         {
             entitiesMetadata = entitiesMetadata ?? throw new ArgumentNullException(nameof(entitiesMetadata));
 
-            originalEntities = entitiesMetadata;
-            originalAttributes = entitiesMetadata.FirstOrDefault()?.Fields;
+            originalTables = entitiesMetadata;
+            originalFields = entitiesMetadata.FirstOrDefault()?.Fields;
 
             RefreshEntities();
             RefreshAttributes();
@@ -28,7 +28,7 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
 
         public void SetDisplayMode(DisplayModes displayMode)
         {
-            foreach (MetadataInfo ntity in Entities)
+            foreach (MetadataInfo ntity in Tables)
             {
                 ntity.DisplayMode = displayMode;
             }
@@ -38,14 +38,14 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
 
         public void Filter(string filter)
         {
-            entityFilter = (filter ?? "").Trim();
+            tableFilter = (filter ?? "").Trim();
 
             RefreshEntities();
         }
 
         public void FilterFields(string filter)
         {
-            attributeFilter = (filter ?? "").Trim();
+            fieldFilter = (filter ?? "").Trim();
 
             RefreshAttributes();
         }
@@ -60,26 +60,26 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
             RefreshAttributes();
         }
 
-        public void SetFieldsFromTable(TableMetadataInfo entity)
+        public void SetFieldsFromTable(TableMetadataInfo table)
         {
-            originalAttributes = entity.Fields;
+            originalFields = table.Fields;
             RefreshAttributes();
         }
 
         private void RefreshEntities()
         {
-            if (string.IsNullOrWhiteSpace(entityFilter)) { entityFilter = ""; }
+            if (string.IsNullOrWhiteSpace(tableFilter)) { tableFilter = ""; }
 
-            if (entityFilter.StartsWith("*"))
+            if (tableFilter.StartsWith("*"))
             {
-                string filter = entityFilter.TrimStart('*');
-                Entities = originalEntities.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
+                string filter = tableFilter.TrimStart('*');
+                Tables = originalTables.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }
             else
             {
-                Entities = originalEntities.Where(e => e.ToString().StartsWith(entityFilter, StringComparison.OrdinalIgnoreCase))
+                Tables = originalTables.Where(e => e.ToString().StartsWith(tableFilter, StringComparison.OrdinalIgnoreCase))
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }
@@ -87,18 +87,18 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
 
         private void RefreshAttributes()
         {
-            if (string.IsNullOrWhiteSpace(attributeFilter)) { attributeFilter = ""; }
+            if (string.IsNullOrWhiteSpace(fieldFilter)) { fieldFilter = ""; }
 
-            if (attributeFilter.StartsWith("*"))
+            if (fieldFilter.StartsWith("*"))
             {
-                string filter = attributeFilter.TrimStart('*');
-                Fields = originalAttributes.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
+                string filter = fieldFilter.TrimStart('*');
+                Fields = originalFields.Where(e => e.ToString().IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0)
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }
             else
             {
-                Fields = originalAttributes.Where(e => e.ToString().StartsWith(attributeFilter, StringComparison.OrdinalIgnoreCase))
+                Fields = originalFields.Where(e => e.ToString().StartsWith(fieldFilter, StringComparison.OrdinalIgnoreCase))
                                .OrderBy(e => e.ToString())
                                .ToArray();
             }
