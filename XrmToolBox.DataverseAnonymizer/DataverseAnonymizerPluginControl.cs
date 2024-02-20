@@ -1,4 +1,4 @@
-﻿#define USE_FAKE_METADATA
+﻿#define __USE_FAKE_METADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
