@@ -1,9 +1,13 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.Extensibility;
@@ -196,7 +200,9 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                 control.ShowStop(true);
 
-                foreach (UpdateRequest[] batch in batches)
+                control.SetWorkingMessage($"Anonymizing {tableName}. Updated 0/{totalCount}...");
+
+                Parallel.ForEach(batches, new ParallelOptions { MaxDegreeOfParallelism = settings.Threads }, (UpdateRequest[] batch) =>
                 {
                     if (worker.CancellationPending)
                     {
@@ -225,18 +231,32 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                         executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
                     }
 
-                    int progress = (int)((decimal)count / totalCount * 100);
-                    count += batch.Length;
+                    if (control.IsDisposed) { return; }
 
-                    string msg = $"Anonymizing {tableName}. Updating {count}/{totalCount}...";
-
-                    if (!control.IsDisposed)
+                    if (control.Service is CrmServiceClient)
                     {
-                        control.SetWorkingMessage(msg);
-
+                        ((CrmServiceClient)control.Service).Clone().Execute(executeMultipleRequest);
+                    }
+                    else
+                    {
                         control.Service.Execute(executeMultipleRequest);
                     }
-                }
+
+                    if (control.IsDisposed) { return; }
+
+                    try
+                    {
+                        int progress = (int)((decimal)count / totalCount * 100);
+                        Interlocked.Add(ref count, batch.Length);
+
+                        if (control.IsDisposed) { return; }
+
+                        string msg = $"Anonymizing {tableName}. Updated {count}/{totalCount}...";
+                        control.SetWorkingMessage(msg);                        
+                    }
+                    catch { }
+
+                });
                 control.ShowStop(false);
             }
             catch (Exception ex)

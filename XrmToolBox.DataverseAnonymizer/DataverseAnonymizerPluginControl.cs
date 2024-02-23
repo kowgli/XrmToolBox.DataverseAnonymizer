@@ -396,6 +396,7 @@ namespace XrmToolBox.DataverseAnonymizer
             WorkSettings settings = new WorkSettings()
             {
                 BatchSize = (int)nudBatchSize.Value,
+                Threads = (int)nudThreads.Value,
                 BypassPlugins = cbBypassPlugins.Checked,
                 BypassFlows = cbBypassFlows.Checked
             };

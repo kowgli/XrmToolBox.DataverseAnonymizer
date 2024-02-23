@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{CA49A15C
 	ProjectSection(SolutionItems) = preProject
 		NuGet\CrmDev365.DataverseAnonymizer.0.1.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.1.0.nuspec
 		NuGet\CrmDev365.DataverseAnonymizer.0.2.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.2.0.nuspec
+		NuGet\CrmDev365.DataverseAnonymizer.0.3.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.3.0.nuspec
 	EndProjectSection
 EndProject
 Global

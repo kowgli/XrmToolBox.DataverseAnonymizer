@@ -99,6 +99,8 @@
             this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.nudThreads = new System.Windows.Forms.NumericUpDown();
+            this.lbThreads = new System.Windows.Forms.Label();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -110,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.tpFakeData.SuspendLayout();
             this.toolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -523,6 +526,8 @@
             // gbRun
             // 
             this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbRun.Controls.Add(this.nudThreads);
+            this.gbRun.Controls.Add(this.lbThreads);
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
@@ -554,7 +559,7 @@
             // 
             this.nudBatchSize.Location = new System.Drawing.Point(99, 93);
             this.nudBatchSize.Maximum = new decimal(new int[] {
-            5000,
+            1000,
             0,
             0,
             0});
@@ -623,7 +628,7 @@
             // 
             this.bRun.BackColor = System.Drawing.Color.Lime;
             this.bRun.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bRun.Location = new System.Drawing.Point(239, 88);
+            this.bRun.Location = new System.Drawing.Point(534, 88);
             this.bRun.Name = "bRun";
             this.bRun.Size = new System.Drawing.Size(132, 36);
             this.bRun.TabIndex = 3;
@@ -937,6 +942,39 @@
             this.openFileDialog.Filter = "JSON files|*.json|All files|*.*";
             this.openFileDialog.RestoreDirectory = true;
             // 
+            // nudThreads
+            // 
+            this.nudThreads.Location = new System.Drawing.Point(348, 93);
+            this.nudThreads.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudThreads.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThreads.Name = "nudThreads";
+            this.nudThreads.Size = new System.Drawing.Size(120, 27);
+            this.nudThreads.TabIndex = 27;
+            this.nudThreads.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            // 
+            // lbThreads
+            // 
+            this.lbThreads.AutoSize = true;
+            this.lbThreads.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThreads.Location = new System.Drawing.Point(277, 95);
+            this.lbThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbThreads.Name = "lbThreads";
+            this.lbThreads.Size = new System.Drawing.Size(67, 19);
+            this.lbThreads.TabIndex = 28;
+            this.lbThreads.Text = "Threads:";
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -967,6 +1005,7 @@
             this.tpFakeData.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1041,5 +1080,7 @@
         private System.Windows.Forms.ToolStripButton ttbFeedback;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.NumericUpDown nudThreads;
+        private System.Windows.Forms.Label lbThreads;
     }
 }
