@@ -1,5 +1,5 @@
-﻿#define USE_FAKE_METADATA
-#define __SAVE_MATADATA
+﻿#define __USE_FAKE_METADATA
+#define SAVE_MATADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -145,7 +145,9 @@ namespace XrmToolBox.DataverseAnonymizer
                                                         a.AttributeType == AttributeTypeCode.Memo
                                                         || a.AttributeType == AttributeTypeCode.String
                                                         || a.AttributeType == AttributeTypeCode.Integer
-                                                        || a.AttributeType == AttributeTypeCode.BigInt                                                        
+                                                        || a.AttributeType == AttributeTypeCode.BigInt     
+                                                        || a.AttributeType == AttributeTypeCode.Decimal
+                                                        || a.AttributeType == AttributeTypeCode.Money
                                                     // TODO: Add more supported types here in the future
                                                     )
                                         )
@@ -262,7 +264,9 @@ namespace XrmToolBox.DataverseAnonymizer
                 { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData } },
                 { AttributeTypeCode.String, new []{ tpSequence, tpFakeData } },
                 { AttributeTypeCode.Integer, new []{ tpRandomInt } },
-                { AttributeTypeCode.BigInt, new []{ tpRandomInt } }
+                { AttributeTypeCode.BigInt, new []{ tpRandomInt } },
+                { AttributeTypeCode.Decimal, new []{ tpRandomDec } },
+                { AttributeTypeCode.Money, new []{ tpRandomDec } },
             };
 
             MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;
@@ -289,6 +293,10 @@ namespace XrmToolBox.DataverseAnonymizer
             if (requiredTabs.Contains(tpRandomInt))
             {
                 GenerateRandomIntSample();
+            }
+            if (requiredTabs.Contains(tpRandomDec))
+            {
+                GenerateRandomDecSample();
             }
         }
 
@@ -317,7 +325,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #endregion
 
-        #region random Int
+        #region Random Int
         private void bRandomIntSample_Click(object sender, EventArgs e)
         {
             GenerateRandomIntSample();
@@ -346,6 +354,45 @@ namespace XrmToolBox.DataverseAnonymizer
         private void GenerateRandomIntSample()
         {
             tbRandomIntSample.Text = RandomHelper.GetRandomInt((int)nudRandomIntRangeFrom.Value, (int)nudRandomIntRangeTo.Value).ToString();
+        }
+        #endregion
+
+        #region Random Dec
+        private void nudRandomDecRangeFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudRandomDecRangeFrom.Value >= nudRandomDecRangeTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                nudRandomDecRangeFrom.Value = nudRandomDecRangeTo.Value - 1;
+            }
+
+            GenerateRandomDecSample();
+        }
+
+        private void nudRandomDecRangeTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudRandomDecRangeFrom.Value >= nudRandomDecRangeTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                nudRandomDecRangeTo.Value = nudRandomDecRangeFrom.Value + 1;
+            }
+
+            GenerateRandomDecSample();
+        }
+
+        private void nudRandomDecDecimals_ValueChanged(object sender, EventArgs e)
+        {
+            GenerateRandomDecSample();
+        }
+
+        private void bRandomDecSample_Click(object sender, EventArgs e)
+        {
+            GenerateRandomDecSample();
+        }
+
+        private void GenerateRandomDecSample()
+        {
+            tbRandomDecSample.Text = RandomHelper.GetRandomDecimal(nudRandomIntRangeFrom.Value, nudRandomIntRangeTo.Value).ToString($"N{(int)nudRandomDecDecimals.Value}");
         }
         #endregion
 
@@ -382,6 +429,13 @@ namespace XrmToolBox.DataverseAnonymizer
                     RangeEnd = (int) nudRandomIntRangeTo.Value
                 } : null;
 
+                existingRule.RandomDecimalRule = tabcRule.SelectedTab == tpRandomDec ? new RandomDecimalRule
+                {
+                    RangeStart = nudRandomDecRangeFrom.Value,
+                    RangeEnd = nudRandomDecRangeTo.Value,
+                    DecimalPlaces = (int)nudRandomDecDecimals.Value
+                } : null;
+
                 dgvRules.Refresh();
             }
             else
@@ -405,6 +459,12 @@ namespace XrmToolBox.DataverseAnonymizer
                     {
                         RangeStart = (int)nudRandomIntRangeFrom.Value,
                         RangeEnd = (int)nudRandomIntRangeTo.Value
+                    } : null,
+                    RandomDecimalRule = tabcRule.SelectedTab == tpRandomDec ? new RandomDecimalRule
+                    {
+                        RangeStart = nudRandomDecRangeFrom.Value,
+                        RangeEnd = nudRandomDecRangeTo.Value,
+                        DecimalPlaces = (int)nudRandomDecDecimals.Value
                     } : null
                 });
             }
@@ -459,6 +519,23 @@ namespace XrmToolBox.DataverseAnonymizer
                 bBogusSample_Click(null, null);
 
                 tabcRule.SelectedTab = tpFakeData;
+            }
+            else if (rule.RandomIntRule != null)
+            {
+                nudRandomIntRangeFrom.Value = rule.RandomIntRule.RangeStart;
+                nudRandomIntRangeTo.Value = rule.RandomIntRule.RangeEnd;
+                GenerateRandomIntSample();
+
+                tabcRule.SelectedTab = tpRandomInt;
+            }
+            else if (rule.RandomDecimalRule != null)
+            {
+                nudRandomDecRangeFrom.Value = rule.RandomDecimalRule.RangeStart;
+                nudRandomDecRangeTo.Value = rule.RandomDecimalRule.RangeEnd;
+                nudRandomDecDecimals.Value = rule.RandomDecimalRule.DecimalPlaces;
+                GenerateRandomDecSample();
+
+                tabcRule.SelectedTab = tpRandomDec;
             }
         }
 

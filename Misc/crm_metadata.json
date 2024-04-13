@@ -343,9 +343,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "cr503_aaatestdecimal",
+        "DisplayName": "Aaa Test Decimal",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "cr503_aaatestint",
         "DisplayName": "Aaa Test Int",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "cr503_aaatestmoney",
+        "DisplayName": "Aaa Test Money",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "creditlimit",
+        "DisplayName": "Credit Limit",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -391,6 +409,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "marketcap",
+        "DisplayName": "Market Capitalization",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "name",
         "DisplayName": "Account Name",
         "AttributeType": 14
@@ -418,6 +442,12 @@
         "LogicalName": "primarytwitterid",
         "DisplayName": "Primary Twitter ID",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "revenue",
+        "DisplayName": "Annual Revenue",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -1515,6 +1545,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "buttonsequencepriority",
+        "DisplayName": "Button Sequence Priority (Depreciated)",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "buttontooltipdescription",
         "DisplayName": "Button Tooltip Description",
         "AttributeType": 14
@@ -1566,6 +1602,12 @@
         "LogicalName": "onclickeventjavascriptparameters",
         "DisplayName": "On Click Event JavaScript Parameters",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sequence",
+        "DisplayName": "Sequence",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -5114,6 +5156,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "annualincome",
+        "DisplayName": "Annual Income",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "assistantname",
         "DisplayName": "Assistant",
         "AttributeType": 14
@@ -5147,6 +5195,12 @@
         "LogicalName": "company",
         "DisplayName": "Company Phone",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "creditlimit",
+        "DisplayName": "Credit Limit",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -9738,9 +9792,27 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "actualdecimal",
+        "DisplayName": "Actual (Decimal)",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "actualinteger",
         "DisplayName": "Actual (Integer)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualmoney",
+        "DisplayName": "Actual (Money)",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "customrollupfielddecimal",
+        "DisplayName": "Custom Rollup Field (Decimal)",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -9750,9 +9822,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "customrollupfieldmoney",
+        "DisplayName": "Custom Rollup Field (Money)",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "inprogressdecimal",
+        "DisplayName": "In-progress (Decimal)",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "inprogressinteger",
         "DisplayName": "In-progress (Integer)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "inprogressmoney",
+        "DisplayName": "In-progress (Money)",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "percentage",
+        "DisplayName": "Percentage Achieved",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -9762,15 +9858,39 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "stretchtargetdecimal",
+        "DisplayName": "Stretch Target (Decimal)",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "stretchtargetinteger",
         "DisplayName": "Stretch Target (Integer)",
         "AttributeType": 5
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "stretchtargetmoney",
+        "DisplayName": "Stretch Target (Money)",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "targetdecimal",
+        "DisplayName": "Target (Decimal)",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "targetinteger",
         "DisplayName": "Target (Integer)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "targetmoney",
+        "DisplayName": "Target (Money)",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -16059,6 +16179,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_componenttype",
+        "DisplayName": "msdyn_componenttype",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_name",
         "DisplayName": "msdyn_name",
         "AttributeType": 14
@@ -16080,6 +16206,12 @@
         "LogicalName": "msdyn_subtype",
         "DisplayName": "msdyn_subtype",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_total",
+        "DisplayName": "msdyn_total",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -16122,6 +16254,12 @@
         "LogicalName": "msdyn_componentlogicalname",
         "DisplayName": "Component Logical Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_componenttype",
+        "DisplayName": "msdyn_componenttype",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -16287,6 +16425,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_lcid",
+        "DisplayName": "msdyn_lcid",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_logicalcollectionname",
         "DisplayName": "Logical Collection Name",
         "AttributeType": 14
@@ -16404,6 +16548,12 @@
         "LogicalName": "msdyn_synctoexternalsearchindex",
         "DisplayName": "msdyn_synctoexternalsearchindex",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_total",
+        "DisplayName": "msdyn_total",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -17327,6 +17477,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_order",
+        "DisplayName": "Order",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_otherproperties",
         "DisplayName": "Other properties",
         "AttributeType": 7
@@ -17423,6 +17579,12 @@
         "LogicalName": "msfp_response",
         "DisplayName": "Response",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msfp_sentimentvalue",
+        "DisplayName": "Sentiment value",
+        "AttributeType": 3
       },
       {
         "DisplayMode": 0,
@@ -25630,6 +25792,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "sample_donationamount",
+        "DisplayName": "Donation Amount",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
@@ -25667,6 +25835,12 @@
   {
     "PrimaryIdAttribute": "sample_fundraiserid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_fundraisergoal",
+        "DisplayName": "Fundraiser Goal",
+        "AttributeType": 8
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "sample_name",
@@ -25723,6 +25897,12 @@
         "LogicalName": "sample_ideascore",
         "DisplayName": "Idea Score",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_investmentrequired",
+        "DisplayName": "Investment Required",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -25783,6 +25963,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "sample_available",
+        "DisplayName": "Available",
+        "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "sample_categoryid",
         "DisplayName": "Category ID",
         "AttributeType": 14
@@ -25804,6 +25990,12 @@
         "LogicalName": "sample_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_price",
+        "DisplayName": "Price",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -25945,6 +26137,24 @@
         "LogicalName": "emailaddress",
         "DisplayName": "Email Address",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_budget",
+        "DisplayName": "Budget",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_budgetremaining",
+        "DisplayName": "Budget remaining",
+        "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_currentspend",
+        "DisplayName": "Current Spend",
+        "AttributeType": 8
       },
       {
         "DisplayMode": 0,
@@ -29800,6 +30010,12 @@
         "LogicalName": "currencysymbol",
         "DisplayName": "Currency Symbol",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "exchangerate",
+        "DisplayName": "Exchange Rate",
+        "AttributeType": 3
       }
     ],
     "DisplayMode": 0,

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
@@ -297,7 +298,14 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                     foreach (AnonymizationRule rule in groupedRules.Rules)
                     {
-                        updateRecord[rule.FieldName] = GetRuleValue(rule, sequences);
+                        if (rule.Field.AttributeType == AttributeTypeCode.Money)
+                        {
+                            updateRecord[rule.Field.LogicalName] = new Money((decimal)GetRuleValue(rule, sequences));
+                        }
+                        else
+                        {
+                            updateRecord[rule.Field.LogicalName] = GetRuleValue(rule, sequences);
+                        }                        
                     }
 
                     UpdateRequest updateRequest = new UpdateRequest
@@ -361,6 +369,10 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             else if (rule.RandomIntRule != null)
             {
                 return RandomHelper.GetRandomInt(rule.RandomIntRule.RangeStart, rule.RandomIntRule.RangeEnd);
+            }
+            else if (rule.RandomDecimalRule != null)
+            {
+                return Math.Round(RandomHelper.GetRandomDecimal(rule.RandomDecimalRule.RangeStart, rule.RandomDecimalRule.RangeEnd), rule.RandomDecimalRule.DecimalPlaces);
             }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");
