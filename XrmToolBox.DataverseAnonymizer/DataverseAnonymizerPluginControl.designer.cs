@@ -64,6 +64,8 @@
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gbRun = new System.Windows.Forms.GroupBox();
+            this.nudThreads = new System.Windows.Forms.NumericUpDown();
+            this.lbThreads = new System.Windows.Forms.Label();
             this.llBypassHelp = new System.Windows.Forms.LinkLabel();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
@@ -99,12 +101,19 @@
             this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.nudThreads = new System.Windows.Forms.NumericUpDown();
-            this.lbThreads = new System.Windows.Forms.Label();
+            this.tpRandomInt = new System.Windows.Forms.TabPage();
+            this.nudRandomIntRangeFrom = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.nudRandomIntRangeTo = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbRandomIntSample = new System.Windows.Forms.TextBox();
+            this.bRandomIntSample = new System.Windows.Forms.Button();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
             this.gbRun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
             this.gbRule.SuspendLayout();
             this.tabcRule.SuspendLayout();
@@ -112,7 +121,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSequenceStartFrom)).BeginInit();
             this.tpFakeData.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
+            this.tpRandomInt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandomIntRangeFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandomIntRangeTo)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -285,6 +296,7 @@
             this.comboField.Name = "comboField";
             this.comboField.Size = new System.Drawing.Size(306, 27);
             this.comboField.TabIndex = 6;
+            this.comboField.SelectedIndexChanged += new System.EventHandler(this.comboField_SelectedIndexChanged);
             // 
             // gbField
             // 
@@ -544,6 +556,39 @@
             this.gbRun.TabStop = false;
             this.gbRun.Text = "3. Run";
             // 
+            // nudThreads
+            // 
+            this.nudThreads.Location = new System.Drawing.Point(348, 93);
+            this.nudThreads.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.nudThreads.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThreads.Name = "nudThreads";
+            this.nudThreads.Size = new System.Drawing.Size(120, 27);
+            this.nudThreads.TabIndex = 27;
+            this.nudThreads.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            // 
+            // lbThreads
+            // 
+            this.lbThreads.AutoSize = true;
+            this.lbThreads.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThreads.Location = new System.Drawing.Point(277, 95);
+            this.lbThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbThreads.Name = "lbThreads";
+            this.lbThreads.Size = new System.Drawing.Size(67, 19);
+            this.lbThreads.TabIndex = 28;
+            this.lbThreads.Text = "Threads:";
+            // 
             // llBypassHelp
             // 
             this.llBypassHelp.AutoSize = true;
@@ -677,6 +722,7 @@
             // 
             this.tabcRule.Controls.Add(this.tpSequence);
             this.tabcRule.Controls.Add(this.tpFakeData);
+            this.tabcRule.Controls.Add(this.tpRandomInt);
             this.tabcRule.Location = new System.Drawing.Point(16, 26);
             this.tabcRule.Name = "tabcRule";
             this.tabcRule.SelectedIndex = 0;
@@ -942,38 +988,127 @@
             this.openFileDialog.Filter = "JSON files|*.json|All files|*.*";
             this.openFileDialog.RestoreDirectory = true;
             // 
-            // nudThreads
+            // tpRandomInt
             // 
-            this.nudThreads.Location = new System.Drawing.Point(348, 93);
-            this.nudThreads.Maximum = new decimal(new int[] {
-            32,
+            this.tpRandomInt.Controls.Add(this.label19);
+            this.tpRandomInt.Controls.Add(this.tbRandomIntSample);
+            this.tpRandomInt.Controls.Add(this.bRandomIntSample);
+            this.tpRandomInt.Controls.Add(this.nudRandomIntRangeTo);
+            this.tpRandomInt.Controls.Add(this.label18);
+            this.tpRandomInt.Controls.Add(this.nudRandomIntRangeFrom);
+            this.tpRandomInt.Controls.Add(this.label17);
+            this.tpRandomInt.Location = new System.Drawing.Point(4, 28);
+            this.tpRandomInt.Name = "tpRandomInt";
+            this.tpRandomInt.Padding = new System.Windows.Forms.Padding(3);
+            this.tpRandomInt.Size = new System.Drawing.Size(646, 125);
+            this.tpRandomInt.TabIndex = 2;
+            this.tpRandomInt.Text = "Random number";
+            this.tpRandomInt.UseVisualStyleBackColor = true;
+            // 
+            // nudRandomIntRangeFrom
+            // 
+            this.nudRandomIntRangeFrom.Location = new System.Drawing.Point(17, 37);
+            this.nudRandomIntRangeFrom.Maximum = new decimal(new int[] {
+            2147483647,
             0,
             0,
             0});
-            this.nudThreads.Minimum = new decimal(new int[] {
-            1,
+            this.nudRandomIntRangeFrom.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.nudRandomIntRangeFrom.Name = "nudRandomIntRangeFrom";
+            this.nudRandomIntRangeFrom.Size = new System.Drawing.Size(149, 27);
+            this.nudRandomIntRangeFrom.TabIndex = 26;
+            this.nudRandomIntRangeFrom.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nudRandomIntRangeFrom.ValueChanged += new System.EventHandler(this.nudRandomIntRangeFrom_ValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(13, 10);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(92, 19);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "Range from:";
+            // 
+            // nudRandomIntRangeTo
+            // 
+            this.nudRandomIntRangeTo.Location = new System.Drawing.Point(185, 37);
+            this.nudRandomIntRangeTo.Maximum = new decimal(new int[] {
+            2147483647,
             0,
             0,
             0});
-            this.nudThreads.Name = "nudThreads";
-            this.nudThreads.Size = new System.Drawing.Size(120, 27);
-            this.nudThreads.TabIndex = 27;
-            this.nudThreads.Value = new decimal(new int[] {
-            8,
+            this.nudRandomIntRangeTo.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.nudRandomIntRangeTo.Name = "nudRandomIntRangeTo";
+            this.nudRandomIntRangeTo.Size = new System.Drawing.Size(149, 27);
+            this.nudRandomIntRangeTo.TabIndex = 28;
+            this.nudRandomIntRangeTo.Value = new decimal(new int[] {
+            1000,
             0,
             0,
             0});
+            this.nudRandomIntRangeTo.ValueChanged += new System.EventHandler(this.nudRandomIntRangeTo_ValueChanged);
             // 
-            // lbThreads
+            // label18
             // 
-            this.lbThreads.AutoSize = true;
-            this.lbThreads.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbThreads.Location = new System.Drawing.Point(277, 95);
-            this.lbThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbThreads.Name = "lbThreads";
-            this.lbThreads.Size = new System.Drawing.Size(67, 19);
-            this.lbThreads.TabIndex = 28;
-            this.lbThreads.Text = "Threads:";
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(180, 10);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 19);
+            this.label18.TabIndex = 29;
+            this.label18.Text = "Range to:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(13, 90);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 19);
+            this.label19.TabIndex = 32;
+            this.label19.Text = "Sample:";
+            // 
+            // tbRandomIntSample
+            // 
+            this.tbRandomIntSample.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRandomIntSample.Location = new System.Drawing.Point(86, 87);
+            this.tbRandomIntSample.Margin = new System.Windows.Forms.Padding(4);
+            this.tbRandomIntSample.Name = "tbRandomIntSample";
+            this.tbRandomIntSample.ReadOnly = true;
+            this.tbRandomIntSample.Size = new System.Drawing.Size(513, 27);
+            this.tbRandomIntSample.TabIndex = 31;
+            // 
+            // bRandomIntSample
+            // 
+            this.bRandomIntSample.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bRandomIntSample.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bRandomIntSample.Location = new System.Drawing.Point(607, 81);
+            this.bRandomIntSample.Margin = new System.Windows.Forms.Padding(4);
+            this.bRandomIntSample.Name = "bRandomIntSample";
+            this.bRandomIntSample.Size = new System.Drawing.Size(35, 37);
+            this.bRandomIntSample.TabIndex = 30;
+            this.bRandomIntSample.Text = "🗘";
+            this.bRandomIntSample.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bRandomIntSample.UseVisualStyleBackColor = true;
+            this.bRandomIntSample.Click += new System.EventHandler(this.bRandomIntSample_Click);
             // 
             // DataverseAnonymizerPluginControl
             // 
@@ -994,6 +1129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
             this.gbRun.ResumeLayout(false);
             this.gbRun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
             this.gbRule.ResumeLayout(false);
             this.gbRule.PerformLayout();
@@ -1005,7 +1141,10 @@
             this.tpFakeData.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).EndInit();
+            this.tpRandomInt.ResumeLayout(false);
+            this.tpRandomInt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandomIntRangeFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandomIntRangeTo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1082,5 +1221,13 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.NumericUpDown nudThreads;
         private System.Windows.Forms.Label lbThreads;
+        private System.Windows.Forms.TabPage tpRandomInt;
+        private System.Windows.Forms.NumericUpDown nudRandomIntRangeTo;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown nudRandomIntRangeFrom;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox tbRandomIntSample;
+        private System.Windows.Forms.Button bRandomIntSample;
     }
 }

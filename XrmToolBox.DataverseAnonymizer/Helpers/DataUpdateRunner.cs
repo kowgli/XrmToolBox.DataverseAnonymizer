@@ -252,7 +252,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                         if (control.IsDisposed) { return; }
 
                         string msg = $"Anonymizing {tableName}. Updated {count}/{totalCount}...";
-                        control.SetWorkingMessage(msg);                        
+                        control.SetWorkingMessage(msg);
                     }
                     catch { }
 
@@ -358,8 +358,13 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             {
                 return bogusDataSource.Generate(rule.BogusRule.Locale.Name, rule.BogusRule.BogusDataSet, rule.BogusRule.BogusMethod);
             }
+            else if (rule.RandomIntRule != null)
+            {
+                return RandomHelper.GetRandomInt(rule.RandomIntRule.RangeStart, rule.RandomIntRule.RangeEnd);
+            }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");
         }
     }
 }
+

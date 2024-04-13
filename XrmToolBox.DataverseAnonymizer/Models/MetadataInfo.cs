@@ -1,4 +1,6 @@
-﻿namespace XrmToolBox.DataverseAnonymizer.Models
+﻿using Microsoft.Xrm.Sdk.Metadata;
+
+namespace XrmToolBox.DataverseAnonymizer.Models
 {
     public class MetadataInfo
     {
@@ -14,6 +16,7 @@
 
         public string LogicalName { get; set; }
         public string DisplayName { get; set; }
+        public AttributeTypeCode AttributeType { get; set; }
 
         public override string ToString() => DisplayMode switch
         {

@@ -48,12 +48,24 @@ namespace XrmToolBox.DataverseAnonymizer.Models
             }
         }
 
+        private RandomIntRule randomIntRule;
+        public RandomIntRule RandomIntRule
+        {
+            get => randomIntRule;
+            set
+            {
+                randomIntRule = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public string TableName => Table.ToString();
 
         public string FieldName => Field.ToString();
 
-        public string RuleName => SequenceRule != null ? SequenceRule.ToString() : BogusRule?.ToString();
+        public string RuleName => SequenceRule != null ? SequenceRule.ToString() :
+                                    RandomIntRule != null ? RandomIntRule.ToString() :
+                                        BogusRule?.ToString();
 
         public RuleType Type => SequenceRule != null ? RuleType.Sequence : RuleType.Bogus;
 

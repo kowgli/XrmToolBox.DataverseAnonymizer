@@ -28,9 +28,9 @@ namespace XrmToolBox.DataverseAnonymizer.DataSources
 
         public void SetDisplayMode(DisplayModes displayMode)
         {
-            foreach (MetadataInfo ntity in Tables)
+            foreach (MetadataInfo table in Tables)
             {
-                ntity.DisplayMode = displayMode;
+                table.DisplayMode = displayMode;
             }
 
             RefreshEntities();

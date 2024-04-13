@@ -1,4 +1,5 @@
-﻿#define __USE_FAKE_METADATA
+﻿#define USE_FAKE_METADATA
+#define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -107,6 +109,10 @@ namespace XrmToolBox.DataverseAnonymizer
                     }
 
                     TableMetadataInfo[] entitiesMetadata = TransformMetadata(entities);
+#if SAVE_MATADATA
+                    string json = Newtonsoft.Json.JsonConvert.SerializeObject(entitiesMetadata, Newtonsoft.Json.Formatting.Indented);
+                    File.WriteAllText(@"..\..\..\Misc\crm_metadata.json", json);
+#endif
 #endif
 
                     tableDataSource = new TableDataSource(entitiesMetadata);
@@ -138,13 +144,16 @@ namespace XrmToolBox.DataverseAnonymizer
                                                     (
                                                         a.AttributeType == AttributeTypeCode.Memo
                                                         || a.AttributeType == AttributeTypeCode.String
+                                                        || a.AttributeType == AttributeTypeCode.Integer
+                                                        || a.AttributeType == AttributeTypeCode.BigInt                                                        
                                                     // TODO: Add more supported types here in the future
                                                     )
                                         )
                                         .Select(a => new MetadataInfo
                                         {
                                             LogicalName = a.LogicalName,
-                                            DisplayName = a.DisplayName.UserLocalizedLabel.Label
+                                            DisplayName = a.DisplayName.UserLocalizedLabel.Label,
+                                            AttributeType = a.AttributeType.Value
                                         })
                                         .ToArray()
                     })
@@ -244,6 +253,45 @@ namespace XrmToolBox.DataverseAnonymizer
             tbFieldFilter_TextChanged(null, null);
         }
 
+        
+
+        private void comboField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Dictionary<AttributeTypeCode, TabPage[]> typeToTabs = new Dictionary<AttributeTypeCode, TabPage[]>()
+            {
+                { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData } },
+                { AttributeTypeCode.String, new []{ tpSequence, tpFakeData } },
+                { AttributeTypeCode.Integer, new []{ tpRandomInt } },
+                { AttributeTypeCode.BigInt, new []{ tpRandomInt } }
+            };
+
+            MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;
+
+            TabPage[] requiredTabs = typeToTabs[fieldMetadata.AttributeType];
+
+            // Show required tabs. Do not change if not needed to avoid flashing.
+            foreach (TabPage tabPage in tabcRule.TabPages)
+            {
+                if (!requiredTabs.Contains(tabPage))
+                {
+                    tabcRule.TabPages.Remove(tabPage);
+                }                
+            }
+
+            foreach (TabPage tabPage in typeToTabs[fieldMetadata.AttributeType])
+            {
+                if (!tabcRule.TabPages.Contains(tabPage))
+                {
+                    tabcRule.TabPages.Add(tabPage);
+                }
+            }
+
+            if (requiredTabs.Contains(tpRandomInt))
+            {
+                GenerateRandomIntSample();
+            }
+        }
+
         #endregion
 
         #region Bogus stuff
@@ -269,6 +317,38 @@ namespace XrmToolBox.DataverseAnonymizer
 
         #endregion
 
+        #region random Int
+        private void bRandomIntSample_Click(object sender, EventArgs e)
+        {
+            GenerateRandomIntSample();
+        }
+
+        private void nudRandomIntRangeFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudRandomIntRangeFrom.Value >= nudRandomIntRangeTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                nudRandomIntRangeFrom.Value = nudRandomIntRangeTo.Value - 1;
+            }
+            GenerateRandomIntSample();
+        }
+
+        private void nudRandomIntRangeTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudRandomIntRangeFrom.Value >= nudRandomIntRangeTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                nudRandomIntRangeTo.Value = nudRandomIntRangeFrom.Value + 1;
+            }
+            GenerateRandomIntSample();
+        }
+
+        private void GenerateRandomIntSample()
+        {
+            tbRandomIntSample.Text = RandomHelper.GetRandomInt((int)nudRandomIntRangeFrom.Value, (int)nudRandomIntRangeTo.Value).ToString();
+        }
+        #endregion
+
         #region Rule handling
 
         private void bSave_Click(object sender, EventArgs e)
@@ -287,14 +367,20 @@ namespace XrmToolBox.DataverseAnonymizer
                 {
                     SequenceStart = (int)nudSequenceStartFrom.Value,
                     Format = tbSequenceFormat.Text
-                }                                                          : null;
+                } : null;
 
                 existingRule.BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
                 {
                     Locale = (BogusLocale)comboBogusLocale.SelectedItem,
                     BogusDataSet = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem,
                     BogusMethod = (MethodWithFriendlyName)comboBogusMethod.SelectedItem
-                }                                                            : null;
+                } : null;
+
+                existingRule.RandomIntRule = tabcRule.SelectedTab == tpRandomInt ? new RandomIntRule
+                {
+                    RangeStart = (int) nudRandomIntRangeFrom.Value,
+                    RangeEnd = (int) nudRandomIntRangeTo.Value
+                } : null;
 
                 dgvRules.Refresh();
             }
@@ -308,18 +394,20 @@ namespace XrmToolBox.DataverseAnonymizer
                     {
                         SequenceStart = (int)nudSequenceStartFrom.Value,
                         Format = tbSequenceFormat.Text
-                    }
-                                                                        : null,
+                    } : null,
                     BogusRule = tabcRule.SelectedTab == tpFakeData ? new BogusRule
                     {
                         Locale = (BogusLocale)comboBogusLocale.SelectedItem,
                         BogusDataSet = (BogusDataSetWithMethods)comboBogusDataSet.SelectedItem,
                         BogusMethod = (MethodWithFriendlyName)comboBogusMethod.SelectedItem
-                    }
-                                                                     : null,
+                    } : null,
+                    RandomIntRule = tabcRule.SelectedTab == tpRandomInt ? new RandomIntRule
+                    {
+                        RangeStart = (int)nudRandomIntRangeFrom.Value,
+                        RangeEnd = (int)nudRandomIntRangeTo.Value
+                    } : null
                 });
             }
-
 
             dgvRules.AutoResizeColumns();
         }
