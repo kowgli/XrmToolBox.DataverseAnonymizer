@@ -148,6 +148,7 @@ namespace XrmToolBox.DataverseAnonymizer
                                                         || a.AttributeType == AttributeTypeCode.BigInt     
                                                         || a.AttributeType == AttributeTypeCode.Decimal
                                                         || a.AttributeType == AttributeTypeCode.Money
+                                                        || a.AttributeType == AttributeTypeCode.Double
                                                     // TODO: Add more supported types here in the future
                                                     )
                                         )
@@ -267,6 +268,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 { AttributeTypeCode.BigInt, new []{ tpRandomInt } },
                 { AttributeTypeCode.Decimal, new []{ tpRandomDec } },
                 { AttributeTypeCode.Money, new []{ tpRandomDec } },
+                { AttributeTypeCode.Double, new []{ tpRandomDec } },
             };
 
             MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;

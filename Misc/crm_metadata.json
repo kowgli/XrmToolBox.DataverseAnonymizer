@@ -139,6 +139,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address1_latitude",
+        "DisplayName": "Address 1: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address1_line1",
         "DisplayName": "Address 1: Street 1",
         "AttributeType": 14
@@ -154,6 +160,12 @@
         "LogicalName": "address1_line3",
         "DisplayName": "Address 1: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address1_longitude",
+        "DisplayName": "Address 1: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -241,6 +253,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address2_latitude",
+        "DisplayName": "Address 2: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address2_line1",
         "DisplayName": "Address 2: Street 1",
         "AttributeType": 14
@@ -256,6 +274,12 @@
         "LogicalName": "address2_line3",
         "DisplayName": "Address 2: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address2_longitude",
+        "DisplayName": "Address 2: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -346,6 +370,12 @@
         "LogicalName": "cr503_aaatestdecimal",
         "DisplayName": "Aaa Test Decimal",
         "AttributeType": 3
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "cr503_aaatestdouble",
+        "DisplayName": "Aaa Test Double",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -739,6 +769,12 @@
         "LogicalName": "addressused",
         "DisplayName": "Address ",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effort",
+        "DisplayName": "Effort",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -3187,6 +3223,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address1_latitude",
+        "DisplayName": "Address 1: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address1_line1",
         "DisplayName": "Bill To Street 1",
         "AttributeType": 14
@@ -3202,6 +3244,12 @@
         "LogicalName": "address1_line3",
         "DisplayName": "Bill To Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address1_longitude",
+        "DisplayName": "Address 1: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -3283,6 +3331,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address2_latitude",
+        "DisplayName": "Address 2: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address2_line1",
         "DisplayName": "Ship To Street 1",
         "AttributeType": 14
@@ -3298,6 +3352,12 @@
         "LogicalName": "address2_line3",
         "DisplayName": "Ship To Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address2_longitude",
+        "DisplayName": "Address 2: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -3358,6 +3418,12 @@
         "LogicalName": "costcenter",
         "DisplayName": "Cost Center",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "creditlimit",
+        "DisplayName": "Credit Limit",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -3501,6 +3567,12 @@
         "LogicalName": "duration",
         "DisplayName": "Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effort",
+        "DisplayName": "Effort",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -4790,6 +4862,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address1_latitude",
+        "DisplayName": "Address 1: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address1_line1",
         "DisplayName": "Address 1: Street 1",
         "AttributeType": 14
@@ -4805,6 +4883,12 @@
         "LogicalName": "address1_line3",
         "DisplayName": "Address 1: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address1_longitude",
+        "DisplayName": "Address 1: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -4892,6 +4976,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address2_latitude",
+        "DisplayName": "Address 2: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address2_line1",
         "DisplayName": "Address 2: Street 1",
         "AttributeType": 14
@@ -4907,6 +4997,12 @@
         "LogicalName": "address2_line3",
         "DisplayName": "Address 2: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address2_longitude",
+        "DisplayName": "Address 2: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -4994,6 +5090,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address3_latitude",
+        "DisplayName": "Address 3: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address3_line1",
         "DisplayName": "Address3: Street 1",
         "AttributeType": 14
@@ -5009,6 +5111,12 @@
         "LogicalName": "address3_line3",
         "DisplayName": "Address3: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address3_longitude",
+        "DisplayName": "Address 3: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -6677,6 +6785,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "latitude",
+        "DisplayName": "Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "line1",
         "DisplayName": "Street 1",
         "AttributeType": 14
@@ -6692,6 +6806,12 @@
         "LogicalName": "line3",
         "DisplayName": "Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "longitude",
+        "DisplayName": "Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -9634,6 +9754,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "machinepercentcpuusage",
+        "DisplayName": "Machine CPU usage percentage",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "machinepercentramusage",
+        "DisplayName": "Machine RAM usage percentage",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "machineramusage",
         "DisplayName": "Machine RAM usage",
         "AttributeType": 5
@@ -10156,6 +10288,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "progress",
+        "DisplayName": "Progress",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "solutionname",
         "DisplayName": "SolutionName",
         "AttributeType": 14
@@ -10376,6 +10514,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "latitude",
+        "DisplayName": "Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "line1",
         "DisplayName": "Street 1",
         "AttributeType": 14
@@ -10391,6 +10535,12 @@
         "LogicalName": "line3",
         "DisplayName": "Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "longitude",
+        "DisplayName": "Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -10506,6 +10656,12 @@
   {
     "PrimaryIdAttribute": "kbarticleid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "adx_averagerating",
+        "DisplayName": "Average Rating",
+        "AttributeType": 4
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "adx_averagerating_int",
@@ -12351,9 +12507,33 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_height",
+        "DisplayName": "Height",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_left",
+        "DisplayName": "Left",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_top",
+        "DisplayName": "Top",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_width",
+        "DisplayName": "Width",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -14535,6 +14715,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_articlerelevance",
+        "DisplayName": "Article relevance",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_interactioncontext",
         "DisplayName": "Interaction context",
         "AttributeType": 7
@@ -15291,15 +15477,39 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_administrative_duration",
+        "DisplayName": "Administrative_Duration",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_bouncerates",
+        "DisplayName": "BounceRates",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_browser",
         "DisplayName": "Browser",
         "AttributeType": 5
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_exitrates",
+        "DisplayName": "ExitRates",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_informational",
         "DisplayName": "Informational",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_informational_duration",
+        "DisplayName": "Informational_Duration",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -15321,15 +15531,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_pagevalues",
+        "DisplayName": "PageValues",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_productrelated",
         "DisplayName": "ProductRelated",
         "AttributeType": 5
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_productrelated_duration",
+        "DisplayName": "ProductRelated_Duration",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_region",
         "DisplayName": "Region",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_specialday",
+        "DisplayName": "SpecialDay",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -19064,9 +19292,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_map_latitude",
+        "DisplayName": "Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_map_latitudefieldname",
         "DisplayName": "Latitude Field Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_map_longitude",
+        "DisplayName": "Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -23811,6 +24051,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address1_latitude",
+        "DisplayName": "Address 1: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address1_line1",
         "DisplayName": "Street 1",
         "AttributeType": 14
@@ -23826,6 +24072,12 @@
         "LogicalName": "address1_line3",
         "DisplayName": "Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address1_longitude",
+        "DisplayName": "Address 1: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -23907,6 +24159,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address2_latitude",
+        "DisplayName": "Address 2: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address2_line1",
         "DisplayName": "Address 2: Street 1",
         "AttributeType": 14
@@ -23922,6 +24180,12 @@
         "LogicalName": "address2_line3",
         "DisplayName": "Address 2: Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address2_longitude",
+        "DisplayName": "Address 2: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -24054,6 +24318,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "latitude",
+        "DisplayName": "Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "line1",
         "DisplayName": "Street 1",
         "AttributeType": 14
@@ -24069,6 +24339,12 @@
         "LogicalName": "line3",
         "DisplayName": "Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "longitude",
+        "DisplayName": "Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -27561,6 +27837,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "influencescore",
+        "DisplayName": "Influence Score",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "profilefullname",
         "DisplayName": "Full Name",
         "AttributeType": 14
@@ -28837,6 +29119,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address1_latitude",
+        "DisplayName": "Address 1: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address1_line1",
         "DisplayName": "Street 1",
         "AttributeType": 14
@@ -28852,6 +29140,12 @@
         "LogicalName": "address1_line3",
         "DisplayName": "Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address1_longitude",
+        "DisplayName": "Address 1: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,
@@ -28933,6 +29227,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "address2_latitude",
+        "DisplayName": "Address 2: Latitude",
+        "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address2_line1",
         "DisplayName": "Other Street 1",
         "AttributeType": 14
@@ -28948,6 +29248,12 @@
         "LogicalName": "address2_line3",
         "DisplayName": "Other Street 3",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "address2_longitude",
+        "DisplayName": "Address 2: Longitude",
+        "AttributeType": 4
       },
       {
         "DisplayMode": 0,

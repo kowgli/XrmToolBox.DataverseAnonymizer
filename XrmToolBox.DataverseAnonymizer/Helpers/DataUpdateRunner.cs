@@ -302,6 +302,10 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                         {
                             updateRecord[rule.Field.LogicalName] = new Money((decimal)GetRuleValue(rule, sequences));
                         }
+                        if (rule.Field.AttributeType == AttributeTypeCode.Double)
+                        {
+                            updateRecord[rule.Field.LogicalName] = (double)(decimal)GetRuleValue(rule, sequences);
+                        }
                         else
                         {
                             updateRecord[rule.Field.LogicalName] = GetRuleValue(rule, sequences);
