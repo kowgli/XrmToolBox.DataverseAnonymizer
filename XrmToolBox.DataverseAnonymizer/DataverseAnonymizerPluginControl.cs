@@ -1,4 +1,4 @@
-﻿#define USE_FAKE_METADATA
+﻿#define __USE_FAKE_METADATA
 #define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
@@ -713,7 +713,10 @@ namespace XrmToolBox.DataverseAnonymizer
                     bStop_Click(null, null);
                 }
 
-                ShowWarningNotification("The connection has changed. The currently running job has been cancelled. Consider reopening the tool if the metadata has changed.", null);
+                if (this.Parent != null)
+                {
+                    ShowWarningNotification("The connection has changed. The currently running job has been cancelled. Consider reopening the tool if the metadata has changed.", null);
+                }                
             }
             catch { }
 
