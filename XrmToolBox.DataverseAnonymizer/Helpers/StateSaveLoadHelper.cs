@@ -30,7 +30,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         public static bool Load(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, BogusDataSource bogusDataSource, TableDataSource tableDataSource, string fileName)
         {
             bool allOk = true;
-            
+
             string fileContents = File.ReadAllText(fileName);
 
             SavedState savedState = JsonConvert.DeserializeObject<SavedState>(fileContents);
@@ -46,14 +46,16 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             rules.Clear();
             foreach (var rule in savedState.Rules)
             {
-                if (rule.Table == null || rule.Field == null || rule.Bogus == null && rule.Sequence == null)
+                if (rule.Table == null || rule.Field == null || 
+                    (rule.Bogus == null && rule.Sequence == null && rule.RandomInt == null && rule.RandomDec == null && rule.RandomDate == null)
+                )
                 {
                     allOk = false;
                     continue;
                 }
-                
+
                 var table = tableDataSource.Tables.FirstOrDefault(e => e.LogicalName == rule.Table);
-                var field = table?.Fields?.FirstOrDefault(f => f.LogicalName == rule.Field);                
+                var field = table?.Fields?.FirstOrDefault(f => f.LogicalName == rule.Field);
 
                 if (table == null || field == null)
                 {
@@ -92,6 +94,22 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                         Locale = bogusLocale,
                         BogusDataSet = bogusDataSet,
                         BogusMethod = bogusMethod
+                    },
+                    RandomIntRule = rule.RandomInt == null ? null : new RandomIntRule
+                    {
+                        RangeStart = rule.RandomInt.RangeStart,
+                        RangeEnd = rule.RandomInt.RangeEnd
+                    },
+                    RandomDecimalRule = rule.RandomDec == null ? null : new RandomDecimalRule
+                    {
+                        RangeStart = rule.RandomDec.RangeStart,
+                        RangeEnd = rule.RandomDec.RangeEnd,
+                        DecimalPlaces = rule.RandomDec.DecimalPlaces
+                    },
+                    RandomDateRule = rule.RandomDate == null ? null : new RandomDateRule
+                    {
+                        RangeStart = rule.RandomDate.RangeStart,
+                        RangeEnd = rule.RandomDate.RangeEnd
                     }
                 });
             }

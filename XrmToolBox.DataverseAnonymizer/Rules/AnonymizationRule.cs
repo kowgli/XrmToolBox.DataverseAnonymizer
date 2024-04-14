@@ -108,6 +108,22 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
             {
                 SequenceStart = sequenceRule.SequenceStart,
                 Format = sequenceRule.Format
+            },
+            RandomInt = randomIntRule == null ? null : new SavedState.Rule.RandomIntSettings
+            {
+                RangeStart = randomIntRule.RangeStart,
+                RangeEnd = randomIntRule.RangeEnd
+            },
+            RandomDec = randomDecimalRule == null ? null : new SavedState.Rule.RandomDecSettings
+            {
+                RangeStart = randomDecimalRule.RangeStart,
+                RangeEnd = randomDecimalRule.RangeEnd,
+                DecimalPlaces = randomDecimalRule.DecimalPlaces
+            },
+            RandomDate = randomDateRule == null ? null : new SavedState.Rule.RandomDateSettings
+            {
+                RangeStart = randomDateRule.RangeStart,
+                RangeEnd = randomDateRule.RangeEnd
             }
         };
     }
