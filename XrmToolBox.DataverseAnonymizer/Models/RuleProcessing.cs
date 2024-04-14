@@ -1,4 +1,5 @@
 ﻿using System;
+using XrmToolBox.DataverseAnonymizer.Rules;
 
 namespace XrmToolBox.DataverseAnonymizer.Models
 {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using XrmToolBox.DataverseAnonymizer.Models;
 
-namespace XrmToolBox.DataverseAnonymizer.Models
+namespace XrmToolBox.DataverseAnonymizer.Rules
 {
     public class AnonymizationRule : INotifyPropertyChanged
     {

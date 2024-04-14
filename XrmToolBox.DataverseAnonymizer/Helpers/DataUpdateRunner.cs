@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
+using XrmToolBox.DataverseAnonymizer.Rules;
 using XrmToolBox.Extensibility;
 
 namespace XrmToolBox.DataverseAnonymizer.Helpers

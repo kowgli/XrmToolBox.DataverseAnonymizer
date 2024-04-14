@@ -19,9 +19,10 @@ using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Helpers;
 using XrmToolBox.DataverseAnonymizer.Models;
+using XrmToolBox.DataverseAnonymizer.Rules;
 using XrmToolBox.Extensibility;
 using XrmToolBox.Extensibility.Interfaces;
-using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
+using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
 {

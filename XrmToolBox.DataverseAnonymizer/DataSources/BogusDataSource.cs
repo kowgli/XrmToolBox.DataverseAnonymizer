@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using XrmToolBox.DataverseAnonymizer.Models;
-using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
+using XrmToolBox.DataverseAnonymizer.Rules;
+using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer.DataSources
 {

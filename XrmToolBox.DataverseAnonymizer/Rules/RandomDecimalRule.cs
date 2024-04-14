@@ -1,4 +1,4 @@
-﻿namespace XrmToolBox.DataverseAnonymizer.Models
+﻿namespace XrmToolBox.DataverseAnonymizer.Rules
 {
     public class RandomDecimalRule
     {

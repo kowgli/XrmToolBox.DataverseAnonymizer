@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Models;
-using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
+using XrmToolBox.DataverseAnonymizer.Rules;
+using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer.Helpers
 {

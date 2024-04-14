@@ -1,7 +1,7 @@
 ﻿using XrmToolBox.DataverseAnonymizer.DataSources;
-using static XrmToolBox.DataverseAnonymizer.Models.BogusDataSetWithMethods;
+using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
-namespace XrmToolBox.DataverseAnonymizer.Models
+namespace XrmToolBox.DataverseAnonymizer.Rules
 {
     public class BogusRule
     {

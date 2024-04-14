@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace XrmToolBox.DataverseAnonymizer.Models
+namespace XrmToolBox.DataverseAnonymizer.Rules
 {
     public class BogusDataSetWithMethods
     {
