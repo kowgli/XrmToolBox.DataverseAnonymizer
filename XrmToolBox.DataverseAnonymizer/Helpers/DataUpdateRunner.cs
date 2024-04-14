@@ -379,6 +379,10 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             {
                 return Math.Round(RandomHelper.GetRandomDecimal(rule.RandomDecimalRule.RangeStart, rule.RandomDecimalRule.RangeEnd), rule.RandomDecimalRule.DecimalPlaces);
             }
+            else if (rule.RandomDateRule != null)
+            {
+                return RandomHelper.GetRandomDate(rule.RandomDateRule.RangeStart, rule.RandomDateRule.RangeEnd);
+            }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");
         }

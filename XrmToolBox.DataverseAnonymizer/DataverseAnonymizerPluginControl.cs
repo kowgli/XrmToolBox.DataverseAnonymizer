@@ -1,5 +1,5 @@
-﻿#define __USE_FAKE_METADATA
-#define SAVE_MATADATA
+﻿#define USE_FAKE_METADATA
+#define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
 using Microsoft.Crm.Sdk.Messages;
@@ -59,6 +59,9 @@ namespace XrmToolBox.DataverseAnonymizer
 
             dgvRules.AutoGenerateColumns = false;
             dgvRules.DataSource = rules;
+
+            dtpRandomDateFrom.Value = DateTime.Today;
+            dtpRandomDateTo.Value = DateTime.Today.AddDays(1);
 
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (Service != null)
@@ -150,6 +153,7 @@ namespace XrmToolBox.DataverseAnonymizer
                                                         || a.AttributeType == AttributeTypeCode.Decimal
                                                         || a.AttributeType == AttributeTypeCode.Money
                                                         || a.AttributeType == AttributeTypeCode.Double
+                                                        || a.AttributeType == AttributeTypeCode.DateTime
                                                     // TODO: Add more supported types here in the future
                                                     )
                                         )
@@ -270,6 +274,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 { AttributeTypeCode.Decimal, new []{ tpRandomDec } },
                 { AttributeTypeCode.Money, new []{ tpRandomDec } },
                 { AttributeTypeCode.Double, new []{ tpRandomDec } },
+                { AttributeTypeCode.DateTime, new []{ tpRandomDate } },
             };
 
             MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;
@@ -399,6 +404,40 @@ namespace XrmToolBox.DataverseAnonymizer
         }
         #endregion
 
+        #region Random date
+        private void dtpRandomDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpRandomDateFrom.Value >= dtpRandomDateTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                dtpRandomDateFrom.Value = dtpRandomDateTo.Value.AddDays(-1);
+            }
+
+            GenerateRandomDateSample();
+        }
+
+        private void dtpRandomDateTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpRandomDateFrom.Value >= dtpRandomDateTo.Value)
+            {
+                ShowErrorNotification("The 'From' value must be less than the 'To' value.", null);
+                dtpRandomDateTo.Value = dtpRandomDateFrom.Value.AddDays(1);
+            }
+
+            GenerateRandomDateSample();
+        }
+
+        private void bRandomDateSample_Click(object sender, EventArgs e)
+        {
+            GenerateRandomDateSample();
+        }
+
+        private void GenerateRandomDateSample()
+        {
+            tbRandomDateSample.Text = RandomHelper.GetRandomDate(dtpRandomDateFrom.Value, dtpRandomDateTo.Value).ToString();
+        }
+        #endregion
+
         #region Rule handling
 
         private void bSave_Click(object sender, EventArgs e)
@@ -439,6 +478,12 @@ namespace XrmToolBox.DataverseAnonymizer
                     DecimalPlaces = (int)nudRandomDecDecimals.Value
                 } : null;
 
+                existingRule.RandomDateRule = tabcRule.SelectedTab == tpRandomDate ? new RandomDateRule
+                {
+                    RangeStart = dtpRandomDateFrom.Value,
+                    RangeEnd = dtpRandomDateTo.Value
+                } : null;
+
                 dgvRules.Refresh();
             }
             else
@@ -468,6 +513,11 @@ namespace XrmToolBox.DataverseAnonymizer
                         RangeStart = nudRandomDecRangeFrom.Value,
                         RangeEnd = nudRandomDecRangeTo.Value,
                         DecimalPlaces = (int)nudRandomDecDecimals.Value
+                    } : null,
+                    RandomDateRule = tabcRule.SelectedTab == tpRandomDate ? new RandomDateRule
+                    {
+                        RangeStart = dtpRandomDateFrom.Value,
+                        RangeEnd = dtpRandomDateTo.Value
                     } : null
                 });
             }
@@ -539,6 +589,14 @@ namespace XrmToolBox.DataverseAnonymizer
                 GenerateRandomDecSample();
 
                 tabcRule.SelectedTab = tpRandomDec;
+            }
+            else if (rule.RandomDateRule != null)
+            {
+                dtpRandomDateFrom.Value = rule.RandomDateRule.RangeStart;
+                dtpRandomDateTo.Value = rule.RandomDateRule.RangeEnd;              
+                GenerateRandomDateSample();
+
+                tabcRule.SelectedTab = tpRandomDate;
             }
         }
 

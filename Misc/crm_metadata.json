@@ -367,6 +367,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "cr503_aaatestdate",
+        "DisplayName": "Aaa Test Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "cr503_aaatestdecimal",
         "DisplayName": "Aaa Test Decimal",
         "AttributeType": 3
@@ -436,6 +442,18 @@
         "LogicalName": "ftpsiteurl",
         "DisplayName": "FTP Site",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastusedincampaign",
+        "DisplayName": "Last Date Included in Campaign",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -607,6 +625,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "expirydate",
+        "DisplayName": "Expiry Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "parentregardingobjectiddata",
         "DisplayName": "ParentRegardingObjectIdData",
         "AttributeType": 7
@@ -628,6 +652,12 @@
         "LogicalName": "referencetokens",
         "DisplayName": "Data Associated constructing title and body",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "startdate",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -671,6 +701,12 @@
   {
     "PrimaryIdAttribute": "actioncarduserstateid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "startdate",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "timezoneruleversionnumber",
@@ -811,6 +847,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -829,9 +877,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -958,6 +1030,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "adx_expirydate",
+        "DisplayName": "Expiry Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "adx_invitationcode",
         "DisplayName": "Invitation Code",
         "AttributeType": 14
@@ -1015,6 +1093,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "adx_ipaddress",
         "DisplayName": "IP Address",
         "AttributeType": 14
@@ -1039,9 +1129,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -1090,6 +1204,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -1108,9 +1234,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -1859,6 +2009,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "aidescriptiongeneratedon",
+        "DisplayName": "AI Description Generated On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "appgraph",
         "DisplayName": "App Graph",
         "AttributeType": 7
@@ -1904,6 +2060,12 @@
         "LogicalName": "optimizedfor",
         "DisplayName": "Optimized Client",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "publishedon",
+        "DisplayName": "Published On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2111,6 +2273,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "startedon",
+        "DisplayName": "Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "state",
         "DisplayName": "Async Job State",
         "AttributeType": 5
@@ -2197,6 +2365,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "category",
         "DisplayName": "Category",
         "AttributeType": 14
@@ -2212,6 +2392,12 @@
         "LogicalName": "globalobjectid",
         "DisplayName": "Outlook Appointment",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2248,6 +2434,24 @@
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2401,6 +2605,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "entitylogicalname",
         "DisplayName": "EntityLogicalName",
         "AttributeType": 14
@@ -2434,6 +2644,12 @@
         "LogicalName": "recordcount",
         "DisplayName": "RecordCount",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2476,9 +2692,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "postponeuntil",
+        "DisplayName": "Postpone Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "recurrencepattern",
         "DisplayName": "Recurrence Pattern",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "recurrencestarttime",
+        "DisplayName": "Recurrence Start",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2689,6 +2917,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastconnectiontime",
+        "DisplayName": "Last Connection Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -2708,6 +2942,12 @@
   {
     "PrimaryIdAttribute": "backgroundoperationid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "errorcode",
@@ -2737,6 +2977,12 @@
         "LogicalName": "retrycount",
         "DisplayName": "Retry Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2788,6 +3034,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "publishedon",
+        "DisplayName": "Published On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -2950,6 +3202,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "nextrun",
+        "DisplayName": "NextRun",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "recurrence",
         "DisplayName": "Recurrence",
         "AttributeType": 14
@@ -2959,6 +3217,12 @@
         "LogicalName": "referenceconfigid",
         "DisplayName": "ReferenceConfigId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3058,6 +3322,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "failedcount",
         "DisplayName": "FailedCount",
         "AttributeType": 5
@@ -3085,6 +3355,12 @@
         "LogicalName": "rootentitylogicalname",
         "DisplayName": "RootEntityLogicalName",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3510,6 +3786,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "activeon",
+        "DisplayName": "Active On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "activeuntil",
+        "DisplayName": "Expiration Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "articletitle",
         "DisplayName": "Title",
         "AttributeType": 14
@@ -3570,9 +3858,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "effectiveintervalend",
+        "DisplayName": "Effective Interval End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectiveintervalstart",
+        "DisplayName": "Effective Interval Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "effort",
         "DisplayName": "Effort",
         "AttributeType": 4
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3609,6 +3915,12 @@
         "LogicalName": "rank",
         "DisplayName": "Rank",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3732,6 +4044,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "createdtime",
+        "DisplayName": "Created Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "The description.",
         "AttributeType": 7
@@ -3741,6 +4059,18 @@
         "LogicalName": "galleryitemid",
         "DisplayName": "The gallery item identifier",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastmodifiedtime",
+        "DisplayName": "Last Modified Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastpublishtime",
+        "DisplayName": "Last Publish Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3819,6 +4149,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "publishdate",
+        "DisplayName": "PublishDate",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -3954,9 +4290,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastsynctime",
+        "DisplayName": "LastSyncTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "priority",
         "DisplayName": "Priority",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduletime",
+        "DisplayName": "ScheduleTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -4335,6 +4683,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -4353,15 +4713,45 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lastsyncerror",
         "DisplayName": "Last Sync Error",
         "AttributeType": 5
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "modifiedinteamson",
+        "DisplayName": "Modified On (Teams)",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -4608,6 +4998,18 @@
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectiveend",
+        "DisplayName": "Ending",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectivestart",
+        "DisplayName": "Starting",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -5198,6 +5600,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "adx_identity_lastsuccessfullogin",
+        "DisplayName": "Last Successful Login",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "adx_identity_lockoutenddate",
+        "DisplayName": "Lockout End Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "adx_identity_newpassword",
         "DisplayName": "New Password Input",
         "AttributeType": 14
@@ -5246,9 +5660,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "adx_profilealertdate",
+        "DisplayName": "Profile Alert Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "adx_profilealertinstructions",
         "DisplayName": "Profile Alert Instructions",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "adx_profilelastactivity",
+        "DisplayName": "Profile Last Activity",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "adx_profilemodifiedon",
+        "DisplayName": "Profile Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5261,6 +5693,12 @@
         "LogicalName": "adx_timezone",
         "DisplayName": "Time Zone",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "anniversary",
+        "DisplayName": "Anniversary",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5279,6 +5717,12 @@
         "LogicalName": "assistantphone",
         "DisplayName": "Assistant Phone",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "birthdate",
+        "DisplayName": "Birthday",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5396,6 +5840,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastusedincampaign",
+        "DisplayName": "Last Date Included in Campaign",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "managername",
         "DisplayName": "Manager",
         "AttributeType": 14
@@ -5417,6 +5873,12 @@
         "LogicalName": "mobilephone",
         "DisplayName": "Mobile Phone",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_portaltermsagreementdate",
+        "DisplayName": "Portal Terms Agreement Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5528,6 +5990,12 @@
         "LogicalName": "content",
         "DisplayName": "Content",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "conversationstarttime",
+        "DisplayName": "ConversationStartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5771,6 +6239,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "cow_scheduledon",
+        "DisplayName": "Scheduled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "cow_workingon",
         "DisplayName": "Working on",
         "AttributeType": 14
@@ -5807,6 +6281,12 @@
         "LogicalName": "cow_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "cow_validuntil",
+        "DisplayName": "Valid Until",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -5966,9 +6446,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "cow_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "cow_id",
         "DisplayName": "ID",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "cow_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -6068,9 +6560,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "cow_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "cow_id",
         "DisplayName": "ID",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "cow_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -7826,6 +8330,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "attachmentopencount",
         "DisplayName": "Attachment Open Count",
         "AttributeType": 5
@@ -7844,6 +8360,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "delayedemailsendtime",
+        "DisplayName": "Send Later",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "deliveryattempts",
         "DisplayName": "No. of Delivery Attempts",
         "AttributeType": 5
@@ -7856,6 +8378,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "emailreminderexpirytime",
+        "DisplayName": "Email Reminder Expiry Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "emailremindertext",
         "DisplayName": "Email Reminder Text",
         "AttributeType": 14
@@ -7865,6 +8393,18 @@
         "LogicalName": "internetmessageheaders",
         "DisplayName": "Internet message headers",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastopenedtime",
+        "DisplayName": "Last Opened Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -7898,9 +8438,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "sender",
         "DisplayName": "From",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -8056,6 +8614,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastteststarttime",
+        "DisplayName": "Last Test Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lasttesttotalexecutiontime",
         "DisplayName": "Last Test Time Taken",
         "AttributeType": 18
@@ -8119,6 +8683,12 @@
         "LogicalName": "owneremailaddress",
         "DisplayName": "Email Server Profile Owner's email address",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "processemailsreceivedafter",
+        "DisplayName": "Process Emails Received After",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -8590,9 +9160,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "correlationid",
         "DisplayName": "CorrelationId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -8614,9 +9196,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "expanderstarttime",
+        "DisplayName": "Expander Start Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "friendlymessage",
         "DisplayName": "Friendly Message",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -8638,9 +9232,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "postponeuntil",
+        "DisplayName": "Postpone Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "retrycount",
         "DisplayName": "Retry Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "startedon",
+        "DisplayName": "Started On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -8683,6 +9289,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastsyncerroroccurredon",
+        "DisplayName": "Last Sync Error Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "objecttypecode",
         "DisplayName": "Object Type Code",
         "AttributeType": 5
@@ -8711,6 +9323,18 @@
   {
     "PrimaryIdAttribute": "businessprocessflowinstanceid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "activestagestartedon",
+        "DisplayName": "Active Stage Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "name",
@@ -8824,6 +9448,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastdisabledon",
+        "DisplayName": "Last Disabled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastenabledon",
+        "DisplayName": "Last Enabled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lastname",
         "DisplayName": "Last Name",
         "AttributeType": 14
@@ -8887,6 +9523,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastdisabledon",
+        "DisplayName": "Last Disabled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastenabledon",
+        "DisplayName": "Last Enabled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -8920,6 +9568,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "billingcode",
         "DisplayName": "Billing Code",
         "AttributeType": 14
@@ -8950,9 +9610,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "numberofpages",
         "DisplayName": "Number of Pages",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9301,6 +9985,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "expirydate",
+        "DisplayName": "Expiry Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "level",
         "DisplayName": "Level",
         "AttributeType": 14
@@ -9364,6 +10054,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "keyreceiveddate",
+        "DisplayName": "Machine Key Received Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastheartbeatdate",
+        "DisplayName": "Last heartbeat date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "machinemetadata",
         "DisplayName": "Machine Metadata",
         "AttributeType": 7
@@ -9373,6 +10075,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "overcapacitysince",
+        "DisplayName": "Overcapacity since",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9415,6 +10123,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "keycreationdate",
+        "DisplayName": "Key Creation Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "keyexpirygraceperiod",
         "DisplayName": "Group Key Expiry Grace Period",
         "AttributeType": 5
@@ -9436,6 +10150,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "passwordchangeddate",
+        "DisplayName": "Group Password Changed Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9619,6 +10339,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "errorcode",
         "DisplayName": "Error code",
         "AttributeType": 14
@@ -9652,6 +10378,12 @@
         "LogicalName": "resourceid",
         "DisplayName": "Resource Id",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9703,6 +10435,12 @@
         "LogicalName": "callbackurl",
         "DisplayName": "Callback URL",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9823,6 +10561,12 @@
         "LogicalName": "sessionusersid",
         "DisplayName": "Session User SID",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "startedon",
+        "DisplayName": "Started On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -9960,6 +10704,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "goalenddate",
+        "DisplayName": "To",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "goalstartdate",
+        "DisplayName": "From",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "inprogressdecimal",
         "DisplayName": "In-progress (Decimal)",
         "AttributeType": 3
@@ -9975,6 +10731,12 @@
         "LogicalName": "inprogressmoney",
         "DisplayName": "In-progress (Money)",
         "AttributeType": 8
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastrolledupdate",
+        "DisplayName": "Last Rolled Up Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -10121,6 +10883,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "duration",
         "DisplayName": "Duration",
         "AttributeType": 14
@@ -10130,6 +10898,18 @@
         "LogicalName": "enddatetime",
         "DisplayName": "End",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -10148,6 +10928,18 @@
         "LogicalName": "startdatetime",
         "DisplayName": "Start",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime_dateonlyforview",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -10844,6 +11636,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "expirationdate",
+        "DisplayName": "Expiration Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "expirationstateid",
         "DisplayName": "Expiration State Id",
         "AttributeType": 5
@@ -10895,6 +11693,12 @@
         "LogicalName": "msdyn_retrycountformigrationtocontentstore",
         "DisplayName": "File storage migration retry count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "publishon",
+        "DisplayName": "Publish On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -10960,6 +11764,12 @@
         "LogicalName": "utcconversiontimezonecode",
         "DisplayName": "UTC Conversion Time Zone Code",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "viewdate",
+        "DisplayName": "Day",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -11072,6 +11882,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "address",
         "DisplayName": "Address",
         "AttributeType": 14
@@ -11087,6 +11909,30 @@
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -11202,9 +12048,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastautodiscoveredon",
+        "DisplayName": "Last Auto Discovered On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lastmessageid",
         "DisplayName": "Last Message ID",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastsuccessfulsynccompletedon",
+        "DisplayName": "Last Successful Sync Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -11229,6 +12087,12 @@
         "LogicalName": "lastsyncerrormachinename",
         "DisplayName": "Last Sync Error Machine Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastsyncerroroccurredon",
+        "DisplayName": "Last Sync Error Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -11262,15 +12126,69 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "oauthtokenexpireson",
+        "DisplayName": "Oauth token expiration datetime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "password",
         "DisplayName": "Password",
         "AttributeType": 14
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "postponemailboxprocessinguntil",
+        "DisplayName": "Postpone Mailbox Processing Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "postponeofficeappsdeploymentuntil",
+        "DisplayName": "Postpone Outlook Mail App Install Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "postponesendinguntil",
+        "DisplayName": "Postpone Sending Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "postponetestemailconfigurationuntil",
+        "DisplayName": "Postpone Test Email Configuration Until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "processemailreceivedafter",
+        "DisplayName": "Process Email Received After",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "processinglastattemptedon",
+        "DisplayName": "Date Processing Last Attempted",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "tagemailsafter",
+        "DisplayName": "Tag Emails After",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "testemailconfigurationretrycount",
         "DisplayName": "Test Email Configuration Retry Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "testmailboxaccesscompletedon",
+        "DisplayName": "Mailbox Test Completed On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -11931,6 +12849,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_lastmodifieddate",
+        "DisplayName": "LastModifiedDate",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -12153,6 +13077,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_lasttrainorrundate",
+        "DisplayName": "LastTrainOrRunDate",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_majoriterationnumber",
         "DisplayName": "MajorIterationNumber",
         "AttributeType": 5
@@ -12309,6 +13239,12 @@
         "LogicalName": "msdyn_partnersource",
         "DisplayName": "Partner Source",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_processingdate",
+        "DisplayName": "Processing Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -12558,6 +13494,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_lastmodifieddate",
+        "DisplayName": "Last Modified Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -12801,6 +13743,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_errorcount",
         "DisplayName": "Error Count",
         "AttributeType": 5
@@ -12864,6 +13812,12 @@
         "LogicalName": "msdyn_sevmediumcount",
         "DisplayName": "Medium Severity Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -13197,6 +14151,12 @@
         "LogicalName": "msdyn_order",
         "DisplayName": "Order",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_overwritetime",
+        "DisplayName": "Overwrite Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -13557,6 +14517,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_errorinfojson",
         "DisplayName": "ErrorInfoJson",
         "AttributeType": 14
@@ -13590,6 +14556,12 @@
         "LogicalName": "msdyn_requestid",
         "DisplayName": "RequestId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -13815,6 +14787,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_uploadendtime",
+        "DisplayName": "UploadEndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_uploadstarttime",
+        "DisplayName": "UploadStartTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_uploadstatus",
         "DisplayName": "UploadStatus",
         "AttributeType": 14
@@ -13893,9 +14877,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "Sync End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_errordetails",
         "DisplayName": "Error Details",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "Sync Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -13977,6 +14973,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_entityname",
         "DisplayName": "EntityName",
         "AttributeType": 14
@@ -14040,6 +15042,12 @@
         "LogicalName": "msdyn_refreshstatus",
         "DisplayName": "RefreshStatus",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -14358,6 +15366,12 @@
         "LogicalName": "msdyn_includedsitemapurls",
         "DisplayName": "Allowlist URL",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_lastfetchtime",
+        "DisplayName": "Last fetch time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -15201,6 +16215,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_modelrunid",
         "DisplayName": "ModelRunId",
         "AttributeType": 14
@@ -15234,6 +16254,18 @@
         "LogicalName": "msdyn_outputmodeljsonpath",
         "DisplayName": "OutputModelJsonPath",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_queuedtime",
+        "DisplayName": "QueuedTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -15600,6 +16632,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actionableinsightslastpublishedon",
+        "DisplayName": "Actionable Insights Last Published On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_lasterrors",
         "DisplayName": "Last Errors",
         "AttributeType": 7
@@ -15609,6 +16647,12 @@
         "LogicalName": "msdyn_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -15777,6 +16821,12 @@
         "LogicalName": "msdyn_lasterrors",
         "DisplayName": "Last Errors",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_lastreportrefreshdate",
+        "DisplayName": "Last Report Refresh Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -16215,6 +17265,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_nextrefreshtime",
+        "DisplayName": "NextRefreshTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_refentityname",
         "DisplayName": "Reference Entity Name",
         "AttributeType": 14
@@ -16242,6 +17298,12 @@
         "LogicalName": "msdyn_scheduledisabledreason",
         "DisplayName": "Schedule disabled reason",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_startdatetime",
+        "DisplayName": "StartDateTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -16977,6 +18039,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msdyn_endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msdyn_errorcode",
         "DisplayName": "Error Code",
         "AttributeType": 14
@@ -17046,6 +18114,12 @@
         "LogicalName": "msdyn_solutionversion",
         "DisplayName": "Solution Version",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msdyn_starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -17291,6 +18365,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -17306,6 +18392,12 @@
         "LogicalName": "exchangeweblink",
         "DisplayName": "Exchange WebLink",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -17378,6 +18470,24 @@
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -17867,6 +18977,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_lastcomputedon",
+        "DisplayName": "Last computed on",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_lastcomputedvalue",
         "DisplayName": "Last Computed Value",
         "AttributeType": 14
@@ -17954,6 +19070,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_enddate",
+        "DisplayName": "End date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_friendlyname",
         "DisplayName": "Friendly name",
         "AttributeType": 14
@@ -17978,15 +19100,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_publishedon",
+        "DisplayName": "Published on",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_sourcesurveyidentifier",
         "DisplayName": "Source survey identifier",
         "AttributeType": 14
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_sourcesurveymodifieddate",
+        "DisplayName": "Source survey modified date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_sourcesurveyversion",
         "DisplayName": "Source survey version",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msfp_startdate",
+        "DisplayName": "Start date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18041,6 +19181,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -18056,6 +19208,12 @@
         "LogicalName": "exchangeweblink",
         "DisplayName": "Exchange WebLink",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18095,9 +19253,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_invitesentdate",
+        "DisplayName": "Invitation sent date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_invitestatusreason",
         "DisplayName": "Invite status reason",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msfp_inviteupdateddate",
+        "DisplayName": "Invitation updated date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18137,6 +19307,24 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "subject",
         "DisplayName": "Subject",
         "AttributeType": 14
@@ -18170,6 +19358,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_description",
         "DisplayName": "Description",
         "AttributeType": 14
@@ -18185,6 +19379,12 @@
         "LogicalName": "msfp_properties",
         "DisplayName": "Properties",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msfp_scheduleddate",
+        "DisplayName": "Scheduled date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18227,6 +19427,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -18242,6 +19454,12 @@
         "LogicalName": "exchangeweblink",
         "DisplayName": "Exchange WebLink",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18323,6 +19541,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "msfp_startdate",
+        "DisplayName": "Start date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "msfp_submitdate",
+        "DisplayName": "Submit date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "msfp_surveyresponse",
         "DisplayName": "Survey response",
         "AttributeType": 7
@@ -18338,6 +19568,24 @@
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18506,6 +19754,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -18524,6 +19784,18 @@
         "LogicalName": "mspp_columnname",
         "DisplayName": "Column Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -18534,6 +19806,18 @@
   {
     "PrimaryIdAttribute": "mspp_columnpermissionprofileid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "mspp_profilename",
@@ -18569,6 +19853,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_display_name",
         "DisplayName": "Display Name",
         "AttributeType": 14
@@ -18584,6 +19874,12 @@
         "LogicalName": "mspp_modifiedbyusername",
         "DisplayName": "Modified By Username",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18647,6 +19943,12 @@
         "LogicalName": "mspp_attachfiletypeerrormessage",
         "DisplayName": "Attach File Type Error Message",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18725,6 +20027,12 @@
         "LogicalName": "mspp_instructions",
         "DisplayName": "Instructions",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -18977,6 +20285,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_cssclass",
         "DisplayName": "CSS Class",
         "AttributeType": 14
@@ -19016,6 +20330,12 @@
         "LogicalName": "mspp_minmultiplechoiceselectedcount",
         "DisplayName": "Multiple Choice Minimum Required Selected Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19160,6 +20480,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_calendar_initialdate",
+        "DisplayName": "Calendar Initial Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_calendar_locationfieldname",
         "DisplayName": "Location Field Name",
         "AttributeType": 14
@@ -19193,6 +20519,12 @@
         "LogicalName": "mspp_createbuttonlabel",
         "DisplayName": "Create Button Label",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19346,6 +20678,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -19445,6 +20783,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_entitylogicalname",
         "DisplayName": "Table Name",
         "AttributeType": 14
@@ -19454,6 +20798,12 @@
         "LogicalName": "mspp_entityname",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19472,6 +20822,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -19481,6 +20837,12 @@
         "LogicalName": "mspp_entityname",
         "DisplayName": "Table Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19503,6 +20865,18 @@
   {
     "PrimaryIdAttribute": "mspp_pollplacementid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "mspp_name",
@@ -19535,9 +20909,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_displayorder",
         "DisplayName": "Display Order",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19556,6 +20942,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -19571,9 +20969,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_inboundurl",
         "DisplayName": "Inbound URL",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19598,6 +21008,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -19613,6 +21029,12 @@
         "LogicalName": "mspp_externalurl",
         "DisplayName": "External URL",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19637,6 +21059,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -19652,9 +21086,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19703,9 +21149,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_displaydate",
+        "DisplayName": "Display Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_displayorder",
         "DisplayName": "Display Order",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_expirationdate",
+        "DisplayName": "Expiration Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19721,6 +21185,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -19730,6 +21200,12 @@
         "LogicalName": "mspp_partialurl",
         "DisplayName": "Partial URL",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_releasedate",
+        "DisplayName": "Release Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19754,6 +21230,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_editexpiredmessage",
         "DisplayName": "Edit Expired Message",
         "AttributeType": 7
@@ -19775,6 +21257,12 @@
         "LogicalName": "mspp_editnotpermittedmessage",
         "DisplayName": "Edit Not Permitted Message",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -19829,6 +21317,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_cssclass",
         "DisplayName": "CSS Class",
         "AttributeType": 14
@@ -19868,6 +21362,12 @@
         "LogicalName": "mspp_minmultiplechoiceselectedcount",
         "DisplayName": "Multiple Choice Minimum Required Selected Count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20126,6 +21626,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_editexpiredmessage",
         "DisplayName": "Edit Expired Message",
         "AttributeType": 7
@@ -20225,6 +21731,12 @@
         "LogicalName": "mspp_loadeventkeyname",
         "DisplayName": "Load Event Key Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20537,6 +22049,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -20591,6 +22109,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -20612,9 +22136,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_display_name",
         "DisplayName": "Display Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20663,6 +22199,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_customcss",
         "DisplayName": "Custom CSS",
         "AttributeType": 7
@@ -20675,6 +22217,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_displaydate",
+        "DisplayName": "Display Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_displayorder",
         "DisplayName": "Display Order",
         "AttributeType": 5
@@ -20684,6 +22232,12 @@
         "LogicalName": "mspp_editorialcomments",
         "DisplayName": "Editorial Comments",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_expirationdate",
+        "DisplayName": "Expiration Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20711,6 +22265,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -20720,6 +22280,12 @@
         "LogicalName": "mspp_partialurl",
         "DisplayName": "Partial URL",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_releasedate",
+        "DisplayName": "Release Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20744,9 +22310,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20765,6 +22343,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -20774,6 +22358,12 @@
         "LogicalName": "mspp_key",
         "DisplayName": "Key",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20790,6 +22380,18 @@
   {
     "PrimaryIdAttribute": "mspp_websiteid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "mspp_name",
@@ -20831,6 +22433,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -20844,6 +22458,12 @@
   {
     "PrimaryIdAttribute": "mspp_websitelanguageid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "mspp_description",
@@ -20870,6 +22490,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_name",
         "DisplayName": "Name",
         "AttributeType": 14
@@ -20891,9 +22517,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "mspp_createdon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "mspp_mimetype",
         "DisplayName": "MIME Type",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "mspp_modifiedon",
+        "DisplayName": "Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -20991,9 +22629,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "activestagestartedon",
+        "DisplayName": "Active Stage Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "bpf_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -21022,6 +22672,18 @@
   {
     "PrimaryIdAttribute": "businessprocessflowinstanceid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "activestagestartedon",
+        "DisplayName": "Active Stage Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "name",
@@ -21541,6 +23203,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "fiscalcalendarstart",
+        "DisplayName": "Fiscal Calendar Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "fiscalperiodformat",
         "DisplayName": "Fiscal Period Format",
         "AttributeType": 14
@@ -21925,6 +23593,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "performactsyncafter",
+        "DisplayName": "PerformACTSyncAfter",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "picture",
         "DisplayName": "Picture",
         "AttributeType": 7
@@ -22012,6 +23686,12 @@
         "LogicalName": "releasewavename",
         "DisplayName": "Release Wave",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "relevancesearchmodifiedon",
+        "DisplayName": "RelevanceSearchModifiedOnDate",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -22258,6 +23938,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lockexpiretimestamp",
+        "DisplayName": "LockExpireTimestamp",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lockowner",
         "DisplayName": "LockOwner",
         "AttributeType": 14
@@ -22273,6 +23959,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "nullstatedate",
+        "DisplayName": "nullstatedate",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -22345,6 +24037,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lockexpiretimestamp",
+        "DisplayName": "LockExpireTimestamp",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lockowner",
         "DisplayName": "LockOwner",
         "AttributeType": 14
@@ -22360,6 +24058,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "nullstatedate",
+        "DisplayName": "nullstatedate",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -22697,6 +24401,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "installedon",
+        "DisplayName": "Installed On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "packageuniquename",
         "DisplayName": "Package Unique Name",
         "AttributeType": 14
@@ -22922,6 +24632,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "category",
         "DisplayName": "Category",
         "AttributeType": 14
@@ -22934,9 +24656,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "phonenumber",
         "DisplayName": "Phone Number",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -23868,9 +25614,21 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "canceledon",
+        "DisplayName": "Canceled On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "comments",
         "DisplayName": "Comments",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -24807,6 +26565,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "CompletedOn",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "message",
         "DisplayName": "Message",
         "AttributeType": 7
@@ -24816,6 +26580,12 @@
         "LogicalName": "profileid",
         "DisplayName": "ProfileId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "submittedon",
+        "DisplayName": "SubmittedOn",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -24891,6 +26661,24 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "effectiveenddate",
+        "DisplayName": "Effective End Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectivestartdate",
+        "DisplayName": "Effective Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "interval",
         "DisplayName": "Interval",
         "AttributeType": 5
@@ -24900,6 +26688,24 @@
         "LogicalName": "occurrences",
         "DisplayName": "Occurrences",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "patternenddate",
+        "DisplayName": "Recurrence Range End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "patternstartdate",
+        "DisplayName": "Recurrence Range Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -24939,6 +26745,24 @@
         "LogicalName": "duration",
         "DisplayName": "Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectiveenddate",
+        "DisplayName": "Effective End Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "effectivestartdate",
+        "DisplayName": "Effective Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "Pattern End Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -24987,6 +26811,30 @@
         "LogicalName": "outlookownerapptid",
         "DisplayName": "Outlook Recurring Appointment Master Owner",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "patternenddate",
+        "DisplayName": "Recurrence Range End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "patternstartdate",
+        "DisplayName": "Recurrence Range Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Pattern Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -25320,6 +27168,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "entitylogicalname",
         "DisplayName": "EntityLogicalName",
         "AttributeType": 14
@@ -25353,6 +27207,12 @@
         "LogicalName": "recordcount",
         "DisplayName": "RecordCount",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -25401,6 +27261,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "nextrun",
+        "DisplayName": "NextRun",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "recurrence",
         "DisplayName": "Recurrence",
         "AttributeType": 14
@@ -25410,6 +27276,12 @@
         "LogicalName": "referenceconfigid",
         "DisplayName": "ReferenceConfigId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -25503,6 +27375,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "EndTime",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "failedcount",
         "DisplayName": "FailedCount",
         "AttributeType": 5
@@ -25536,6 +27414,12 @@
         "LogicalName": "rootentitylogicalname",
         "DisplayName": "RootEntityLogicalName",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "StartTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -25870,6 +27754,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "assignobjectidmodifiedon",
+        "DisplayName": "Assigned On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "assignobjectidname",
         "DisplayName": "Assign ObjectId Name",
         "AttributeType": 14
@@ -25954,6 +27844,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "sample_acceptnewideastill",
+        "DisplayName": "Accept new ideas till",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_closedate",
+        "DisplayName": "Close Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "sample_description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -25963,6 +27865,18 @@
         "LogicalName": "sample_durationweeks",
         "DisplayName": "Duration (weeks)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_finalreviewofideason",
+        "DisplayName": "Final review of ideas on",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_launchdate",
+        "DisplayName": "Launch date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -26005,9 +27919,21 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "activestagestartedon",
+        "DisplayName": "Active Stage Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "bpf_name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -26050,6 +27976,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
@@ -26068,6 +28006,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "sample_donationamount",
         "DisplayName": "Donation Amount",
         "AttributeType": 8
@@ -26077,6 +28021,24 @@
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -26332,6 +28294,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "sample_reservationstart",
+        "DisplayName": "Reservation Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "sample_reservedbyemail",
         "DisplayName": "Reserved by email",
         "AttributeType": 14
@@ -26341,6 +28309,12 @@
         "LogicalName": "sample_reservefordays",
         "DisplayName": "Reserve for (days)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_returnby",
+        "DisplayName": "Return by",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -26449,6 +28423,18 @@
         "LogicalName": "sample_opentaskcount",
         "DisplayName": "Open task count",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_projectend",
+        "DisplayName": "Project end",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sample_projectstart",
+        "DisplayName": "Project start",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -27322,6 +29308,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "lastmanaged",
+        "DisplayName": "Last Managed",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastused",
+        "DisplayName": "Last Used",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "timezoneruleversionnumber",
         "DisplayName": "Time Zone Rule Version Number",
         "AttributeType": 5
@@ -27481,6 +29479,12 @@
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastvalidated",
+        "DisplayName": "Last Validated",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -27666,6 +29670,24 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "applicablefromvalue",
+        "DisplayName": "Applicable From Value",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "computedfailuretime",
+        "DisplayName": "Computed Failure Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "computedwarningtime",
+        "DisplayName": "Computed Warning Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Description",
         "AttributeType": 14
@@ -27675,6 +29697,18 @@
         "LogicalName": "elapsedtime",
         "DisplayName": "Elapsed Time (min)",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "failuretime",
+        "DisplayName": "Failure Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastresumetime",
+        "DisplayName": "Last Resume Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -27699,6 +29733,36 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "pausedon",
+        "DisplayName": "Paused On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "succeededon",
+        "DisplayName": "Succeeded On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "successcheckedat",
+        "DisplayName": "SuccessCheckedAt",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "terminalstatetime",
+        "DisplayName": "Terminal State Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "warningtime",
+        "DisplayName": "Warning Time",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -27723,6 +29787,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Post Description",
         "AttributeType": 7
@@ -27732,6 +29808,18 @@
         "LogicalName": "inresponseto",
         "DisplayName": "In Response To",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "postedon",
+        "DisplayName": "Created On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -27756,6 +29844,24 @@
         "LogicalName": "scheduleddurationminutes",
         "DisplayName": "Scheduled Duration",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28128,6 +30234,12 @@
   {
     "PrimaryIdAttribute": "solutionhistorydataid",
     "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "endtime",
+        "DisplayName": "End Time",
+        "AttributeType": 2
+      },
       {
         "DisplayMode": 0,
         "LogicalName": "errorcode",
@@ -28565,7 +30677,14 @@
   },
   {
     "PrimaryIdAttribute": "timestamp",
-    "Fields": [],
+    "Fields": [
+      {
+        "DisplayMode": 0,
+        "LogicalName": "deletetime",
+        "DisplayName": "Created On",
+        "AttributeType": 2
+      }
+    ],
     "DisplayMode": 0,
     "LogicalName": "subscriptiontrackingdeletedobject",
     "DisplayName": "Tracking information for deleted entities",
@@ -28612,6 +30731,12 @@
         "LogicalName": "aaduserobjectid",
         "DisplayName": "aaduserobjectid",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "expirydatetime",
+        "DisplayName": "ExpiryDateTime",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28711,6 +30836,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastsynchronizedon",
+        "DisplayName": "Last Synchronized On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "maxrecordversion",
         "DisplayName": "Maximum Record Version",
         "AttributeType": 18
@@ -28732,6 +30863,12 @@
         "LogicalName": "recordcount",
         "DisplayName": "Record Count",
         "AttributeType": 18
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "schemamodifiedon",
+        "DisplayName": "Schema Modified On",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28768,6 +30905,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "activationtime",
+        "DisplayName": "Activation Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "extendedproperties",
         "DisplayName": "Extended Properties",
         "AttributeType": 7
@@ -28777,6 +30920,12 @@
         "LogicalName": "name",
         "DisplayName": "Name",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "profileupdatedtime",
+        "DisplayName": "Profile Updated Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28852,9 +31001,39 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "additiontime",
+        "DisplayName": "Addition Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "crmrecordcount",
         "DisplayName": "CRM Record Count",
         "AttributeType": 18
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "crmrecordcountmodifiedtime",
+        "DisplayName": "CRM Record Count Modified Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "initialsyncdatacompletedtime",
+        "DisplayName": "Initial Sync Data Completed Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "initialsyncmetadatacreatedtime",
+        "DisplayName": "Initial Sync Metadata Created Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "initialsyncprocesscompletedtime",
+        "DisplayName": "Initial Sync Process Completed Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28864,9 +31043,27 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lakerecordcountmodifiedtime",
+        "DisplayName": "Lake Record Count Modified Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastsynceddatatime",
+        "DisplayName": "Last Synced Data Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "lastsynceddataversion",
         "DisplayName": "Last Synced Data Version",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastsyncedmetadatatime",
+        "DisplayName": "Last Synced Metadata Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -28918,6 +31115,12 @@
         "LogicalName": "recurrenceinterval",
         "DisplayName": "Recurrence Interval",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -29544,6 +31747,18 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "actualend",
+        "DisplayName": "Actual End",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "actualstart",
+        "DisplayName": "Actual Start",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "category",
         "DisplayName": "Category",
         "AttributeType": 14
@@ -29556,9 +31771,33 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "lastonholdtime",
+        "DisplayName": "Last On Hold Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "percentcomplete",
         "DisplayName": "Percent Complete",
         "AttributeType": 5
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledend",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "scheduledstart",
+        "DisplayName": "Start Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "sortdate",
+        "DisplayName": "Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -30189,6 +32428,12 @@
       },
       {
         "DisplayMode": 0,
+        "LogicalName": "effectivedatetime",
+        "DisplayName": "Effective Date Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "standardbias",
         "DisplayName": "Standard Bias",
         "AttributeType": 5
@@ -30376,6 +32621,18 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "activestagestartedon",
+        "DisplayName": "Active Stage Started On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "name",
         "DisplayName": "Process Name",
         "AttributeType": 14
@@ -30507,6 +32764,30 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "commonend",
+        "DisplayName": "Common end date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "commonstart",
+        "DisplayName": "Common start date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "duedate",
+        "DisplayName": "Due Date",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "flagdueby",
+        "DisplayName": "Flag due by",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "flagrequest",
         "DisplayName": "Flag Request",
         "AttributeType": 14
@@ -30516,6 +32797,24 @@
         "LogicalName": "personalcategories",
         "DisplayName": "personal categories",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "remindertime",
+        "DisplayName": "Reminder time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "starttime",
+        "DisplayName": "Start Time",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "todoordinaldate",
+        "DisplayName": "To Do Primary Sort Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -30850,6 +33149,12 @@
         "LogicalName": "defaultcountrycode",
         "DisplayName": "Default Country Code",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "lastmodifiedtimeforviewpersonalizationsettings",
+        "DisplayName": "Last modified timestamp for the view personalization settings in UserEntityUISettings table",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -31239,6 +33544,12 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed On",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "description",
         "DisplayName": "Step Description",
         "AttributeType": 7
@@ -31296,6 +33607,12 @@
         "LogicalName": "repetitionid",
         "DisplayName": "RepetitionId",
         "AttributeType": 14
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "startedon",
+        "DisplayName": "Started On",
+        "AttributeType": 2
       }
     ],
     "DisplayMode": 0,
@@ -31380,9 +33697,27 @@
     "Fields": [
       {
         "DisplayMode": 0,
+        "LogicalName": "completedon",
+        "DisplayName": "Completed on",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "delayuntil",
+        "DisplayName": "Delay until",
+        "AttributeType": 2
+      },
+      {
+        "DisplayMode": 0,
         "LogicalName": "executioncontext",
         "DisplayName": "Execution Context",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "expirydate",
+        "DisplayName": "Expiry Date",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,
@@ -31413,6 +33748,12 @@
         "LogicalName": "processingresult",
         "DisplayName": "Processing Result",
         "AttributeType": 7
+      },
+      {
+        "DisplayMode": 0,
+        "LogicalName": "processingstarttime",
+        "DisplayName": "Processing Start Time",
+        "AttributeType": 2
       },
       {
         "DisplayMode": 0,

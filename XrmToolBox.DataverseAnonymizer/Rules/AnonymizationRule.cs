@@ -71,6 +71,17 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
             }
         }
 
+        private RandomDateRule randomDateRule;
+        public RandomDateRule RandomDateRule
+        {
+            get => randomDateRule;
+            set
+            {
+                randomDateRule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string TableName => Table.ToString();
 
         public string FieldName => Field.ToString();
@@ -78,6 +89,7 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
         public string RuleName => SequenceRule != null ? SequenceRule.ToString() :
                                     RandomIntRule != null ? RandomIntRule.ToString() :
                                     RandomDecimalRule != null ? RandomDecimalRule.ToString() :
+                                    RandomDateRule != null ? RandomDateRule.ToString() :
                                         BogusRule?.ToString();
 
         public RuleType Type => SequenceRule != null ? RuleType.Sequence : RuleType.Bogus;

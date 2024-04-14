@@ -199,6 +199,7 @@
     <Compile Include="Helpers\StateSaveLoadHelper.cs" />
     <Compile Include="Rules\BogusDataSetWithMethods.cs" />
     <Compile Include="Rules\BogusRule.cs" />
+    <Compile Include="Rules\RandomDateRule.cs" />
     <Compile Include="Rules\RandomDecimalRule.cs" />
     <Compile Include="Rules\RandomIntRule.cs" />
     <Compile Include="Models\RuleProcessing.cs" />

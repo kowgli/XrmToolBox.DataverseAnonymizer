@@ -25,5 +25,12 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         {
             return (decimal)(rnd.NextDouble() * (double)(max - min) + (double)min);
         }
+
+        public static DateTime GetRandomDate(DateTime min, DateTime max)
+        {
+            TimeSpan range = max - min;
+            int rndMinutes = GetRandomInt(0, (int) range.TotalMinutes);           
+            return min.AddMinutes(rndMinutes);
+        }
     }
 }
