@@ -69,7 +69,7 @@
             this.llBypassHelp = new System.Windows.Forms.LinkLabel();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lbBypassInfo = new System.Windows.Forms.Label();
             this.cbBypassFlows = new System.Windows.Forms.CheckBox();
             this.cbBypassPlugins = new System.Windows.Forms.CheckBox();
             this.bRun = new System.Windows.Forms.Button();
@@ -107,6 +107,14 @@
             this.label21 = new System.Windows.Forms.Label();
             this.nudRandomDecRangeFrom = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
+            this.tpRandomDate = new System.Windows.Forms.TabPage();
+            this.dtpRandomDateTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpRandomDateFrom = new System.Windows.Forms.DateTimePicker();
+            this.lbRandomDateSample = new System.Windows.Forms.Label();
+            this.tbRandomDateSample = new System.Windows.Forms.TextBox();
+            this.bRandomDateSample = new System.Windows.Forms.Button();
+            this.lbRandomDateTo = new System.Windows.Forms.Label();
+            this.lbRandomDateFrom = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.bStop = new System.Windows.Forms.Button();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -119,14 +127,6 @@
             this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tpRandomDate = new System.Windows.Forms.TabPage();
-            this.lbRandomDateSample = new System.Windows.Forms.Label();
-            this.tbRandomDateSample = new System.Windows.Forms.TextBox();
-            this.bRandomDateSample = new System.Windows.Forms.Button();
-            this.lbRandomDateTo = new System.Windows.Forms.Label();
-            this.lbRandomDateFrom = new System.Windows.Forms.Label();
-            this.dtpRandomDateFrom = new System.Windows.Forms.DateTimePicker();
-            this.dtpRandomDateTo = new System.Windows.Forms.DateTimePicker();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -145,8 +145,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecDecimals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).BeginInit();
-            this.toolStrip.SuspendLayout();
             this.tpRandomDate.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -566,7 +566,7 @@
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
-            this.gbRun.Controls.Add(this.label14);
+            this.gbRun.Controls.Add(this.lbBypassInfo);
             this.gbRun.Controls.Add(this.cbBypassFlows);
             this.gbRun.Controls.Add(this.cbBypassPlugins);
             this.gbRun.Controls.Add(this.bRun);
@@ -656,16 +656,16 @@
             this.label15.TabIndex = 26;
             this.label15.Text = "Batch size:";
             // 
-            // label14
+            // lbBypassInfo
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(13, 55);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(508, 17);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Warning! Asynchronous Plugins and Workflows can\'t be bypassed. Disable them manua" +
+            this.lbBypassInfo.AutoSize = true;
+            this.lbBypassInfo.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBypassInfo.ForeColor = System.Drawing.Color.Red;
+            this.lbBypassInfo.Location = new System.Drawing.Point(13, 55);
+            this.lbBypassInfo.Name = "lbBypassInfo";
+            this.lbBypassInfo.Size = new System.Drawing.Size(508, 17);
+            this.lbBypassInfo.TabIndex = 3;
+            this.lbBypassInfo.Text = "Warning! Asynchronous Plugins and Workflows can\'t be bypassed. Disable them manua" +
     "lly.";
             // 
             // cbBypassFlows
@@ -1176,6 +1176,99 @@
             this.label22.TabIndex = 34;
             this.label22.Text = "Range from:";
             // 
+            // tpRandomDate
+            // 
+            this.tpRandomDate.Controls.Add(this.dtpRandomDateTo);
+            this.tpRandomDate.Controls.Add(this.dtpRandomDateFrom);
+            this.tpRandomDate.Controls.Add(this.lbRandomDateSample);
+            this.tpRandomDate.Controls.Add(this.tbRandomDateSample);
+            this.tpRandomDate.Controls.Add(this.bRandomDateSample);
+            this.tpRandomDate.Controls.Add(this.lbRandomDateTo);
+            this.tpRandomDate.Controls.Add(this.lbRandomDateFrom);
+            this.tpRandomDate.Location = new System.Drawing.Point(4, 28);
+            this.tpRandomDate.Name = "tpRandomDate";
+            this.tpRandomDate.Size = new System.Drawing.Size(646, 125);
+            this.tpRandomDate.TabIndex = 4;
+            this.tpRandomDate.Text = "Random date";
+            this.tpRandomDate.UseVisualStyleBackColor = true;
+            // 
+            // dtpRandomDateTo
+            // 
+            this.dtpRandomDateTo.Location = new System.Drawing.Point(325, 37);
+            this.dtpRandomDateTo.Name = "dtpRandomDateTo";
+            this.dtpRandomDateTo.Size = new System.Drawing.Size(298, 27);
+            this.dtpRandomDateTo.TabIndex = 41;
+            this.dtpRandomDateTo.ValueChanged += new System.EventHandler(this.dtpRandomDateTo_ValueChanged);
+            // 
+            // dtpRandomDateFrom
+            // 
+            this.dtpRandomDateFrom.Location = new System.Drawing.Point(17, 37);
+            this.dtpRandomDateFrom.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dtpRandomDateFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpRandomDateFrom.Name = "dtpRandomDateFrom";
+            this.dtpRandomDateFrom.Size = new System.Drawing.Size(285, 27);
+            this.dtpRandomDateFrom.TabIndex = 40;
+            this.dtpRandomDateFrom.ValueChanged += new System.EventHandler(this.dtpRandomDateFrom_ValueChanged);
+            // 
+            // lbRandomDateSample
+            // 
+            this.lbRandomDateSample.AutoSize = true;
+            this.lbRandomDateSample.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRandomDateSample.Location = new System.Drawing.Point(13, 90);
+            this.lbRandomDateSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbRandomDateSample.Name = "lbRandomDateSample";
+            this.lbRandomDateSample.Size = new System.Drawing.Size(63, 19);
+            this.lbRandomDateSample.TabIndex = 39;
+            this.lbRandomDateSample.Text = "Sample:";
+            // 
+            // tbRandomDateSample
+            // 
+            this.tbRandomDateSample.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRandomDateSample.Location = new System.Drawing.Point(86, 87);
+            this.tbRandomDateSample.Margin = new System.Windows.Forms.Padding(4);
+            this.tbRandomDateSample.Name = "tbRandomDateSample";
+            this.tbRandomDateSample.ReadOnly = true;
+            this.tbRandomDateSample.Size = new System.Drawing.Size(495, 27);
+            this.tbRandomDateSample.TabIndex = 38;
+            // 
+            // bRandomDateSample
+            // 
+            this.bRandomDateSample.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bRandomDateSample.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bRandomDateSample.Location = new System.Drawing.Point(589, 81);
+            this.bRandomDateSample.Margin = new System.Windows.Forms.Padding(4);
+            this.bRandomDateSample.Name = "bRandomDateSample";
+            this.bRandomDateSample.Size = new System.Drawing.Size(35, 37);
+            this.bRandomDateSample.TabIndex = 37;
+            this.bRandomDateSample.Text = "🗘";
+            this.bRandomDateSample.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bRandomDateSample.UseVisualStyleBackColor = true;
+            this.bRandomDateSample.Click += new System.EventHandler(this.bRandomDateSample_Click);
+            // 
+            // lbRandomDateTo
+            // 
+            this.lbRandomDateTo.AutoSize = true;
+            this.lbRandomDateTo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRandomDateTo.Location = new System.Drawing.Point(321, 10);
+            this.lbRandomDateTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbRandomDateTo.Name = "lbRandomDateTo";
+            this.lbRandomDateTo.Size = new System.Drawing.Size(74, 19);
+            this.lbRandomDateTo.TabIndex = 36;
+            this.lbRandomDateTo.Text = "Range to:";
+            // 
+            // lbRandomDateFrom
+            // 
+            this.lbRandomDateFrom.AutoSize = true;
+            this.lbRandomDateFrom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRandomDateFrom.Location = new System.Drawing.Point(13, 10);
+            this.lbRandomDateFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbRandomDateFrom.Name = "lbRandomDateFrom";
+            this.lbRandomDateFrom.Size = new System.Drawing.Size(92, 19);
+            this.lbRandomDateFrom.TabIndex = 34;
+            this.lbRandomDateFrom.Text = "Range from:";
+            // 
             // bSave
             // 
             this.bSave.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1287,99 +1380,6 @@
             this.openFileDialog.Filter = "JSON files|*.json|All files|*.*";
             this.openFileDialog.RestoreDirectory = true;
             // 
-            // tpRandomDate
-            // 
-            this.tpRandomDate.Controls.Add(this.dtpRandomDateTo);
-            this.tpRandomDate.Controls.Add(this.dtpRandomDateFrom);
-            this.tpRandomDate.Controls.Add(this.lbRandomDateSample);
-            this.tpRandomDate.Controls.Add(this.tbRandomDateSample);
-            this.tpRandomDate.Controls.Add(this.bRandomDateSample);
-            this.tpRandomDate.Controls.Add(this.lbRandomDateTo);
-            this.tpRandomDate.Controls.Add(this.lbRandomDateFrom);
-            this.tpRandomDate.Location = new System.Drawing.Point(4, 28);
-            this.tpRandomDate.Name = "tpRandomDate";
-            this.tpRandomDate.Size = new System.Drawing.Size(646, 125);
-            this.tpRandomDate.TabIndex = 4;
-            this.tpRandomDate.Text = "Random date";
-            this.tpRandomDate.UseVisualStyleBackColor = true;
-            // 
-            // lbRandomDateSample
-            // 
-            this.lbRandomDateSample.AutoSize = true;
-            this.lbRandomDateSample.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRandomDateSample.Location = new System.Drawing.Point(13, 90);
-            this.lbRandomDateSample.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbRandomDateSample.Name = "lbRandomDateSample";
-            this.lbRandomDateSample.Size = new System.Drawing.Size(63, 19);
-            this.lbRandomDateSample.TabIndex = 39;
-            this.lbRandomDateSample.Text = "Sample:";
-            // 
-            // tbRandomDateSample
-            // 
-            this.tbRandomDateSample.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRandomDateSample.Location = new System.Drawing.Point(86, 87);
-            this.tbRandomDateSample.Margin = new System.Windows.Forms.Padding(4);
-            this.tbRandomDateSample.Name = "tbRandomDateSample";
-            this.tbRandomDateSample.ReadOnly = true;
-            this.tbRandomDateSample.Size = new System.Drawing.Size(495, 27);
-            this.tbRandomDateSample.TabIndex = 38;
-            // 
-            // bRandomDateSample
-            // 
-            this.bRandomDateSample.Font = new System.Drawing.Font("Calibri", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bRandomDateSample.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bRandomDateSample.Location = new System.Drawing.Point(589, 81);
-            this.bRandomDateSample.Margin = new System.Windows.Forms.Padding(4);
-            this.bRandomDateSample.Name = "bRandomDateSample";
-            this.bRandomDateSample.Size = new System.Drawing.Size(35, 37);
-            this.bRandomDateSample.TabIndex = 37;
-            this.bRandomDateSample.Text = "🗘";
-            this.bRandomDateSample.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bRandomDateSample.UseVisualStyleBackColor = true;
-            this.bRandomDateSample.Click += new System.EventHandler(this.bRandomDateSample_Click);
-            // 
-            // lbRandomDateTo
-            // 
-            this.lbRandomDateTo.AutoSize = true;
-            this.lbRandomDateTo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRandomDateTo.Location = new System.Drawing.Point(321, 10);
-            this.lbRandomDateTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbRandomDateTo.Name = "lbRandomDateTo";
-            this.lbRandomDateTo.Size = new System.Drawing.Size(74, 19);
-            this.lbRandomDateTo.TabIndex = 36;
-            this.lbRandomDateTo.Text = "Range to:";
-            // 
-            // lbRandomDateFrom
-            // 
-            this.lbRandomDateFrom.AutoSize = true;
-            this.lbRandomDateFrom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRandomDateFrom.Location = new System.Drawing.Point(13, 10);
-            this.lbRandomDateFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbRandomDateFrom.Name = "lbRandomDateFrom";
-            this.lbRandomDateFrom.Size = new System.Drawing.Size(92, 19);
-            this.lbRandomDateFrom.TabIndex = 34;
-            this.lbRandomDateFrom.Text = "Range from:";
-            // 
-            // dtpRandomDateFrom
-            // 
-            this.dtpRandomDateFrom.Location = new System.Drawing.Point(17, 37);
-            this.dtpRandomDateFrom.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
-            this.dtpRandomDateFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpRandomDateFrom.Name = "dtpRandomDateFrom";
-            this.dtpRandomDateFrom.Size = new System.Drawing.Size(285, 27);
-            this.dtpRandomDateFrom.TabIndex = 40;
-            this.dtpRandomDateFrom.ValueChanged += new System.EventHandler(this.dtpRandomDateFrom_ValueChanged);
-            // 
-            // dtpRandomDateTo
-            // 
-            this.dtpRandomDateTo.Location = new System.Drawing.Point(325, 37);
-            this.dtpRandomDateTo.Name = "dtpRandomDateTo";
-            this.dtpRandomDateTo.Size = new System.Drawing.Size(298, 27);
-            this.dtpRandomDateTo.TabIndex = 41;
-            this.dtpRandomDateTo.ValueChanged += new System.EventHandler(this.dtpRandomDateTo_ValueChanged);
-            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -1418,10 +1418,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecDecimals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).EndInit();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.tpRandomDate.ResumeLayout(false);
             this.tpRandomDate.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1467,7 +1467,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox cbBypassPlugins;
         private System.Windows.Forms.CheckBox cbBypassFlows;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbBypassInfo;
         private System.Windows.Forms.NumericUpDown nudBatchSize;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTableName;

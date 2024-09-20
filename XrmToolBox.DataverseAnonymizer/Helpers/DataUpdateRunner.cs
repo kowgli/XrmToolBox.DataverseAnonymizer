@@ -204,6 +204,8 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                 control.SetWorkingMessage($"Anonymizing {tableName}. Updated 0/{totalCount}...");
 
+                Version vOnline = new Version("9.2");
+
                 Parallel.ForEach(batches, new ParallelOptions { MaxDegreeOfParallelism = settings.Threads }, (UpdateRequest[] batch) =>
                 {
                     if (worker.CancellationPending)
@@ -228,6 +230,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     {
                         executeMultipleRequest.Parameters.Add("BypassCustomPluginExecution", true);
                     }
+
                     if (settings.BypassFlows)
                     {
                         executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
@@ -235,9 +238,9 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                     if (control.IsDisposed) { return; }
 
-                    if (control.Service is CrmServiceClient)
+                    if (control.Service is CrmServiceClient serviceClient && serviceClient.ConnectedOrgVersion >= vOnline)
                     {
-                        ((CrmServiceClient)control.Service).Clone().Execute(executeMultipleRequest);
+                        serviceClient.Clone().Execute(executeMultipleRequest);
                     }
                     else
                     {

@@ -70,7 +70,18 @@ namespace XrmToolBox.DataverseAnonymizer
             }
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+            ExecuteMethod(DisableOnPremNonSupportedFeatures);
+
             ExecuteMethod(FillEntities);
+        }
+
+        private void DisableOnPremNonSupportedFeatures()
+        {
+            if (Service is CrmServiceClient serviceClient && serviceClient.ConnectedOrgVersion < new Version("9.2"))
+            {
+                cbBypassFlows.Checked = false;
+                cbBypassFlows.Visible = false;                
+            }
         }
 
         private void FillEntities()
@@ -149,7 +160,7 @@ namespace XrmToolBox.DataverseAnonymizer
                                                         a.AttributeType == AttributeTypeCode.Memo
                                                         || a.AttributeType == AttributeTypeCode.String
                                                         || a.AttributeType == AttributeTypeCode.Integer
-                                                        || a.AttributeType == AttributeTypeCode.BigInt     
+                                                        || a.AttributeType == AttributeTypeCode.BigInt
                                                         || a.AttributeType == AttributeTypeCode.Decimal
                                                         || a.AttributeType == AttributeTypeCode.Money
                                                         || a.AttributeType == AttributeTypeCode.Double
@@ -261,7 +272,7 @@ namespace XrmToolBox.DataverseAnonymizer
             tbFieldFilter_TextChanged(null, null);
         }
 
-        
+
 
         private void comboField_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -287,7 +298,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 if (!requiredTabs.Contains(tabPage))
                 {
                     tabcRule.TabPages.Remove(tabPage);
-                }                
+                }
             }
 
             foreach (TabPage tabPage in typeToTabs[fieldMetadata.AttributeType])
@@ -447,7 +458,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 MessageBox.Show("Please select a table and field first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             AnonymizationRule existingRule = rules.Where(r => r.Field == (MetadataInfo)comboField.SelectedItem).FirstOrDefault();
 
             if (existingRule != null)
@@ -467,8 +478,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 existingRule.RandomIntRule = tabcRule.SelectedTab == tpRandomInt ? new RandomIntRule
                 {
-                    RangeStart = (int) nudRandomIntRangeFrom.Value,
-                    RangeEnd = (int) nudRandomIntRangeTo.Value
+                    RangeStart = (int)nudRandomIntRangeFrom.Value,
+                    RangeEnd = (int)nudRandomIntRangeTo.Value
                 } : null;
 
                 existingRule.RandomDecimalRule = tabcRule.SelectedTab == tpRandomDec ? new RandomDecimalRule
@@ -528,7 +539,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void dgvRules_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) { return; }
-            
+
             AnonymizationRule rule = (AnonymizationRule)dgvRules.Rows[e.RowIndex].DataBoundItem;
 
             if (e.ColumnIndex == colEdit.Index)
@@ -545,7 +556,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void dgvRules_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvRules.SelectedRows.Count == 0) { return; }
-            
+
             AnonymizationRule rule = (AnonymizationRule)dgvRules.SelectedRows[0].DataBoundItem;
 
             EditRule(rule);
@@ -593,7 +604,7 @@ namespace XrmToolBox.DataverseAnonymizer
             else if (rule.RandomDateRule != null)
             {
                 dtpRandomDateFrom.Value = rule.RandomDateRule.RangeStart;
-                dtpRandomDateTo.Value = rule.RandomDateRule.RangeEnd;              
+                dtpRandomDateTo.Value = rule.RandomDateRule.RangeEnd;
                 GenerateRandomDateSample();
 
                 tabcRule.SelectedTab = tpRandomDate;
@@ -653,7 +664,7 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             contentPanel.Enabled = !disabled;
             ttbSave.Enabled = !disabled;
-            ttbLoad.Enabled = !disabled;            
+            ttbLoad.Enabled = !disabled;
         }
 
         public void ShowStop(bool show)
@@ -716,7 +727,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 if (this.Parent != null)
                 {
                     ShowWarningNotification("The connection has changed. The currently running job has been cancelled. Consider reopening the tool if the metadata has changed.", null);
-                }                
+                }
             }
             catch { }
 
@@ -754,14 +765,14 @@ namespace XrmToolBox.DataverseAnonymizer
             tbFetchXml.Visible = rbFilterFetchXml.Checked;
             labelFetchXmlInfo.Visible = rbFilterFetchXml.Checked;
             bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;
-           
+
             if (rbFilterNone.Checked && CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
             {
                 fetchFilters.Remove(CurrentTable);
             }
         }
 
-        private string CurrentTable => (comboTable.SelectedItem as TableMetadataInfo)?.LogicalName;        
+        private string CurrentTable => (comboTable.SelectedItem as TableMetadataInfo)?.LogicalName;
 
         private void tbFetchXml_TextChanged(object sender, EventArgs e)
         {
@@ -776,7 +787,7 @@ namespace XrmToolBox.DataverseAnonymizer
             if (CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
             {
                 tbFetchXml.Text = fetchFilters[CurrentTable];
-                rbFilterFetchXml.Checked = true;                
+                rbFilterFetchXml.Checked = true;
             }
             else
             {
@@ -793,7 +804,7 @@ namespace XrmToolBox.DataverseAnonymizer
         #region Save / Load
 
         private void ttbSave_Click(object sender, EventArgs e)
-        {   
+        {
             if (saveFileDialog.ShowDialog() != DialogResult.OK) { return; }
 
             StateSaveLoadHelper.Save(fetchFilters, rules, saveFileDialog.FileName);
@@ -838,7 +849,7 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             System.Diagnostics.Process.Start(@"https://learn.microsoft.com/en-us/power-apps/developer/data-platform/bypass-custom-business-logic");
         }
-   
+
         private void ttbFeedback_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"https://github.com/kowgli/XrmToolBox.DataverseAnonymizer/issues/new");
