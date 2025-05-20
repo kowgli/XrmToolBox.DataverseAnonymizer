@@ -823,6 +823,8 @@ namespace XrmToolBox.DataverseAnonymizer
                     EditRule(rules[0]);
                 }
 
+                RestoreFiltersForTable();
+
                 if (!allOk)
                 {
                     MessageBox.Show("Some rule or filters couldn't be loaded due to invalid configuration or missing metadata.",
