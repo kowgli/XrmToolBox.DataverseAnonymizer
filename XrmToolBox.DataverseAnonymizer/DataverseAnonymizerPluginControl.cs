@@ -2,18 +2,14 @@
 #define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
-using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Tooling.Connector;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
@@ -63,6 +59,8 @@ namespace XrmToolBox.DataverseAnonymizer
             dtpRandomDateFrom.Value = DateTime.Today;
             dtpRandomDateTo.Value = DateTime.Today.AddDays(1);
 
+            bTestFilter.Visible = false;
+
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (Service != null)
             {
@@ -80,7 +78,7 @@ namespace XrmToolBox.DataverseAnonymizer
             if (Service is CrmServiceClient serviceClient && serviceClient.ConnectedOrgVersion < new Version("9.2"))
             {
                 cbBypassFlows.Checked = false;
-                cbBypassFlows.Visible = false;                
+                cbBypassFlows.Visible = false;
             }
         }
 
@@ -271,8 +269,6 @@ namespace XrmToolBox.DataverseAnonymizer
             tbFieldFilter.Text = "";
             tbFieldFilter_TextChanged(null, null);
         }
-
-
 
         private void comboField_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -763,8 +759,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void rbFilter_CheckedChanged(object sender, EventArgs e)
         {
             tbFetchXml.Visible = rbFilterFetchXml.Checked;
-            labelFetchXmlInfo.Visible = rbFilterFetchXml.Checked;
-            bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;
+            bTestFilter.Visible = bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;          
 
             if (rbFilterNone.Checked && CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
             {
@@ -798,6 +793,45 @@ namespace XrmToolBox.DataverseAnonymizer
             rbFilter_CheckedChanged(null, null);
         }
 
+        private void bTestFilter_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbFetchXml.Text))
+            {
+                MessageBox.Show("Please enter a valid FetchXML.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+           
+            string idField = ((TableMetadataInfo)comboTable.SelectedItem).PrimaryIdAttribute;
+
+            ExecuteMethod(TestFilter, (CurrentTable, idField, tbFetchXml.Text));
+        }
+
+        private void TestFilter((string currentTable, string idField, string fetchXml) arg)
+        {
+            FormDisabled(true);
+            
+            WorkAsync(new WorkAsyncInfo
+            {
+                Message = $"Executing query. Please wait...",
+                MessageWidth = 800,
+                Work = (worker, args) =>
+                {
+                    Guid[] ids = CrmHelper.GetAllIds(Service, arg.currentTable, arg.idField, arg.fetchXml);
+
+                    args.Result = ids.Length;
+                },
+                PostWorkCallBack = (args) =>
+                {
+                    FormDisabled(false);
+
+                    if (HandleAsyncError(args)) { return; }
+
+                    MessageBox.Show($"Filter returned {args.Result} records.", "Test result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            });
+
+        }
 
         #endregion
 

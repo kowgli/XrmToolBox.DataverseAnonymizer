@@ -11,9 +11,7 @@ namespace XrmToolBox.DataverseAnonymizer.Models
             this.PrimaryIdFieldLogicalName = primaryIdFieldLogicalName ?? throw new ArgumentNullException(nameof(primaryIdFieldLogicalName));
             this.Rules = rules ?? throw new ArgumentNullException(nameof(rules));
             FetchXmlFilter = fetchXmlFilter;
-
         }
-
 
         public string TableLogicalName { get; set; }
 

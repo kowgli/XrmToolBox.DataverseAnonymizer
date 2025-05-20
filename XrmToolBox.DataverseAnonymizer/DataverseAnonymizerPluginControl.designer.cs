@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {            
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataverseAnonymizerPluginControl));
@@ -46,7 +47,6 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
-            this.labelFetchXmlInfo = new System.Windows.Forms.Label();
             this.bFetchXmlBuilder = new System.Windows.Forms.Button();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
@@ -127,6 +127,8 @@
             this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
+            this.bTestFilter = new System.Windows.Forms.Button();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -325,7 +327,7 @@
             // 
             this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbField.Controls.Add(this.labelFetchXmlInfo);
+            this.gbField.Controls.Add(this.bTestFilter);
             this.gbField.Controls.Add(this.bFetchXmlBuilder);
             this.gbField.Controls.Add(this.tbFetchXml);
             this.gbField.Controls.Add(this.rbFilterFetchXml);
@@ -354,19 +356,6 @@
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
             // 
-            // labelFetchXmlInfo
-            // 
-            this.labelFetchXmlInfo.AutoSize = true;
-            this.labelFetchXmlInfo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFetchXmlInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.labelFetchXmlInfo.Location = new System.Drawing.Point(224, 133);
-            this.labelFetchXmlInfo.Name = "labelFetchXmlInfo";
-            this.labelFetchXmlInfo.Size = new System.Drawing.Size(295, 26);
-            this.labelFetchXmlInfo.TabIndex = 32;
-            this.labelFetchXmlInfo.Text = "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
-    "ir ID to increase performance.";
-            this.labelFetchXmlInfo.Visible = false;
-            // 
             // bFetchXmlBuilder
             // 
             this.bFetchXmlBuilder.Location = new System.Drawing.Point(531, 131);
@@ -385,6 +374,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFetchXml.Location = new System.Drawing.Point(16, 165);
+            this.tbFetchXml.MinimumSize = new System.Drawing.Size(0, 40);
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -401,6 +391,8 @@
             this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
             this.rbFilterFetchXml.TabIndex = 9;
             this.rbFilterFetchXml.Text = "FetchXML";
+            this.toolTipDelay0.SetToolTip(this.rbFilterFetchXml, "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
+        "ir ID to increase performance.");
             this.rbFilterFetchXml.UseVisualStyleBackColor = true;
             this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
             // 
@@ -1380,6 +1372,24 @@
             this.openFileDialog.Filter = "JSON files|*.json|All files|*.*";
             this.openFileDialog.RestoreDirectory = true;
             // 
+            // toolTipDelay0
+            // 
+            this.toolTipDelay0.AutoPopDelay = 5000;
+            this.toolTipDelay0.InitialDelay = 0;
+            this.toolTipDelay0.ReshowDelay = 100;
+            this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // bTestFilter
+            // 
+            this.bTestFilter.Location = new System.Drawing.Point(390, 131);
+            this.bTestFilter.Name = "bTestFilter";
+            this.bTestFilter.Size = new System.Drawing.Size(135, 30);
+            this.bTestFilter.TabIndex = 32;
+            this.bTestFilter.Text = "Test Filter";
+            this.bTestFilter.UseVisualStyleBackColor = true;
+            this.bTestFilter.Visible = false;
+            this.bTestFilter.Click += new System.EventHandler(this.bTestFilter_Click);
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -1485,7 +1495,6 @@
         private System.Windows.Forms.RadioButton rbFilterNone;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button bFetchXmlBuilder;
-        private System.Windows.Forms.Label labelFetchXmlInfo;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
@@ -1524,5 +1533,7 @@
         private System.Windows.Forms.Button bRandomDateSample;
         private System.Windows.Forms.Label lbRandomDateTo;
         private System.Windows.Forms.Label lbRandomDateFrom;
+        private System.Windows.Forms.ToolTip toolTipDelay0;
+        private System.Windows.Forms.Button bTestFilter;
     }
 }

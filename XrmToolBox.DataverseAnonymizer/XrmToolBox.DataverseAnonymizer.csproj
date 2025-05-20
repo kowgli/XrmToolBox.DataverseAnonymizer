@@ -176,12 +176,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\FieldMappingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\FieldMappingControl.Designer.cs">
-      <DependentUpon>FieldMappingControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\BogusLocale.cs" />
     <Compile Include="DataSources\QuotesDataSource.cs" />
     <Compile Include="DataverseAnonymizerPlugin.cs" />
@@ -222,9 +216,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Controls\FieldMappingControl.resx">
-      <DependentUpon>FieldMappingControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DataverseAnonymizerPluginControl.resx">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
     </EmbeddedResource>
