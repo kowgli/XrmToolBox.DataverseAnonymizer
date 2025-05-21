@@ -204,7 +204,14 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                 control.SetWorkingMessage($"Anonymizing {tableName}. Updated 0/{totalCount}...");
 
-                Version vOnline = new Version("9.2");
+                
+
+                List<string> bypass = new List<string>();
+                if (settings.BypassSync) { bypass.Add("CustomSync"); }
+                if (settings.BypassAsync) { bypass.Add("CustomAsync"); }
+                string bypassString = string.Join(",", bypass);
+          
+                bool isDataverse = IsDataverse;
 
                 Parallel.ForEach(batches, new ParallelOptions { MaxDegreeOfParallelism = settings.Threads }, (UpdateRequest[] batch) =>
                 {
@@ -226,21 +233,31 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                     executeMultipleRequest.Requests.AddRange(batch);
 
-                    if (settings.BypassPlugins)
+                    if (!isDataverse)
                     {
-                        executeMultipleRequest.Parameters.Add("BypassCustomPluginExecution", true);
+                        if (settings.BypassSync)
+                        {
+                            executeMultipleRequest.Parameters.Add("BypassCustomPluginExecution", true);
+                        }
                     }
-
-                    if (settings.BypassFlows)
+                    else
                     {
-                        executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
+                        if (!string.IsNullOrWhiteSpace(bypassString))
+                        {
+                            executeMultipleRequest.Parameters.Add("BypassBusinessLogicExecution", bypassString);
+                        }
+
+                        if (settings.BypassFlows)
+                        {
+                            executeMultipleRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
+                        }
                     }
 
                     if (control.IsDisposed) { return; }
 
-                    if (control.Service is CrmServiceClient serviceClient && serviceClient.ConnectedOrgVersion >= vOnline)
+                    if (isDataverse)
                     {
-                        serviceClient.Clone().Execute(executeMultipleRequest);
+                        (control.Service as CrmServiceClient).Clone().Execute(executeMultipleRequest);
                     }
                     else
                     {
@@ -294,6 +311,13 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                 List<UpdateRequest> updateRequests = new List<UpdateRequest>();
 
                 Dictionary<AnonymizationRule, int> sequences = PrepareSequences(groupedRules.Rules);
+                
+                bool isDataverse = IsDataverse;
+
+                List<string> bypass = new List<string>();
+                if (settings.BypassSync) { bypass.Add("CustomSync"); }              
+                if (settings.BypassAsync) { bypass.Add("CustomAsync"); }
+                string bypassString = string.Join(",", bypass);
 
                 foreach (Guid id in groupedRules.RecordIds)
                 {
@@ -321,13 +345,24 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                         Target = updateRecord
                     };
 
-                    if (settings.BypassPlugins)
+                    if (!isDataverse)
                     {
-                        updateRequest.Parameters.Add("BypassCustomPluginExecution", true);
+                        if (settings.BypassSync)
+                        {
+                            updateRequest.Parameters.Add("BypassCustomPluginExecution", true);
+                        }
                     }
-                    if (settings.BypassFlows)
+                    else
                     {
-                        updateRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
+                        if (!string.IsNullOrWhiteSpace(bypassString))
+                        {
+                            updateRequest.Parameters.Add("BypassBusinessLogicExecution", bypassString);
+                        }
+
+                        if (settings.BypassFlows)
+                        {
+                            updateRequest.Parameters.Add("SuppressCallbackRegistrationExpanderJob", true);
+                        }
                     }
 
                     updateRequests.Add(updateRequest);
@@ -388,6 +423,15 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");
+        }
+
+        private bool IsDataverse
+        {
+            get
+            {
+                Version vOnline = new Version("9.2");
+                return control.Service is CrmServiceClient serviceClient && serviceClient.ConnectedOrgVersion >= vOnline;
+            }
         }
     }
 }

@@ -70,9 +70,8 @@
             this.llBypassHelp = new System.Windows.Forms.LinkLabel();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.lbBypassInfo = new System.Windows.Forms.Label();
             this.cbBypassFlows = new System.Windows.Forms.CheckBox();
-            this.cbBypassPlugins = new System.Windows.Forms.CheckBox();
+            this.cbBypassSync = new System.Windows.Forms.CheckBox();
             this.bRun = new System.Windows.Forms.Button();
             this.gbRule = new System.Windows.Forms.GroupBox();
             this.llBogus = new System.Windows.Forms.LinkLabel();
@@ -130,6 +129,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
             this.tslVersion = new System.Windows.Forms.ToolStripLabel();
+            this.cbBypassAsync = new System.Windows.Forms.CheckBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -565,14 +565,14 @@
             // gbRun
             // 
             this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbRun.Controls.Add(this.cbBypassAsync);
             this.gbRun.Controls.Add(this.nudThreads);
             this.gbRun.Controls.Add(this.lbThreads);
             this.gbRun.Controls.Add(this.llBypassHelp);
             this.gbRun.Controls.Add(this.nudBatchSize);
             this.gbRun.Controls.Add(this.label15);
-            this.gbRun.Controls.Add(this.lbBypassInfo);
             this.gbRun.Controls.Add(this.cbBypassFlows);
-            this.gbRun.Controls.Add(this.cbBypassPlugins);
+            this.gbRun.Controls.Add(this.cbBypassSync);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbRun.Location = new System.Drawing.Point(3, 512);
@@ -660,41 +660,29 @@
             this.label15.TabIndex = 26;
             this.label15.Text = "Batch size:";
             // 
-            // lbBypassInfo
-            // 
-            this.lbBypassInfo.AutoSize = true;
-            this.lbBypassInfo.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBypassInfo.ForeColor = System.Drawing.Color.Red;
-            this.lbBypassInfo.Location = new System.Drawing.Point(13, 55);
-            this.lbBypassInfo.Name = "lbBypassInfo";
-            this.lbBypassInfo.Size = new System.Drawing.Size(508, 17);
-            this.lbBypassInfo.TabIndex = 3;
-            this.lbBypassInfo.Text = "Warning! Asynchronous Plugins and Workflows can\'t be bypassed. Disable them manua" +
-    "lly.";
-            // 
             // cbBypassFlows
             // 
             this.cbBypassFlows.AutoSize = true;
             this.cbBypassFlows.Checked = true;
             this.cbBypassFlows.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBypassFlows.Location = new System.Drawing.Point(356, 29);
+            this.cbBypassFlows.Location = new System.Drawing.Point(349, 29);
             this.cbBypassFlows.Name = "cbBypassFlows";
             this.cbBypassFlows.Size = new System.Drawing.Size(115, 23);
             this.cbBypassFlows.TabIndex = 1;
             this.cbBypassFlows.Text = "Bypass Flows";
             this.cbBypassFlows.UseVisualStyleBackColor = true;
             // 
-            // cbBypassPlugins
+            // cbBypassSync
             // 
-            this.cbBypassPlugins.AutoSize = true;
-            this.cbBypassPlugins.Checked = true;
-            this.cbBypassPlugins.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBypassPlugins.Location = new System.Drawing.Point(16, 29);
-            this.cbBypassPlugins.Name = "cbBypassPlugins";
-            this.cbBypassPlugins.Size = new System.Drawing.Size(309, 23);
-            this.cbBypassPlugins.TabIndex = 0;
-            this.cbBypassPlugins.Text = "Bypass synchronous Plugins and Workflows";
-            this.cbBypassPlugins.UseVisualStyleBackColor = true;
+            this.cbBypassSync.AutoSize = true;
+            this.cbBypassSync.Checked = true;
+            this.cbBypassSync.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBypassSync.Location = new System.Drawing.Point(16, 29);
+            this.cbBypassSync.Name = "cbBypassSync";
+            this.cbBypassSync.Size = new System.Drawing.Size(309, 23);
+            this.cbBypassSync.TabIndex = 0;
+            this.cbBypassSync.Text = "Bypass synchronous Plugins and Workflows";
+            this.cbBypassSync.UseVisualStyleBackColor = true;
             // 
             // bRun
             // 
@@ -1400,6 +1388,18 @@
             this.tslVersion.Size = new System.Drawing.Size(152, 22);
             this.tslVersion.Text = "Dataverse Anonymizer {0}";
             // 
+            // cbBypassAsync
+            // 
+            this.cbBypassAsync.AutoSize = true;
+            this.cbBypassAsync.Checked = true;
+            this.cbBypassAsync.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBypassAsync.Location = new System.Drawing.Point(16, 58);
+            this.cbBypassAsync.Name = "cbBypassAsync";
+            this.cbBypassAsync.Size = new System.Drawing.Size(317, 23);
+            this.cbBypassAsync.TabIndex = 29;
+            this.cbBypassAsync.Text = "Bypass asynchronous Plugins and Workflows";
+            this.cbBypassAsync.UseVisualStyleBackColor = true;
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -1485,9 +1485,8 @@
         private System.Windows.Forms.DataGridView dgvRules;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox cbBypassPlugins;
+        private System.Windows.Forms.CheckBox cbBypassSync;
         private System.Windows.Forms.CheckBox cbBypassFlows;
-        private System.Windows.Forms.Label lbBypassInfo;
         private System.Windows.Forms.NumericUpDown nudBatchSize;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTableName;
@@ -1546,5 +1545,6 @@
         private System.Windows.Forms.ToolTip toolTipDelay0;
         private System.Windows.Forms.Button bTestFilter;
         private System.Windows.Forms.ToolStripLabel tslVersion;
+        private System.Windows.Forms.CheckBox cbBypassAsync;
     }
 }

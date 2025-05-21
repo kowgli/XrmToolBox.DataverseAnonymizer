@@ -85,6 +85,8 @@ namespace XrmToolBox.DataverseAnonymizer
             {
                 cbBypassFlows.Checked = false;
                 cbBypassFlows.Visible = false;
+                cbBypassAsync.Checked = false;
+                cbBypassAsync.Visible = false;
             }
         }
 
@@ -633,12 +635,13 @@ namespace XrmToolBox.DataverseAnonymizer
 
             FormDisabled(true);
 
-            WorkSettings settings = new WorkSettings()
+            WorkSettings settings = new WorkSettings
             {
                 BatchSize = (int)nudBatchSize.Value,
                 Threads = (int)nudThreads.Value,
-                BypassPlugins = cbBypassPlugins.Checked,
-                BypassFlows = cbBypassFlows.Checked
+                BypassSync = cbBypassSync.Checked,
+                BypassAsync = cbBypassAsync.Checked,
+                BypassFlows = cbBypassFlows.Checked              
             };
 
             DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
