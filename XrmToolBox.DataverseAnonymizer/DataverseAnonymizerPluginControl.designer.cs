@@ -47,6 +47,7 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
+            this.bTestFilter = new System.Windows.Forms.Button();
             this.bFetchXmlBuilder = new System.Windows.Forms.Button();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
@@ -128,7 +129,7 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
-            this.bTestFilter = new System.Windows.Forms.Button();
+            this.tslVersion = new System.Windows.Forms.ToolStripLabel();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -356,6 +357,17 @@
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
             // 
+            // bTestFilter
+            // 
+            this.bTestFilter.Location = new System.Drawing.Point(390, 131);
+            this.bTestFilter.Name = "bTestFilter";
+            this.bTestFilter.Size = new System.Drawing.Size(135, 30);
+            this.bTestFilter.TabIndex = 32;
+            this.bTestFilter.Text = "Test Filter";
+            this.bTestFilter.UseVisualStyleBackColor = true;
+            this.bTestFilter.Visible = false;
+            this.bTestFilter.Click += new System.EventHandler(this.bTestFilter_Click);
+            // 
             // bFetchXmlBuilder
             // 
             this.bFetchXmlBuilder.Location = new System.Drawing.Point(531, 131);
@@ -374,7 +386,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFetchXml.Location = new System.Drawing.Point(16, 165);
-            this.tbFetchXml.MinimumSize = new System.Drawing.Size(0, 40);
+            this.tbFetchXml.MinimumSize = new System.Drawing.Size(4, 40);
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -1325,7 +1337,8 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttbSave,
             this.ttbLoad,
-            this.ttbFeedback});
+            this.ttbFeedback,
+            this.tslVersion});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1151, 25);
@@ -1379,16 +1392,13 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // bTestFilter
+            // tslVersion
             // 
-            this.bTestFilter.Location = new System.Drawing.Point(390, 131);
-            this.bTestFilter.Name = "bTestFilter";
-            this.bTestFilter.Size = new System.Drawing.Size(135, 30);
-            this.bTestFilter.TabIndex = 32;
-            this.bTestFilter.Text = "Test Filter";
-            this.bTestFilter.UseVisualStyleBackColor = true;
-            this.bTestFilter.Visible = false;
-            this.bTestFilter.Click += new System.EventHandler(this.bTestFilter_Click);
+            this.tslVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tslVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tslVersion.Name = "tslVersion";
+            this.tslVersion.Size = new System.Drawing.Size(152, 22);
+            this.tslVersion.Text = "Dataverse Anonymizer {0}";
             // 
             // DataverseAnonymizerPluginControl
             // 
@@ -1535,5 +1545,6 @@
         private System.Windows.Forms.Label lbRandomDateFrom;
         private System.Windows.Forms.ToolTip toolTipDelay0;
         private System.Windows.Forms.Button bTestFilter;
+        private System.Windows.Forms.ToolStripLabel tslVersion;
     }
 }

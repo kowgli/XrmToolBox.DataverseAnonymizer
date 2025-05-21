@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
 using XrmToolBox.DataverseAnonymizer.Forms;
@@ -19,6 +20,7 @@ using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.DataverseAnonymizer.Rules;
 using XrmToolBox.Extensibility;
 using XrmToolBox.Extensibility.Interfaces;
+using static WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender;
 using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
@@ -47,6 +49,9 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             comboTableFormat.SelectedIndex = 0;
             comboFieldFormat.SelectedIndex = 0;
+
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            tslVersion.Text = string.Format(tslVersion.Text, $"{version.Major}.{version.Minor}");
 
             BogusLocale[] locale = BogusLocale.Get();
             comboBogusLocale.DataSource = locale;
