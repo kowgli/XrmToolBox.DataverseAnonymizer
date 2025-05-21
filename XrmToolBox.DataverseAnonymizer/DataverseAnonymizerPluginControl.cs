@@ -13,6 +13,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using XrmToolBox.DataverseAnonymizer.DataSources;
+using XrmToolBox.DataverseAnonymizer.Forms;
 using XrmToolBox.DataverseAnonymizer.Helpers;
 using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.DataverseAnonymizer.Rules;
@@ -150,6 +151,7 @@ namespace XrmToolBox.DataverseAnonymizer
                         LogicalName = e.LogicalName,
                         DisplayName = e.DisplayName.UserLocalizedLabel.Label,
                         PrimaryIdAttribute = e.PrimaryIdAttribute,
+                        PrimaryNameAttribute = e.PrimaryNameAttribute,
                         Fields = e.Attributes
                                         .Where(a => a.IsValidForUpdate == true
                                                     && a.DisplayName.UserLocalizedLabel != null
@@ -803,11 +805,12 @@ namespace XrmToolBox.DataverseAnonymizer
 
            
             string idField = ((TableMetadataInfo)comboTable.SelectedItem).PrimaryIdAttribute;
+            string nameField = ((TableMetadataInfo)comboTable.SelectedItem).PrimaryNameAttribute;
 
-            ExecuteMethod(TestFilter, (CurrentTable, idField, tbFetchXml.Text));
+            ExecuteMethod(TestFilter, (CurrentTable, idField, nameField, tbFetchXml.Text));
         }
 
-        private void TestFilter((string currentTable, string idField, string fetchXml) arg)
+        private void TestFilter((string currentTable, string idField, string nameField, string fetchXml) arg)
         {
             FormDisabled(true);
             
@@ -817,9 +820,9 @@ namespace XrmToolBox.DataverseAnonymizer
                 MessageWidth = 800,
                 Work = (worker, args) =>
                 {
-                    Guid[] ids = CrmHelper.GetAllIds(Service, arg.currentTable, arg.idField, arg.fetchXml);
+                    CrmRecord[] records = CrmHelper.GetAll(Service, arg.currentTable, arg.idField, arg.fetchXml, includeName: true, arg.nameField);
 
-                    args.Result = ids.Length;
+                    args.Result = records;
                 },
                 PostWorkCallBack = (args) =>
                 {
@@ -827,7 +830,10 @@ namespace XrmToolBox.DataverseAnonymizer
 
                     if (HandleAsyncError(args)) { return; }
 
-                    MessageBox.Show($"Filter returned {args.Result} records.", "Test result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CrmRecord[] records = (CrmRecord[])args.Result;
+
+                    RecordViewer recordViewer = new RecordViewer(records);
+                    recordViewer.ShowDialog();        
                 }
             });
 

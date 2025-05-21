@@ -102,12 +102,12 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                 control.WorkAsync(new WorkAsyncInfo()
                 {
-                    Message = $"Getting {groupedRules.TableLogicalName} table record ID's...",
+                    Message = $"Getting {groupedRules.TableLogicalName} table records...",
                     Work = (worker, args) =>
                     {
-                        Guid[] ids = CrmHelper.GetAllIds(control.Service, groupedRules.TableLogicalName, groupedRules.PrimaryIdFieldLogicalName, groupedRules.FetchXmlFilter);
+                        CrmRecord[] records = CrmHelper.GetAll(control.Service, groupedRules.TableLogicalName, groupedRules.PrimaryIdFieldLogicalName, groupedRules.FetchXmlFilter);
 
-                        groupedRules.RecordIds = ids;
+                        groupedRules.RecordIds = records.Select(r => r.Id).ToArray();
 
                         args.Result = groupedRules;
                     },
