@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using XrmToolBox.DataverseAnonymizer.DataSources;
@@ -128,7 +129,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             {
                 RuleProcessing groupedRules = (RuleProcessing)args.Result;
 
-                control.WorkAsync(new WorkAsyncInfo()
+                control.WorkAsync(new WorkAsyncInfo
                 {
                     Message = $"Creating requests for {groupedRules.TableLogicalName}...",
                     Work = (worker, args) =>
@@ -275,15 +276,52 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                         string msg = $"Anonymizing {tableName}. Updated {count}/{totalCount}...";
                         control.SetWorkingMessage(msg);
+
+                        if(settings.StoreProcessedRecordsPath != null)
+                        {
+                            AppendToProgressFile(batch);
+                        }
                     }
                     catch { }
 
                 });
+
                 control.ShowStop(false);
             }
             catch (Exception ex)
             {
                 HandleException(ex);
+            }
+        }
+
+        private object progressFileLock = new object();
+        private bool isFirstAppend = true;
+        private void AppendToProgressFile(UpdateRequest[] batch)
+        {
+            var records = batch.Select(b => new { tab = b.Target.LogicalName, id = b.Target.Id }).ToArray();
+
+            List<string> parts = new List<string>();
+
+            foreach (var record in records)
+            {
+                parts.Add($"\t{Newtonsoft.Json.JsonConvert.SerializeObject(record)}");
+            }
+
+            string textBlock = string.Join($",{Environment.NewLine}", parts);
+
+            lock (progressFileLock)
+            {
+                if(isFirstAppend)
+                {
+                    isFirstAppend = false;
+                    System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, $"{Environment.NewLine}");
+                }
+                else
+                {
+                    System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, $",{Environment.NewLine}");
+                }
+
+                System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, textBlock);
             }
         }
 
@@ -322,6 +360,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                 foreach (Guid id in groupedRules.RecordIds)
                 {
                     Entity updateRecord = new Entity(groupedRules.TableLogicalName);
+                    updateRecord.Id = id;
                     updateRecord[groupedRules.PrimaryIdFieldLogicalName] = id;
 
                     foreach (AnonymizationRule rule in groupedRules.Rules)

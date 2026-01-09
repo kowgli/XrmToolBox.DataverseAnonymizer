@@ -7,5 +7,6 @@
         public bool BypassAsync { get; set; }
         public bool BypassFlows { get; set; }       
         public int Threads { get; set; }
+        public string StoreProcessedRecordsPath { get; internal set; }
     }
 }

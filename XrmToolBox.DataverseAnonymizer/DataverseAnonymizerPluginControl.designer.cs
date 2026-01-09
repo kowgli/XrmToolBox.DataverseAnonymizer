@@ -618,6 +618,7 @@
             this.bSkipProcessedRecordsPath.TabIndex = 35;
             this.bSkipProcessedRecordsPath.Text = "...";
             this.bSkipProcessedRecordsPath.UseVisualStyleBackColor = true;
+            this.bSkipProcessedRecordsPath.Click += new System.EventHandler(this.bSkipProcessedRecordsPath_Click);
             // 
             // bStoreProcessedRecordsPath
             // 
@@ -627,11 +628,13 @@
             this.bStoreProcessedRecordsPath.TabIndex = 34;
             this.bStoreProcessedRecordsPath.Text = "...";
             this.bStoreProcessedRecordsPath.UseVisualStyleBackColor = true;
+            this.bStoreProcessedRecordsPath.Click += new System.EventHandler(this.bStoreProcessedRecordsPath_Click);
             // 
             // tbSkipProcessedRecordsPath
             // 
             this.tbSkipProcessedRecordsPath.Location = new System.Drawing.Point(197, 120);
             this.tbSkipProcessedRecordsPath.Name = "tbSkipProcessedRecordsPath";
+            this.tbSkipProcessedRecordsPath.ReadOnly = true;
             this.tbSkipProcessedRecordsPath.Size = new System.Drawing.Size(438, 27);
             this.tbSkipProcessedRecordsPath.TabIndex = 33;
             // 
@@ -639,6 +642,7 @@
             // 
             this.tbStoreProcessedRecordsPath.Location = new System.Drawing.Point(197, 89);
             this.tbStoreProcessedRecordsPath.Name = "tbStoreProcessedRecordsPath";
+            this.tbStoreProcessedRecordsPath.ReadOnly = true;
             this.tbStoreProcessedRecordsPath.Size = new System.Drawing.Size(438, 27);
             this.tbStoreProcessedRecordsPath.TabIndex = 32;
             // 
