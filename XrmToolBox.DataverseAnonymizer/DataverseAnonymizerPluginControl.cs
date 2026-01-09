@@ -74,6 +74,11 @@ namespace XrmToolBox.DataverseAnonymizer
             }
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+            tbStoreProcessedRecordsPath.Visible = false;
+            tbSkipProcessedRecordsPath.Visible = false;
+            bStoreProcessedRecordsPath.Visible = false;
+            bSkipProcessedRecordsPath.Visible = false;
+
             ExecuteMethod(DisableOnPremNonSupportedFeatures);
 
             ExecuteMethod(FillEntities);
@@ -906,5 +911,15 @@ namespace XrmToolBox.DataverseAnonymizer
         }
 
         #endregion
+
+        private void cbStoreProcessedRecords_CheckedChanged(object sender, EventArgs e)
+        {
+            tbStoreProcessedRecordsPath.Visible = bStoreProcessedRecordsPath.Visible = cbStoreProcessedRecords.Checked;            
+        }
+
+        private void cbSkipProcessedRecords_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSkipProcessedRecordsPath.Visible = bSkipProcessedRecordsPath.Visible = cbSkipProcessedRecords.Checked;
+        }
     }
 }

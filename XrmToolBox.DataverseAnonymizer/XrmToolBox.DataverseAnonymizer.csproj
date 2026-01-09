@@ -221,7 +221,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataverseAnonymizerPluginControl.resx">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
@@ -239,6 +241,7 @@
     <Content Include="Img\icon32.ico" />
     <Content Include="Img\icon32.png" />
     <Content Include="Img\icon80.png" />
+    <None Include="Img\Gradient.png" />
     <None Include="Img\Upload.png" />
     <None Include="Img\Save_02.png" />
   </ItemGroup>

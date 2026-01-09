@@ -65,6 +65,13 @@
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.gbRun = new System.Windows.Forms.GroupBox();
+            this.bSkipProcessedRecordsPath = new System.Windows.Forms.Button();
+            this.bStoreProcessedRecordsPath = new System.Windows.Forms.Button();
+            this.tbSkipProcessedRecordsPath = new System.Windows.Forms.TextBox();
+            this.tbStoreProcessedRecordsPath = new System.Windows.Forms.TextBox();
+            this.cbSkipProcessedRecords = new System.Windows.Forms.CheckBox();
+            this.cbStoreProcessedRecords = new System.Windows.Forms.CheckBox();
+            this.cbBypassAsync = new System.Windows.Forms.CheckBox();
             this.nudThreads = new System.Windows.Forms.NumericUpDown();
             this.lbThreads = new System.Windows.Forms.Label();
             this.llBypassHelp = new System.Windows.Forms.LinkLabel();
@@ -116,6 +123,8 @@
             this.lbRandomDateTo = new System.Windows.Forms.Label();
             this.lbRandomDateFrom = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.bStop = new System.Windows.Forms.Button();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -125,11 +134,10 @@
             this.ttbSave = new System.Windows.Forms.ToolStripButton();
             this.ttbLoad = new System.Windows.Forms.ToolStripButton();
             this.ttbFeedback = new System.Windows.Forms.ToolStripButton();
+            this.tslVersion = new System.Windows.Forms.ToolStripLabel();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
-            this.tslVersion = new System.Windows.Forms.ToolStripLabel();
-            this.cbBypassAsync = new System.Windows.Forms.CheckBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -245,6 +253,7 @@
             // lbTable
             // 
             this.lbTable.AutoSize = true;
+            this.lbTable.BackColor = System.Drawing.Color.Transparent;
             this.lbTable.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTable.Location = new System.Drawing.Point(12, 27);
             this.lbTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -256,6 +265,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(102, 27);
             this.label1.Name = "label1";
@@ -276,6 +286,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(360, 27);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -328,6 +339,8 @@
             // 
             this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbField.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
+            this.gbField.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gbField.Controls.Add(this.bTestFilter);
             this.gbField.Controls.Add(this.bFetchXmlBuilder);
             this.gbField.Controls.Add(this.tbFetchXml);
@@ -349,10 +362,10 @@
             this.gbField.Controls.Add(this.label1);
             this.gbField.Controls.Add(this.comboField);
             this.gbField.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbField.Location = new System.Drawing.Point(3, 3);
+            this.gbField.Location = new System.Drawing.Point(12, 3);
             this.gbField.MinimumSize = new System.Drawing.Size(679, 224);
             this.gbField.Name = "gbField";
-            this.gbField.Size = new System.Drawing.Size(679, 254);
+            this.gbField.Size = new System.Drawing.Size(679, 392);
             this.gbField.TabIndex = 22;
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
@@ -390,7 +403,7 @@
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 80);
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 210);
             this.tbFetchXml.TabIndex = 10;
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
@@ -398,6 +411,7 @@
             // rbFilterFetchXml
             // 
             this.rbFilterFetchXml.AutoSize = true;
+            this.rbFilterFetchXml.BackColor = System.Drawing.Color.Transparent;
             this.rbFilterFetchXml.Location = new System.Drawing.Point(134, 136);
             this.rbFilterFetchXml.Name = "rbFilterFetchXml";
             this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
@@ -405,12 +419,13 @@
             this.rbFilterFetchXml.Text = "FetchXML";
             this.toolTipDelay0.SetToolTip(this.rbFilterFetchXml, "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
         "ir ID to increase performance.");
-            this.rbFilterFetchXml.UseVisualStyleBackColor = true;
+            this.rbFilterFetchXml.UseVisualStyleBackColor = false;
             this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
             // 
             // rbFilterNone
             // 
             this.rbFilterNone.AutoSize = true;
+            this.rbFilterNone.BackColor = System.Drawing.Color.Transparent;
             this.rbFilterNone.Checked = true;
             this.rbFilterNone.Location = new System.Drawing.Point(74, 136);
             this.rbFilterNone.Name = "rbFilterNone";
@@ -418,12 +433,13 @@
             this.rbFilterNone.TabIndex = 8;
             this.rbFilterNone.TabStop = true;
             this.rbFilterNone.Text = "None";
-            this.rbFilterNone.UseVisualStyleBackColor = true;
+            this.rbFilterNone.UseVisualStyleBackColor = false;
             this.rbFilterNone.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(12, 138);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -461,6 +477,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(482, 13);
             this.label5.Name = "label5";
@@ -471,6 +488,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(134, 13);
             this.label4.Name = "label4";
@@ -487,9 +505,11 @@
             this.contentPanel.Controls.Add(this.gbRun);
             this.contentPanel.Controls.Add(this.gbRule);
             this.contentPanel.Controls.Add(this.gbField);
+            this.contentPanel.Controls.Add(this.panel1);
+            this.contentPanel.Controls.Add(this.panel2);
             this.contentPanel.Location = new System.Drawing.Point(-9, 34);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1157, 656);
+            this.contentPanel.Size = new System.Drawing.Size(1206, 913);
             this.contentPanel.TabIndex = 23;
             // 
             // dgvRules
@@ -509,13 +529,13 @@
             this.colRuleName,
             this.colEdit,
             this.colDelete});
-            this.dgvRules.Location = new System.Drawing.Point(688, 13);
+            this.dgvRules.Location = new System.Drawing.Point(697, 13);
             this.dgvRules.MultiSelect = false;
             this.dgvRules.Name = "dgvRules";
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(458, 633);
+            this.dgvRules.Size = new System.Drawing.Size(498, 890);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
@@ -565,6 +585,13 @@
             // gbRun
             // 
             this.gbRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbRun.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
+            this.gbRun.Controls.Add(this.bSkipProcessedRecordsPath);
+            this.gbRun.Controls.Add(this.bStoreProcessedRecordsPath);
+            this.gbRun.Controls.Add(this.tbSkipProcessedRecordsPath);
+            this.gbRun.Controls.Add(this.tbStoreProcessedRecordsPath);
+            this.gbRun.Controls.Add(this.cbSkipProcessedRecords);
+            this.gbRun.Controls.Add(this.cbStoreProcessedRecords);
             this.gbRun.Controls.Add(this.cbBypassAsync);
             this.gbRun.Controls.Add(this.nudThreads);
             this.gbRun.Controls.Add(this.lbThreads);
@@ -575,17 +602,86 @@
             this.gbRun.Controls.Add(this.cbBypassSync);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRun.Location = new System.Drawing.Point(3, 512);
+            this.gbRun.Location = new System.Drawing.Point(12, 699);
             this.gbRun.MinimumSize = new System.Drawing.Size(679, 135);
             this.gbRun.Name = "gbRun";
-            this.gbRun.Size = new System.Drawing.Size(679, 135);
+            this.gbRun.Size = new System.Drawing.Size(679, 203);
             this.gbRun.TabIndex = 25;
             this.gbRun.TabStop = false;
             this.gbRun.Text = "3. Run";
             // 
+            // bSkipProcessedRecordsPath
+            // 
+            this.bSkipProcessedRecordsPath.Location = new System.Drawing.Point(633, 119);
+            this.bSkipProcessedRecordsPath.Name = "bSkipProcessedRecordsPath";
+            this.bSkipProcessedRecordsPath.Size = new System.Drawing.Size(37, 30);
+            this.bSkipProcessedRecordsPath.TabIndex = 35;
+            this.bSkipProcessedRecordsPath.Text = "...";
+            this.bSkipProcessedRecordsPath.UseVisualStyleBackColor = true;
+            // 
+            // bStoreProcessedRecordsPath
+            // 
+            this.bStoreProcessedRecordsPath.Location = new System.Drawing.Point(632, 87);
+            this.bStoreProcessedRecordsPath.Name = "bStoreProcessedRecordsPath";
+            this.bStoreProcessedRecordsPath.Size = new System.Drawing.Size(37, 30);
+            this.bStoreProcessedRecordsPath.TabIndex = 34;
+            this.bStoreProcessedRecordsPath.Text = "...";
+            this.bStoreProcessedRecordsPath.UseVisualStyleBackColor = true;
+            // 
+            // tbSkipProcessedRecordsPath
+            // 
+            this.tbSkipProcessedRecordsPath.Location = new System.Drawing.Point(197, 120);
+            this.tbSkipProcessedRecordsPath.Name = "tbSkipProcessedRecordsPath";
+            this.tbSkipProcessedRecordsPath.Size = new System.Drawing.Size(438, 27);
+            this.tbSkipProcessedRecordsPath.TabIndex = 33;
+            // 
+            // tbStoreProcessedRecordsPath
+            // 
+            this.tbStoreProcessedRecordsPath.Location = new System.Drawing.Point(197, 89);
+            this.tbStoreProcessedRecordsPath.Name = "tbStoreProcessedRecordsPath";
+            this.tbStoreProcessedRecordsPath.Size = new System.Drawing.Size(438, 27);
+            this.tbStoreProcessedRecordsPath.TabIndex = 32;
+            // 
+            // cbSkipProcessedRecords
+            // 
+            this.cbSkipProcessedRecords.AutoSize = true;
+            this.cbSkipProcessedRecords.BackColor = System.Drawing.Color.Transparent;
+            this.cbSkipProcessedRecords.Location = new System.Drawing.Point(16, 122);
+            this.cbSkipProcessedRecords.Name = "cbSkipProcessedRecords";
+            this.cbSkipProcessedRecords.Size = new System.Drawing.Size(176, 23);
+            this.cbSkipProcessedRecords.TabIndex = 31;
+            this.cbSkipProcessedRecords.Text = "Skip processed records";
+            this.cbSkipProcessedRecords.UseVisualStyleBackColor = false;
+            this.cbSkipProcessedRecords.CheckedChanged += new System.EventHandler(this.cbSkipProcessedRecords_CheckedChanged);
+            // 
+            // cbStoreProcessedRecords
+            // 
+            this.cbStoreProcessedRecords.AutoSize = true;
+            this.cbStoreProcessedRecords.BackColor = System.Drawing.Color.Transparent;
+            this.cbStoreProcessedRecords.Location = new System.Drawing.Point(16, 91);
+            this.cbStoreProcessedRecords.Name = "cbStoreProcessedRecords";
+            this.cbStoreProcessedRecords.Size = new System.Drawing.Size(183, 23);
+            this.cbStoreProcessedRecords.TabIndex = 30;
+            this.cbStoreProcessedRecords.Text = "Store processed records";
+            this.cbStoreProcessedRecords.UseVisualStyleBackColor = false;
+            this.cbStoreProcessedRecords.CheckedChanged += new System.EventHandler(this.cbStoreProcessedRecords_CheckedChanged);
+            // 
+            // cbBypassAsync
+            // 
+            this.cbBypassAsync.AutoSize = true;
+            this.cbBypassAsync.BackColor = System.Drawing.Color.Transparent;
+            this.cbBypassAsync.Checked = true;
+            this.cbBypassAsync.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBypassAsync.Location = new System.Drawing.Point(16, 60);
+            this.cbBypassAsync.Name = "cbBypassAsync";
+            this.cbBypassAsync.Size = new System.Drawing.Size(317, 23);
+            this.cbBypassAsync.TabIndex = 29;
+            this.cbBypassAsync.Text = "Bypass asynchronous Plugins and Workflows";
+            this.cbBypassAsync.UseVisualStyleBackColor = false;
+            // 
             // nudThreads
             // 
-            this.nudThreads.Location = new System.Drawing.Point(348, 93);
+            this.nudThreads.Location = new System.Drawing.Point(79, 163);
             this.nudThreads.Maximum = new decimal(new int[] {
             32,
             0,
@@ -608,8 +704,9 @@
             // lbThreads
             // 
             this.lbThreads.AutoSize = true;
+            this.lbThreads.BackColor = System.Drawing.Color.Transparent;
             this.lbThreads.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbThreads.Location = new System.Drawing.Point(277, 95);
+            this.lbThreads.Location = new System.Drawing.Point(8, 165);
             this.lbThreads.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbThreads.Name = "lbThreads";
             this.lbThreads.Size = new System.Drawing.Size(67, 19);
@@ -619,6 +716,7 @@
             // llBypassHelp
             // 
             this.llBypassHelp.AutoSize = true;
+            this.llBypassHelp.BackColor = System.Drawing.Color.Transparent;
             this.llBypassHelp.Location = new System.Drawing.Point(555, 30);
             this.llBypassHelp.Name = "llBypassHelp";
             this.llBypassHelp.Size = new System.Drawing.Size(115, 19);
@@ -629,7 +727,7 @@
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(99, 93);
+            this.nudBatchSize.Location = new System.Drawing.Point(320, 165);
             this.nudBatchSize.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -652,8 +750,9 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(12, 95);
+            this.label15.Location = new System.Drawing.Point(233, 167);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(80, 19);
@@ -663,6 +762,7 @@
             // cbBypassFlows
             // 
             this.cbBypassFlows.AutoSize = true;
+            this.cbBypassFlows.BackColor = System.Drawing.Color.Transparent;
             this.cbBypassFlows.Checked = true;
             this.cbBypassFlows.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBypassFlows.Location = new System.Drawing.Point(349, 29);
@@ -670,11 +770,12 @@
             this.cbBypassFlows.Size = new System.Drawing.Size(115, 23);
             this.cbBypassFlows.TabIndex = 1;
             this.cbBypassFlows.Text = "Bypass Flows";
-            this.cbBypassFlows.UseVisualStyleBackColor = true;
+            this.cbBypassFlows.UseVisualStyleBackColor = false;
             // 
             // cbBypassSync
             // 
             this.cbBypassSync.AutoSize = true;
+            this.cbBypassSync.BackColor = System.Drawing.Color.Transparent;
             this.cbBypassSync.Checked = true;
             this.cbBypassSync.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBypassSync.Location = new System.Drawing.Point(16, 29);
@@ -682,13 +783,13 @@
             this.cbBypassSync.Size = new System.Drawing.Size(309, 23);
             this.cbBypassSync.TabIndex = 0;
             this.cbBypassSync.Text = "Bypass synchronous Plugins and Workflows";
-            this.cbBypassSync.UseVisualStyleBackColor = true;
+            this.cbBypassSync.UseVisualStyleBackColor = false;
             // 
             // bRun
             // 
             this.bRun.BackColor = System.Drawing.Color.Lime;
             this.bRun.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bRun.Location = new System.Drawing.Point(534, 88);
+            this.bRun.Location = new System.Drawing.Point(537, 161);
             this.bRun.Name = "bRun";
             this.bRun.Size = new System.Drawing.Size(132, 36);
             this.bRun.TabIndex = 3;
@@ -699,15 +800,16 @@
             // gbRule
             // 
             this.gbRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbRule.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
             this.gbRule.Controls.Add(this.llBogus);
             this.gbRule.Controls.Add(this.label12);
             this.gbRule.Controls.Add(this.tabcRule);
             this.gbRule.Controls.Add(this.bSave);
             this.gbRule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRule.Location = new System.Drawing.Point(3, 263);
+            this.gbRule.Location = new System.Drawing.Point(12, 413);
             this.gbRule.MinimumSize = new System.Drawing.Size(679, 243);
             this.gbRule.Name = "gbRule";
-            this.gbRule.Size = new System.Drawing.Size(679, 243);
+            this.gbRule.Size = new System.Drawing.Size(679, 266);
             this.gbRule.TabIndex = 23;
             this.gbRule.TabStop = false;
             this.gbRule.Text = "2. Set anonymization rule";
@@ -715,7 +817,8 @@
             // llBogus
             // 
             this.llBogus.AutoSize = true;
-            this.llBogus.Location = new System.Drawing.Point(478, 208);
+            this.llBogus.BackColor = System.Drawing.Color.Transparent;
+            this.llBogus.Location = new System.Drawing.Point(478, 205);
             this.llBogus.Name = "llBogus";
             this.llBogus.Size = new System.Drawing.Size(194, 19);
             this.llBogus.TabIndex = 2;
@@ -726,8 +829,9 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(154, 211);
+            this.label12.Location = new System.Drawing.Point(154, 208);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(251, 15);
             this.label12.TabIndex = 1;
@@ -740,7 +844,7 @@
             this.tabcRule.Controls.Add(this.tpRandomInt);
             this.tabcRule.Controls.Add(this.tpRandomDec);
             this.tabcRule.Controls.Add(this.tpRandomDate);
-            this.tabcRule.Location = new System.Drawing.Point(16, 26);
+            this.tabcRule.Location = new System.Drawing.Point(16, 33);
             this.tabcRule.Name = "tabcRule";
             this.tabcRule.SelectedIndex = 0;
             this.tabcRule.Size = new System.Drawing.Size(654, 157);
@@ -1264,13 +1368,31 @@
             // bSave
             // 
             this.bSave.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bSave.Location = new System.Drawing.Point(16, 198);
+            this.bSave.Location = new System.Drawing.Point(16, 205);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(132, 36);
             this.bSave.TabIndex = 1;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = true;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Location = new System.Drawing.Point(-11, 679);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(739, 18);
+            this.panel1.TabIndex = 27;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(-11, 395);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(780, 18);
+            this.panel2.TabIndex = 28;
             // 
             // bStop
             // 
@@ -1281,7 +1403,7 @@
             this.bStop.ForeColor = System.Drawing.Color.Red;
             this.bStop.Location = new System.Drawing.Point(-20, 32);
             this.bStop.Name = "bStop";
-            this.bStop.Size = new System.Drawing.Size(1191, 53);
+            this.bStop.Size = new System.Drawing.Size(1240, 53);
             this.bStop.TabIndex = 24;
             this.bStop.Text = "STOP";
             this.bStop.UseVisualStyleBackColor = false;
@@ -1329,7 +1451,7 @@
             this.tslVersion});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1151, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1200, 25);
             this.toolStrip.TabIndex = 25;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -1361,6 +1483,14 @@
             this.ttbFeedback.Text = "Feedback";
             this.ttbFeedback.Click += new System.EventHandler(this.ttbFeedback_Click);
             // 
+            // tslVersion
+            // 
+            this.tslVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tslVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.tslVersion.Name = "tslVersion";
+            this.tslVersion.Size = new System.Drawing.Size(152, 22);
+            this.tslVersion.Text = "Dataverse Anonymizer {0}";
+            // 
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "json";
@@ -1380,26 +1510,6 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // tslVersion
-            // 
-            this.tslVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tslVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.tslVersion.Name = "tslVersion";
-            this.tslVersion.Size = new System.Drawing.Size(152, 22);
-            this.tslVersion.Text = "Dataverse Anonymizer {0}";
-            // 
-            // cbBypassAsync
-            // 
-            this.cbBypassAsync.AutoSize = true;
-            this.cbBypassAsync.Checked = true;
-            this.cbBypassAsync.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBypassAsync.Location = new System.Drawing.Point(16, 58);
-            this.cbBypassAsync.Name = "cbBypassAsync";
-            this.cbBypassAsync.Size = new System.Drawing.Size(317, 23);
-            this.cbBypassAsync.TabIndex = 29;
-            this.cbBypassAsync.Text = "Bypass asynchronous Plugins and Workflows";
-            this.cbBypassAsync.UseVisualStyleBackColor = true;
-            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -1411,7 +1521,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DataverseAnonymizerPluginControl";
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1151, 693);
+            this.Size = new System.Drawing.Size(1200, 950);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -1546,5 +1656,13 @@
         private System.Windows.Forms.Button bTestFilter;
         private System.Windows.Forms.ToolStripLabel tslVersion;
         private System.Windows.Forms.CheckBox cbBypassAsync;
+        private System.Windows.Forms.CheckBox cbStoreProcessedRecords;
+        private System.Windows.Forms.CheckBox cbSkipProcessedRecords;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox tbSkipProcessedRecordsPath;
+        private System.Windows.Forms.TextBox tbStoreProcessedRecordsPath;
+        private System.Windows.Forms.Button bSkipProcessedRecordsPath;
+        private System.Windows.Forms.Button bStoreProcessedRecordsPath;
     }
 }
