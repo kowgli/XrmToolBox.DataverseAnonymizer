@@ -298,30 +298,16 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         private bool isFirstAppend = true;
         private void AppendToProgressFile(UpdateRequest[] batch)
         {
-            var records = batch.Select(b => new { tab = b.Target.LogicalName, id = b.Target.Id }).ToArray();
+            StringBuilder textBlock = new StringBuilder();
 
-            List<string> parts = new List<string>();
-
-            foreach (var record in records)
+            foreach (UpdateRequest request in batch)
             {
-                parts.Add($"\t{Newtonsoft.Json.JsonConvert.SerializeObject(record)}");
+                textBlock.AppendLine(SerializationHelper.FormatRecord(request.Target));
             }
-
-            string textBlock = string.Join($",{Environment.NewLine}", parts);
-
+           
             lock (progressFileLock)
             {
-                if(isFirstAppend)
-                {
-                    isFirstAppend = false;
-                    System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, $"{Environment.NewLine}");
-                }
-                else
-                {
-                    System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, $",{Environment.NewLine}");
-                }
-
-                System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, textBlock);
+                System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, textBlock.ToString());
             }
         }
 

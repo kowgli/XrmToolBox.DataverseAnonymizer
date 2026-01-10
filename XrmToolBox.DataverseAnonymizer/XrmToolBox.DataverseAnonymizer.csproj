@@ -196,6 +196,7 @@
     <Compile Include="Helpers\CrmHelper.cs" />
     <Compile Include="Helpers\DataUpdateRunner.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
+    <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\StateSaveLoadHelper.cs" />
     <Compile Include="Models\CrmRecord.cs" />
     <Compile Include="Rules\BogusDataSetWithMethods.cs" />

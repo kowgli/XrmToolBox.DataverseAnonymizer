@@ -639,7 +639,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 FormDisabled(true);
 
-                string storeProcessedRecordsPath = InitProcessedRecordsFile();
+                string storeProcessedRecordsPath = InitProcessedRecordsFile(out bool abort);
+                if (abort) { return; }
 
                 WorkSettings settings = new WorkSettings
                 {
@@ -676,13 +677,28 @@ namespace XrmToolBox.DataverseAnonymizer
             }
         }
 
-        private string InitProcessedRecordsFile()
+        private string InitProcessedRecordsFile(out bool abort)
         {
+            abort = false;
+            
             if (!cbStoreProcessedRecords.Checked) { return null; }
 
             string path = tbStoreProcessedRecordsPath.Text;
 
-            File.WriteAllText(path, "[");
+            if(File.Exists(path)) 
+            {
+                DialogResult res = MessageBox.Show("Processed records file already exists. Do you want to append to the existing file? Choosing 'No' will overwrite it.", "File exists", MessageBoxButtons.YesNoCancel);
+
+                if (res == DialogResult.No)
+                {
+                    File.WriteAllText(path, "");
+                }
+                else if(res == DialogResult.Cancel)
+                {
+                    abort = true;
+                    return null;
+                }
+            }
 
             return path;
         }
@@ -954,9 +970,13 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void bStoreProcessedRecordsPath_Click(object sender, EventArgs e)
         {
+            string originalFilter = saveFileDialog.Filter;
+
+            saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
+
             if (Service != null)
             {
-                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - processed - {DateTime.Now:yyyyMMdd_HHmmss}.json";
+                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - processed - {DateTime.Now:yyyyMMdd_HHmmss}.txt";
             }
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -964,7 +984,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 tbStoreProcessedRecordsPath.Text = saveFileDialog.FileName;
             }
 
-            saveFileDialog.Filter = "JSON files|*.json|All files|*.*";
+            saveFileDialog.Filter = originalFilter;
         }
 
         private void bSkipProcessedRecordsPath_Click(object sender, EventArgs e)
