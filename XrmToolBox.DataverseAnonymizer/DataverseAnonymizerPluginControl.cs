@@ -2,6 +2,7 @@
 #define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
+using Microsoft.Win32;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -637,10 +638,10 @@ namespace XrmToolBox.DataverseAnonymizer
                     return;
                 }
 
-                FormDisabled(true);
-
                 string storeProcessedRecordsPath = InitProcessedRecordsFile(out bool abort);
                 if (abort) { return; }
+
+                FormDisabled(true);
 
                 WorkSettings settings = new WorkSettings
                 {
@@ -971,6 +972,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void bStoreProcessedRecordsPath_Click(object sender, EventArgs e)
         {
             string originalFilter = saveFileDialog.Filter;
+            saveFileDialog.OverwritePrompt = false;
 
             saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
 
@@ -985,6 +987,7 @@ namespace XrmToolBox.DataverseAnonymizer
             }
 
             saveFileDialog.Filter = originalFilter;
+            saveFileDialog.OverwritePrompt = true;
         }
 
         private void bSkipProcessedRecordsPath_Click(object sender, EventArgs e)

@@ -138,6 +138,10 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
@@ -157,7 +161,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).BeginInit();
             this.tpRandomDate.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.toolStrip.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.gbFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -337,16 +344,8 @@
             // 
             // gbField
             // 
-            this.gbField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.gbField.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
             this.gbField.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.gbField.Controls.Add(this.bTestFilter);
-            this.gbField.Controls.Add(this.bFetchXmlBuilder);
-            this.gbField.Controls.Add(this.tbFetchXml);
-            this.gbField.Controls.Add(this.rbFilterFetchXml);
-            this.gbField.Controls.Add(this.rbFilterNone);
-            this.gbField.Controls.Add(this.label16);
             this.gbField.Controls.Add(this.bClearFieldFilter);
             this.gbField.Controls.Add(this.bClearTableFilter);
             this.gbField.Controls.Add(this.label5);
@@ -363,16 +362,16 @@
             this.gbField.Controls.Add(this.comboField);
             this.gbField.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbField.Location = new System.Drawing.Point(12, 3);
-            this.gbField.MinimumSize = new System.Drawing.Size(679, 224);
+            this.gbField.MinimumSize = new System.Drawing.Size(679, 131);
             this.gbField.Name = "gbField";
-            this.gbField.Size = new System.Drawing.Size(679, 392);
+            this.gbField.Size = new System.Drawing.Size(679, 131);
             this.gbField.TabIndex = 22;
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
             // 
             // bTestFilter
             // 
-            this.bTestFilter.Location = new System.Drawing.Point(390, 131);
+            this.bTestFilter.Location = new System.Drawing.Point(395, 22);
             this.bTestFilter.Name = "bTestFilter";
             this.bTestFilter.Size = new System.Drawing.Size(135, 30);
             this.bTestFilter.TabIndex = 32;
@@ -383,7 +382,7 @@
             // 
             // bFetchXmlBuilder
             // 
-            this.bFetchXmlBuilder.Location = new System.Drawing.Point(531, 131);
+            this.bFetchXmlBuilder.Location = new System.Drawing.Point(536, 22);
             this.bFetchXmlBuilder.Name = "bFetchXmlBuilder";
             this.bFetchXmlBuilder.Size = new System.Drawing.Size(135, 30);
             this.bFetchXmlBuilder.TabIndex = 31;
@@ -398,12 +397,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFetchXml.Location = new System.Drawing.Point(16, 165);
+            this.tbFetchXml.Location = new System.Drawing.Point(17, 58);
             this.tbFetchXml.MinimumSize = new System.Drawing.Size(4, 40);
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 210);
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 178);
             this.tbFetchXml.TabIndex = 10;
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
@@ -412,7 +411,7 @@
             // 
             this.rbFilterFetchXml.AutoSize = true;
             this.rbFilterFetchXml.BackColor = System.Drawing.Color.Transparent;
-            this.rbFilterFetchXml.Location = new System.Drawing.Point(134, 136);
+            this.rbFilterFetchXml.Location = new System.Drawing.Point(139, 27);
             this.rbFilterFetchXml.Name = "rbFilterFetchXml";
             this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
             this.rbFilterFetchXml.TabIndex = 9;
@@ -427,7 +426,7 @@
             this.rbFilterNone.AutoSize = true;
             this.rbFilterNone.BackColor = System.Drawing.Color.Transparent;
             this.rbFilterNone.Checked = true;
-            this.rbFilterNone.Location = new System.Drawing.Point(74, 136);
+            this.rbFilterNone.Location = new System.Drawing.Point(79, 27);
             this.rbFilterNone.Name = "rbFilterNone";
             this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
             this.rbFilterNone.TabIndex = 8;
@@ -441,7 +440,7 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(12, 138);
+            this.label16.Location = new System.Drawing.Point(17, 29);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 19);
@@ -501,15 +500,17 @@
             this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentPanel.Controls.Add(this.gbFilter);
             this.contentPanel.Controls.Add(this.dgvRules);
             this.contentPanel.Controls.Add(this.gbRun);
             this.contentPanel.Controls.Add(this.gbRule);
             this.contentPanel.Controls.Add(this.gbField);
             this.contentPanel.Controls.Add(this.panel1);
             this.contentPanel.Controls.Add(this.panel2);
+            this.contentPanel.Controls.Add(this.panel4);
             this.contentPanel.Location = new System.Drawing.Point(-9, 34);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1206, 913);
+            this.contentPanel.Size = new System.Drawing.Size(1206, 906);
             this.contentPanel.TabIndex = 23;
             // 
             // dgvRules
@@ -529,13 +530,13 @@
             this.colRuleName,
             this.colEdit,
             this.colDelete});
-            this.dgvRules.Location = new System.Drawing.Point(697, 13);
+            this.dgvRules.Location = new System.Drawing.Point(697, 3);
             this.dgvRules.MultiSelect = false;
             this.dgvRules.Name = "dgvRules";
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(498, 890);
+            this.dgvRules.Size = new System.Drawing.Size(498, 894);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
@@ -602,13 +603,13 @@
             this.gbRun.Controls.Add(this.cbBypassSync);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRun.Location = new System.Drawing.Point(12, 699);
-            this.gbRun.MinimumSize = new System.Drawing.Size(679, 135);
+            this.gbRun.Location = new System.Drawing.Point(12, 694);
+            this.gbRun.MinimumSize = new System.Drawing.Size(679, 203);
             this.gbRun.Name = "gbRun";
             this.gbRun.Size = new System.Drawing.Size(679, 203);
             this.gbRun.TabIndex = 25;
             this.gbRun.TabStop = false;
-            this.gbRun.Text = "3. Run";
+            this.gbRun.Text = "4. Run";
             // 
             // bSkipProcessedRecordsPath
             // 
@@ -803,17 +804,16 @@
             // 
             // gbRule
             // 
-            this.gbRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbRule.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
             this.gbRule.Controls.Add(this.llBogus);
             this.gbRule.Controls.Add(this.label12);
             this.gbRule.Controls.Add(this.tabcRule);
             this.gbRule.Controls.Add(this.bSave);
             this.gbRule.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRule.Location = new System.Drawing.Point(12, 413);
-            this.gbRule.MinimumSize = new System.Drawing.Size(679, 243);
+            this.gbRule.Location = new System.Drawing.Point(12, 154);
+            this.gbRule.MinimumSize = new System.Drawing.Size(679, 253);
             this.gbRule.Name = "gbRule";
-            this.gbRule.Size = new System.Drawing.Size(679, 266);
+            this.gbRule.Size = new System.Drawing.Size(679, 253);
             this.gbRule.TabIndex = 23;
             this.gbRule.TabStop = false;
             this.gbRule.Text = "2. Set anonymization rule";
@@ -1384,16 +1384,16 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(-11, 679);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Location = new System.Drawing.Point(-11, 673);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(739, 18);
             this.panel1.TabIndex = 27;
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(-11, 395);
+            this.panel2.Location = new System.Drawing.Point(-13, 134);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(780, 18);
             this.panel2.TabIndex = 28;
@@ -1514,18 +1514,68 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Location = new System.Drawing.Point(-2, -157);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(739, 18);
+            this.panel3.TabIndex = 28;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Location = new System.Drawing.Point(-18, 407);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(739, 18);
+            this.panel4.TabIndex = 29;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Location = new System.Drawing.Point(-2, -157);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(739, 18);
+            this.panel5.TabIndex = 28;
+            // 
+            // gbFilter
+            // 
+            this.gbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.gbFilter.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
+            this.gbFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gbFilter.Controls.Add(this.tbFetchXml);
+            this.gbFilter.Controls.Add(this.bTestFilter);
+            this.gbFilter.Controls.Add(this.bFetchXmlBuilder);
+            this.gbFilter.Controls.Add(this.label16);
+            this.gbFilter.Controls.Add(this.rbFilterNone);
+            this.gbFilter.Controls.Add(this.rbFilterFetchXml);
+            this.gbFilter.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbFilter.Location = new System.Drawing.Point(12, 427);
+            this.gbFilter.MinimumSize = new System.Drawing.Size(679, 136);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(679, 246);
+            this.gbFilter.TabIndex = 36;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "3. Optional filter";
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.contentPanel);
+            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.bStop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(0);
+            this.MinimumSize = new System.Drawing.Size(1200, 834);
             this.Name = "DataverseAnonymizerPluginControl";
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1200, 950);
+            this.Size = new System.Drawing.Size(1200, 943);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -1554,8 +1604,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).EndInit();
             this.tpRandomDate.ResumeLayout(false);
             this.tpRandomDate.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.gbFilter.ResumeLayout(false);
+            this.gbFilter.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1668,5 +1722,9 @@
         private System.Windows.Forms.TextBox tbStoreProcessedRecordsPath;
         private System.Windows.Forms.Button bSkipProcessedRecordsPath;
         private System.Windows.Forms.Button bStoreProcessedRecordsPath;
+        private System.Windows.Forms.GroupBox gbFilter;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel3;
     }
 }
