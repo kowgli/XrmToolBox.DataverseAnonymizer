@@ -650,7 +650,8 @@ namespace XrmToolBox.DataverseAnonymizer
                     BypassSync = cbBypassSync.Checked,
                     BypassAsync = cbBypassAsync.Checked,
                     BypassFlows = cbBypassFlows.Checked,
-                    StoreProcessedRecordsPath = storeProcessedRecordsPath
+                    StoreProcessedRecordsPath = storeProcessedRecordsPath,
+                    SkipRecordsPath = tbSkipProcessedRecordsPath.Text
                 };
 
                 DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
@@ -907,7 +908,18 @@ namespace XrmToolBox.DataverseAnonymizer
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK) { return; }
 
-            StateSaveLoadHelper.Save(fetchFilters, rules, saveFileDialog.FileName);
+            WorkSettings settings = new WorkSettings
+            {
+                BatchSize = (int)nudBatchSize.Value,
+                Threads = (int)nudThreads.Value,
+                BypassSync = cbBypassSync.Checked,
+                BypassAsync = cbBypassAsync.Checked,
+                BypassFlows = cbBypassFlows.Checked,
+                StoreProcessedRecordsPath = tbStoreProcessedRecordsPath.Text,
+                SkipRecordsPath = tbSkipProcessedRecordsPath.Text
+            };
+
+            StateSaveLoadHelper.Save(fetchFilters, rules, settings, saveFileDialog.FileName);
         }
 
         private void ttbLoad_Click(object sender, EventArgs e)
@@ -916,7 +928,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
             try
             {
-                bool allOk = StateSaveLoadHelper.Load(fetchFilters, rules, bogusDataSource, tableDataSource, openFileDialog.FileName);
+                bool allOk = StateSaveLoadHelper.Load(fetchFilters, rules, bogusDataSource, tableDataSource, openFileDialog.FileName, out WorkSettings settings);
 
                 if (rules.Count > 0)
                 {
@@ -924,6 +936,16 @@ namespace XrmToolBox.DataverseAnonymizer
                 }
 
                 RestoreFiltersForTable();
+
+                cbBypassSync.Checked = settings.BypassSync;
+                cbBypassAsync.Checked = settings.BypassAsync;
+                cbBypassFlows.Checked = settings.BypassFlows;
+                nudThreads.Value = settings.Threads;
+                nudBatchSize.Value = settings.BatchSize;
+                tbStoreProcessedRecordsPath.Text = settings.StoreProcessedRecordsPath;
+                tbSkipProcessedRecordsPath.Text = settings.SkipRecordsPath;
+                cbSkipProcessedRecords.Checked = !string.IsNullOrWhiteSpace(settings.SkipRecordsPath);
+                cbStoreProcessedRecords.Checked = !string.IsNullOrWhiteSpace(settings.StoreProcessedRecordsPath);
 
                 if (!allOk)
                 {
@@ -962,11 +984,19 @@ namespace XrmToolBox.DataverseAnonymizer
         private void cbStoreProcessedRecords_CheckedChanged(object sender, EventArgs e)
         {
             tbStoreProcessedRecordsPath.Visible = bStoreProcessedRecordsPath.Visible = cbStoreProcessedRecords.Checked;
+            if (!tbStoreProcessedRecordsPath.Visible)
+            {
+                tbStoreProcessedRecordsPath.Text = "";
+            }
         }
 
         private void cbSkipProcessedRecords_CheckedChanged(object sender, EventArgs e)
         {
             tbSkipProcessedRecordsPath.Visible = bSkipProcessedRecordsPath.Visible = cbSkipProcessedRecords.Checked;
+            if(!tbSkipProcessedRecordsPath.Visible)
+            {
+                tbSkipProcessedRecordsPath.Text = "";
+            }
         }
 
         private void bStoreProcessedRecordsPath_Click(object sender, EventArgs e)
@@ -992,12 +1022,17 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void bSkipProcessedRecordsPath_Click(object sender, EventArgs e)
         {
+            string originalFilter = openFileDialog.Filter;
+
             openFileDialog.FileName = "";
+            openFileDialog.Filter = "Text files|*.txt|All files|*.*";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 tbSkipProcessedRecordsPath.Text = openFileDialog.FileName;
             }
+
+            openFileDialog.Filter = originalFilter;
         }
     }
 }

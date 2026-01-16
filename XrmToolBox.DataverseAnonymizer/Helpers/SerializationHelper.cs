@@ -13,6 +13,13 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             return $"{record.LogicalName}|{record.Id:N}";
         }
 
+        public static string FormatRecord(string table, Guid id)
+        {
+            table = table ?? throw new ArgumentNullException(nameof(table));
+
+            return $"{table}|{id:N}";
+        }
+
         public static CrmRecord ParseRecord(string formattedRecord)
         {
             formattedRecord = formattedRecord ?? throw new ArgumentException(nameof(formattedRecord));

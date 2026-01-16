@@ -13,12 +13,13 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 {
     public class StateSaveLoadHelper
     {
-        public static void Save(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, string filePath)
+        public static void Save(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, WorkSettings workSettings, string filePath)
         {
             SavedState savedState = new SavedState
             {
                 Filters = fetchFilters.Select(ff => new SavedState.Filter { Table = ff.Key, FetchXml = ff.Value }).ToArray(),
-                Rules = rules.Select(r => r.ToSaveModel()).ToArray()
+                Rules = rules.Select(r => r.ToSaveModel()).ToArray(),
+                WorkSettings = workSettings
             };
 
             string fileContents = JsonConvert.SerializeObject(savedState, Formatting.Indented);
@@ -27,7 +28,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         }
 
         /// <returns>True if all rules loaded successfully, false otherwise.</returns>
-        public static bool Load(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, BogusDataSource bogusDataSource, TableDataSource tableDataSource, string fileName)
+        public static bool Load(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, BogusDataSource bogusDataSource, TableDataSource tableDataSource, string fileName, out WorkSettings workSettings)
         {
             bool allOk = true;
 
@@ -113,6 +114,8 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     }
                 });
             }
+
+            workSettings = savedState.WorkSettings ?? new WorkSettings();
 
             return allOk;
         }

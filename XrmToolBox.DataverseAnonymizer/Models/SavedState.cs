@@ -57,5 +57,6 @@ namespace XrmToolBox.DataverseAnonymizer.Models
 
         public Filter[] Filters { get; set; } = new Filter[0];
         public Rule[] Rules { get; set; } = new Rule[0];
+        public WorkSettings WorkSettings = new WorkSettings();
     }
 }

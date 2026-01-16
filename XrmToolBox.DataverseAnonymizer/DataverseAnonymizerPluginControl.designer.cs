@@ -47,17 +47,18 @@
             this.comboFieldFormat = new System.Windows.Forms.ComboBox();
             this.comboField = new System.Windows.Forms.ComboBox();
             this.gbField = new System.Windows.Forms.GroupBox();
+            this.bClearFieldFilter = new System.Windows.Forms.Button();
+            this.bClearTableFilter = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.bTestFilter = new System.Windows.Forms.Button();
             this.bFetchXmlBuilder = new System.Windows.Forms.Button();
             this.tbFetchXml = new System.Windows.Forms.TextBox();
             this.rbFilterFetchXml = new System.Windows.Forms.RadioButton();
             this.rbFilterNone = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
-            this.bClearFieldFilter = new System.Windows.Forms.Button();
-            this.bClearTableFilter = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.contentPanel = new System.Windows.Forms.Panel();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
             this.dgvRules = new System.Windows.Forms.DataGridView();
             this.colTableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -124,7 +125,10 @@
             this.lbRandomDateFrom = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.bStop = new System.Windows.Forms.Button();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -138,12 +142,9 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.gbFilter = new System.Windows.Forms.GroupBox();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
+            this.gbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
             this.gbRun.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
@@ -162,9 +163,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).BeginInit();
             this.tpRandomDate.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.gbFilter.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -369,84 +369,6 @@
             this.gbField.TabStop = false;
             this.gbField.Text = "1. Select field";
             // 
-            // bTestFilter
-            // 
-            this.bTestFilter.Location = new System.Drawing.Point(395, 22);
-            this.bTestFilter.Name = "bTestFilter";
-            this.bTestFilter.Size = new System.Drawing.Size(135, 30);
-            this.bTestFilter.TabIndex = 32;
-            this.bTestFilter.Text = "Test Filter";
-            this.bTestFilter.UseVisualStyleBackColor = true;
-            this.bTestFilter.Visible = false;
-            this.bTestFilter.Click += new System.EventHandler(this.bTestFilter_Click);
-            // 
-            // bFetchXmlBuilder
-            // 
-            this.bFetchXmlBuilder.Location = new System.Drawing.Point(536, 22);
-            this.bFetchXmlBuilder.Name = "bFetchXmlBuilder";
-            this.bFetchXmlBuilder.Size = new System.Drawing.Size(135, 30);
-            this.bFetchXmlBuilder.TabIndex = 31;
-            this.bFetchXmlBuilder.Text = "FetchXML Builder";
-            this.bFetchXmlBuilder.UseVisualStyleBackColor = true;
-            this.bFetchXmlBuilder.Visible = false;
-            this.bFetchXmlBuilder.Click += new System.EventHandler(this.bFetchXmlBuilder_Click);
-            // 
-            // tbFetchXml
-            // 
-            this.tbFetchXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFetchXml.Location = new System.Drawing.Point(17, 58);
-            this.tbFetchXml.MinimumSize = new System.Drawing.Size(4, 40);
-            this.tbFetchXml.Multiline = true;
-            this.tbFetchXml.Name = "tbFetchXml";
-            this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 178);
-            this.tbFetchXml.TabIndex = 10;
-            this.tbFetchXml.Visible = false;
-            this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
-            // 
-            // rbFilterFetchXml
-            // 
-            this.rbFilterFetchXml.AutoSize = true;
-            this.rbFilterFetchXml.BackColor = System.Drawing.Color.Transparent;
-            this.rbFilterFetchXml.Location = new System.Drawing.Point(139, 27);
-            this.rbFilterFetchXml.Name = "rbFilterFetchXml";
-            this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
-            this.rbFilterFetchXml.TabIndex = 9;
-            this.rbFilterFetchXml.Text = "FetchXML";
-            this.toolTipDelay0.SetToolTip(this.rbFilterFetchXml, "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
-        "ir ID to increase performance.");
-            this.rbFilterFetchXml.UseVisualStyleBackColor = false;
-            this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
-            // 
-            // rbFilterNone
-            // 
-            this.rbFilterNone.AutoSize = true;
-            this.rbFilterNone.BackColor = System.Drawing.Color.Transparent;
-            this.rbFilterNone.Checked = true;
-            this.rbFilterNone.Location = new System.Drawing.Point(79, 27);
-            this.rbFilterNone.Name = "rbFilterNone";
-            this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
-            this.rbFilterNone.TabIndex = 8;
-            this.rbFilterNone.TabStop = true;
-            this.rbFilterNone.Text = "None";
-            this.rbFilterNone.UseVisualStyleBackColor = false;
-            this.rbFilterNone.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(17, 29);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(48, 19);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "Filter:";
-            // 
             // bClearFieldFilter
             // 
             this.bClearFieldFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -495,6 +417,84 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "Start with star * to use \"contains\" filter";
             // 
+            // bTestFilter
+            // 
+            this.bTestFilter.Location = new System.Drawing.Point(395, 22);
+            this.bTestFilter.Name = "bTestFilter";
+            this.bTestFilter.Size = new System.Drawing.Size(135, 30);
+            this.bTestFilter.TabIndex = 32;
+            this.bTestFilter.Text = "Test Filter";
+            this.bTestFilter.UseVisualStyleBackColor = true;
+            this.bTestFilter.Visible = false;
+            this.bTestFilter.Click += new System.EventHandler(this.bTestFilter_Click);
+            // 
+            // bFetchXmlBuilder
+            // 
+            this.bFetchXmlBuilder.Location = new System.Drawing.Point(536, 22);
+            this.bFetchXmlBuilder.Name = "bFetchXmlBuilder";
+            this.bFetchXmlBuilder.Size = new System.Drawing.Size(135, 30);
+            this.bFetchXmlBuilder.TabIndex = 31;
+            this.bFetchXmlBuilder.Text = "FetchXML Builder";
+            this.bFetchXmlBuilder.UseVisualStyleBackColor = true;
+            this.bFetchXmlBuilder.Visible = false;
+            this.bFetchXmlBuilder.Click += new System.EventHandler(this.bFetchXmlBuilder_Click);
+            // 
+            // tbFetchXml
+            // 
+            this.tbFetchXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFetchXml.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFetchXml.Location = new System.Drawing.Point(17, 58);
+            this.tbFetchXml.MinimumSize = new System.Drawing.Size(4, 40);
+            this.tbFetchXml.Multiline = true;
+            this.tbFetchXml.Name = "tbFetchXml";
+            this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 178);
+            this.tbFetchXml.TabIndex = 10;
+            this.tbFetchXml.Visible = false;
+            this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
+            // 
+            // rbFilterFetchXml
+            // 
+            this.rbFilterFetchXml.AutoSize = true;
+            this.rbFilterFetchXml.BackColor = System.Drawing.Color.Transparent;
+            this.rbFilterFetchXml.Location = new System.Drawing.Point(143, 27);
+            this.rbFilterFetchXml.Name = "rbFilterFetchXml";
+            this.rbFilterFetchXml.Size = new System.Drawing.Size(90, 23);
+            this.rbFilterFetchXml.TabIndex = 9;
+            this.rbFilterFetchXml.Text = "FetchXML";
+            this.toolTipDelay0.SetToolTip(this.rbFilterFetchXml, "Applies to all rules for the selected table. \r\nIn linked entities select only the" +
+        "ir ID to increase performance.");
+            this.rbFilterFetchXml.UseVisualStyleBackColor = false;
+            this.rbFilterFetchXml.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
+            // 
+            // rbFilterNone
+            // 
+            this.rbFilterNone.AutoSize = true;
+            this.rbFilterNone.BackColor = System.Drawing.Color.Transparent;
+            this.rbFilterNone.Checked = true;
+            this.rbFilterNone.Location = new System.Drawing.Point(79, 27);
+            this.rbFilterNone.Name = "rbFilterNone";
+            this.rbFilterNone.Size = new System.Drawing.Size(61, 23);
+            this.rbFilterNone.TabIndex = 8;
+            this.rbFilterNone.TabStop = true;
+            this.rbFilterNone.Text = "None";
+            this.rbFilterNone.UseVisualStyleBackColor = false;
+            this.rbFilterNone.CheckedChanged += new System.EventHandler(this.rbFilter_CheckedChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(17, 29);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 19);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "Filter:";
+            // 
             // contentPanel
             // 
             this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -512,6 +512,28 @@
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(1206, 906);
             this.contentPanel.TabIndex = 23;
+            // 
+            // gbFilter
+            // 
+            this.gbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.gbFilter.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
+            this.gbFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gbFilter.Controls.Add(this.tbFetchXml);
+            this.gbFilter.Controls.Add(this.bTestFilter);
+            this.gbFilter.Controls.Add(this.bFetchXmlBuilder);
+            this.gbFilter.Controls.Add(this.label16);
+            this.gbFilter.Controls.Add(this.rbFilterNone);
+            this.gbFilter.Controls.Add(this.rbFilterFetchXml);
+            this.gbFilter.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbFilter.Location = new System.Drawing.Point(12, 427);
+            this.gbFilter.MinimumSize = new System.Drawing.Size(679, 136);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(679, 246);
+            this.gbFilter.TabIndex = 36;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "3. Optional filter";
             // 
             // dgvRules
             // 
@@ -1390,6 +1412,15 @@
             this.panel1.Size = new System.Drawing.Size(739, 18);
             this.panel1.TabIndex = 27;
             // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Location = new System.Drawing.Point(-2, -157);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(739, 18);
+            this.panel3.TabIndex = 28;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1397,6 +1428,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(780, 18);
             this.panel2.TabIndex = 28;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Location = new System.Drawing.Point(-18, 407);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(739, 18);
+            this.panel4.TabIndex = 29;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Location = new System.Drawing.Point(-2, -157);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(739, 18);
+            this.panel5.TabIndex = 28;
             // 
             // bStop
             // 
@@ -1514,55 +1563,6 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Location = new System.Drawing.Point(-2, -157);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(739, 18);
-            this.panel3.TabIndex = 28;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Location = new System.Drawing.Point(-18, 407);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(739, 18);
-            this.panel4.TabIndex = 29;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Location = new System.Drawing.Point(-2, -157);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(739, 18);
-            this.panel5.TabIndex = 28;
-            // 
-            // gbFilter
-            // 
-            this.gbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.gbFilter.BackgroundImage = global::XrmToolBox.DataverseAnonymizer.Properties.Resources.Gradient;
-            this.gbFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.gbFilter.Controls.Add(this.tbFetchXml);
-            this.gbFilter.Controls.Add(this.bTestFilter);
-            this.gbFilter.Controls.Add(this.bFetchXmlBuilder);
-            this.gbFilter.Controls.Add(this.label16);
-            this.gbFilter.Controls.Add(this.rbFilterNone);
-            this.gbFilter.Controls.Add(this.rbFilterFetchXml);
-            this.gbFilter.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFilter.Location = new System.Drawing.Point(12, 427);
-            this.gbFilter.MinimumSize = new System.Drawing.Size(679, 136);
-            this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(679, 246);
-            this.gbFilter.TabIndex = 36;
-            this.gbFilter.TabStop = false;
-            this.gbFilter.Text = "3. Optional filter";
-            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -1580,6 +1580,8 @@
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
             this.contentPanel.ResumeLayout(false);
+            this.gbFilter.ResumeLayout(false);
+            this.gbFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
             this.gbRun.ResumeLayout(false);
             this.gbRun.PerformLayout();
@@ -1605,11 +1607,9 @@
             this.tpRandomDate.ResumeLayout(false);
             this.tpRandomDate.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.gbFilter.ResumeLayout(false);
-            this.gbFilter.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

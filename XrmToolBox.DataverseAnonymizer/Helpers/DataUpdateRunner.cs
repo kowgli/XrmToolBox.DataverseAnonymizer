@@ -108,6 +108,25 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     {
                         CrmRecord[] records = CrmHelper.GetAll(control.Service, groupedRules.TableLogicalName, groupedRules.PrimaryIdFieldLogicalName, groupedRules.FetchXmlFilter);
 
+                        if (System.IO.File.Exists(settings.SkipRecordsPath))
+                        {
+                            HashSet<string> skipRecords = new HashSet<string>(System.IO.File.ReadAllLines(settings.SkipRecordsPath).Select(l => l.Trim().ToLowerInvariant()));
+
+                            List<CrmRecord> filteredRecords = new List<CrmRecord>();
+
+                            foreach (CrmRecord record in records)
+                            {
+                                string hashKey = SerializationHelper.FormatRecord(groupedRules.TableLogicalName, record.Id).ToLowerInvariant();
+
+                                if (!skipRecords.Contains(hashKey))
+                                {
+                                    filteredRecords.Add(record);
+                                }
+                            }
+
+                            records = filteredRecords.ToArray();
+                        }
+
                         groupedRules.RecordIds = records.Select(r => r.Id).ToArray();
 
                         args.Result = groupedRules;
