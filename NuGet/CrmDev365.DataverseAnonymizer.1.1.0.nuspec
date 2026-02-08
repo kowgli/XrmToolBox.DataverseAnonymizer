@@ -16,7 +16,7 @@
 		</description>
 		<summary>XrmToolBox tool for anonymizing data in the Dataverse.</summary>
 		<releaseNotes>
-			Added option to save and skip processed records. UI improvement.
+			Added option to save and skip processed records. Fixed values. UI improvement.
 		</releaseNotes>
 		<copyright>CrmDev365 Lukasz Grzybowski-Glikman @2026</copyright>
 		<language>en-US</language>
