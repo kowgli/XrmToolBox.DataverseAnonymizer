@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -20,7 +21,6 @@ using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.DataverseAnonymizer.Rules;
 using XrmToolBox.Extensibility;
 using XrmToolBox.Extensibility.Interfaces;
-using static WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender;
 using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
@@ -64,15 +64,18 @@ namespace XrmToolBox.DataverseAnonymizer
 
             dtpRandomDateFrom.Value = DateTime.Today;
             dtpRandomDateTo.Value = DateTime.Today.AddDays(1);
+            dtpFixedDate.Value = DateTime.Today;
+            dtpFixedDateTime.Value = DateTime.Today;
 
             bTestFilter.Visible = false;
 
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (Service != null)
-            {
-                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - anonymization.json";
-            }
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            tbStoreProcessedRecordsPath.Visible = false;
+            tbSkipProcessedRecordsPath.Visible = false;
+            bStoreProcessedRecordsPath.Visible = false;
+            bSkipProcessedRecordsPath.Visible = false;
 
             ExecuteMethod(DisableOnPremNonSupportedFeatures);
 
@@ -283,14 +286,14 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             Dictionary<AttributeTypeCode, TabPage[]> typeToTabs = new Dictionary<AttributeTypeCode, TabPage[]>()
             {
-                { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData } },
-                { AttributeTypeCode.String, new []{ tpSequence, tpFakeData } },
-                { AttributeTypeCode.Integer, new []{ tpRandomInt } },
-                { AttributeTypeCode.BigInt, new []{ tpRandomInt } },
-                { AttributeTypeCode.Decimal, new []{ tpRandomDec } },
-                { AttributeTypeCode.Money, new []{ tpRandomDec } },
-                { AttributeTypeCode.Double, new []{ tpRandomDec } },
-                { AttributeTypeCode.DateTime, new []{ tpRandomDate } },
+                { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData, tpFixedString } },
+                { AttributeTypeCode.String, new []{ tpSequence, tpFakeData, tpFixedString } },
+                { AttributeTypeCode.Integer, new []{ tpRandomInt, tpFixedInt } },
+                { AttributeTypeCode.BigInt, new []{ tpRandomInt, tpFixedInt } },
+                { AttributeTypeCode.Decimal, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.Money, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.Double, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.DateTime, new []{ tpRandomDate, tpFixedDate } },
             };
 
             MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;
@@ -500,6 +503,26 @@ namespace XrmToolBox.DataverseAnonymizer
                     RangeEnd = dtpRandomDateTo.Value
                 } : null;
 
+                existingRule.FixedStringRule = tabcRule.SelectedTab == tpFixedString ? new FixedStringRule
+                {
+                    Value = tbFixedString.Text
+                } : null;
+
+                existingRule.FixedIntRule = tabcRule.SelectedTab == tpFixedInt ? new FixedIntRule
+                {
+                    Value = (int)nudFixedInt.Value
+                } : null;
+
+                existingRule.FixedDecimalRule = tabcRule.SelectedTab == tpFixedDec ? new FixedDecimalRule
+                {
+                    Value = nudFixedDec.Value
+                } : null;
+
+                existingRule.FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
+                {
+                    Value = dtpFixedDate.Value.Date.Add(dtpFixedDateTime.Value.TimeOfDay)
+                } : null;
+
                 dgvRules.Refresh();
             }
             else
@@ -534,6 +557,22 @@ namespace XrmToolBox.DataverseAnonymizer
                     {
                         RangeStart = dtpRandomDateFrom.Value,
                         RangeEnd = dtpRandomDateTo.Value
+                    } : null,
+                    FixedStringRule = tabcRule.SelectedTab == tpFixedString ? new FixedStringRule
+                    {
+                        Value = tbFixedString.Text
+                    } : null,
+                    FixedIntRule = tabcRule.SelectedTab == tpFixedInt ? new FixedIntRule
+                    {
+                        Value = (int)nudFixedInt.Value
+                    } : null,
+                    FixedDecimalRule = tabcRule.SelectedTab == tpFixedDec ? new FixedDecimalRule
+                    {
+                        Value = nudFixedDec.Value
+                    } : null,
+                    FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
+                    {
+                        Value = dtpFixedDate.Value.Date.Add(dtpFixedDateTime.Value.TimeOfDay)
                     } : null
                 });
             }
@@ -614,6 +653,27 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 tabcRule.SelectedTab = tpRandomDate;
             }
+            else if (rule.FixedStringRule != null)
+            {
+                tbFixedString.Text = rule.FixedStringRule.Value;
+                tabcRule.SelectedTab = tpFixedString;
+            }
+            else if (rule.FixedIntRule != null)
+            {
+                nudFixedInt.Value = rule.FixedIntRule.Value;
+                tabcRule.SelectedTab = tpFixedInt;
+            }
+            else if (rule.FixedDecimalRule != null)
+            {
+                nudFixedDec.Value = rule.FixedDecimalRule.Value;
+                tabcRule.SelectedTab = tpFixedDec;
+            }
+            else if (rule.FixedDateRule != null)
+            {
+                dtpFixedDate.Value = rule.FixedDateRule.Value.Date;
+                dtpFixedDateTime.Value = DateTime.Today.Add(rule.FixedDateRule.Value.TimeOfDay);
+                tabcRule.SelectedTab = tpFixedDate;
+            }
         }
 
         #endregion
@@ -622,48 +682,93 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void bRun_Click(object sender, EventArgs e)
         {
-            if (rules.Count == 0)
-            {
-                MessageBox.Show("Nothing to do. Add some fields and try again...", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (MessageBox.Show($"Anonymize the selected {rules.Count} fields?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
-            {
-                return;
-            }
-
-            FormDisabled(true);
-
-            WorkSettings settings = new WorkSettings
-            {
-                BatchSize = (int)nudBatchSize.Value,
-                Threads = (int)nudThreads.Value,
-                BypassSync = cbBypassSync.Checked,
-                BypassAsync = cbBypassAsync.Checked,
-                BypassFlows = cbBypassFlows.Checked              
-            };
-
-            DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
-            runner.OnDone += (object sender, EventArgs e) =>
-            {
-                if (this.IsDisposed) { return; }
-
-                FormDisabled(false);
-                running = false;
-                MessageBox.Show("All data successfully processed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
-
             try
             {
+                if (rules.Count == 0)
+                {
+                    MessageBox.Show("Nothing to do. Add some fields and try again...", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (MessageBox.Show($"Anonymize the selected {rules.Count} fields?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                string storeProcessedRecordsPath = InitProcessedRecordsFile(out bool abort);
+                if (abort) { return; }
+
+                FormDisabled(true);
+
+                WorkSettings settings = new WorkSettings
+                {
+                    BatchSize = (int)nudBatchSize.Value,
+                    Threads = (int)nudThreads.Value,
+                    BypassSync = cbBypassSync.Checked,
+                    BypassAsync = cbBypassAsync.Checked,
+                    BypassFlows = cbBypassFlows.Checked,
+                    StoreProcessedRecordsPath = storeProcessedRecordsPath,
+                    SkipRecordsPath = tbSkipProcessedRecordsPath.Text
+                };
+
+                DataUpdateRunner runner = new DataUpdateRunner(this, bogusDataSource, settings);
+                runner.OnDone += (object sender, EventArgs e) =>
+                {
+                    if (this.IsDisposed) { return; }
+
+                    FinalizeProcessedRecordsFile();
+
+                    FormDisabled(false);
+                    running = false;
+                    MessageBox.Show("All data successfully processed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+
                 running = true;
                 runner.Run(rules.ToArray(), fetchFilters);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                bStop_Click(null, null);
+                if (running)
+                {
+                    bStop_Click(null, null);
+                }
             }
+        }
+
+        private string InitProcessedRecordsFile(out bool abort)
+        {
+            abort = false;
+
+            if (!cbStoreProcessedRecords.Checked) { return null; }
+
+            string path = tbStoreProcessedRecordsPath.Text;
+
+            if (File.Exists(path))
+            {
+                DialogResult res = MessageBox.Show("Processed records file already exists. Do you want to append to the existing file? Choosing 'No' will overwrite it.", "File exists", MessageBoxButtons.YesNoCancel);
+
+                if (res == DialogResult.No)
+                {
+                    File.WriteAllText(path, "");
+                }
+                else if (res == DialogResult.Cancel)
+                {
+                    abort = true;
+                    return null;
+                }
+            }
+
+            return path;
+        }
+
+        private void FinalizeProcessedRecordsFile()
+        {
+            if (!cbStoreProcessedRecords.Checked) { return; }
+
+            string path = tbStoreProcessedRecordsPath.Text;
+
+            File.AppendAllText(path, $"{Environment.NewLine}]");
         }
 
         private void FormDisabled(bool disabled)
@@ -769,7 +874,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void rbFilter_CheckedChanged(object sender, EventArgs e)
         {
             tbFetchXml.Visible = rbFilterFetchXml.Checked;
-            bTestFilter.Visible = bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;          
+            bTestFilter.Visible = bFetchXmlBuilder.Visible = rbFilterFetchXml.Checked;
 
             if (rbFilterNone.Checked && CurrentTable != null && fetchFilters.ContainsKey(CurrentTable))
             {
@@ -811,7 +916,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 return;
             }
 
-           
+
             string idField = ((TableMetadataInfo)comboTable.SelectedItem).PrimaryIdAttribute;
             string nameField = ((TableMetadataInfo)comboTable.SelectedItem).PrimaryNameAttribute;
 
@@ -821,7 +926,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void TestFilter((string currentTable, string idField, string nameField, string fetchXml) arg)
         {
             FormDisabled(true);
-            
+
             WorkAsync(new WorkAsyncInfo
             {
                 Message = $"Executing query. Please wait...",
@@ -841,7 +946,7 @@ namespace XrmToolBox.DataverseAnonymizer
                     CrmRecord[] records = (CrmRecord[])args.Result;
 
                     RecordViewer recordViewer = new RecordViewer(records);
-                    recordViewer.ShowDialog();        
+                    recordViewer.ShowDialog();
                 }
             });
 
@@ -853,9 +958,25 @@ namespace XrmToolBox.DataverseAnonymizer
 
         private void ttbSave_Click(object sender, EventArgs e)
         {
+            if (Service != null)
+            {
+                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - anonymization.json";
+            }
+
             if (saveFileDialog.ShowDialog() != DialogResult.OK) { return; }
 
-            StateSaveLoadHelper.Save(fetchFilters, rules, saveFileDialog.FileName);
+            WorkSettings settings = new WorkSettings
+            {
+                BatchSize = (int)nudBatchSize.Value,
+                Threads = (int)nudThreads.Value,
+                BypassSync = cbBypassSync.Checked,
+                BypassAsync = cbBypassAsync.Checked,
+                BypassFlows = cbBypassFlows.Checked,
+                StoreProcessedRecordsPath = tbStoreProcessedRecordsPath.Text,
+                SkipRecordsPath = tbSkipProcessedRecordsPath.Text
+            };
+
+            StateSaveLoadHelper.Save(fetchFilters, rules, settings, saveFileDialog.FileName);
         }
 
         private void ttbLoad_Click(object sender, EventArgs e)
@@ -864,7 +985,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
             try
             {
-                bool allOk = StateSaveLoadHelper.Load(fetchFilters, rules, bogusDataSource, tableDataSource, openFileDialog.FileName);
+                bool allOk = StateSaveLoadHelper.Load(fetchFilters, rules, bogusDataSource, tableDataSource, openFileDialog.FileName, out WorkSettings settings);
 
                 if (rules.Count > 0)
                 {
@@ -872,6 +993,16 @@ namespace XrmToolBox.DataverseAnonymizer
                 }
 
                 RestoreFiltersForTable();
+
+                cbBypassSync.Checked = settings.BypassSync;
+                cbBypassAsync.Checked = settings.BypassAsync;
+                cbBypassFlows.Checked = settings.BypassFlows;
+                nudThreads.Value = settings.Threads;
+                nudBatchSize.Value = settings.BatchSize;
+                tbStoreProcessedRecordsPath.Text = settings.StoreProcessedRecordsPath;
+                tbSkipProcessedRecordsPath.Text = settings.SkipRecordsPath;
+                cbSkipProcessedRecords.Checked = !string.IsNullOrWhiteSpace(settings.SkipRecordsPath);
+                cbStoreProcessedRecords.Checked = !string.IsNullOrWhiteSpace(settings.StoreProcessedRecordsPath);
 
                 if (!allOk)
                 {
@@ -906,5 +1037,59 @@ namespace XrmToolBox.DataverseAnonymizer
         }
 
         #endregion
+
+        private void cbStoreProcessedRecords_CheckedChanged(object sender, EventArgs e)
+        {
+            tbStoreProcessedRecordsPath.Visible = bStoreProcessedRecordsPath.Visible = cbStoreProcessedRecords.Checked;
+            if (!tbStoreProcessedRecordsPath.Visible)
+            {
+                tbStoreProcessedRecordsPath.Text = "";
+            }
+        }
+
+        private void cbSkipProcessedRecords_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSkipProcessedRecordsPath.Visible = bSkipProcessedRecordsPath.Visible = cbSkipProcessedRecords.Checked;
+            if (!tbSkipProcessedRecordsPath.Visible)
+            {
+                tbSkipProcessedRecordsPath.Text = "";
+            }
+        }
+
+        private void bStoreProcessedRecordsPath_Click(object sender, EventArgs e)
+        {
+            string originalFilter = saveFileDialog.Filter;
+            saveFileDialog.OverwritePrompt = false;
+
+            saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
+
+            if (Service != null)
+            {
+                saveFileDialog.FileName = $"{((CrmServiceClient)Service).ConnectedOrgFriendlyName} - processed - {DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            }
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbStoreProcessedRecordsPath.Text = saveFileDialog.FileName;
+            }
+
+            saveFileDialog.Filter = originalFilter;
+            saveFileDialog.OverwritePrompt = true;
+        }
+
+        private void bSkipProcessedRecordsPath_Click(object sender, EventArgs e)
+        {
+            string originalFilter = openFileDialog.Filter;
+
+            openFileDialog.FileName = "";
+            openFileDialog.Filter = "Text files|*.txt|All files|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbSkipProcessedRecordsPath.Text = openFileDialog.FileName;
+            }
+
+            openFileDialog.Filter = originalFilter;
+        }
     }
 }

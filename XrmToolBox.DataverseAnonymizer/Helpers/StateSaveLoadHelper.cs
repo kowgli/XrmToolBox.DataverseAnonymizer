@@ -13,12 +13,13 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 {
     public class StateSaveLoadHelper
     {
-        public static void Save(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, string filePath)
+        public static void Save(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, WorkSettings workSettings, string filePath)
         {
             SavedState savedState = new SavedState
             {
                 Filters = fetchFilters.Select(ff => new SavedState.Filter { Table = ff.Key, FetchXml = ff.Value }).ToArray(),
-                Rules = rules.Select(r => r.ToSaveModel()).ToArray()
+                Rules = rules.Select(r => r.ToSaveModel()).ToArray(),
+                WorkSettings = workSettings
             };
 
             string fileContents = JsonConvert.SerializeObject(savedState, Formatting.Indented);
@@ -27,7 +28,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
         }
 
         /// <returns>True if all rules loaded successfully, false otherwise.</returns>
-        public static bool Load(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, BogusDataSource bogusDataSource, TableDataSource tableDataSource, string fileName)
+        public static bool Load(Dictionary<string, string> fetchFilters, BindingList<AnonymizationRule> rules, BogusDataSource bogusDataSource, TableDataSource tableDataSource, string fileName, out WorkSettings workSettings)
         {
             bool allOk = true;
 
@@ -47,7 +48,9 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             foreach (var rule in savedState.Rules)
             {
                 if (rule.Table == null || rule.Field == null || 
-                    (rule.Bogus == null && rule.Sequence == null && rule.RandomInt == null && rule.RandomDec == null && rule.RandomDate == null)
+                    (rule.Bogus == null && rule.Sequence == null 
+                    && rule.RandomInt == null && rule.RandomDec == null && rule.RandomDate == null
+                    && rule.FixedDate == null && rule.FixedDec == null && rule.FixedInt == null && rule.FixedString == null)
                 )
                 {
                     allOk = false;
@@ -110,9 +113,27 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     {
                         RangeStart = rule.RandomDate.RangeStart,
                         RangeEnd = rule.RandomDate.RangeEnd
+                    },
+                    FixedIntRule = rule.FixedInt == null ? null : new FixedIntRule
+                    {
+                        Value = rule.FixedInt.Value
+                    },
+                    FixedDecimalRule = rule.FixedDec == null ? null : new FixedDecimalRule
+                    {
+                        Value = rule.FixedDec.Value
+                    },
+                    FixedStringRule = rule.FixedString == null ? null : new FixedStringRule
+                    {
+                        Value = rule.FixedString.Value
+                    },
+                    FixedDateRule = rule.FixedDate == null ? null : new FixedDateRule
+                    {
+                        Value = rule.FixedDate.Value
                     }
                 });
             }
+
+            workSettings = savedState.WorkSettings ?? new WorkSettings();
 
             return allOk;
         }

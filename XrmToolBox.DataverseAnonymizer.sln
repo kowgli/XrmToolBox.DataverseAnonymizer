@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34601.278
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XrmToolBox.DataverseAnonymizer", "XrmToolBox.DataverseAnonymizer\XrmToolBox.DataverseAnonymizer.csproj", "{0F19CD86-1182-462B-843F-0B65CAA2933B}"
 EndProject
@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{CA49A15C
 		NuGet\CrmDev365.DataverseAnonymizer.0.5.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.5.0.nuspec
 		NuGet\CrmDev365.DataverseAnonymizer.0.6.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.0.6.0.nuspec
 		NuGet\CrmDev365.DataverseAnonymizer.1.0.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.1.0.0.nuspec
+		NuGet\CrmDev365.DataverseAnonymizer.1.1.0.nuspec = NuGet\CrmDev365.DataverseAnonymizer.1.1.0.nuspec
 	EndProjectSection
 EndProject
 Global

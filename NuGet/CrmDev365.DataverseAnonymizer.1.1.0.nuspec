@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>CrmDev365.DataverseAnonymizer</id>
-		<version>0.6.0</version>
+		<version>1.1.0</version>
 		<title>Data anonymizer for XrmToolbox</title>
 		<authors>CrmDev365 Lukasz Grzybowski-Glikman</authors>
 		<owners></owners>
@@ -16,9 +16,9 @@
 		</description>
 		<summary>XrmToolBox tool for anonymizing data in the Dataverse.</summary>
 		<releaseNotes>
-			Fixed critical bugs in on-premise environments. Tested in version 9.1. Older version not confirmed.
+			Added option to save and skip processed records. Fixed values. UI improvement.
 		</releaseNotes>
-		<copyright>CrmDev365 Lukasz Grzybowski-Glikman @2025</copyright>
+		<copyright>CrmDev365 Lukasz Grzybowski-Glikman @2026</copyright>
 		<language>en-US</language>
 		<tags>XrmToolBox Dataverse Anonymization</tags>
 		<dependencies>

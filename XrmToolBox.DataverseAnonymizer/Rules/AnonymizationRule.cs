@@ -7,12 +7,6 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
 {
     public class AnonymizationRule : INotifyPropertyChanged
     {
-        public enum RuleType
-        {
-            Sequence,
-            Bogus
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -82,17 +76,63 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
             }
         }
 
+        private FixedDateRule fixedDateRule;
+        public FixedDateRule FixedDateRule
+        {
+            get => fixedDateRule;
+            set
+            {
+                fixedDateRule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private FixedDecimalRule fixedDecimalRule;
+        public FixedDecimalRule FixedDecimalRule
+        {
+            get => fixedDecimalRule;
+            set
+            {
+                fixedDecimalRule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private FixedIntRule fixedIntRule;
+        public FixedIntRule FixedIntRule
+        {
+            get => fixedIntRule;
+            set
+            {
+                fixedIntRule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private FixedStringRule fixedStringRule;
+        public FixedStringRule FixedStringRule
+        {
+            get => fixedStringRule;
+            set
+            {
+                fixedStringRule = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string TableName => Table.ToString();
 
         public string FieldName => Field.ToString();
 
         public string RuleName => SequenceRule != null ? SequenceRule.ToString() :
-                                    RandomIntRule != null ? RandomIntRule.ToString() :
-                                    RandomDecimalRule != null ? RandomDecimalRule.ToString() :
-                                    RandomDateRule != null ? RandomDateRule.ToString() :
-                                        BogusRule?.ToString();
-
-        public RuleType Type => SequenceRule != null ? RuleType.Sequence : RuleType.Bogus;
+                                  RandomIntRule != null ? RandomIntRule.ToString() :
+                                  RandomDecimalRule != null ? RandomDecimalRule.ToString() :
+                                  RandomDateRule != null ? RandomDateRule.ToString() :
+                                  FixedIntRule != null ? FixedIntRule.ToString() :
+                                  FixedDecimalRule != null ? FixedDecimalRule.ToString() :    
+                                  FixedDateRule != null ? FixedDateRule.ToString() :
+                                  FixedStringRule != null ? FixedStringRule.ToString() :
+                                  BogusRule?.ToString();
 
         public SavedState.Rule ToSaveModel() => new SavedState.Rule
         {
@@ -124,6 +164,22 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
             {
                 RangeStart = randomDateRule.RangeStart,
                 RangeEnd = randomDateRule.RangeEnd
+            },
+            FixedInt = fixedIntRule == null ? null : new SavedState.Rule.FixedIntSettings
+            {
+                Value = fixedIntRule.Value
+            },
+            FixedDec = fixedDecimalRule == null ? null : new SavedState.Rule.FixedDecSettings
+            {
+                Value = fixedDecimalRule.Value
+            },
+            FixedString = fixedStringRule == null ? null : new SavedState.Rule.FixedStringSettings
+            {
+                Value = fixedStringRule.Value
+            },
+            FixedDate = fixedDateRule == null ? null : new SavedState.Rule.FixedDateSettings
+            {
+                Value = fixedDateRule.Value
             }
         };
     }

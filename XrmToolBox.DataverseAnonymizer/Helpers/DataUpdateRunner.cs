@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using XrmToolBox.DataverseAnonymizer.DataSources;
@@ -107,6 +108,25 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     {
                         CrmRecord[] records = CrmHelper.GetAll(control.Service, groupedRules.TableLogicalName, groupedRules.PrimaryIdFieldLogicalName, groupedRules.FetchXmlFilter);
 
+                        if (System.IO.File.Exists(settings.SkipRecordsPath))
+                        {
+                            HashSet<string> skipRecords = new HashSet<string>(System.IO.File.ReadAllLines(settings.SkipRecordsPath).Select(l => l.Trim().ToLowerInvariant()));
+
+                            List<CrmRecord> filteredRecords = new List<CrmRecord>();
+
+                            foreach (CrmRecord record in records)
+                            {
+                                string hashKey = SerializationHelper.FormatRecord(groupedRules.TableLogicalName, record.Id).ToLowerInvariant();
+
+                                if (!skipRecords.Contains(hashKey))
+                                {
+                                    filteredRecords.Add(record);
+                                }
+                              }
+
+                            records = filteredRecords.ToArray();
+                        }
+
                         groupedRules.RecordIds = records.Select(r => r.Id).ToArray();
 
                         args.Result = groupedRules;
@@ -128,7 +148,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             {
                 RuleProcessing groupedRules = (RuleProcessing)args.Result;
 
-                control.WorkAsync(new WorkAsyncInfo()
+                control.WorkAsync(new WorkAsyncInfo
                 {
                     Message = $"Creating requests for {groupedRules.TableLogicalName}...",
                     Work = (worker, args) =>
@@ -275,15 +295,38 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
 
                         string msg = $"Anonymizing {tableName}. Updated {count}/{totalCount}...";
                         control.SetWorkingMessage(msg);
+
+                        if(settings.StoreProcessedRecordsPath != null)
+                        {
+                            AppendToProgressFile(batch);
+                        }
                     }
                     catch { }
 
                 });
+
                 control.ShowStop(false);
             }
             catch (Exception ex)
             {
                 HandleException(ex);
+            }
+        }
+
+        private object progressFileLock = new object();
+        private bool isFirstAppend = true;
+        private void AppendToProgressFile(UpdateRequest[] batch)
+        {
+            StringBuilder textBlock = new StringBuilder();
+
+            foreach (UpdateRequest request in batch)
+            {
+                textBlock.AppendLine(SerializationHelper.FormatRecord(request.Target));
+            }
+           
+            lock (progressFileLock)
+            {
+                System.IO.File.AppendAllText(settings.StoreProcessedRecordsPath, textBlock.ToString());
             }
         }
 
@@ -322,6 +365,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                 foreach (Guid id in groupedRules.RecordIds)
                 {
                     Entity updateRecord = new Entity(groupedRules.TableLogicalName);
+                    updateRecord.Id = id;
                     updateRecord[groupedRules.PrimaryIdFieldLogicalName] = id;
 
                     foreach (AnonymizationRule rule in groupedRules.Rules)
@@ -420,6 +464,22 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             else if (rule.RandomDateRule != null)
             {
                 return RandomHelper.GetRandomDate(rule.RandomDateRule.RangeStart, rule.RandomDateRule.RangeEnd);
+            }
+            else if (rule.FixedIntRule != null)
+            {
+                return rule.FixedIntRule.Value;
+            }
+            else if (rule.FixedDecimalRule != null)
+            {
+                return rule.FixedDecimalRule.Value;
+            }
+            else if (rule.FixedStringRule != null)
+            {
+                return rule.FixedStringRule.Value;
+            }
+            else if (rule.FixedDateRule != null)
+            {
+                return rule.FixedDateRule.Value;
             }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");

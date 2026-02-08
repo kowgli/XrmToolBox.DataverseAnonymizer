@@ -196,10 +196,15 @@
     <Compile Include="Helpers\CrmHelper.cs" />
     <Compile Include="Helpers\DataUpdateRunner.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
+    <Compile Include="Helpers\SerializationHelper.cs" />
     <Compile Include="Helpers\StateSaveLoadHelper.cs" />
     <Compile Include="Models\CrmRecord.cs" />
     <Compile Include="Rules\BogusDataSetWithMethods.cs" />
     <Compile Include="Rules\BogusRule.cs" />
+    <Compile Include="Rules\FixedDateRule.cs" />
+    <Compile Include="Rules\FixedDecimalRule.cs" />
+    <Compile Include="Rules\FixedIntRule.cs" />
+    <Compile Include="Rules\FixedStringRule.cs" />
     <Compile Include="Rules\RandomDateRule.cs" />
     <Compile Include="Rules\RandomDecimalRule.cs" />
     <Compile Include="Rules\RandomIntRule.cs" />
@@ -221,7 +226,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataverseAnonymizerPluginControl.resx">
       <DependentUpon>DataverseAnonymizerPluginControl.cs</DependentUpon>
@@ -239,6 +246,7 @@
     <Content Include="Img\icon32.ico" />
     <Content Include="Img\icon32.png" />
     <Content Include="Img\icon80.png" />
+    <None Include="Img\Gradient.png" />
     <None Include="Img\Upload.png" />
     <None Include="Img\Save_02.png" />
   </ItemGroup>
