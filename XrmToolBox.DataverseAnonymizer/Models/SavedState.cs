@@ -45,6 +45,26 @@ namespace XrmToolBox.DataverseAnonymizer.Models
                 public DateTime RangeEnd { get; set; }
             }
 
+            public class FixedIntSettings
+            {
+                public int Value { get; set; }
+            }
+
+            public class FixedDecSettings
+            {
+                public decimal Value { get; set; }
+            }
+
+            public class FixedStringSettings
+            {
+                public string Value { get; set; }
+            }
+
+            public class FixedDateSettings
+            {
+                public DateTime Value { get; set; }
+            }
+
             public string Table { get; set; }
             public string Field { get; set; }
 
@@ -53,6 +73,10 @@ namespace XrmToolBox.DataverseAnonymizer.Models
             public RandomIntSettings RandomInt { get; set; }
             public RandomDecSettings RandomDec { get; set; }
             public RandomDateSettings RandomDate { get; set; }
+            public FixedIntSettings FixedInt { get; set; }
+            public FixedDecSettings FixedDec { get; set; }
+            public FixedStringSettings FixedString { get; set; }
+            public FixedDateSettings FixedDate { get; set; }
         }
 
         public Filter[] Filters { get; set; } = new Filter[0];

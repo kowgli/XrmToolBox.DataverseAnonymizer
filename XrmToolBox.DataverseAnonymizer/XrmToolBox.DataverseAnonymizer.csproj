@@ -201,6 +201,10 @@
     <Compile Include="Models\CrmRecord.cs" />
     <Compile Include="Rules\BogusDataSetWithMethods.cs" />
     <Compile Include="Rules\BogusRule.cs" />
+    <Compile Include="Rules\FixedDateRule.cs" />
+    <Compile Include="Rules\FixedDecimalRule.cs" />
+    <Compile Include="Rules\FixedIntRule.cs" />
+    <Compile Include="Rules\FixedStringRule.cs" />
     <Compile Include="Rules\RandomDateRule.cs" />
     <Compile Include="Rules\RandomDecimalRule.cs" />
     <Compile Include="Rules\RandomIntRule.cs" />

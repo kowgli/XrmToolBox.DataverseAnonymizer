@@ -465,6 +465,22 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             {
                 return RandomHelper.GetRandomDate(rule.RandomDateRule.RangeStart, rule.RandomDateRule.RangeEnd);
             }
+            else if (rule.FixedIntRule != null)
+            {
+                return rule.FixedIntRule.Value;
+            }
+            else if (rule.FixedDecimalRule != null)
+            {
+                return rule.FixedDecimalRule.Value;
+            }
+            else if (rule.FixedStringRule != null)
+            {
+                return rule.FixedStringRule.Value;
+            }
+            else if (rule.FixedDateRule != null)
+            {
+                return rule.FixedDateRule.Value;
+            }
 
             throw new Exception($"Rule for {rule.TableName}\\{rule.FieldName} is not configured correctly.");
         }

@@ -142,6 +142,18 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
+            this.tpFixedString = new System.Windows.Forms.TabPage();
+            this.tpFixedInt = new System.Windows.Forms.TabPage();
+            this.tpFixedDec = new System.Windows.Forms.TabPage();
+            this.tpFixedDate = new System.Windows.Forms.TabPage();
+            this.tbFixedString = new System.Windows.Forms.TextBox();
+            this.lbFixedString = new System.Windows.Forms.Label();
+            this.lbFixedInt = new System.Windows.Forms.Label();
+            this.lbFixedDec = new System.Windows.Forms.Label();
+            this.lbFixedDate = new System.Windows.Forms.Label();
+            this.dtpFixedDate = new System.Windows.Forms.DateTimePicker();
+            this.nudFixedDec = new System.Windows.Forms.NumericUpDown();
+            this.nudFixedInt = new System.Windows.Forms.NumericUpDown();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.gbFilter.SuspendLayout();
@@ -165,6 +177,12 @@
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.toolStrip.SuspendLayout();
+            this.tpFixedString.SuspendLayout();
+            this.tpFixedInt.SuspendLayout();
+            this.tpFixedDec.SuspendLayout();
+            this.tpFixedDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -450,7 +468,7 @@
             this.tbFetchXml.Multiline = true;
             this.tbFetchXml.Name = "tbFetchXml";
             this.tbFetchXml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFetchXml.Size = new System.Drawing.Size(650, 178);
+            this.tbFetchXml.Size = new System.Drawing.Size(650, 85);
             this.tbFetchXml.TabIndex = 10;
             this.tbFetchXml.Visible = false;
             this.tbFetchXml.TextChanged += new System.EventHandler(this.tbFetchXml_TextChanged);
@@ -500,6 +518,7 @@
             this.contentPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.contentPanel.AutoScroll = true;
             this.contentPanel.Controls.Add(this.gbFilter);
             this.contentPanel.Controls.Add(this.dgvRules);
             this.contentPanel.Controls.Add(this.gbRun);
@@ -510,7 +529,7 @@
             this.contentPanel.Controls.Add(this.panel4);
             this.contentPanel.Location = new System.Drawing.Point(-9, 34);
             this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(1206, 906);
+            this.contentPanel.Size = new System.Drawing.Size(1106, 813);
             this.contentPanel.TabIndex = 23;
             // 
             // gbFilter
@@ -530,7 +549,7 @@
             this.gbFilter.Location = new System.Drawing.Point(12, 427);
             this.gbFilter.MinimumSize = new System.Drawing.Size(679, 136);
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(679, 246);
+            this.gbFilter.Size = new System.Drawing.Size(679, 153);
             this.gbFilter.TabIndex = 36;
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "3. Optional filter";
@@ -558,7 +577,7 @@
             this.dgvRules.RowHeadersVisible = false;
             this.dgvRules.RowTemplate.Height = 30;
             this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRules.Size = new System.Drawing.Size(498, 894);
+            this.dgvRules.Size = new System.Drawing.Size(398, 801);
             this.dgvRules.TabIndex = 26;
             this.dgvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRules_CellClick);
             this.dgvRules.SelectionChanged += new System.EventHandler(this.dgvRules_SelectionChanged);
@@ -625,7 +644,7 @@
             this.gbRun.Controls.Add(this.cbBypassSync);
             this.gbRun.Controls.Add(this.bRun);
             this.gbRun.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRun.Location = new System.Drawing.Point(12, 694);
+            this.gbRun.Location = new System.Drawing.Point(12, 601);
             this.gbRun.MinimumSize = new System.Drawing.Size(679, 203);
             this.gbRun.Name = "gbRun";
             this.gbRun.Size = new System.Drawing.Size(679, 203);
@@ -870,7 +889,11 @@
             this.tabcRule.Controls.Add(this.tpRandomInt);
             this.tabcRule.Controls.Add(this.tpRandomDec);
             this.tabcRule.Controls.Add(this.tpRandomDate);
-            this.tabcRule.Location = new System.Drawing.Point(16, 33);
+            this.tabcRule.Controls.Add(this.tpFixedString);
+            this.tabcRule.Controls.Add(this.tpFixedInt);
+            this.tabcRule.Controls.Add(this.tpFixedDec);
+            this.tabcRule.Controls.Add(this.tpFixedDate);
+            this.tabcRule.Location = new System.Drawing.Point(13, 4);
             this.tabcRule.Name = "tabcRule";
             this.tabcRule.SelectedIndex = 0;
             this.tabcRule.Size = new System.Drawing.Size(654, 157);
@@ -1407,7 +1430,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(-11, 673);
+            this.panel1.Location = new System.Drawing.Point(-11, 580);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(739, 18);
             this.panel1.TabIndex = 27;
@@ -1456,7 +1479,7 @@
             this.bStop.ForeColor = System.Drawing.Color.Red;
             this.bStop.Location = new System.Drawing.Point(-20, 32);
             this.bStop.Name = "bStop";
-            this.bStop.Size = new System.Drawing.Size(1240, 53);
+            this.bStop.Size = new System.Drawing.Size(1140, 53);
             this.bStop.TabIndex = 24;
             this.bStop.Text = "STOP";
             this.bStop.UseVisualStyleBackColor = false;
@@ -1504,7 +1527,7 @@
             this.tslVersion});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1200, 25);
+            this.toolStrip.Size = new System.Drawing.Size(1100, 25);
             this.toolStrip.TabIndex = 25;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -1563,19 +1586,160 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // tpFixedString
+            // 
+            this.tpFixedString.Controls.Add(this.lbFixedString);
+            this.tpFixedString.Controls.Add(this.tbFixedString);
+            this.tpFixedString.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedString.Name = "tpFixedString";
+            this.tpFixedString.Size = new System.Drawing.Size(646, 125);
+            this.tpFixedString.TabIndex = 5;
+            this.tpFixedString.Text = "Fixed value";
+            this.tpFixedString.UseVisualStyleBackColor = true;
+            // 
+            // tpFixedInt
+            // 
+            this.tpFixedInt.Controls.Add(this.nudFixedInt);
+            this.tpFixedInt.Controls.Add(this.lbFixedInt);
+            this.tpFixedInt.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedInt.Name = "tpFixedInt";
+            this.tpFixedInt.Size = new System.Drawing.Size(646, 125);
+            this.tpFixedInt.TabIndex = 6;
+            this.tpFixedInt.Text = "Fixed value";
+            this.tpFixedInt.UseVisualStyleBackColor = true;
+            // 
+            // tpFixedDec
+            // 
+            this.tpFixedDec.Controls.Add(this.nudFixedDec);
+            this.tpFixedDec.Controls.Add(this.lbFixedDec);
+            this.tpFixedDec.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedDec.Name = "tpFixedDec";
+            this.tpFixedDec.Size = new System.Drawing.Size(646, 125);
+            this.tpFixedDec.TabIndex = 7;
+            this.tpFixedDec.Text = "Fixed value";
+            this.tpFixedDec.UseVisualStyleBackColor = true;
+            // 
+            // tpFixedDate
+            // 
+            this.tpFixedDate.Controls.Add(this.dtpFixedDate);
+            this.tpFixedDate.Controls.Add(this.lbFixedDate);
+            this.tpFixedDate.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedDate.Name = "tpFixedDate";
+            this.tpFixedDate.Size = new System.Drawing.Size(646, 125);
+            this.tpFixedDate.TabIndex = 8;
+            this.tpFixedDate.Text = "Fixed value";
+            this.tpFixedDate.UseVisualStyleBackColor = true;
+            // 
+            // tbFixedString
+            // 
+            this.tbFixedString.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFixedString.Location = new System.Drawing.Point(17, 37);
+            this.tbFixedString.Name = "tbFixedString";
+            this.tbFixedString.Size = new System.Drawing.Size(611, 26);
+            this.tbFixedString.TabIndex = 2;
+            this.tbFixedString.Text = "Test 123";
+            // 
+            // lbFixedString
+            // 
+            this.lbFixedString.AutoSize = true;
+            this.lbFixedString.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedString.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedString.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedString.Name = "lbFixedString";
+            this.lbFixedString.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedString.TabIndex = 26;
+            this.lbFixedString.Text = "Value:";
+            // 
+            // lbFixedInt
+            // 
+            this.lbFixedInt.AutoSize = true;
+            this.lbFixedInt.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedInt.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedInt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedInt.Name = "lbFixedInt";
+            this.lbFixedInt.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedInt.TabIndex = 27;
+            this.lbFixedInt.Text = "Value:";
+            // 
+            // lbFixedDec
+            // 
+            this.lbFixedDec.AutoSize = true;
+            this.lbFixedDec.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedDec.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedDec.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedDec.Name = "lbFixedDec";
+            this.lbFixedDec.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedDec.TabIndex = 28;
+            this.lbFixedDec.Text = "Value:";
+            // 
+            // lbFixedDate
+            // 
+            this.lbFixedDate.AutoSize = true;
+            this.lbFixedDate.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedDate.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedDate.Name = "lbFixedDate";
+            this.lbFixedDate.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedDate.TabIndex = 28;
+            this.lbFixedDate.Text = "Value:";
+            // 
+            // dtpFixedDate
+            // 
+            this.dtpFixedDate.Location = new System.Drawing.Point(17, 37);
+            this.dtpFixedDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dtpFixedDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFixedDate.Name = "dtpFixedDate";
+            this.dtpFixedDate.Size = new System.Drawing.Size(285, 27);
+            this.dtpFixedDate.TabIndex = 41;
+            // 
+            // nudFixedDec
+            // 
+            this.nudFixedDec.Location = new System.Drawing.Point(17, 37);
+            this.nudFixedDec.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudFixedDec.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudFixedDec.Name = "nudFixedDec";
+            this.nudFixedDec.Size = new System.Drawing.Size(149, 27);
+            this.nudFixedDec.TabIndex = 34;
+            // 
+            // nudFixedInt
+            // 
+            this.nudFixedInt.Location = new System.Drawing.Point(17, 37);
+            this.nudFixedInt.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.nudFixedInt.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.nudFixedInt.Name = "nudFixedInt";
+            this.nudFixedInt.Size = new System.Drawing.Size(149, 27);
+            this.nudFixedInt.TabIndex = 28;
+            // 
             // DataverseAnonymizerPluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(1100, 850);
             this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.bStop);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.MinimumSize = new System.Drawing.Size(1200, 834);
             this.Name = "DataverseAnonymizerPluginControl";
             this.PluginIcon = ((System.Drawing.Icon)(resources.GetObject("$this.PluginIcon")));
-            this.Size = new System.Drawing.Size(1200, 943);
+            this.Size = new System.Drawing.Size(1100, 850);
             this.Load += new System.EventHandler(this.DataverseAnonymizerPluginControl_Load);
             this.gbField.ResumeLayout(false);
             this.gbField.PerformLayout();
@@ -1610,6 +1774,16 @@
             this.panel4.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            this.tpFixedString.ResumeLayout(false);
+            this.tpFixedString.PerformLayout();
+            this.tpFixedInt.ResumeLayout(false);
+            this.tpFixedInt.PerformLayout();
+            this.tpFixedDec.ResumeLayout(false);
+            this.tpFixedDec.PerformLayout();
+            this.tpFixedDate.ResumeLayout(false);
+            this.tpFixedDate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1726,5 +1900,17 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TabPage tpFixedString;
+        private System.Windows.Forms.TabPage tpFixedInt;
+        private System.Windows.Forms.TabPage tpFixedDec;
+        private System.Windows.Forms.TabPage tpFixedDate;
+        private System.Windows.Forms.Label lbFixedString;
+        private System.Windows.Forms.TextBox tbFixedString;
+        private System.Windows.Forms.NumericUpDown nudFixedInt;
+        private System.Windows.Forms.Label lbFixedInt;
+        private System.Windows.Forms.NumericUpDown nudFixedDec;
+        private System.Windows.Forms.Label lbFixedDec;
+        private System.Windows.Forms.DateTimePicker dtpFixedDate;
+        private System.Windows.Forms.Label lbFixedDate;
     }
 }

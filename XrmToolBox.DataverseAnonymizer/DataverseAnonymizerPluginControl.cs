@@ -2,7 +2,6 @@
 #define __SAVE_MATADATA
 
 using McTools.Xrm.Connection;
-using Microsoft.Win32;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
@@ -22,7 +21,6 @@ using XrmToolBox.DataverseAnonymizer.Models;
 using XrmToolBox.DataverseAnonymizer.Rules;
 using XrmToolBox.Extensibility;
 using XrmToolBox.Extensibility.Interfaces;
-using static WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender;
 using static XrmToolBox.DataverseAnonymizer.Rules.BogusDataSetWithMethods;
 
 namespace XrmToolBox.DataverseAnonymizer
@@ -286,14 +284,14 @@ namespace XrmToolBox.DataverseAnonymizer
         {
             Dictionary<AttributeTypeCode, TabPage[]> typeToTabs = new Dictionary<AttributeTypeCode, TabPage[]>()
             {
-                { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData } },
-                { AttributeTypeCode.String, new []{ tpSequence, tpFakeData } },
-                { AttributeTypeCode.Integer, new []{ tpRandomInt } },
-                { AttributeTypeCode.BigInt, new []{ tpRandomInt } },
-                { AttributeTypeCode.Decimal, new []{ tpRandomDec } },
-                { AttributeTypeCode.Money, new []{ tpRandomDec } },
-                { AttributeTypeCode.Double, new []{ tpRandomDec } },
-                { AttributeTypeCode.DateTime, new []{ tpRandomDate } },
+                { AttributeTypeCode.Memo, new []{ tpSequence, tpFakeData, tpFixedString } },
+                { AttributeTypeCode.String, new []{ tpSequence, tpFakeData, tpFixedString } },
+                { AttributeTypeCode.Integer, new []{ tpRandomInt, tpFixedInt } },
+                { AttributeTypeCode.BigInt, new []{ tpRandomInt, tpFixedInt } },
+                { AttributeTypeCode.Decimal, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.Money, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.Double, new []{ tpRandomDec, tpFixedDec } },
+                { AttributeTypeCode.DateTime, new []{ tpRandomDate, tpFixedDate } },
             };
 
             MetadataInfo fieldMetadata = (MetadataInfo)comboField.SelectedItem;
@@ -503,6 +501,26 @@ namespace XrmToolBox.DataverseAnonymizer
                     RangeEnd = dtpRandomDateTo.Value
                 } : null;
 
+                existingRule.FixedStringRule = tabcRule.SelectedTab == tpFixedString ? new FixedStringRule
+                {
+                    Value = tbFixedString.Text
+                } : null;
+
+                existingRule.FixedIntRule = tabcRule.SelectedTab == tpFixedInt ? new FixedIntRule
+                {
+                    Value = (int)nudFixedInt.Value
+                } : null;
+
+                existingRule.FixedDecimalRule = tabcRule.SelectedTab == tpFixedDec ? new FixedDecimalRule
+                {
+                    Value = nudFixedDec.Value
+                } : null;
+
+                existingRule.FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
+                {
+                    Value = dtpFixedDate.Value
+                } : null;
+
                 dgvRules.Refresh();
             }
             else
@@ -537,6 +555,22 @@ namespace XrmToolBox.DataverseAnonymizer
                     {
                         RangeStart = dtpRandomDateFrom.Value,
                         RangeEnd = dtpRandomDateTo.Value
+                    } : null,
+                    FixedStringRule = tabcRule.SelectedTab == tpFixedString ? new FixedStringRule
+                    {
+                        Value = tbFixedString.Text
+                    } : null,
+                    FixedIntRule = tabcRule.SelectedTab == tpFixedInt ? new FixedIntRule
+                    {
+                        Value = (int)nudFixedInt.Value
+                    } : null,
+                    FixedDecimalRule = tabcRule.SelectedTab == tpFixedDec ? new FixedDecimalRule
+                    {
+                        Value = nudFixedDec.Value
+                    } : null,
+                    FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
+                    {
+                        Value = dtpFixedDate.Value
                     } : null
                 });
             }
@@ -617,6 +651,26 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 tabcRule.SelectedTab = tpRandomDate;
             }
+            else if (rule.FixedStringRule != null)
+            {
+                tbFixedString.Text = rule.FixedStringRule.Value;
+                tabcRule.SelectedTab = tpFixedString;
+            }
+            else if (rule.FixedIntRule != null)
+            {
+                nudFixedInt.Value = rule.FixedIntRule.Value;
+                tabcRule.SelectedTab = tpFixedInt;
+            }
+            else if (rule.FixedDecimalRule != null)
+            {
+                nudFixedDec.Value = rule.FixedDecimalRule.Value;
+                tabcRule.SelectedTab = tpFixedDec;
+            }
+            else if (rule.FixedDateRule != null)
+            {
+                dtpFixedDate.Value = rule.FixedDateRule.Value;
+                tabcRule.SelectedTab = tpFixedDate;
+            }
         }
 
         #endregion
@@ -682,12 +736,12 @@ namespace XrmToolBox.DataverseAnonymizer
         private string InitProcessedRecordsFile(out bool abort)
         {
             abort = false;
-            
+
             if (!cbStoreProcessedRecords.Checked) { return null; }
 
             string path = tbStoreProcessedRecordsPath.Text;
 
-            if(File.Exists(path)) 
+            if (File.Exists(path))
             {
                 DialogResult res = MessageBox.Show("Processed records file already exists. Do you want to append to the existing file? Choosing 'No' will overwrite it.", "File exists", MessageBoxButtons.YesNoCancel);
 
@@ -695,7 +749,7 @@ namespace XrmToolBox.DataverseAnonymizer
                 {
                     File.WriteAllText(path, "");
                 }
-                else if(res == DialogResult.Cancel)
+                else if (res == DialogResult.Cancel)
                 {
                     abort = true;
                     return null;
@@ -993,7 +1047,7 @@ namespace XrmToolBox.DataverseAnonymizer
         private void cbSkipProcessedRecords_CheckedChanged(object sender, EventArgs e)
         {
             tbSkipProcessedRecordsPath.Visible = bSkipProcessedRecordsPath.Visible = cbSkipProcessedRecords.Checked;
-            if(!tbSkipProcessedRecordsPath.Visible)
+            if (!tbSkipProcessedRecordsPath.Visible)
             {
                 tbSkipProcessedRecordsPath.Text = "";
             }

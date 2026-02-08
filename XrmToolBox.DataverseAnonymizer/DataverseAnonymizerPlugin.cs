@@ -77,15 +77,15 @@ namespace XrmToolBox.DataverseAnonymizer
                 string folder = Path.GetFileNameWithoutExtension(currAssembly.Location);
                 dir = Path.Combine(dir, folder);
 
-                var assmbPath = Path.Combine(dir, $"{argName}.dll");
+                var assemblyPath = Path.Combine(dir, $"{argName}.dll");
 
-                if (File.Exists(assmbPath))
+                if (File.Exists(assemblyPath))
                 {
-                    loadAssembly = Assembly.LoadFrom(assmbPath);
+                    loadAssembly = Assembly.LoadFrom(assemblyPath);
                 }
                 else
                 {
-                    throw new FileNotFoundException($"Unable to locate dependency: {assmbPath}");
+                    throw new FileNotFoundException($"Unable to locate dependency: {assemblyPath}");
                 }
             }
 

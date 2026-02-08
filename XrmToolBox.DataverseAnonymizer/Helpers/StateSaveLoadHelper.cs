@@ -111,6 +111,22 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                     {
                         RangeStart = rule.RandomDate.RangeStart,
                         RangeEnd = rule.RandomDate.RangeEnd
+                    },
+                    FixedIntRule = rule.FixedInt == null ? null : new FixedIntRule
+                    {
+                        Value = rule.FixedInt.Value
+                    },
+                    FixedDecimalRule = rule.FixedDec == null ? null : new FixedDecimalRule
+                    {
+                        Value = rule.FixedDec.Value
+                    },
+                    FixedStringRule = rule.FixedString == null ? null : new FixedStringRule
+                    {
+                        Value = rule.FixedString.Value
+                    },
+                    FixedDateRule = rule.FixedDate == null ? null : new FixedDateRule
+                    {
+                        Value = rule.FixedDate.Value
                     }
                 });
             }
