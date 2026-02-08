@@ -6,6 +6,6 @@ namespace XrmToolBox.DataverseAnonymizer.Rules
     {
         public DateTime Value { get; set; }
 
-        public override string ToString() => Value.ToShortDateString();
+        public override string ToString() => Value.ToString();
     }
 }

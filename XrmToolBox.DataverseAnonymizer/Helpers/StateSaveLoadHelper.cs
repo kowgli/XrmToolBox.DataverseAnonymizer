@@ -48,7 +48,9 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
             foreach (var rule in savedState.Rules)
             {
                 if (rule.Table == null || rule.Field == null || 
-                    (rule.Bogus == null && rule.Sequence == null && rule.RandomInt == null && rule.RandomDec == null && rule.RandomDate == null)
+                    (rule.Bogus == null && rule.Sequence == null 
+                    && rule.RandomInt == null && rule.RandomDec == null && rule.RandomDate == null
+                    && rule.FixedDate == null && rule.FixedDec == null && rule.FixedInt == null && rule.FixedString == null)
                 )
                 {
                     allOk = false;

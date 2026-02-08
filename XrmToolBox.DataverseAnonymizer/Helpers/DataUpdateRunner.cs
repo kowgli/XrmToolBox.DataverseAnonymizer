@@ -122,7 +122,7 @@ namespace XrmToolBox.DataverseAnonymizer.Helpers
                                 {
                                     filteredRecords.Add(record);
                                 }
-                            }
+                              }
 
                             records = filteredRecords.ToArray();
                         }

@@ -123,6 +123,19 @@
             this.bRandomDateSample = new System.Windows.Forms.Button();
             this.lbRandomDateTo = new System.Windows.Forms.Label();
             this.lbRandomDateFrom = new System.Windows.Forms.Label();
+            this.tpFixedString = new System.Windows.Forms.TabPage();
+            this.lbFixedString = new System.Windows.Forms.Label();
+            this.tbFixedString = new System.Windows.Forms.TextBox();
+            this.tpFixedInt = new System.Windows.Forms.TabPage();
+            this.nudFixedInt = new System.Windows.Forms.NumericUpDown();
+            this.lbFixedInt = new System.Windows.Forms.Label();
+            this.tpFixedDec = new System.Windows.Forms.TabPage();
+            this.nudFixedDec = new System.Windows.Forms.NumericUpDown();
+            this.lbFixedDec = new System.Windows.Forms.Label();
+            this.tpFixedDate = new System.Windows.Forms.TabPage();
+            this.dtpFixedDateTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpFixedDate = new System.Windows.Forms.DateTimePicker();
+            this.lbFixedDate = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -142,18 +155,7 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTipDelay0 = new System.Windows.Forms.ToolTip(this.components);
-            this.tpFixedString = new System.Windows.Forms.TabPage();
-            this.tpFixedInt = new System.Windows.Forms.TabPage();
-            this.tpFixedDec = new System.Windows.Forms.TabPage();
-            this.tpFixedDate = new System.Windows.Forms.TabPage();
-            this.tbFixedString = new System.Windows.Forms.TextBox();
-            this.lbFixedString = new System.Windows.Forms.Label();
-            this.lbFixedInt = new System.Windows.Forms.Label();
-            this.lbFixedDec = new System.Windows.Forms.Label();
-            this.lbFixedDate = new System.Windows.Forms.Label();
-            this.dtpFixedDate = new System.Windows.Forms.DateTimePicker();
-            this.nudFixedDec = new System.Windows.Forms.NumericUpDown();
-            this.nudFixedInt = new System.Windows.Forms.NumericUpDown();
+            this.lbFixedDateUTC = new System.Windows.Forms.Label();
             this.gbField.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.gbFilter.SuspendLayout();
@@ -174,15 +176,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).BeginInit();
             this.tpRandomDate.SuspendLayout();
+            this.tpFixedString.SuspendLayout();
+            this.tpFixedInt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).BeginInit();
+            this.tpFixedDec.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).BeginInit();
+            this.tpFixedDate.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            this.tpFixedString.SuspendLayout();
-            this.tpFixedInt.SuspendLayout();
-            this.tpFixedDec.SuspendLayout();
-            this.tpFixedDate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBogusDataSet
@@ -893,10 +895,10 @@
             this.tabcRule.Controls.Add(this.tpFixedInt);
             this.tabcRule.Controls.Add(this.tpFixedDec);
             this.tabcRule.Controls.Add(this.tpFixedDate);
-            this.tabcRule.Location = new System.Drawing.Point(13, 4);
+            this.tabcRule.Location = new System.Drawing.Point(13, 26);
             this.tabcRule.Name = "tabcRule";
             this.tabcRule.SelectedIndex = 0;
-            this.tabcRule.Size = new System.Drawing.Size(654, 157);
+            this.tabcRule.Size = new System.Drawing.Size(654, 173);
             this.tabcRule.TabIndex = 0;
             // 
             // tpSequence
@@ -909,7 +911,7 @@
             this.tpSequence.Location = new System.Drawing.Point(4, 28);
             this.tpSequence.Name = "tpSequence";
             this.tpSequence.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSequence.Size = new System.Drawing.Size(646, 125);
+            this.tpSequence.Size = new System.Drawing.Size(646, 141);
             this.tpSequence.TabIndex = 0;
             this.tpSequence.Text = "Sequence";
             this.tpSequence.UseVisualStyleBackColor = true;
@@ -987,7 +989,7 @@
             this.tpFakeData.Location = new System.Drawing.Point(4, 28);
             this.tpFakeData.Name = "tpFakeData";
             this.tpFakeData.Padding = new System.Windows.Forms.Padding(3);
-            this.tpFakeData.Size = new System.Drawing.Size(646, 125);
+            this.tpFakeData.Size = new System.Drawing.Size(646, 141);
             this.tpFakeData.TabIndex = 1;
             this.tpFakeData.Text = "Fake data";
             this.tpFakeData.UseVisualStyleBackColor = true;
@@ -1059,7 +1061,7 @@
             this.tpRandomInt.Location = new System.Drawing.Point(4, 28);
             this.tpRandomInt.Name = "tpRandomInt";
             this.tpRandomInt.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRandomInt.Size = new System.Drawing.Size(646, 125);
+            this.tpRandomInt.Size = new System.Drawing.Size(646, 141);
             this.tpRandomInt.TabIndex = 2;
             this.tpRandomInt.Text = "Random number";
             this.tpRandomInt.UseVisualStyleBackColor = true;
@@ -1182,7 +1184,7 @@
             this.tpRandomDec.Controls.Add(this.label22);
             this.tpRandomDec.Location = new System.Drawing.Point(4, 28);
             this.tpRandomDec.Name = "tpRandomDec";
-            this.tpRandomDec.Size = new System.Drawing.Size(646, 125);
+            this.tpRandomDec.Size = new System.Drawing.Size(646, 141);
             this.tpRandomDec.TabIndex = 3;
             this.tpRandomDec.Text = "Random number";
             this.tpRandomDec.UseVisualStyleBackColor = true;
@@ -1332,7 +1334,7 @@
             this.tpRandomDate.Controls.Add(this.lbRandomDateFrom);
             this.tpRandomDate.Location = new System.Drawing.Point(4, 28);
             this.tpRandomDate.Name = "tpRandomDate";
-            this.tpRandomDate.Size = new System.Drawing.Size(646, 125);
+            this.tpRandomDate.Size = new System.Drawing.Size(646, 141);
             this.tpRandomDate.TabIndex = 4;
             this.tpRandomDate.Text = "Random date";
             this.tpRandomDate.UseVisualStyleBackColor = true;
@@ -1413,6 +1415,160 @@
             this.lbRandomDateFrom.Size = new System.Drawing.Size(92, 19);
             this.lbRandomDateFrom.TabIndex = 34;
             this.lbRandomDateFrom.Text = "Range from:";
+            // 
+            // tpFixedString
+            // 
+            this.tpFixedString.Controls.Add(this.lbFixedString);
+            this.tpFixedString.Controls.Add(this.tbFixedString);
+            this.tpFixedString.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedString.Name = "tpFixedString";
+            this.tpFixedString.Size = new System.Drawing.Size(646, 141);
+            this.tpFixedString.TabIndex = 5;
+            this.tpFixedString.Text = "Fixed value";
+            this.tpFixedString.UseVisualStyleBackColor = true;
+            // 
+            // lbFixedString
+            // 
+            this.lbFixedString.AutoSize = true;
+            this.lbFixedString.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedString.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedString.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedString.Name = "lbFixedString";
+            this.lbFixedString.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedString.TabIndex = 26;
+            this.lbFixedString.Text = "Value:";
+            // 
+            // tbFixedString
+            // 
+            this.tbFixedString.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFixedString.Location = new System.Drawing.Point(17, 37);
+            this.tbFixedString.Name = "tbFixedString";
+            this.tbFixedString.Size = new System.Drawing.Size(611, 26);
+            this.tbFixedString.TabIndex = 2;
+            this.tbFixedString.Text = "Test 123";
+            // 
+            // tpFixedInt
+            // 
+            this.tpFixedInt.Controls.Add(this.nudFixedInt);
+            this.tpFixedInt.Controls.Add(this.lbFixedInt);
+            this.tpFixedInt.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedInt.Name = "tpFixedInt";
+            this.tpFixedInt.Size = new System.Drawing.Size(646, 141);
+            this.tpFixedInt.TabIndex = 6;
+            this.tpFixedInt.Text = "Fixed value";
+            this.tpFixedInt.UseVisualStyleBackColor = true;
+            // 
+            // nudFixedInt
+            // 
+            this.nudFixedInt.Location = new System.Drawing.Point(17, 37);
+            this.nudFixedInt.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.nudFixedInt.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.nudFixedInt.Name = "nudFixedInt";
+            this.nudFixedInt.Size = new System.Drawing.Size(149, 27);
+            this.nudFixedInt.TabIndex = 28;
+            // 
+            // lbFixedInt
+            // 
+            this.lbFixedInt.AutoSize = true;
+            this.lbFixedInt.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedInt.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedInt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedInt.Name = "lbFixedInt";
+            this.lbFixedInt.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedInt.TabIndex = 27;
+            this.lbFixedInt.Text = "Value:";
+            // 
+            // tpFixedDec
+            // 
+            this.tpFixedDec.Controls.Add(this.nudFixedDec);
+            this.tpFixedDec.Controls.Add(this.lbFixedDec);
+            this.tpFixedDec.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedDec.Name = "tpFixedDec";
+            this.tpFixedDec.Size = new System.Drawing.Size(646, 141);
+            this.tpFixedDec.TabIndex = 7;
+            this.tpFixedDec.Text = "Fixed value";
+            this.tpFixedDec.UseVisualStyleBackColor = true;
+            // 
+            // nudFixedDec
+            // 
+            this.nudFixedDec.Location = new System.Drawing.Point(17, 37);
+            this.nudFixedDec.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudFixedDec.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudFixedDec.Name = "nudFixedDec";
+            this.nudFixedDec.Size = new System.Drawing.Size(149, 27);
+            this.nudFixedDec.TabIndex = 34;
+            // 
+            // lbFixedDec
+            // 
+            this.lbFixedDec.AutoSize = true;
+            this.lbFixedDec.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedDec.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedDec.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedDec.Name = "lbFixedDec";
+            this.lbFixedDec.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedDec.TabIndex = 28;
+            this.lbFixedDec.Text = "Value:";
+            // 
+            // tpFixedDate
+            // 
+            this.tpFixedDate.Controls.Add(this.lbFixedDateUTC);
+            this.tpFixedDate.Controls.Add(this.dtpFixedDateTime);
+            this.tpFixedDate.Controls.Add(this.dtpFixedDate);
+            this.tpFixedDate.Controls.Add(this.lbFixedDate);
+            this.tpFixedDate.Location = new System.Drawing.Point(4, 28);
+            this.tpFixedDate.Name = "tpFixedDate";
+            this.tpFixedDate.Size = new System.Drawing.Size(646, 141);
+            this.tpFixedDate.TabIndex = 8;
+            this.tpFixedDate.Text = "Fixed value";
+            this.tpFixedDate.UseVisualStyleBackColor = true;
+            // 
+            // dtpFixedDateTime
+            // 
+            this.dtpFixedDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpFixedDateTime.Location = new System.Drawing.Point(308, 37);
+            this.dtpFixedDateTime.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dtpFixedDateTime.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFixedDateTime.Name = "dtpFixedDateTime";
+            this.dtpFixedDateTime.ShowUpDown = true;
+            this.dtpFixedDateTime.Size = new System.Drawing.Size(139, 27);
+            this.dtpFixedDateTime.TabIndex = 42;
+            // 
+            // dtpFixedDate
+            // 
+            this.dtpFixedDate.Location = new System.Drawing.Point(17, 37);
+            this.dtpFixedDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
+            this.dtpFixedDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFixedDate.Name = "dtpFixedDate";
+            this.dtpFixedDate.ShowUpDown = true;
+            this.dtpFixedDate.Size = new System.Drawing.Size(285, 27);
+            this.dtpFixedDate.TabIndex = 41;
+            // 
+            // lbFixedDate
+            // 
+            this.lbFixedDate.AutoSize = true;
+            this.lbFixedDate.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFixedDate.Location = new System.Drawing.Point(13, 10);
+            this.lbFixedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbFixedDate.Name = "lbFixedDate";
+            this.lbFixedDate.Size = new System.Drawing.Size(50, 19);
+            this.lbFixedDate.TabIndex = 28;
+            this.lbFixedDate.Text = "Value:";
             // 
             // bSave
             // 
@@ -1586,145 +1742,14 @@
             this.toolTipDelay0.ReshowDelay = 100;
             this.toolTipDelay0.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // tpFixedString
+            // lbFixedDateUTC
             // 
-            this.tpFixedString.Controls.Add(this.lbFixedString);
-            this.tpFixedString.Controls.Add(this.tbFixedString);
-            this.tpFixedString.Location = new System.Drawing.Point(4, 28);
-            this.tpFixedString.Name = "tpFixedString";
-            this.tpFixedString.Size = new System.Drawing.Size(646, 125);
-            this.tpFixedString.TabIndex = 5;
-            this.tpFixedString.Text = "Fixed value";
-            this.tpFixedString.UseVisualStyleBackColor = true;
-            // 
-            // tpFixedInt
-            // 
-            this.tpFixedInt.Controls.Add(this.nudFixedInt);
-            this.tpFixedInt.Controls.Add(this.lbFixedInt);
-            this.tpFixedInt.Location = new System.Drawing.Point(4, 28);
-            this.tpFixedInt.Name = "tpFixedInt";
-            this.tpFixedInt.Size = new System.Drawing.Size(646, 125);
-            this.tpFixedInt.TabIndex = 6;
-            this.tpFixedInt.Text = "Fixed value";
-            this.tpFixedInt.UseVisualStyleBackColor = true;
-            // 
-            // tpFixedDec
-            // 
-            this.tpFixedDec.Controls.Add(this.nudFixedDec);
-            this.tpFixedDec.Controls.Add(this.lbFixedDec);
-            this.tpFixedDec.Location = new System.Drawing.Point(4, 28);
-            this.tpFixedDec.Name = "tpFixedDec";
-            this.tpFixedDec.Size = new System.Drawing.Size(646, 125);
-            this.tpFixedDec.TabIndex = 7;
-            this.tpFixedDec.Text = "Fixed value";
-            this.tpFixedDec.UseVisualStyleBackColor = true;
-            // 
-            // tpFixedDate
-            // 
-            this.tpFixedDate.Controls.Add(this.dtpFixedDate);
-            this.tpFixedDate.Controls.Add(this.lbFixedDate);
-            this.tpFixedDate.Location = new System.Drawing.Point(4, 28);
-            this.tpFixedDate.Name = "tpFixedDate";
-            this.tpFixedDate.Size = new System.Drawing.Size(646, 125);
-            this.tpFixedDate.TabIndex = 8;
-            this.tpFixedDate.Text = "Fixed value";
-            this.tpFixedDate.UseVisualStyleBackColor = true;
-            // 
-            // tbFixedString
-            // 
-            this.tbFixedString.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFixedString.Location = new System.Drawing.Point(17, 37);
-            this.tbFixedString.Name = "tbFixedString";
-            this.tbFixedString.Size = new System.Drawing.Size(611, 26);
-            this.tbFixedString.TabIndex = 2;
-            this.tbFixedString.Text = "Test 123";
-            // 
-            // lbFixedString
-            // 
-            this.lbFixedString.AutoSize = true;
-            this.lbFixedString.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFixedString.Location = new System.Drawing.Point(13, 10);
-            this.lbFixedString.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFixedString.Name = "lbFixedString";
-            this.lbFixedString.Size = new System.Drawing.Size(50, 19);
-            this.lbFixedString.TabIndex = 26;
-            this.lbFixedString.Text = "Value:";
-            // 
-            // lbFixedInt
-            // 
-            this.lbFixedInt.AutoSize = true;
-            this.lbFixedInt.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFixedInt.Location = new System.Drawing.Point(13, 10);
-            this.lbFixedInt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFixedInt.Name = "lbFixedInt";
-            this.lbFixedInt.Size = new System.Drawing.Size(50, 19);
-            this.lbFixedInt.TabIndex = 27;
-            this.lbFixedInt.Text = "Value:";
-            // 
-            // lbFixedDec
-            // 
-            this.lbFixedDec.AutoSize = true;
-            this.lbFixedDec.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFixedDec.Location = new System.Drawing.Point(13, 10);
-            this.lbFixedDec.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFixedDec.Name = "lbFixedDec";
-            this.lbFixedDec.Size = new System.Drawing.Size(50, 19);
-            this.lbFixedDec.TabIndex = 28;
-            this.lbFixedDec.Text = "Value:";
-            // 
-            // lbFixedDate
-            // 
-            this.lbFixedDate.AutoSize = true;
-            this.lbFixedDate.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFixedDate.Location = new System.Drawing.Point(13, 10);
-            this.lbFixedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbFixedDate.Name = "lbFixedDate";
-            this.lbFixedDate.Size = new System.Drawing.Size(50, 19);
-            this.lbFixedDate.TabIndex = 28;
-            this.lbFixedDate.Text = "Value:";
-            // 
-            // dtpFixedDate
-            // 
-            this.dtpFixedDate.Location = new System.Drawing.Point(17, 37);
-            this.dtpFixedDate.MaxDate = new System.DateTime(2099, 12, 31, 0, 0, 0, 0);
-            this.dtpFixedDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpFixedDate.Name = "dtpFixedDate";
-            this.dtpFixedDate.Size = new System.Drawing.Size(285, 27);
-            this.dtpFixedDate.TabIndex = 41;
-            // 
-            // nudFixedDec
-            // 
-            this.nudFixedDec.Location = new System.Drawing.Point(17, 37);
-            this.nudFixedDec.Maximum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
-            this.nudFixedDec.Minimum = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
-            this.nudFixedDec.Name = "nudFixedDec";
-            this.nudFixedDec.Size = new System.Drawing.Size(149, 27);
-            this.nudFixedDec.TabIndex = 34;
-            // 
-            // nudFixedInt
-            // 
-            this.nudFixedInt.Location = new System.Drawing.Point(17, 37);
-            this.nudFixedInt.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.nudFixedInt.Minimum = new decimal(new int[] {
-            -2147483648,
-            0,
-            0,
-            -2147483648});
-            this.nudFixedInt.Name = "nudFixedInt";
-            this.nudFixedInt.Size = new System.Drawing.Size(149, 27);
-            this.nudFixedInt.TabIndex = 28;
+            this.lbFixedDateUTC.AutoSize = true;
+            this.lbFixedDateUTC.Location = new System.Drawing.Point(453, 43);
+            this.lbFixedDateUTC.Name = "lbFixedDateUTC";
+            this.lbFixedDateUTC.Size = new System.Drawing.Size(36, 19);
+            this.lbFixedDateUTC.TabIndex = 43;
+            this.lbFixedDateUTC.Text = "UTC";
             // 
             // DataverseAnonymizerPluginControl
             // 
@@ -1770,20 +1795,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRandomDecRangeFrom)).EndInit();
             this.tpRandomDate.ResumeLayout(false);
             this.tpRandomDate.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.tpFixedString.ResumeLayout(false);
             this.tpFixedString.PerformLayout();
             this.tpFixedInt.ResumeLayout(false);
             this.tpFixedInt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).EndInit();
             this.tpFixedDec.ResumeLayout(false);
             this.tpFixedDec.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).EndInit();
             this.tpFixedDate.ResumeLayout(false);
             this.tpFixedDate.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFixedDec)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudFixedInt)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1912,5 +1937,7 @@
         private System.Windows.Forms.Label lbFixedDec;
         private System.Windows.Forms.DateTimePicker dtpFixedDate;
         private System.Windows.Forms.Label lbFixedDate;
+        private System.Windows.Forms.DateTimePicker dtpFixedDateTime;
+        private System.Windows.Forms.Label lbFixedDateUTC;
     }
 }

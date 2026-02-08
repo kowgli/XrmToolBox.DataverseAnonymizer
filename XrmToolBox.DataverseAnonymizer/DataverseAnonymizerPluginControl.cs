@@ -64,6 +64,8 @@ namespace XrmToolBox.DataverseAnonymizer
 
             dtpRandomDateFrom.Value = DateTime.Today;
             dtpRandomDateTo.Value = DateTime.Today.AddDays(1);
+            dtpFixedDate.Value = DateTime.Today;
+            dtpFixedDateTime.Value = DateTime.Today;
 
             bTestFilter.Visible = false;
 
@@ -518,7 +520,7 @@ namespace XrmToolBox.DataverseAnonymizer
 
                 existingRule.FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
                 {
-                    Value = dtpFixedDate.Value
+                    Value = dtpFixedDate.Value.Date.Add(dtpFixedDateTime.Value.TimeOfDay)
                 } : null;
 
                 dgvRules.Refresh();
@@ -570,7 +572,7 @@ namespace XrmToolBox.DataverseAnonymizer
                     } : null,
                     FixedDateRule = tabcRule.SelectedTab == tpFixedDate ? new FixedDateRule
                     {
-                        Value = dtpFixedDate.Value
+                        Value = dtpFixedDate.Value.Date.Add(dtpFixedDateTime.Value.TimeOfDay)
                     } : null
                 });
             }
@@ -668,7 +670,8 @@ namespace XrmToolBox.DataverseAnonymizer
             }
             else if (rule.FixedDateRule != null)
             {
-                dtpFixedDate.Value = rule.FixedDateRule.Value;
+                dtpFixedDate.Value = rule.FixedDateRule.Value.Date;
+                dtpFixedDateTime.Value = DateTime.Today.Add(rule.FixedDateRule.Value.TimeOfDay);
                 tabcRule.SelectedTab = tpFixedDate;
             }
         }
